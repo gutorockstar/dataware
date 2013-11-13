@@ -62,17 +62,22 @@ class AdmLoginController extends AbstractActionController
     public function loginAction()
     {
         $data = $this->getRequest()->getPost();
-
-        $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
-
-        $adapter = $authService->getAdapter();
-        $adapter->setIdentityValue($data['username']);
-        $adapter->setCredentialValue($data['password']);
-        $authResult = $authService->authenticate();
-
-        if ( $authResult->isValid() ) 
+        
+        if ( strlen($data['username']) > 0 )
         {
-            return $this->redirect()->toRoute('home');
+            $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+
+            $adapter = $authService->getAdapter();
+            $adapter->setIdentityValue($data['username']);
+            $adapter->setCredentialValue($data['password']);
+            $authResult = $authService->authenticate();
+            
+            exit(var_dump($authResult));
+
+            if ( $authResult->isValid() ) 
+            {
+                return $this->redirect()->toRoute('home');
+            }
         }
         
         $form = $this->getForm();

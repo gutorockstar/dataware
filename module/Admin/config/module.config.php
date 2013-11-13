@@ -88,7 +88,6 @@ return array(
         ),
         'authentication' => array(
             'orm_default' => array(
-                /**
                 'object_manager' => 'Doctrine\ORM\EntityManager',
                 'identity_class' => 'Admin\Entity\AdmLogin',
                 'identity_property' => 'username',
@@ -97,8 +96,6 @@ return array(
                 {
                     return my_awesome_check_test($AdmLogin->getPassword(), $passwordGiven);
                 },
-                 * 
-                 */
             ),
         ),
     ),
