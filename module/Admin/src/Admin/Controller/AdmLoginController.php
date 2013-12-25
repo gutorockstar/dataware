@@ -11,7 +11,6 @@ namespace Admin\Controller;
  
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Form\Annotation\AnnotationBuilder;
-use Zend\View\Model\ViewModel;
  
 use Admin\Entity\AdmLogin;
 
@@ -37,11 +36,58 @@ class AdmLoginController extends AbstractActionController
     }
      
     /**
+     * Ação de login no sistema.
+     * 
+     * @return array
+     */    
+    public function loginAction()
+    {
+        $data = $this->getRequest()->getPost();
+        
+        if ( strlen($data['username']) > 0 )
+        {
+            if ( $this->authenticate($data['username'], $data['password']) ) 
+            {
+                return $this->redirect()->toRoute('home');
+            }
+        }
+        
+        $form = $this->getFormLogin();
+        //$this->flashmessenger()->addMessage($message);
+        
+        return array(
+            'form' => $form,
+            'messages' => $this->flashmessenger()->getMessages()
+        );
+    }
+    
+    /**
+     * Método de autenticação do sistema.
+     * 
+     * @param String $username
+     * @param String $password
+     * @return boolean
+     */
+    private function authenticate($username, $password)
+    {
+        $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+        
+        $adapter = $authService->getAdapter();
+        $adapter->setIdentityValue($username);
+        $adapter->setCredentialValue($password);
+        $authResult = $authService->authenticate();
+        
+        exit(var_dump($authResult));
+        
+        return $authResult->isValid(); 
+    }
+    
+    /**
      * Gera o formulário de login/autenticação no sistema.
      * 
      * @return type
      */
-    public function getForm()
+    public function getFormLogin()
     {
         if ( !$this->form ) 
         {
@@ -52,41 +98,6 @@ class AdmLoginController extends AbstractActionController
         }
          
         return $this->form;
-    }
-     
-    /**
-     * Ação de login.
-     * 
-     * @return array
-     */    
-    public function loginAction()
-    {
-        $data = $this->getRequest()->getPost();
-        
-        if ( strlen($data['username']) > 0 )
-        {
-            $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
-
-            $adapter = $authService->getAdapter();
-            $adapter->setIdentityValue($data['username']);
-            $adapter->setCredentialValue($data['password']);
-            $authResult = $authService->authenticate();
-            
-            exit(var_dump($authResult));
-
-            if ( $authResult->isValid() ) 
-            {
-                return $this->redirect()->toRoute('home');
-            }
-        }
-        
-        $form = $this->getForm();
-        //$this->flashmessenger()->addMessage($message);
-        
-        return array(
-            'form' => $form,
-            'messages' => $this->flashmessenger()->getMessages()
-        );
     }
      
     /**
