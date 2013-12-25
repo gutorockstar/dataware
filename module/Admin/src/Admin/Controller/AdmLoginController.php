@@ -77,8 +77,6 @@ class AdmLoginController extends AbstractActionController
         $adapter->setCredentialValue($password);
         $authResult = $authService->authenticate();
         
-        exit(var_dump($authResult));
-        
         return $authResult->isValid(); 
     }
     

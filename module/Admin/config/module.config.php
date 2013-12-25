@@ -94,7 +94,7 @@ return array(
                 'credential_property' => 'password',
                 'credential_callable' => function(\Admin\Entity\AdmLogin $AdmLogin, $passwordGiven) 
                 {
-                    return my_awesome_check_test($AdmLogin->getPassword(), $passwordGiven);
+                    return ( $AdmLogin->getPassword() == md5($passwordGiven) );
                 },
             ),
         ),
