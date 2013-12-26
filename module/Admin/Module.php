@@ -46,7 +46,7 @@ class Module
     {
         return array(
             'factories' => array(
-                'Zend\Authentication\AuthenticationService' => function($sm) 
+                'AuthenticationService' => function($sm) 
                 {
                     /**
                     $authService = new AuthenticationService();

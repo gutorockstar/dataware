@@ -1,33 +1,18 @@
-<div class="login" style="width:30%;">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Efetuar login</h3>
-        </div>
-        <div class="panel-body">
-
 <?php
 
 $form = $this->form;
 $form->prepare();
 $form->setAttribute('action', $this->url('login'));
 
-echo $this->form()->openTag($form);
-
-echo $this->formLabel($form->get('username'));
-echo $this->formInput($form->get('username'));
-echo $this->formLabel($form->get('password'));
-echo $this->formInput($form->get('password'));
-echo $this->formElement($form->get('send'));
-
-// echo $this->formCollection($form);
-
-echo $this->formElementErrors($form->get('username'));
-echo $this->formElementErrors($form->get('password'));
-
-echo $this->form()->closeTag();
-
+$formLogin =  "{$this->form()->openTag($form)}
+               {$this->formLabel($form->get('username'))}
+               {$this->formInput($form->get('username'))}
+               {$this->formLabel($form->get('password'))}
+               {$this->formInput($form->get('password'))}
+               {$this->formElement($form->get('send'))}
+               {$this->formElementErrors($form->get('username'))}
+               {$this->formElementErrors($form->get('password'))}
+               {$this->form()->closeTag()}";
+               
+echo $this->tPanel('Efetuar login', $formLogin, 'width:30%');
 ?>
-
-        </div>
-    </div>
-</div>

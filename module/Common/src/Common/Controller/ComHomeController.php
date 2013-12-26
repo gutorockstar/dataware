@@ -12,11 +12,11 @@ namespace Common\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends AbstractActionController
+class ComHomeController extends AbstractActionController
 {
     public function homeAction()
     {
-        if ( !$this->getServiceLocator()->get('AuthService')->hasIdentity() )
+        if ( !$this->getServiceLocator()->get('AuthenticationService')->hasIdentity() )
         {
             return $this->redirect()->toRoute('login');
         }

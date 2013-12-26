@@ -28,8 +28,7 @@ class AdmLoginController extends AbstractActionController
     {
         if ( !$this->storage ) 
         {
-            $this->storage = $this->getServiceLocator()
-                                  ->get('Admin\Controller\AdmAuthStorageController');
+            $this->storage = $this->getServiceLocator()->get('Admin\Controller\AdmAuthStorageController');
         }
          
         return $this->storage;
@@ -50,13 +49,14 @@ class AdmLoginController extends AbstractActionController
             {
                 return $this->redirect()->toRoute('home');
             }
+            else
+            {
+                $this->flashmessenger()->addErrorMessage("Usuário e(ou) senha inválidos.");
+            }
         }
         
-        $form = $this->getFormLogin();
-        //$this->flashmessenger()->addMessage($message);
-        
         return array(
-            'form' => $form,
+            'form' => $this->getFormLogin(),
             'messages' => $this->flashmessenger()->getMessages()
         );
     }
@@ -70,7 +70,7 @@ class AdmLoginController extends AbstractActionController
      */
     private function authenticate($username, $password)
     {
-        $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+        $authService = $this->getServiceLocator()->get('AuthenticationService');
         
         $adapter = $authService->getAdapter();
         $adapter->setIdentityValue($username);
@@ -107,8 +107,8 @@ class AdmLoginController extends AbstractActionController
     {
         $this->getSessionStorage()->forgetMe();
         $this->getAuthService()->clearIdentity();
-         
-        $this->flashmessenger()->addMessage("Você foi desconectado do sistema.");
+        $this->flashmessenger()->addInfoMessage("Você foi desconectado.");
+        
         return $this->redirect()->toRoute('login');
     }
 }
