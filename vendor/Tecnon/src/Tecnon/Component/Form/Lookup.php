@@ -24,5 +24,6 @@ class Lookup extends Element
      */
     protected $attributes = array(
         'type' => 'text',
+        'onClick' => "javascript:this.value = 'Abrir abaixo uma minigrid de seleção de registros.'"
     );
 }
