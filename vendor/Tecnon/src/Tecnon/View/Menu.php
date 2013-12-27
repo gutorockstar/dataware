@@ -11,12 +11,12 @@
  * @author augusto
  */
 
-namespace Tecnon\View\Helper;
+namespace Tecnon\View;
 
-use Tecnon\View\tViewHelper,
+use Tecnon\View\ViewHelper,
     Zend\Session\Container;
 
-class tMenu extends tViewHelper
+class Menu extends ViewHelper
 {    
     public function __invoke($namespace = null)
     {

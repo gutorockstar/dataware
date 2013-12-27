@@ -15,7 +15,7 @@ namespace Tecnon\View;
 use Zend\View\Helper\AbstractHelper,
     Doctrine\ORM\EntityManager;
 
-class tViewHelper extends AbstractHelper
+class ViewHelper extends AbstractHelper
 {
     /**
      * Recebe EntityManager do Doctrine.

@@ -10,11 +10,11 @@
  *
  * @author augusto
  */
-namespace Tecnon\View\Helper;
+namespace Tecnon\View;
 
-use Tecnon\View\tViewHelper;
+use Tecnon\View\ViewHelper;
 
-class tPanel extends tViewHelper
+class Panel extends ViewHelper
 {
     /**
      * Cria painel recebendo o conteúdo por parâmetro

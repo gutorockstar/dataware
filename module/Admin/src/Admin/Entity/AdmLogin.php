@@ -33,7 +33,7 @@ class AdmLogin
     /** 
      * @ORM\Column(type="string", length=255)
      * 
-     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Type("Tecnon\Component\Form\Lookup")
      * @Annotation\Required({"required":"true"})
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Login"})

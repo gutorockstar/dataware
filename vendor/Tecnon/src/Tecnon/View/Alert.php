@@ -11,12 +11,12 @@
  * @author augusto
  */
 
-namespace Tecnon\View\Helper;
+namespace Tecnon\View;
 
-use Tecnon\View\tViewHelper,
+use Tecnon\View\ViewHelper,
     \Zend\Mvc\Controller\Plugin\FlashMessenger;
 
-class tAlert extends tViewHelper
+class Alert extends ViewHelper
 {
     /**
      * Título do alert de Aviso.

@@ -47,6 +47,12 @@ class Module
                                  ->get('Doctrine\ORM\EntityManager');   				
 
                         return new View\Helper\TecnonMenuView($em);
+                },
+                'TecnonPanelView' => function ($sm) {
+                        $em = $sm->getServiceLocator()
+                                 ->get('Doctrine\ORM\EntityManager');   				
+
+                        return new View\Helper\TecnonPanelView($em);
                 }
             )
     	);
