@@ -54,7 +54,7 @@ class AdmLogin
     
     /**
      * @Annotation\Type("Zend\Form\Element\Submit")
-     * @Annotation\Attributes({"value":"Submit", "class":"btn btn-primary"})
+     * @Annotation\Attributes({"value":"Logar", "class":"btn btn-primary"})
      */
     protected $send;
     
