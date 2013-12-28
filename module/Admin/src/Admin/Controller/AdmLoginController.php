@@ -51,13 +51,13 @@ class AdmLoginController extends AbstractActionController
             }
             else
             {
-                $this->flashmessenger()->addErrorMessage("Usuário e(ou) senha inválidos.");
+                $this->flashMessenger()->addErrorMessage("Usuário e(ou) senha inválidos.");
             }
         }
         
         return array(
             'form' => $this->getFormLogin(),
-            'messages' => $this->flashmessenger()->getMessages()
+            'messages' => $this->flashMessenger()->getMessages()
         );
     }
     
@@ -107,7 +107,7 @@ class AdmLoginController extends AbstractActionController
     {
         $this->getSessionStorage()->forgetMe();
         $this->getAuthService()->clearIdentity();
-        $this->flashmessenger()->addInfoMessage("Você foi desconectado.");
+        $this->flashMessenger()->addInfoMessage("Você foi desconectado.");
         
         return $this->redirect()->toRoute('login');
     }
