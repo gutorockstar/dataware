@@ -1,3 +1,16 @@
+body {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.navbar {
+    z-index: 95;
+}
+
+.panelBase {
+    margin-top: 60px;
+}
+
 label {
     display: inline !important;
 }

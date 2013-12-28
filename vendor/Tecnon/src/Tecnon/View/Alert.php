@@ -41,21 +41,21 @@ class Alert extends ViewHelper
      */
     public function __invoke($namespace = null)
     {        
-        $FlashMessenger = $this->view->flashmessenger();
+        $FlashMessenger = $this->view->flashMessenger();        
         
         $infoMessages    = $FlashMessenger->getInfoMessages();
         $successMessages = $FlashMessenger->getSuccessMessages();
-        $errorMessages   = $FlashMessenger->getErrorMessages();        
+        $errorMessages   = $FlashMessenger->getErrorMessages();
         
-        if ( $infoMessages )
+        if ( count($infoMessages) > 0 )
         {
             $alert = $this->infoMessage($infoMessages);
         }
-        else if ( $successMessages )
+        else if ( count($successMessages) > 0 )
         {
             $alert = $this->successMessage($successMessages);
         }
-        else if ( $errorMessages )
+        else if ( count($errorMessages) > 0 )
         {
             $alert = $this->errorMessage($errorMessages);
         }
