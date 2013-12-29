@@ -47,18 +47,16 @@ class AdmLoginController extends AbstractActionController
         {
             if ( $this->authenticate($data['username'], $data['password']) ) 
             {
-                return $this->redirect()->toRoute('home');
+                $this->redirect()->toRoute('home');
             }
             else
             {
                 $this->flashMessenger()->addErrorMessage("Usuário e(ou) senha inválidos.");
+                $this->redirect()->toRoute('login');
             }
         }
         
-        return array(
-            'form' => $this->getFormLogin(),
-            'messages' => $this->flashMessenger()->getMessages()
-        );
+        return array('form' => $this->getFormLogin());
     }
     
     /**
@@ -85,7 +83,7 @@ class AdmLoginController extends AbstractActionController
      * 
      * @return type
      */
-    public function getFormLogin()
+    private function getFormLogin()
     {
         if ( !$this->form ) 
         {

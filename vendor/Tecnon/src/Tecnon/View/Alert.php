@@ -19,45 +19,39 @@ use Tecnon\View\ViewHelper,
 class Alert extends ViewHelper
 {
     /**
-     * Título do alert de Aviso.
+     * Constantes dos headers.
      */
-    const HEADER_INFO = 'Aviso!';
-    
-    /**
-     * Título do alert de Aviso.
-     */
+    const HEADER_INFO    = 'Aviso!';
     const HEADER_SUCCESS = 'Sucesso!';
-    
-    /**
-     * Título do alert de Aviso.
-     */
-    const HEADER_ERROR = 'Erro!';
+    const HEADER_ERROR   = 'Erro!';
     
     /**
      * Verifica o alert que deve ser exibido na tela, caso tenha sido chamado.
      * 
-     * @param String $namespace
      * @return String html
      */
-    public function __invoke($namespace = null)
-    {        
-        $FlashMessenger = $this->view->flashMessenger();        
-        
-        $infoMessages    = $FlashMessenger->getInfoMessages();
-        $successMessages = $FlashMessenger->getSuccessMessages();
-        $errorMessages   = $FlashMessenger->getErrorMessages();
-        
+    public function __invoke()
+    {       
+        $infoMessages = $this->view->flashMessenger()->getInfoMessages();
         if ( count($infoMessages) > 0 )
         {
             $alert = $this->infoMessage($infoMessages);
         }
-        else if ( count($successMessages) > 0 )
+        else
         {
-            $alert = $this->successMessage($successMessages);
-        }
-        else if ( count($errorMessages) > 0 )
-        {
-            $alert = $this->errorMessage($errorMessages);
+            $successMessages = $this->view->flashMessenger()->getSuccessMessages();
+            if ( count($successMessages) > 0 )
+            {
+                $alert = $this->successMessage($successMessages);
+            }
+            else
+            {
+                $errorMessages = $this->view->flashMessenger()->getErrorMessages();
+                if ( count($errorMessages) > 0 )
+                {
+                    $alert = $this->errorMessage($errorMessages);
+                }
+            }
         }
         
         echo ($alert) ? $alert : null;

@@ -48,15 +48,6 @@ class Module
             'factories' => array(
                 'AuthenticationService' => function($sm) 
                 {
-                    /**
-                    $authService = new AuthenticationService();
-                    
-                    // Aqui que deu pau agora.
-                    $authService->setStorage($sm->get('Admin\Entity\AdmLogin'));
-		     
-		    return $authService;
-                     * 
-                     */
                     return $sm->get('doctrine.authenticationservice.orm_default');
                 }
             )
