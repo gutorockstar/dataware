@@ -37,7 +37,7 @@ class AdmLogin
      * @Annotation\Required({"required":"true"})
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Login"})
-     * @Annotation\Attributes({"class":"form-control"})
+     * @Annotation\Attributes({"class":"form-control username"})
      */
     protected $username;
     
@@ -48,7 +48,7 @@ class AdmLogin
      * @Annotation\Required({"required":"true"})
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Senha"})
-     * @Annotation\Attributes({"class":"form-control"})
+     * @Annotation\Attributes({"class":"form-control password"})
      */
     protected $password;
     

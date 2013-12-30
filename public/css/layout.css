@@ -4,6 +4,12 @@ body {
     background: url("../img/fundo-site.png") repeat scroll 0 0 transparent;
 }
 
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 80% !important;
+}
+
 .navbar {
     z-index: 95;
     border-bottom-color: #66afe9 !important;
@@ -22,15 +28,38 @@ label {
 
 .form-control {
     margin-bottom: 5px;
-    background: #f5f5f5;
-}
-
-.form-control:focus {
-    background: #fff;
+    width: 80%;
 }
 
 .panel-heading {
+    color: #285e8e !important;
+    font-weight: bold;
+}
+
+.panel-danger .panel-heading { 
+    background: red !important;
+    border-color: red !important;
     color: #fff !important;
-    background: #3276b1 !important;
-    border-color: #285e8e !important;
+}
+
+.panel-success .panel-heading { 
+    background: green !important;
+    border-color: green !important;
+    color: #fff !important;
+}
+
+.panel-info .panel-heading { 
+    background: #ced04c !important;
+    border-color: yellow !important;
+    color: #fff !important;
+}
+
+#AdmLogin .username{
+    background: #FFF url(../img/user.png) no-repeat !important;
+    padding-left: 35px;
+}
+
+#AdmLogin .password{
+    background: #FFF url(../img/key.png) no-repeat !important;
+    padding-left: 35px;
 }
