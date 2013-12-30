@@ -16,10 +16,12 @@
                         ->prependStylesheet($this->basePath() . '/css/layout.css')
                         ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
                         ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css')
-                        ->prependStylesheet($this->basePath() . '/css/popup-div.css') ?>
+                        ->prependStylesheet($this->basePath() . '/css/popup-div.css')
+                        ->prependStylesheet($this->basePath() . '/css/loading-bar.css')?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
+            ->prependFile($this->basePath() . '/js/loading-bar.js', 'text/javascript')
             ->prependFile($this->basePath() . '/js/popup-div.js', 'text/javascript')
             ->prependFile($this->basePath() . '/js/bootstrap.min.js')
             ->prependFile($this->basePath() . '/js/jquery.min.js')
@@ -28,6 +30,25 @@
         ; ?>
 
     </head>
+    
+    
+    
+    <div id='obscure-loading'>
+        <div class="contentBar">
+            <div id="block_1" class="barlittle"></div>
+            <div id="block_2" class="barlittle"></div>
+            <div id="block_3" class="barlittle"></div>
+            <div id="block_4" class="barlittle"></div>
+            <div id="block_5" class="barlittle"></div>
+        </div>
+        <!--<a class="triggerBar" href="#">Play/Stop Animation</a>-->
+    </div>
+    
+    
+    
+    
+    
+    
     
     <?php
     echo $this->Alert();
