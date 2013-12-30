@@ -42,21 +42,26 @@ class AdmLoginController extends AbstractActionController
     public function loginAction()
     {
         $data = $this->getRequest()->getPost();
+        $form = $this->getFormLogin();
+        $form->setData($data);
         
-        if ( strlen($data['username']) > 0 )
+        if ( array_key_exists('username', $data) )
         {
-            if ( $this->authenticate($data['username'], $data['password']) ) 
+            if ( $form->isvalid() )
             {
-                $this->redirect()->toRoute('home');
-            }
-            else
-            {
-                $this->flashMessenger()->addErrorMessage("Usuário e(ou) senha inválidos.");
-                $this->redirect()->toRoute('login');
+                if ( $this->authenticate($data['username'], $data['password']) ) 
+                {
+                    $this->redirect()->toRoute('home');
+                }
+                else
+                {
+                    $this->flashMessenger()->addErrorMessage("Usuário e(ou) senha inválidos.");
+                    $this->redirect()->toRoute('login');
+                }
             }
         }
         
-        return array('form' => $this->getFormLogin());
+        return array('form' => $form);
     }
     
     /**
@@ -91,6 +96,7 @@ class AdmLoginController extends AbstractActionController
             $builder  = new AnnotationBuilder();
             
             $this->form = $builder->createForm($AdmLogin);
+            $this->form->setInputFilter($AdmLogin->getInputFilter());
         }
          
         return $this->form;

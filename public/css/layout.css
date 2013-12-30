@@ -27,7 +27,6 @@ label {
 
 .form-control {
     margin-bottom: 5px;
-    background: #f5f5f5 !important;
     width: 80%;
 }
 
@@ -39,6 +38,10 @@ label {
     color: #285e8e !important;
     font-weight: bold;
     background: #ccc url("../img/panel-heading.png") repeat !important;
+}
+
+.panel-body {
+    background: #f5f5f5 !important;
 }
 
 .panel-danger .panel-heading { 
@@ -60,11 +63,19 @@ label {
 }
 
 #AdmLogin .username{
-    background: #f5f5f5 url(../img/user.png) no-repeat !important;
+    background: #fff url(../img/user.png) no-repeat !important;
     padding-left: 35px;
 }
 
 #AdmLogin .password{
-    background: #f5f5f5 url(../img/key.png) no-repeat !important;
+    background: #fff url(../img/key.png) no-repeat !important;
     padding-left: 35px;
+}
+
+.insideContent ul {
+    margin-top: 5px;
+}
+
+.insideContent li {
+    color: red;
 }
