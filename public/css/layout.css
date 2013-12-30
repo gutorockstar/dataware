@@ -1,7 +1,6 @@
 body {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
-    background: url("../img/fundo-site.png") repeat scroll 0 0 transparent;
 }
 
 footer {
@@ -28,12 +27,18 @@ label {
 
 .form-control {
     margin-bottom: 5px;
+    background: #f5f5f5 !important;
     width: 80%;
+}
+
+.btn {
+    margin-top: 10px;
 }
 
 .panel-heading {
     color: #285e8e !important;
     font-weight: bold;
+    background: #ccc url("../img/panel-heading.png") repeat !important;
 }
 
 .panel-danger .panel-heading { 
@@ -55,11 +60,11 @@ label {
 }
 
 #AdmLogin .username{
-    background: #FFF url(../img/user.png) no-repeat !important;
+    background: #f5f5f5 url(../img/user.png) no-repeat !important;
     padding-left: 35px;
 }
 
 #AdmLogin .password{
-    background: #FFF url(../img/key.png) no-repeat !important;
+    background: #f5f5f5 url(../img/key.png) no-repeat !important;
     padding-left: 35px;
 }

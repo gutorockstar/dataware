@@ -24,6 +24,6 @@ class Lookup extends Element
      */
     protected $attributes = array(
         'type' => 'text',
-        'onClick' => "javascript:this.value = 'admin'"
+        'onClick' => "javascript:this.value = ''"
     );
 }
