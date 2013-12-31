@@ -45,7 +45,11 @@ class AdmLoginController extends AbstractActionController
         $form = $this->getFormLogin();
         $form->setData($data);
         
-        if ( array_key_exists('username', $data) )
+        if ( $this->getServiceLocator()->get('AuthenticationService')->hasIdentity() )
+        {
+            $this->redirect()->toRoute('home');
+        }
+        else if ( array_key_exists('username', $data) )
         {
             if ( $form->isvalid() )
             {

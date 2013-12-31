@@ -18,7 +18,7 @@ class ComHomeController extends AbstractActionController
     {
         if ( !$this->getServiceLocator()->get('AuthenticationService')->hasIdentity() )
         {
-            return $this->redirect()->toRoute('login');
+            $this->redirect()->toRoute('login');
         }
          
         return new ViewModel();
