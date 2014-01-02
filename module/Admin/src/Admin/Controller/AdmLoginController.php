@@ -47,7 +47,7 @@ class AdmLoginController extends AbstractActionController
         
         if ( $this->getServiceLocator()->get('AuthenticationService')->hasIdentity() )
         {
-            $this->redirect()->toRoute('home');
+            $this->redirect()->toRoute('admin');
         }
         else if ( array_key_exists('username', $data) )
         {
@@ -55,7 +55,7 @@ class AdmLoginController extends AbstractActionController
             {
                 if ( $this->authenticate($data['username'], $data['password']) ) 
                 {
-                    $this->redirect()->toRoute('home');
+                    $this->redirect()->toRoute('admin');
                 }
                 else
                 {

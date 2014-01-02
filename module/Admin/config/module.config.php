@@ -10,7 +10,8 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Admin\Controller\AdmLogin' => 'Admin\Controller\AdmLoginController'
+            'Admin\Controller\AdmLogin' => 'Admin\Controller\AdmLoginController',
+            'Admin\Controller\AdmHome' => 'Admin\Controller\AdmHomeController'
         ),
     ),
     
@@ -43,6 +44,32 @@ return array(
                 ),
             ),
             
+            'admin' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/admin',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Admin\Controller',
+                        'controller'    => 'AdmHome',
+                        'action'        => 'home',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/[:action]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                ),
+            ),            
             
         ),
     ),
