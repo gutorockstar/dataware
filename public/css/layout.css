@@ -76,3 +76,12 @@ label {
 .insideContent li {
     color: red;
 }
+
+.navbar-nav li{
+    height: 53px !important;
+}
+
+.dropdown-menu>li>a {
+    height: 53px !important;
+    padding: 15px !important;
+}
