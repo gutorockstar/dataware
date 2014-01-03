@@ -5,7 +5,7 @@ $(document).ready( function()
         loadPopupBox();
     }); 
     
-    $("a").click(function()
+    $(".loading").click(function()
     {
         loadPopupBox();
     });

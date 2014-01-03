@@ -91,7 +91,7 @@ class Menu extends ViewHelper
             }
             else
             {
-                $optionsMenu .= "<li><a href='{$action}'>{$name}</a></li>";
+                $optionsMenu .= "<li><a class='loading' href='{$action}'>{$name}</a></li>";
             }
         }
         
