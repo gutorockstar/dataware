@@ -11,6 +11,7 @@ namespace Admin\Controller;
  
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Form\Annotation\AnnotationBuilder;
+use Zend\Session\Container;
  
 use Admin\Entity\AdmLogin;
 
@@ -55,6 +56,8 @@ class AdmLoginController extends AbstractActionController
             {
                 if ( $this->authenticate($data['username'], $data['password']) ) 
                 {
+                    $userSession = new Container('user');
+                    $userSession->username = $data['username'];
                     $this->redirect()->toRoute('admin');
                 }
                 else

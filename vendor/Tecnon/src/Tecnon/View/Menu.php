@@ -13,62 +13,91 @@
 
 namespace Tecnon\View;
 
-use Tecnon\View\ViewHelper,
-    Zend\Session\Container;
+use Tecnon\View\ViewHelper;
+use Zend\Session\Container;
+use Zend\View\Helper\BasePath;
 
 class Menu extends ViewHelper
 {    
-    public function __invoke($namespace = null)
-    {
-        $admUnitAccess   = $this->getEntityManager()->getRepository('Admin\Entity\AdmUnitAccess');
-        $admGroupUser    = $this->getEntityManager()->getRepository('Admin\Entity\AdmGroupUser');
-        $admModuleAccess = $this->getEntityManager()->getRepository('Admin\Entity\AdmModuleAccess');
-        
+    public function __invoke()
+    {        
         $userSession = new Container('user');
-        $userid      = $userSession->userid;
+        $username    = $userSession->username;
         
-        // Obtém as unidades que o usuário possui acesso.
-        $unitsAccess = $admUnitAccess->findBy(array('userid' => $userid, 'status' => DB_TRUE));
+        $menu = "<div class='container'>
+                    <div class='navbar-header'>
+                        <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                            <span class='icon-bar'></span>
+                            <span class='icon-bar'></span>
+                            <span class='icon-bar'></span>
+                        </button>
+                        <a class='navbar-brand' href='/admin'><img src='/img/simple_logo_mini.png' alt='Zend Framework 2'/>&nbsp;Tecnon Manager</a>
+                    </div>
+                    <div class='collapse navbar-collapse'>";
         
-        foreach ( $unitsAccess as $unitAccess )
+        if ( strlen($username) > 0 )
+        {            
+            $menu .= $this->getModules();
+               
+        }
+        
+        $menu .= "</div>
+              </div>";
+        
+        return $menu;
+    }
+    
+    /**
+     * Retorna os módulos para popular o menu conforme permições do usuário.
+     * 
+     * @return string html
+     */
+    private function getModules()
+    {
+        $modulesArray = array(
+            "Artigos" => array(
+                "Categorias e subcategorias" => '/category',
+                "Artigos" => '/article'
+            ),
+            "Estoque" => '/warehouse',
+            "Destaque" => '/featured',
+            "Blocos" => '/block',
+            "Menu" => '/menu',
+            "Interface" => '/interface'
+        );
+        
+        return $this->getOptionsMenu($modulesArray);
+    }
+    
+    /**
+     * Monta as opções do menu.
+     * 
+     * @param type $options
+     * @return type
+     */
+    public function getOptionsMenu($options, $dropDown = false)
+    {
+        $ulClass = $dropDown ? 'dropdown-menu' : 'nav navbar-nav';
+        $optionsMenu .= "<ul class='{$ulClass}'>";
+        
+        foreach ( $options as $name => $action )
         {
-            // Obtém os grupos no qual o usuário da unidade pertence.
-            $groupsUser = $admGroupUser->findBy(array('unitaccessid' => $unitAccess->__get('unitaccessid')));
-            
-            foreach ( $groupsUser as $groupUser )
+            if ( is_array($action) )
             {
-                // Obtém os módulos que o grupo do usuário da unidade possui acesso.
-                $modulesAccess = $admModuleAccess->findBy(array('groupid' => $groupUser->__get('groupid')));
-                $modules = array();
-                
-                foreach ( $modulesAccess as $moduleAccess )
-                {   
-                    // Obtém as informações do módulo.
-                    $module   = $moduleAccess->__get('module'); 
-                    $moduleData = array(
-                        'moduleid' => $module->__get('moduleid'),
-                        'name' => $module->__get('name'),
-                        'label' => $module->__get('label')
-                    );
-                    
-                    if ( $module->__get('status') == DB_TRUE )
-                    {
-                        if ( !in_array($moduleData, $modules) )
-                        {
-                            
-                            
-                            
-                            $modules[] = $moduleData;
-                            
-                            
-                            
-                        }
-                    }
-                }
+                $optionsMenu .= "<li class='dropdown'>
+                                    <a href='' class='dropdown-toggle' data-toggle='dropdown'>{$name}<b class='caret'></b></a>";
+                $optionsMenu .= $this->getOptionsMenu($action, true);
+                $optionsMenu .= "</li>";
+            }
+            else
+            {
+                $optionsMenu .= "<li><a href='{$action}'>{$name}</a></li>";
             }
         }
         
-        return "Aqui";
+        $optionsMenu .= "</ul>";
+        
+        return $optionsMenu;
     }
 }
 

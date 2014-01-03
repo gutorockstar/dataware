@@ -36,23 +36,33 @@ class Module
     {
     	return array(
             'factories' => array(
-                'Alert' => function ($sm) {
-                        $em = $sm->getServiceLocator()
-                                 ->get('Doctrine\ORM\EntityManager');   				
+                'Loading' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()
+                             ->get('Doctrine\ORM\EntityManager');   				
 
-                        return new View\Alert($em);
+                    return new View\Loading($em);
                 },
-                'Menu' => function ($sm) {
-                        $em = $sm->getServiceLocator()
-                                 ->get('Doctrine\ORM\EntityManager');   				
+                'Alert' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()
+                             ->get('Doctrine\ORM\EntityManager');   				
 
-                        return new View\Menu($em);
+                    return new View\Alert($em);
                 },
-                'Panel' => function ($sm) {
-                        $em = $sm->getServiceLocator()
-                                 ->get('Doctrine\ORM\EntityManager');   				
+                'Menu' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()
+                             ->get('Doctrine\ORM\EntityManager');   				
 
-                        return new View\Panel($em);
+                    return new View\Menu($em);
+                },
+                'Panel' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()
+                             ->get('Doctrine\ORM\EntityManager');   				
+
+                    return new View\Panel($em);
                 }
             )
     	);
