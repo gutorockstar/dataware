@@ -4,6 +4,11 @@ $(document).ready( function()
     {
         loadPopupBox();
     }); 
+    
+    $("a").click(function()
+    {
+        loadPopupBox();
+    });
   
     $('#popupBoxClose').click( function() 
     {			
