@@ -46,6 +46,22 @@ return array(
         ),
     ),
     
+    'doctrine' => array(
+        'driver' => array(
+            'article_entities' => array(
+                'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/Article/Entity')
+            ),
+
+            'orm_default' => array(
+                'drivers' => array(
+                    'Article\Entity' => 'article_entities'
+                )
+            )
+        )
+    ),
+    
     'service_manager' => array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',

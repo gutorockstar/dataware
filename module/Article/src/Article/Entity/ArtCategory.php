@@ -29,9 +29,8 @@ class ArtCategory
      * @Annotation\Type("Zend\Form\Element\Hidden")
      */
     protected $categoryid;
-    
+
     /**
-     * @ORM\Id
      * @ORM\Column(type="integer")
      * 
      * @Annotation\Type("Zend\Form\Element\Select")
@@ -72,8 +71,18 @@ class ArtCategory
     protected $description;
     
     /**
-     * @ORM\OneToOne(targetEntity="ArtCategory")
-     * @ORM\JoinColumn(name="parentcategory", referencedColumnName="categoryid")
+     * @ORM\Column(type="boolean")
+     * 
+     * @Annotation\Type("Zend\Form\Element\Checkbox")
+     * @Annotation\Filter({"name":"StripTags"})
+     * @Annotation\Options({"label":"Ativo"})
+     * @Annotation\Attributes({"class":"form-control"}) 
+     */
+    protected $status;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="ArtCategory")
+     * @ORM\JoinColumn(name="parentcategoryid", referencedColumnName="categoryid")
      */
     public $parentcategory;
     
