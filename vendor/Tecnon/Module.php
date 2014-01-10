@@ -63,6 +63,13 @@ class Module
                              ->get('Doctrine\ORM\EntityManager');   				
 
                     return new View\Panel($em);
+                },
+                'Grid' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()
+                             ->get('Doctrine\ORM\EntityManager');   				
+
+                    return new View\Grid($em);
                 }
             )
     	);
