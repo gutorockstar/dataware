@@ -2120,6 +2120,7 @@
 		
 			jqFilter
 				.attr('aria-controls', oSettings.sTableId)
+				.attr('class', 'form-control')
 				.bind( 'keypress.DT', function(e) {
 					/* Prevent form submission */
 					if ( e.keyCode == 13 )
@@ -2812,7 +2813,7 @@
 			} );
 		
 		
-			$('select', nLength).attr('aria-controls', oSettings.sTableId);
+			$('select', nLength).attr('aria-controls', oSettings.sTableId).attr('class', 'form-control');
 			
 			return nLength;
 		}
@@ -2867,7 +2868,7 @@
 			}
 			
 			var nPaginate = document.createElement( 'div' );
-			nPaginate.className = oSettings.oClasses.sPaging+oSettings.sPaginationType;
+			nPaginate.className = oSettings.oClasses.sPaging;
 			
 			DataTable.ext.oPagination[ oSettings.sPaginationType ].fnInit( oSettings, nPaginate, 
 				function( oSettings ) {
@@ -9481,7 +9482,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "Search:",
+			"sSearch": "Localizar:",
 		
 		
 			/**
@@ -11457,7 +11458,7 @@
 		"sWrapper": "dataTables_wrapper",
 		"sFilter": "dataTables_filter",
 		"sInfo": "dataTables_info",
-		"sPaging": "dataTables_paginate paging_", /* Note that the type is postfixed */
+		"sPaging": "pagination pagination-large", /* Note that the type is postfixed */
 		"sLength": "dataTables_length",
 		"sProcessing": "dataTables_processing",
 		
@@ -11509,8 +11510,7 @@
 		"sPageLast": "last ui-corner-tr ui-corner-br",
 		
 		/* Features */
-		"sPaging": "dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi "+
-			"ui-buttonset-multi paging_", /* Note that the type is postfixed */
+		"sPaging": "pagination pagination-large", /* Note that the type is postfixed */
 		
 		/* Sorting */
 		"sSortAsc": "ui-state-default",

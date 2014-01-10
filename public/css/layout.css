@@ -85,3 +85,20 @@ label {
     height: 53px !important;
     padding: 15px !important;
 }
+
+.dataTables_filter label{
+    width: 370px;
+    float:left;
+}
+
+.label-search{
+    margin-top: 5px !important;
+}
+
+.search{
+    float: right !important;
+}
+
+.table{
+    width: 100% !important;
+}
