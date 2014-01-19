@@ -44,6 +44,13 @@ class Grid extends ViewHelper
                             <td class='center '>1.8</td>
                             <td class='center '>A</td>
                         </tr>
+                        <tr class='gradeA even'>
+                            <td class=' sorting_1'>Jasda</td>
+                            <td class=' '>Bçalsdk</td>
+                            <td class=' '>Win 98+ / OSX.2+</td>
+                            <td class='center '>1.8</td>
+                            <td class='center '>A</td>
+                        </tr>
                         <tr class='gradeA odd'>
                             <td class=' sorting_1'>Gecko</td>
                             <td class=' '>Firefox 2.0</td>

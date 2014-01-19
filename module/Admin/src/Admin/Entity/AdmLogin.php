@@ -36,7 +36,7 @@ class AdmLogin
      * @Annotation\Type("Tecnon\Component\Form\Lookup")
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Login"})
-     * @Annotation\Attributes({"class":"form-control username"})
+     * @Annotation\Attributes({"class":"form-control"})
      */
     protected $username;
     
@@ -46,7 +46,7 @@ class AdmLogin
      * @Annotation\Type("Zend\Form\Element\Password")
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Senha"})
-     * @Annotation\Attributes({"class":"form-control password"})
+     * @Annotation\Attributes({"class":"form-control"})
      */
     protected $password;
     

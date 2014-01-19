@@ -25,14 +25,9 @@ class Menu extends ViewHelper
         $username    = $userSession->username;
         
         $menu = "<div class='container'>
-                    <div class='navbar-header'>
-                        <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
-                            <span class='icon-bar'></span>
-                            <span class='icon-bar'></span>
-                            <span class='icon-bar'></span>
-                        </button>
-                        <a class='navbar-brand' href='/admin'><img src='/img/simple_logo_mini.png' alt='Zend Framework 2'/>&nbsp;Tecnon Manager</a>
-                    </div>
+                    <!--<div class='navbar-header'>
+                        
+                    </div>-->
                     <div class='collapse navbar-collapse'>";
         
         if ( strlen($username) > 0 )

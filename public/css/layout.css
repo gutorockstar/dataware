@@ -3,10 +3,92 @@ body {
     padding-bottom: 0px !important;
 }
 
+.container{
+    margin-top: 20px !important;
+}
+
 footer {
     position: absolute;
     bottom: 0;
     width: 80% !important;
+}
+
+.menu{
+    background: #ddd;
+}
+
+.menu .container{
+    margin-top: 0px !important;
+}
+
+.menu .navbar-collapse{
+    padding-left: 0px !important;
+}
+
+.menu .dropdown-menu a{
+    color: #2187e7 !important;
+}
+
+.menu .dropdown-menu a:hover{
+    background: #2187e7 !important;
+    color: #fff !important;
+}
+
+.menu .active{
+    background: #2187e7 !important;
+    color: #fff !important;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
+    background: #2187e7 !important;
+    color: #fff !important;
+}
+
+.menu .open{
+    color: #fff !important;
+    background: #2187e7 !important;
+}
+
+.menu li a{
+    height: 53px !important;
+    color: #2187e7 !important;
+}
+    
+.menu li a:hover{
+    background: #2187e7 !important;
+    color: #fff !important;
+}
+
+th{
+    background: #2187e7 !important;
+    color: #fff !important;
+    text-align: center !important;
+}
+
+.row{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.pagination{
+    float: right !important;
+}
+
+.pagination ul li{
+    display: inline;
+    border: 1px solid #ccc;
+    padding: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-left: 2px;
+}
+
+.pagination ul .active{
+    background: #2187e7 !important;
+}
+
+.pagination ul .active a{
+    color: #fff !important;
 }
 
 .navbar {
@@ -24,7 +106,7 @@ label {
 .form-control {
     margin-bottom: 5px;
     width: 80%;
-    background-color: #f5f5f5 !important;
+    border-radius: 0px !important;
 }
 
 .btn {

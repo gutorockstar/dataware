@@ -7,9 +7,13 @@
             <file>file:/var/www/zend_application/public/js/jquery.dataTables.js</file>
             <file>file:/var/www/zend_application/vendor/Tecnon/Module.php</file>
             <file>file:/var/www/zend_application/vendor/Tecnon/src/Tecnon/View/Alert.php</file>
+            <file>file:/var/www/zend_application/module/Admin/view/admin/adm-login/login.phtml</file>
             <file>file:/var/www/zend_application/public/css/layout.css</file>
             <file>file:/var/www/zend_application/module/Admin/view/layout/layout.phtml</file>
             <file>file:/var/www/zend_application/vendor/Tecnon/src/Tecnon/View/Grid.php</file>
+            <file>file:/var/www/zend_application/public/js/DT_bootstrap.js</file>
+            <file>file:/var/www/zend_application/module/Admin/src/Admin/Entity/AdmLogin.php</file>
+            <file>file:/var/www/zend_application/module/Article/view/article/art-category/search.phtml</file>
         </group>
     </open-files>
 </project-private>

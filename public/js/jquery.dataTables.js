@@ -1,4 +1,4 @@
-/**
+    /**
  * @summary     DataTables
  * @description Paginate, search and sort HTML tables
  * @version     1.9.4
@@ -9288,7 +9288,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+			"sInfo": "Exibindo _START_ a _END_ de _TOTAL_ registros",
 		
 		
 			/**
