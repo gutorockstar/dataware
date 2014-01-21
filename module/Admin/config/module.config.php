@@ -44,6 +44,18 @@ return array(
                 ),
             ),
             
+            'logout' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/logout',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Admin\Controller',
+                        'controller'    => 'AdmLogin',
+                        'action'        => 'logout',
+                    ),
+                ),
+            ),
+            
             'admin' => array(
                 'type'    => 'Literal',
                 'options' => array(

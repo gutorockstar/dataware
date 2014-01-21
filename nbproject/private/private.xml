@@ -13,6 +13,7 @@
             <file>file:/var/www/zend_application/vendor/Tecnon/src/Tecnon/View/Grid.php</file>
             <file>file:/var/www/zend_application/public/js/DT_bootstrap.js</file>
             <file>file:/var/www/zend_application/module/Admin/src/Admin/Entity/AdmLogin.php</file>
+            <file>file:/var/www/zend_application/vendor/Tecnon/src/Tecnon/View/Panel.php</file>
             <file>file:/var/www/zend_application/module/Article/view/article/art-category/search.phtml</file>
         </group>
     </open-files>

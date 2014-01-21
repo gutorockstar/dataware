@@ -117,7 +117,7 @@ class AdmLoginController extends AbstractActionController
     public function logoutAction()
     {
         $this->getSessionStorage()->forgetMe();
-        $this->getAuthService()->clearIdentity();
+        //$this->getAuthService()->clearIdentity();
         $this->flashMessenger()->addInfoMessage("Você foi desconectado.");
         
         return $this->redirect()->toRoute('login');

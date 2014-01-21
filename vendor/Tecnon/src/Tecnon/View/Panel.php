@@ -23,6 +23,12 @@ class Panel extends ViewHelper
      */
     public function __invoke($header = null, $insideContent = null, $style = null)
     {
+        $panel = "<fieldset style='{$style}'>
+                    <legend>{$header}</legend>
+                    {$insideContent}
+                  </fieldset>";
+        
+        /**
         $panel = "<div class='panelBase'>
                     <div class='panel panel-default' style='{$style}'>
                         <div class='panel-heading'>
@@ -35,6 +41,8 @@ class Panel extends ViewHelper
                         </div>
                     </div>
                   </div>";
+         * 
+         */
         
         return $panel;
     }

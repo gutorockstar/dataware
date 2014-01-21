@@ -14,11 +14,21 @@ footer {
 }
 
 .menu{
-    background: #ddd;
+    background: #0075b0;
+    height: 50px;
+}
+
+.img-logout{
+    padding: 5px;
 }
 
 .menu .container{
     margin-top: 0px !important;
+}
+
+.menu .navbar-header{
+    float: right !important;
+    clear: both;
 }
 
 .menu .navbar-collapse{
@@ -26,7 +36,7 @@ footer {
 }
 
 .menu .dropdown-menu a{
-    color: #2187e7 !important;
+    color: #0075b0 !important;
 }
 
 .menu .dropdown-menu a:hover{
@@ -45,13 +55,13 @@ footer {
 }
 
 .menu .open{
-    color: #fff !important;
+    color: #0075b0 !important;
     background: #2187e7 !important;
 }
 
 .menu li a{
-    height: 53px !important;
-    color: #2187e7 !important;
+    height: 50px !important;
+    color: #fff !important;
 }
     
 .menu li a:hover{
@@ -119,6 +129,8 @@ label {
 }
 
 .panel-body {
+    padding: 25px !important;
+    background: #ddd;
 }
 
 .panel-danger .panel-heading { 
