@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Rodar o seguinte comando para criação da extrutura da base de dados 
+ * após criada e ajustadas as configurações:
+ *
+ * ./vendor/bin/doctrine-module orm:schema-tool:create
+ */
+
 return array(
     'doctrine' => array(
         'connection' => array(
