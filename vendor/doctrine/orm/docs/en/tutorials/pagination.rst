@@ -23,7 +23,7 @@ has a very simple API and implements the SPL interfaces ``Countable`` and
     foreach ($paginator as $post) {
         echo $post->getHeadline() . "\n";
     }
-
+/**
 Paginating Doctrine queries is not as simple as you might think in the
 beginning. If you have complex fetch-join scenarios with one-to-many or
 many-to-many associations using the "default" LIMIT functionality of database
@@ -41,3 +41,5 @@ collection. You can disable this behavior by setting the
 ``$fetchJoinCollection`` flag to ``false``; in that case only 2 instead of the 3 queries
 described are executed. We hope to automate the detection for this in
 the future.
+ * 
+ */
