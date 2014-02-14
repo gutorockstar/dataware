@@ -17,7 +17,7 @@ return array(
                     //'port'     => '5432',
                     'user'     => 'root',
                     'password' => 'root',
-                    'dbname'   => 'zend_application',
+                    'dbname'   => 'site',
                 )
             )
         )
