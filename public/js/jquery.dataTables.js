@@ -2120,7 +2120,7 @@
 		
 			jqFilter
 				.attr('aria-controls', oSettings.sTableId)
-				.attr('class', 'form-control')
+				.attr('class', 'form-control search-grid')
 				.bind( 'keypress.DT', function(e) {
 					/* Prevent form submission */
 					if ( e.keyCode == 13 )

@@ -7,10 +7,23 @@ body {
     margin-top: 20px !important;
 }
 
-footer {
+footer{
+    margin-right: auto;
+    margin-left: auto;
     position: absolute;
     bottom: 0;
-    width: 80% !important;
+    width: 100% !important;
+    border-top: 1px solid #ddd;
+}
+
+.footer{
+    max-width: 1170px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-content{
+    font-weight: normal;
 }
 
 .menu{
@@ -57,6 +70,7 @@ footer {
 .menu .open{
     color: #0075b0 !important;
     background: #2187e7 !important;
+    height: 50px !important;
 }
 
 .menu li a{
@@ -70,7 +84,7 @@ footer {
 }
 
 th{
-    background: #2187e7 !important;
+    background: #999 !important;
     color: #fff !important;
     text-align: center !important;
 }
@@ -81,23 +95,32 @@ th{
 }
 
 .pagination{
-    float: right !important;
+    margin-top: 8px;
+    float: right;
+}
+
+.span6{
+    width: 50%;
+    float: left;
 }
 
 .pagination ul li{
     display: inline;
     border: 1px solid #ccc;
-    padding: 8px;
+    padding: 6px;
     padding-left: 12px;
     padding-right: 12px;
     margin-left: 2px;
 }
 
 .pagination ul .active{
-    background: #2187e7 !important;
+    background: #999 !important;
 }
 
 .pagination ul .active a{
+    
+    
+    
     color: #fff !important;
 }
 
@@ -115,12 +138,25 @@ label {
 
 .form-control {
     margin-bottom: 5px;
-    width: 80%;
+    width: 300px;
+    height: 30px;
     border-radius: 0px !important;
+}
+
+select {
+    margin-bottom: 5px;
+    width: 300px;
+    height: 30px !important;
+    border-radius: 0px !important;
+}
+
+.search-grid{
+    width: 80% !important;
 }
 
 .btn {
     margin-top: 10px;
+    border-radius: 0px !important;
 }
 
 .panel-heading {
@@ -185,6 +221,14 @@ label {
     float:left;
 }
 
+.table-striped > tbody > tr:nth-child(odd){
+  background-color: #f9f9f9;
+}
+
+.table-striped > tbody > tr:hover {
+  background-color: #eee;
+}
+
 .label-search{
     margin-top: 5px !important;
 }
@@ -195,4 +239,8 @@ label {
 
 .table{
     width: 100% !important;
+}
+
+legend{
+    border-color: #ccc;
 }

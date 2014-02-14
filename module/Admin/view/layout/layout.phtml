@@ -45,12 +45,16 @@
         
         <div class="container">
             <?php echo $this->content; ?>
-            
-            <footer>                
-                <hr>
-                <p>&copy; 2011 - <?php echo date('Y') ?> por Tecnon Soluções em Sistemas Ltd. <?php echo $this->translate('Todos os direitos reservados.') ?></p>
-            </footer>
         </div> <!-- /container -->
+        
+        <footer>
+            <div class="footer">
+                <b class="footer-content">
+                    <img class='img-logout' src='img/tecnon.png' />
+                    &copy; 2011 - <?php echo date('Y') ?> por Tecnon Soluções em Sistemas Ltd. <?php echo $this->translate('Todos os direitos reservados.') ?>
+                </b>
+            </div>
+        </footer>
         <?php echo $this->inlineScript() ?>
     </body>
 </html>
