@@ -17,6 +17,7 @@ return array(
     'router' => array(
         'routes' => array(
             
+            // Rotas das categorias e subcategorias.
             'category' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -79,6 +80,8 @@ return array(
                     ),
                 ),
             ),
+            
+            // Rotas dos artigos.
                       
         ),
     ),

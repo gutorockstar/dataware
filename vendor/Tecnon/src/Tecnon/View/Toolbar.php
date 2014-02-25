@@ -18,7 +18,20 @@ use Zend\Session\Container;
 
 class Toolbar extends ViewHelper
 {    
-    public function __invoke()
+    const TB_ACTION_NEW    = 'new';
+    const TB_ACTION_SAVE   = 'save';
+    const TB_ACTION_DELETE = 'delete';
+    const TB_ACTION_SEARCH = 'search';
+    const TB_ACTION_PRINT  = 'print';
+    const TB_ACTION_BACK   = 'back';
+    
+    /**
+     * Carrega a toolbar conforme parâmetros.
+     * 
+     * @param $disableOptions array
+     * @return String html
+     */
+    public function __invoke($disableOptions = array())
     {
         $userSession = new Container('user');
         $username    = $userSession->username;
@@ -28,46 +41,39 @@ class Toolbar extends ViewHelper
         
         if ( strlen($username) > 0 )
         {
-            $toolbar .= "<div class='tools'>
-                            <a href='{$baseUri}/new' title='Novo registro'>
-                                <div class='tool'>
-                                    <img class='img-toolbar' src='/img/toolbar/new.png' />
-                                </div>
-                            </a>
-                            
-                            <a href='{$baseUri}/save' title='Salvar o registro'>
-                                <div class='tool'>
-                                    <img class='img-toolbar' src='/img/toolbar/save.png' />
-                                </div>
-                            </a>
-                            
-                            <a href='{$baseUri}/delete' title='Excluir o registro'>
-                                <div class='tool'>
-                                    <img class='img-toolbar' src='/img/toolbar/delete.png' />
-                                </div>
-                            </a>
-                            
-                            <a href='{$baseUri}/search' title='Procurar registros'>
-                                <div class='tool'>
-                                    <img class='img-toolbar' src='/img/toolbar/search.png' />
-                                </div>
-                            </a>
-                            
-                            <a href='{$baseUri}/print' title='Imprimir os dados do registro'>
-                                <div class='tool'>
-                                    <img class='img-toolbar' src='/img/toolbar/print.png' />
-                                </div>
-                            </a>
-                            
-                            <a href='{$baseUri}' title='Voltar para página anterior'>
-                                <div class='tool'>
-                                    <img class='img-toolbar' src='/img/toolbar/back.png' />
-                                </div>
-                            </a>
-                        </div>";
+            $toolbar .= "<div class='tools'>";
+            
+            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_NEW, !in_array(self::TB_ACTION_NEW, $disableOptions));
+            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_SAVE, !in_array(self::TB_ACTION_SAVE, $disableOptions));
+            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_DELETE, !in_array(self::TB_ACTION_DELETE, $disableOptions));
+            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_SEARCH, !in_array(self::TB_ACTION_SEARCH, $disableOptions));
+            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_PRINT, !in_array(self::TB_ACTION_PRINT, $disableOptions));
+            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_BACK, !in_array(self::TB_ACTION_BACK, $disableOptions));
+            
+            $toolbar .= "</div>";
         }
         
         return $toolbar . "</div>";
+    }
+    
+    /**
+     * Monta e retorna ferramenta da barra de ferramentas.
+     * 
+     * @param String $baseUri
+     * @param String $namespace
+     * @param boolean $enable
+     * @return String html
+     */
+    private function getToolbarOption($baseUri, $namespace, $enable = true)
+    {
+        $class = $enable ? "img-toolbar" : "img-toolbar-disable";
+        $href  = $enable ? "href='{$baseUri}/{$namespace}' class='loading'" : "";
+        
+        return "<a {$href} title='Novo registro'>
+                    <div class='tool'>
+                        <img class='{$class}' src='/img/toolbar/{$namespace}.png' />
+                    </div>
+                </a>";
     }
     
     /**

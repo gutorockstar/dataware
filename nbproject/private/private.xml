@@ -7,8 +7,8 @@
             <file>file:/var/www/site/module/Article/src/Article/Entity/ArtCategory.php</file>
             <file>file:/var/www/site/module/Article/src/Article/Controller/ArtCategoryController.php</file>
             <file>file:/var/www/site/public/css/layout.css</file>
+            <file>file:/var/www/site/module/Article/view/article/art-category/search.phtml</file>
             <file>file:/var/www/site/module/Article/config/module.config.php</file>
-            <file>file:/var/www/site/module/Admin/view/layout/layout.phtml</file>
             <file>file:/var/www/site/module/Article/view/article/art-category/new.phtml</file>
         </group>
     </open-files>
