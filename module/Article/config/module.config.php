@@ -16,14 +16,15 @@ return array(
     
     'router' => array(
         'routes' => array(
-            'search' => array(
+            
+            'category' => array(
                 'type'    => 'Literal',
                 'options' => array(
                     'route'    => '/category',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Article\Controller',
                         'controller'    => 'ArtCategoryController',
-                        'action'        => 'search',
+                        'action'        => 'index',
                     ),
                 ),
                 'may_terminate' => true,
@@ -39,6 +40,42 @@ return array(
                             'defaults' => array(
                             ),
                         ),
+                    ),
+                ),
+            ),
+            
+            'categorysearch' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/category/search',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Article\Controller',
+                        'controller'    => 'ArtCategoryController',
+                        'action'        => 'search',
+                    ),
+                ),
+            ),
+            
+            'categorynew' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/category/new',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Article\Controller',
+                        'controller'    => 'ArtCategoryController',
+                        'action'        => 'new',
+                    ),
+                ),
+            ),
+            
+            'categoryinsert' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/category/insert',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Article\Controller',
+                        'controller'    => 'ArtCategoryController',
+                        'action'        => 'insert',
                     ),
                 ),
             ),

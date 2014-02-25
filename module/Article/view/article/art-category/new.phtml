@@ -1,0 +1,30 @@
+<?php
+
+$form = $this->form;
+$form->prepare();
+$form->setAttribute('action', $this->url('categoryinsert'));
+
+$formCategory =  "{$this->form()->openTag($form)}
+       {$this->formLabel($form->get('parentcategoryid'))}
+       {$this->formInput($form->get('parentcategoryid'))}
+       {$this->formLabel($form->get('title'))}
+       {$this->formInput($form->get('title'))}
+       {$this->formLabel($form->get('cover'))}
+       {$this->formInput($form->get('cover'))}
+       {$this->formLabel($form->get('description'))}
+       {$this->formInput($form->get('description'))}
+       {$this->formLabel($form->get('status'))}
+       {$this->formInput($form->get('status'))}
+       {$this->formElement($form->get('send'))}
+           
+       {$this->formElementErrors($form->get('parentcategoryid'))}
+       {$this->formElementErrors($form->get('title'))}
+       {$this->formElementErrors($form->get('cover'))}
+       {$this->formElementErrors($form->get('description'))}
+       {$this->formElementErrors($form->get('status'))}
+       {$this->form()->closeTag()}";
+              
+echo $this->Panel('Nova categoria', $formCategory);
+
+?>
+

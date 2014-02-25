@@ -25,6 +25,7 @@ footer{
 .footer-content{
     font-weight: normal;
     color: #0075b0;
+    font-size: 12px;
 }
 
 .menu{
@@ -107,7 +108,6 @@ th{
 
 .pagination ul li{
     display: inline;
-    border: 1px solid #ccc;
     padding: 6px;
     padding-left: 12px;
     padding-right: 12px;
@@ -115,13 +115,10 @@ th{
 }
 
 .pagination ul .active{
-    background: #999 !important;
+    background: #2187e7 !important;
 }
 
 .pagination ul .active a{
-    
-    
-    
     color: #fff !important;
 }
 
