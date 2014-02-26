@@ -161,7 +161,7 @@ select {
 
 .panel-body {
     padding: 25px !important;
-    background: #ddd;
+    background: #eee;
 }
 
 .panel-danger .panel-heading { 
@@ -221,7 +221,7 @@ select {
 }
 
 .table-striped > tbody > tr:nth-child(even){
-  background-color: #ccc;
+  background-color: #ddd;
 }
 
 .table-striped > tbody > tr:hover {
@@ -247,8 +247,6 @@ legend{
 .toolbar{
     width: 100%;
     height: 40px;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 15px;
 }
 
 .tools{
@@ -260,6 +258,7 @@ legend{
     height: 45px;
     margin-right: 5px;
     float: left;
+    text-align: center;
 }
 
 .img-toolbar-disable{

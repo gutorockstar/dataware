@@ -43,12 +43,12 @@ class Toolbar extends ViewHelper
         {
             $toolbar .= "<div class='tools'>";
             
-            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_NEW, !in_array(self::TB_ACTION_NEW, $disableOptions));
-            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_SAVE, !in_array(self::TB_ACTION_SAVE, $disableOptions));
-            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_DELETE, !in_array(self::TB_ACTION_DELETE, $disableOptions));
-            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_SEARCH, !in_array(self::TB_ACTION_SEARCH, $disableOptions));
-            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_PRINT, !in_array(self::TB_ACTION_PRINT, $disableOptions));
-            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_BACK, !in_array(self::TB_ACTION_BACK, $disableOptions));
+            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_NEW, 'Novo', !in_array(self::TB_ACTION_NEW, $disableOptions));
+            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_SAVE, 'Salvar', !in_array(self::TB_ACTION_SAVE, $disableOptions));
+            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_DELETE, 'Excluir', !in_array(self::TB_ACTION_DELETE, $disableOptions));
+            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_SEARCH, 'Buscar', !in_array(self::TB_ACTION_SEARCH, $disableOptions));
+            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_PRINT, 'Imprimir', !in_array(self::TB_ACTION_PRINT, $disableOptions));
+            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_BACK, 'Voltar', !in_array(self::TB_ACTION_BACK, $disableOptions));
             
             $toolbar .= "</div>";
         }
@@ -64,12 +64,12 @@ class Toolbar extends ViewHelper
      * @param boolean $enable
      * @return String html
      */
-    private function getToolbarOption($baseUri, $namespace, $enable = true)
+    private function getToolbarOption($baseUri, $namespace, $label, $enable = true)
     {
         $class = $enable ? "img-toolbar" : "img-toolbar-disable";
         $href  = $enable ? "href='{$baseUri}/{$namespace}' class='loading'" : "";
         
-        return "<a {$href} title='Novo registro'>
+        return "<a {$href} title='{$label}'>
                     <div class='tool'>
                         <img class='{$class}' src='/img/toolbar/{$namespace}.png' />
                     </div>
