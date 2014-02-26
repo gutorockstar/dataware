@@ -126,10 +126,6 @@ th{
     z-index: 95;
 }
 
-.panelBase {
-    margin-top: 60px;
-}
-
 label {
     display: inline !important;
 }
@@ -263,4 +259,12 @@ legend{
 
 .img-toolbar-disable{
     opacity: 0.3 !important;
+}
+
+thead tr{
+    max-height: 20px !important;
+}
+
+.gradeA{
+    height: 20px !important;
 }
