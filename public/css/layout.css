@@ -10,10 +10,11 @@ body {
 footer{
     margin-right: auto;
     margin-left: auto;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100% !important;
     border-top: 1px solid #ddd;
+    background: #fff;
 }
 
 .footer{
@@ -217,6 +218,10 @@ select {
 
 .table-striped > tbody > tr:nth-child(odd){
   background-color: #f9f9f9;
+}
+
+.table-striped > tbody > tr:nth-child(even){
+  background-color: #ccc;
 }
 
 .table-striped > tbody > tr:hover {
