@@ -4,7 +4,7 @@ $form = $this->form;
 $form->prepare();
 $form->setAttribute('action', $this->url('login'));
 
-$formLogin =  "{$this->form()->openTag($form)}
+$formLogin = "{$this->form()->openTag($form)}
        {$this->formLabel($form->get('username'))}
        {$this->formInput($form->get('username'))}
        {$this->formLabel($form->get('password'))}
