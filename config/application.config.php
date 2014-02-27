@@ -8,6 +8,7 @@ return array(
         'Tecnon',
         
         // module
+        'Site',
         'Admin',
         'Article'
     ),

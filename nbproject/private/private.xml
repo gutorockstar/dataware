@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/site/vendor/Tecnon/src/Tecnon/View/Panel.php</file>
+            <file>file:/var/www/site/module/Site/Module.php</file>
+            <file>file:/var/www/site/module/Admin/src/Admin/Controller/AdmLoginController.php</file>
+            <file>file:/var/www/site/module/Admin/src/Admin/Entity/AdmLogin.php</file>
+            <file>file:/var/www/site/config/application.config.php</file>
             <file>file:/var/www/site/public/css/layout.css</file>
-            <file>file:/var/www/site/module/Admin/view/layout/layout.phtml</file>
+            <file>file:/var/www/site/module/Site/config/module.config.php</file>
         </group>
     </open-files>
 </project-private>
