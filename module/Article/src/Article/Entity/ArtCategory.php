@@ -76,7 +76,7 @@ class ArtCategory
      * @Annotation\Type("Zend\Form\Element\Checkbox")
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Ativo"})
-     * @Annotation\Attributes({"class":"form-control"}) 
+     * @Annotation\Attributes({"class":"form-control checkbox"}) 
      */
     protected $status;
     

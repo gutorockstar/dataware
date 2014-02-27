@@ -19,9 +19,10 @@ use Zend\Session\Container;
 class Toolbar extends ViewHelper
 {    
     const TB_ACTION_NEW    = 'new';
+    const TB_ACTION_EDIT   = 'edit';
+    const TB_ACTION_SEARCH = 'search';
     const TB_ACTION_SAVE   = 'save';
     const TB_ACTION_DELETE = 'delete';
-    const TB_ACTION_SEARCH = 'search';
     const TB_ACTION_PRINT  = 'print';
     const TB_ACTION_BACK   = 'back';
     
@@ -45,9 +46,10 @@ class Toolbar extends ViewHelper
             $toolbar .= "<div class='tools'>";
             
             $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_NEW, 'Novo', !in_array(self::TB_ACTION_NEW, $disableOptions));
+            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_EDIT, 'Editar', !in_array(self::TB_ACTION_EDIT, $disableOptions));
+            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_SEARCH, 'Buscar', !in_array(self::TB_ACTION_SEARCH, $disableOptions));
             $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_SAVE, 'Salvar', !in_array(self::TB_ACTION_SAVE, $disableOptions));
             $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_DELETE, 'Excluir', !in_array(self::TB_ACTION_DELETE, $disableOptions));
-            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_SEARCH, 'Buscar', !in_array(self::TB_ACTION_SEARCH, $disableOptions));
             $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_PRINT, 'Imprimir', !in_array(self::TB_ACTION_PRINT, $disableOptions));
             $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_BACK, 'Voltar', !in_array(self::TB_ACTION_BACK, $disableOptions));
             
