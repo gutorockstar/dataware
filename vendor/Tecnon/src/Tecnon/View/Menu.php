@@ -25,9 +25,6 @@ class Menu extends ViewHelper
         $username    = $userSession->username;
         
         $menu = "<div class='container'>
-                    <!--<div class='navbar-header'>
-                      <a href='/logout' title='Sair do sistema' ><img class='img-logout' src='img/icons/logout.png' /></a>
-                    </div>-->
                     <div class='collapse navbar-collapse'>";
         
         if ( strlen($username) > 0 )

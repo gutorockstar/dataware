@@ -23,14 +23,14 @@ class Panel extends ViewHelper
      */
     public function __invoke($header = null, $insideContent = null, $style = null)
     {
-        /**
-        $panel = "<fieldset style='{$style}'>
-                    <legend>{$header}</legend>
-                    {$insideContent}
-                  </fieldset>";
-         * 
-         */
+        $panel = "<nav class='navbar navbar-default' style='{$style}'>
+                    <fieldset>
+                        <legend>{$header}</legend>
+                        {$insideContent}
+                    </fieldset>
+                  </nav>";
         
+        /**
         $panel = "<div class='panelBase'>
                     <div class='panel panel-default' style='{$style}'>
                         <div class='panel-heading'>
@@ -43,6 +43,8 @@ class Panel extends ViewHelper
                         </div>
                     </div>
                   </div>";
+         * 
+         */
         
         return $panel;
     }

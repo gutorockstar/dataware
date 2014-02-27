@@ -37,7 +37,8 @@ class Toolbar extends ViewHelper
         $username    = $userSession->username;
         $baseUri     = $this->getBaseUri();
         
-        $toolbar = "<div class='toolbar'>";
+        $toolbar = "<nav class='navbar navbar-default'>
+                        <div class='toolbar'>";
         
         if ( strlen($username) > 0 )
         {
@@ -53,7 +54,7 @@ class Toolbar extends ViewHelper
             $toolbar .= "</div>";
         }
         
-        return $toolbar . "</div>";
+        return $toolbar . "</div></nav>";
     }
     
     /**
