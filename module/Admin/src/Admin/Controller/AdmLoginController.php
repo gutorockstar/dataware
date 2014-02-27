@@ -103,7 +103,6 @@ class AdmLoginController extends AbstractActionController
             $builder  = new AnnotationBuilder();
             
             $this->form = $builder->createForm($AdmLogin);
-            $this->form->setInputFilter($AdmLogin->getInputFilter());
         }
          
         return $this->form;

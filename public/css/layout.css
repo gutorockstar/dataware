@@ -124,12 +124,29 @@ th{
 
 label {
     display: inline !important;
+    font-weight: normal !important;
+    float: left;
+    clear: both;
+}
+
+form ul{
+    margin-top: 25px;
+    color: red;
+    float:left;
 }
 
 .form-control {
     margin-bottom: 5px;
     width: 300px;
     height: 30px;
+}
+
+.field-required{
+    border-bottom: 1px dashed red;
+}
+
+.file{
+    border: none !important;
 }
 
 .checkbox{
@@ -148,7 +165,13 @@ select {
 }
 
 .btn {
+    float: left;
     margin-top: 10px;
+    clear: both;
+}
+
+.btn-default{
+    float: none !important;
 }
 
 .panel-heading {

@@ -5,14 +5,8 @@ $form->prepare();
 $form->setAttribute('action', $this->url('login'));
 
 $formLogin = "{$this->form()->openTag($form)}
-       {$this->formLabel($form->get('username'))}
-       {$this->formInput($form->get('username'))}
-       {$this->formLabel($form->get('password'))}
-       {$this->formInput($form->get('password'))}
-       {$this->formElement($form->get('send'))}
-       {$this->formElementErrors($form->get('username'))}
-       {$this->formElementErrors($form->get('password'))}
-       {$this->form()->closeTag()}";
+              {$this->formCollection($form)}
+              {$this->form()->closeTag()}";
               
 echo $this->Panel('Efetuar login', $formLogin);
 

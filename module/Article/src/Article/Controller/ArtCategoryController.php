@@ -67,4 +67,12 @@ class ArtCategoryController extends AbstractActionController
          
         return array('form' => $form);
     }
+    
+    /**
+     * Método controlador de inserts e updates
+     */
+    public function saveAction()
+    {
+        
+    }
 }

@@ -56,7 +56,7 @@ class ArtCategory
      * @Annotation\Type("Zend\Form\Element\File")
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Imagem de capa"})
-     * @Annotation\Attributes({"class":"form-control"})
+     * @Annotation\Attributes({"class":"form-control file"})
      */
     protected $cover;
     
@@ -83,6 +83,8 @@ class ArtCategory
     /**
      * @ORM\ManyToOne(targetEntity="ArtCategory")
      * @ORM\JoinColumn(name="parentcategoryid", referencedColumnName="categoryid")
+     * 
+     * @Annotation\Type("Zend\Form\Element\Hidden")
      */
     public $parentcategory;
     

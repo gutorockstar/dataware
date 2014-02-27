@@ -69,14 +69,14 @@ return array(
                 ),
             ),
             
-            'categoryinsert' => array(
+            'categorysave' => array(
                 'type'    => 'Literal',
                 'options' => array(
-                    'route'    => '/category/insert',
+                    'route'    => '/category/save',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Article\Controller',
                         'controller'    => 'ArtCategoryController',
-                        'action'        => 'insert',
+                        'action'        => 'save',
                     ),
                 ),
             ),
