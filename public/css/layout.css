@@ -15,6 +15,7 @@ footer{
     width: 100% !important;
     border-top: 1px solid #ddd;
     background: #fff;
+    z-index: 100;
 }
 
 .footer{
@@ -99,7 +100,8 @@ th{
 }
 
 .pagination{
-    margin-top: 8px;
+    margin: 0 !important;
+    margin-top: 2px !important;
     float: right;
 }
 
@@ -114,14 +116,6 @@ th{
     padding-left: 12px;
     padding-right: 12px;
     margin-left: 2px;
-}
-
-.pagination ul .active{
-    background: #2187e7 !important;
-}
-
-.pagination ul .active a{
-    color: #fff !important;
 }
 
 .navbar {
@@ -238,14 +232,10 @@ select {
     width: 100% !important;
 }
 
-fieldset{
-    padding: 20px;
-    margin-top: 10px;
-}
-
 legend{
-    color: gray;
+    color: #0075b0;
     border-color: #ddd;
+    margin-bottom: 10px !important;
 }
 
 .toolbar{
@@ -280,4 +270,16 @@ thead tr{
 
 .gradeA{
     height: 20px !important;
+}
+
+.dataTables_wrapper{
+    padding: 10px;
+}
+
+nav{
+    margin-bottom: 10px !important;
+}
+
+.nav-grid{
+    margin-bottom: 50px !important;
 }

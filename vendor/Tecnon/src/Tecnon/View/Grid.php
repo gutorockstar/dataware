@@ -19,7 +19,8 @@ class Grid extends ViewHelper
 {
     public function __invoke()
     {
-        $table = "<table cellpadding='0' cellspacing='0' border='0' class='table table-striped table-bordered dataTable' id='example' aria-describedby='example_info'>
+        $table = "<nav class='navbar navbar-default nav-grid'>
+                  <table cellpadding='0' cellspacing='0' border='0' class='table table-striped table-bordered dataTable' id='example' aria-describedby='example_info'>
                     <thead>
                         <tr role='row'>
                             <th class='sorting_asc' role='columnheader' tabindex='0' aria-controls='example' rowspan='1' colspan='1' aria-sort='ascending' aria-label='Rendering engine: activate to sort column descending' style='width: 163px;'>Rendering engine</th>
@@ -108,7 +109,7 @@ class Grid extends ViewHelper
                             <td class='center '>A</td>
                         </tr>
                     </tbody>
-                  </table>";
+                  </table></nav>";
         
         return $table;
     }

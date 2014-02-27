@@ -4,7 +4,9 @@ $form = $this->form;
 $form->prepare();
 $form->setAttribute('action', $this->url('categoryinsert'));
 
-$formCategory =  "{$this->form()->openTag($form)}
+$formCategory = $this->Toolbar(array(\Tecnon\View\Toolbar::TB_ACTION_DELETE, \Tecnon\View\Toolbar::TB_ACTION_PRINT));
+
+$formCategory .=  "{$this->form()->openTag($form)}
        {$this->formLabel($form->get('parentcategoryid'))}
        {$this->formInput($form->get('parentcategoryid'))}
        {$this->formLabel($form->get('title'))}
@@ -24,7 +26,6 @@ $formCategory =  "{$this->form()->openTag($form)}
        {$this->formElementErrors($form->get('status'))}
        {$this->form()->closeTag()}";
               
-echo $this->Toolbar(array(\Tecnon\View\Toolbar::TB_ACTION_DELETE, \Tecnon\View\Toolbar::TB_ACTION_PRINT));
 echo $this->Panel('Nova categoria', $formCategory);
 
 ?>

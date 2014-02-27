@@ -23,12 +23,10 @@ class Panel extends ViewHelper
      */
     public function __invoke($header = null, $insideContent = null, $style = null)
     {
-        $panel = "<nav class='navbar navbar-default' style='{$style}'>
-                    <fieldset>
-                        <legend>{$header}</legend>
-                        {$insideContent}
-                    </fieldset>
-                  </nav>";
+        $panel = "<fieldset style='{$style}'>
+                    <legend>{$header}</legend>
+                    {$insideContent}
+                  </fieldset>";
         
         /**
         $panel = "<div class='panelBase'>
