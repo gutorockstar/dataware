@@ -2868,14 +2868,15 @@
 			}
 			
 			var nPaginate = document.createElement( 'div' );
-			nPaginate.className = oSettings.oClasses.sPaging;
-			
+                        
 			DataTable.ext.oPagination[ oSettings.sPaginationType ].fnInit( oSettings, nPaginate, 
 				function( oSettings ) {
 					_fnCalculateEnd( oSettings );
 					_fnDraw( oSettings );
 				}
 			);
+                
+                        nPaginate.className = oSettings.oClasses.sPaging;
 			
 			/* Add a draw callback for the pagination on first instance, to update the paging display */
 			if ( !oSettings.aanFeatures.p )
@@ -9225,7 +9226,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sNext": "Next",
+				"sNext": "Próxima",
 			
 			
 				/**
@@ -9246,7 +9247,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sPrevious": "Previous"
+				"sPrevious": "Anterior"
 			},
 		
 			/**
@@ -11458,7 +11459,7 @@
 		"sWrapper": "dataTables_wrapper",
 		"sFilter": "dataTables_filter",
 		"sInfo": "dataTables_info",
-		"sPaging": "pagination pagination-large", /* Note that the type is postfixed */
+		"sPaging": "pagination-large", /* Note that the type is postfixed */
 		"sLength": "dataTables_length",
 		"sProcessing": "dataTables_processing",
 		
@@ -11510,7 +11511,7 @@
 		"sPageLast": "last ui-corner-tr ui-corner-br",
 		
 		/* Features */
-		"sPaging": "pagination pagination-large", /* Note that the type is postfixed */
+		"sPaging": "pagination-large", /* Note that the type is postfixed */
 		
 		/* Sorting */
 		"sSortAsc": "ui-state-default",

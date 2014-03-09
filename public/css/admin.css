@@ -33,9 +33,9 @@ footer{
 
 .img-home{
     width: 40px;
-    height: 35px;
+    height: 40px;
     margin-right: 5px;
-    margin-top: 8px;
+    margin-top: 4px;
     float: left;
 }
 
@@ -113,6 +113,10 @@ th{
     float: right;
 }
 
+.pagination-large{
+    float:right;
+}
+
 .span6{
     width: 50%;
     float: left;
@@ -162,11 +166,14 @@ form li{
 
 .file{
     border: none !important;
+    padding: 0 0 !important;
+    background: none;
 }
 
 .checkbox{
     height: 18px !important;
     width: 18px !important;
+    margin-top: 0px !important;
 }
 
 select {
@@ -176,7 +183,7 @@ select {
 }
 
 .search-grid{
-    width: 80% !important;
+    width: 303px !important;
 }
 
 .btn {
