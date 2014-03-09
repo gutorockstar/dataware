@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?php echo $this->headTitle($this->translate('Tecnon Manager'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php echo $this->headTitle($this->translate('Tecnon - Soluções em sistemas'))->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?php echo $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
@@ -13,7 +13,7 @@
         <!-- Le styles -->
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/simple_logo_mini.png'))
                         ->prependStylesheet($this->basePath() . '/css/DT_bootstrap.css')
-                        ->prependStylesheet($this->basePath() . '/css/layout.css')
+                        ->prependStylesheet($this->basePath() . '/css/site.css')
                         ->prependStylesheet($this->basePath() . '/css/style.css')
                         ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.css')
                         ->prependStylesheet($this->basePath() . '/css/bootstrap.css')
@@ -39,8 +39,21 @@
     <?php echo $this->Alert();?>
     
     <body>
-        <nav class='menu-site'>
-            <?php //echo $this->Menu()?>
+        <nav class='header'>
+            <div class="header-content">
+                <div class="logo">
+                    <?php echo "<img src='{$this->basePath()}" . "/img/logo.png' class='img-logo' />"; ?>
+                </div>
+                <div class="right-logo">
+
+                </div>
+            </div>
+        </nav>
+        
+        <nav class='menu'>
+            <div class="menu-content">
+                
+            </div>
         </nav>
         
         <div class="container">

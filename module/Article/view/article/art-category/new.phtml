@@ -4,17 +4,17 @@ $form = $this->form;
 $form->prepare();
 $form->setAttribute('action', $this->url('categorysave'));
 
-$formCategory = $this->Toolbar(array(
+$toolbar = $this->Toolbar(array(
     \Tecnon\View\Toolbar::TB_ACTION_DELETE, 
     \Tecnon\View\Toolbar::TB_ACTION_EDIT, 
     \Tecnon\View\Toolbar::TB_ACTION_PRINT
 ));
 
-$formCategory .=  "{$this->form()->openTag($form)}
-                   {$this->formCollection($form)}
-                   {$this->form()->closeTag()}";
+$formContent .= "{$this->form()->openTag($form)}
+                 {$this->formCollection($form)}
+                 {$this->form()->closeTag()}";
               
-echo $this->Panel('Nova categoria', $formCategory);
+echo $this->View('Nova categoria', $toolbar . $this->Panel($formContent));
 
 ?>
 

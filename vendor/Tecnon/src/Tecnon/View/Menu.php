@@ -29,12 +29,16 @@ class Menu extends ViewHelper
         
         if ( strlen($username) > 0 )
         {            
-            $menu .= $this->getModules();
+            $menu .= "<a href='/admin' title='Home'>
+                        <div class='home'>
+                            <img src='/img/icons/home_menu.png' class='img-home' />
+                        </div>
+                      </a>
+                      {$this->getModules()}";
                
         }
         
-        $menu .= "</div>
-                  
+        $menu .= "  </div>
                  </div>";
         
         return $menu;
@@ -52,11 +56,12 @@ class Menu extends ViewHelper
                 "Categorias e subcategorias" => '/category',
                 "Artigos" => '/article'
             ),
-            "Estoque" => '/warehouse',
-            "Destaque" => '/featured',
+            "Destaques" => '/featured',
             "Blocos" => '/block',
             "Menu" => '/menu',
-            "Interface" => '/interface'
+            "Interface" => '/interface',
+            "Estoque" => '/warehouse',
+            "Configurações" => '/settings'
         );
         
         return $this->getOptionsMenu($modulesArray);

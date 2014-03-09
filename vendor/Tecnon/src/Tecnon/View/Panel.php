@@ -1,12 +1,13 @@
 <?php
 
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
 /**
- * Description of TecnonPanelView
+ * Description of Form
  *
  * @author augusto
  */
@@ -17,35 +18,14 @@ use Tecnon\View\ViewHelper;
 class Panel extends ViewHelper
 {
     /**
-     * Cria painel recebendo o conteúdo por parâmetro
+     * Cria painel de um formulário o conteúdo por parâmetro
      * 
      * @param String html $insideElements
      */
-    public function __invoke($header = null, $insideContent = null, $style = null)
+    public function __invoke($content)
     {
-        $panel = "<fieldset style='{$style}'>
-                    <legend>{$header}</legend>
-                    {$insideContent}
-                  </fieldset>";
-        
-        /**
-        $panel = "<div class='panelBase'>
-                    <div class='panel panel-default' style='{$style}'>
-                        <div class='panel-heading'>
-                            <div class='heading'>{$header}</div>
-                        </div>
-                        <div class='panel-body'>
-                            <div class='insideContent'>
-                                {$insideContent}
-                            </div>
-                        </div>
-                    </div>
-                  </div>";
-         * 
-         */
-        
-        return $panel;
+        return "<nav class='navbar navbar-default nav-panel'>
+                    {$content}
+                </nav>";
     }
 }
-
-?>

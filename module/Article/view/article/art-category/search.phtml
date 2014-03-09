@@ -6,7 +6,7 @@ $disableOptions = array(
     \Tecnon\View\Toolbar::TB_ACTION_DELETE
 );
 
-echo $this->Panel('Categorias e subcategorias', $this->Toolbar($disableOptions) . $this->Grid());
+echo $this->View('Categorias e subcategorias', $this->Toolbar($disableOptions) . $this->Grid());
 
 ?>
 

@@ -57,6 +57,13 @@ class Module
 
                     return new View\Menu($em);
                 },
+                'View' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()
+                             ->get('Doctrine\ORM\EntityManager');   				
+
+                    return new View\View($em);
+                },
                 'Panel' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()

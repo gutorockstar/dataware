@@ -88,12 +88,6 @@ class ArtCategory
      */
     public $parentcategory;
     
-    /**
-     * @Annotation\Type("Zend\Form\Element\Submit")
-     * @Annotation\Attributes({"value":"Salvar", "class":"btn btn-primary"})
-     */
-    protected $send;
-    
     public function getCategoryid() 
     {
         return $this->categoryid;

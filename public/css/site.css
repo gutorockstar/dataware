@@ -1,0 +1,87 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28/02/2014, 09:28:05
+    Author     : augusto
+*/
+
+body {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.header{
+    height: 140px;
+    background: #0075b0;
+}
+
+.header-content{
+    display: block;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo{
+    width: 30%;
+    height: 90px;
+    margin-top: 25px;
+    float: left;
+}
+
+.img-logo{
+    width: 100%;
+    height: 90px;
+}
+
+.right-logo{
+    width: 70%;
+    height: 100px;
+    margin-top: 10px;
+    float: left;
+}
+
+.menu{
+    background: #2187e7;
+    height: 50px;
+}
+
+.menu-content{
+    width: 1000px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer{
+    margin-right: auto;
+    margin-left: auto;
+    position: fixed;
+    bottom: 0;
+    width: 100% !important;
+    border-top: 1px solid #ddd;
+    background: #fff;
+    z-index: 100;
+}
+
+.footer{
+    max-width: 1170px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-content{
+    font-weight: normal;
+    color: #0075b0;
+    font-size: 12px;
+}
+
