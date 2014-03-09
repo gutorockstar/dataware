@@ -29,7 +29,7 @@ class Menu extends ViewHelper
         
         if ( strlen($username) > 0 )
         {            
-            $menu .= "<a href='/admin' title='Home'>
+            $menu .= "<a href='/admin' title='Home' class='loading'>
                         <div class='home'>
                             <img src='/img/icons/home_menu.png' class='img-home' />
                         </div>
