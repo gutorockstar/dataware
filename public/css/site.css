@@ -15,7 +15,6 @@ body {
 
 .header{
     height: 140px;
-    background: #0075b0;
 }
 
 .header-content{
@@ -34,7 +33,7 @@ body {
 
 .img-logo{
     width: 100%;
-    height: 90px;
+    height: 100px;
 }
 
 .right-logo{
@@ -42,6 +41,16 @@ body {
     height: 100px;
     margin-top: 10px;
     float: left;
+}
+
+.nav-pills{
+    margin-left: 100px;
+    margin-top: 55px;
+    float: right;
+}
+
+.navbar-inverse{
+    border-radius: 0 !important;
 }
 
 .menu{

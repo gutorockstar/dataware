@@ -42,17 +42,26 @@
         <nav class='header'>
             <div class="header-content">
                 <div class="logo">
-                    <?php echo "<img src='{$this->basePath()}" . "/img/logo.png' class='img-logo' />"; ?>
+                    <?php echo "<img src='{$this->basePath()}" . "/img/logo.jpg' class='img-logo' />"; ?>
                 </div>
                 <div class="right-logo">
+                    <ul class="nav nav-pills">
+                        <li class="active"><a href="#">Página inicial</a></li>
+                        <li><a href="#">Quem somos?</a></li>
+                        <li class="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Nossos serviços <span class="caret"></span>
+                          </a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Websites comerciais</a></li>
+                            <li><a href="#">GESATEC - Sistema de gestão para consultórios</a></li>
+                            <li><a href="#">Consultoria para aplicações</a></li>
+                          </ul>
+                        </li>
+                        <li><a href="#">Entre em contato</a></li>
+                      </ul>
 
                 </div>
-            </div>
-        </nav>
-        
-        <nav class='menu'>
-            <div class="menu-content">
-                
             </div>
         </nav>
         
