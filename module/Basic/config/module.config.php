@@ -8,38 +8,32 @@
  */
 
 return array(
+    'controllers' => array(
+        'invokables' => array(
+            'Basic\Controller\CountryController' => 'Basic\Controller\CountryController',
+        ),
+    ),
+    
     'router' => array(
         'routes' => array(
-            'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/',
-                    'defaults' => array(
-                        'controller' => 'Admin\Controller\Index',
-                        'action'     => 'index',
-                    ),
-                ),
-            ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /Admin/:controller/:action
-            'admin' => array(
+            
+            // Rotas da manutenção de países.
+            'country' => array(
                 'type'    => 'Literal',
                 'options' => array(
-                    'route'    => '/admin',
+                    'route'    => '/country',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Admin\Controller',
-                        'controller'    => 'Index',
+                        '__NAMESPACE__' => 'Basic\Controller',
+                        'controller'    => 'CountryController',
                         'action'        => 'index',
                     ),
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
-                    'default' => array(
+                    'process' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/[:controller[/:action]]',
+                            'route'    => '/[:action]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -50,8 +44,69 @@ return array(
                     ),
                 ),
             ),
+            
+            'countrysearch' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/country/search',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Basic\Controller',
+                        'controller'    => 'CountryController',
+                        'action'        => 'search',
+                    ),
+                ),
+            ),
+            
+            'countrynew' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/country/new',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Basic\Controller',
+                        'controller'    => 'CountryController',
+                        'action'        => 'new',
+                    ),
+                ),
+            ),
+            
+            'countrysave' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/country/save',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Basic\Controller',
+                        'controller'    => 'CountryController',
+                        'action'        => 'save',
+                    ),
+                ),
+            ),                      
         ),
     ),
+
+
+
+
+
+
+
+
+    
+    'doctrine' => array(
+        'driver' => array(
+            'basic_entities' => array(
+                'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/Basic/Entity')
+            ),
+
+            'orm_default' => array(
+                'drivers' => array(
+                    'Basic\Entity' => 'basic_entities'
+                )
+            )
+        )
+    ),
+    
     'service_manager' => array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
@@ -61,6 +116,7 @@ return array(
             'translator' => 'MvcTranslator',
         ),
     ),
+    
     'translator' => array(
         'locale' => 'pt_BR',
         'translation_file_patterns' => array(
@@ -71,11 +127,7 @@ return array(
             ),
         ),
     ),
-    'controllers' => array(
-        'invokables' => array(
-            'Admin\Controller\Index' => 'Admin\Controller\IndexController'
-        ),
-    ),
+    
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
@@ -83,8 +135,6 @@ return array(
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
         'template_map' => array(
-            'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'admin/index/index' => __DIR__ . '/../view/admin/index/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),
@@ -92,6 +142,7 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
+    
     // Placeholder for console routes
     'console' => array(
         'router' => array(

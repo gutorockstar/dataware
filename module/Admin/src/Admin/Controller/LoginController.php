@@ -13,9 +13,9 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\Session\Container;
  
-use Admin\Entity\AdmLogin;
+use Admin\Entity\Login;
 
-class AdmLoginController extends AbstractActionController
+class LoginController extends AbstractActionController
 {
     protected $form;
     protected $storage;
@@ -29,7 +29,7 @@ class AdmLoginController extends AbstractActionController
     {
         if ( !$this->storage ) 
         {
-            $this->storage = $this->getServiceLocator()->get('Admin\Controller\AdmAuthStorageController');
+            $this->storage = $this->getServiceLocator()->get('Admin\Controller\AuthStorageController');
         }
          
         return $this->storage;
@@ -99,10 +99,10 @@ class AdmLoginController extends AbstractActionController
     {
         if ( !$this->form ) 
         {
-            $AdmLogin = new AdmLogin();
+            $Login = new Login();
             $builder  = new AnnotationBuilder();
             
-            $this->form = $builder->createForm($AdmLogin);
+            $this->form = $builder->createForm($Login);
         }
          
         return $this->form;

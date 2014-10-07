@@ -2,7 +2,7 @@
 
 $form = $this->form;
 $form->prepare();
-$form->setAttribute('action', $this->url('categorysave'));
+$form->setAttribute('action', $this->url('countrysave'));
 
 $toolbar = $this->Toolbar(array(
     \Tecnon\View\Toolbar::TB_ACTION_DELETE, 
@@ -14,7 +14,7 @@ $formContent .= "{$this->form()->openTag($form)}
                  {$this->formCollection($form)}
                  {$this->form()->closeTag()}";
               
-echo $this->View('Nova categoria', $toolbar . $this->Panel($formContent));
+echo $this->View('Novo país', $toolbar . $this->Panel($formContent));
 
 ?>
 

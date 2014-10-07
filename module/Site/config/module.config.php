@@ -10,7 +10,7 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Site\Controller\SitHome' => 'Site\Controller\SitHomeController'
+            'Site\Controller\HomeController' => 'Site\Controller\HomeController'
         ),
     ),
     
@@ -22,7 +22,7 @@ return array(
                     'route'    => '/',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Site\Controller',
-                        'controller'    => 'SitHome',
+                        'controller'    => 'HomeController',
                         'action'        => 'home',
                     ),
                 ),
@@ -76,7 +76,7 @@ return array(
         'exception_template'       => 'error/index',
         'template_map' => array(
             'layout/layout'           => __DIR__ . '/../view/layout/site.phtml',
-            'site/index/index' => __DIR__ . '/../view/site/index/index.phtml',
+            'site/index/index' => __DIR__ . '/../view/site/home/home.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),

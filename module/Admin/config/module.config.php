@@ -10,8 +10,8 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Admin\Controller\AdmLogin' => 'Admin\Controller\AdmLoginController',
-            'Admin\Controller\AdmHome' => 'Admin\Controller\AdmHomeController'
+            'Admin\Controller\LoginController' => 'Admin\Controller\LoginController',
+            'Admin\Controller\AdminController' => 'Admin\Controller\AdminController'
         ),
     ),
     
@@ -23,7 +23,7 @@ return array(
                     'route'    => '/login',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Admin\Controller',
-                        'controller'    => 'AdmLogin',
+                        'controller'    => 'LoginController',
                         'action'        => 'login',
                     ),
                 ),
@@ -50,7 +50,7 @@ return array(
                     'route'    => '/logout',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Admin\Controller',
-                        'controller'    => 'AdmLogin',
+                        'controller'    => 'LoginController',
                         'action'        => 'logout',
                     ),
                 ),
@@ -62,8 +62,8 @@ return array(
                     'route'    => '/admin',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Admin\Controller',
-                        'controller'    => 'AdmHome',
-                        'action'        => 'home',
+                        'controller'    => 'AdminController',
+                        'action'        => 'start',
                     ),
                 ),
                 'may_terminate' => true,
@@ -103,12 +103,12 @@ return array(
         'authentication' => array(
             'orm_default' => array(
                 'object_manager' => 'Doctrine\ORM\EntityManager',
-                'identity_class' => 'Admin\Entity\AdmLogin',
+                'identity_class' => 'Admin\Entity\Login',
                 'identity_property' => 'username',
                 'credential_property' => 'password',
-                'credential_callable' => function(\Admin\Entity\AdmLogin $AdmLogin, $passwordGiven) 
+                'credential_callable' => function(\Admin\Entity\Login $Login, $passwordGiven) 
                 {
-                    return ( $AdmLogin->getPassword() == md5($passwordGiven) );
+                    return ( $Login->getPassword() == md5($passwordGiven) );
                 },
             ),
         ),
@@ -144,13 +144,18 @@ return array(
         'exception_template'       => 'error/index',
         'template_map' => array(
             'layout/layout'           => __DIR__ . '/../view/layout/admin.phtml',
-            'admin/index/index' => __DIR__ . '/../view/admin/index/index.phtml',
+            'admin/index/index' => __DIR__ . '/../view/admin/admin/start.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
+    ),
+                        
+    'module_layouts' => array(
+        'Admin' => 'layout/admin.phtml',
+        'Basic' => 'layout/admin.phtml'
     ),
     
     // Placeholder for console routes

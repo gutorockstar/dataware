@@ -7,18 +7,18 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Article\Controller;
+namespace Basic\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 use Zend\Form\Annotation\AnnotationBuilder; 
-use Article\Entity\ArtCategory;
+use Basic\Entity\Country;
 
-class ArtCategoryController extends AbstractActionController
+class CountryController extends AbstractActionController
 {
     /**
-     * Ação inicial da tela de categorias e subcategorias.
+     * Ação inicial da tela de país
      * 
      * @return type
      */
@@ -29,11 +29,11 @@ class ArtCategoryController extends AbstractActionController
             $this->redirect()->toRoute('login');
         }
          
-        return $this->redirect()->toRoute('categorysearch');
+        return $this->redirect()->toRoute('countrysearch');
     }
     
     /**
-     * Tela de busca por categorias e subcategorias.
+     * Tela de busca por país
      * 
      * @return \Zend\View\Model\ViewModel
      */
@@ -48,7 +48,7 @@ class ArtCategoryController extends AbstractActionController
     }
     
     /**
-     * Tela de novo registro para categorias e subcategorias.
+     * Tela de novo registro para país
      * 
      * @return \Zend\View\Model\ViewModel
      */
@@ -59,11 +59,11 @@ class ArtCategoryController extends AbstractActionController
             $this->redirect()->toRoute('login');
         }
         
-        $ArtCategory = new ArtCategory();
-        $builder     = new AnnotationBuilder();
+        $Country = new Country();
+        $builder = new AnnotationBuilder();
 
-        $form = $builder->createForm($ArtCategory);
-        //$form->setInputFilter($ArtCategory->getInputFilter());
+        $form = $builder->createForm($Country);
+        //$form->setInputFilter($Country->getInputFilter());
          
         return array('form' => $form);
     }

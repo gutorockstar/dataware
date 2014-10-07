@@ -14,7 +14,7 @@
 namespace Admin\Controller;
 use Zend\Authentication\Storage;
 
-class AdmAuthStorageController extends Storage\Session 
+class AuthStorageController extends Storage\Session 
 {
     /**
      * Atribui o tempo de sessão do login efetuado.

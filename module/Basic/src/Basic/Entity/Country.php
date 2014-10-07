@@ -11,14 +11,14 @@
  * @author augusto
  */
 
-namespace Article\Entity;
+namespace Basic\Entity;
 use Doctrine\ORM\Mapping as ORM,
     Zend\Form\Annotation;
 
 /** 
  * @ORM\Entity
  */
-class ArtCategory
+class Country
 {
     /**
      * @ORM\Id
@@ -81,7 +81,7 @@ class ArtCategory
     protected $status;
     
     /**
-     * @ORM\ManyToOne(targetEntity="ArtCategory")
+     * @ORM\ManyToOne(targetEntity="Country")
      * @ORM\JoinColumn(name="parentcategoryid", referencedColumnName="categoryid")
      * 
      * @Annotation\Type("Zend\Form\Element\Hidden")

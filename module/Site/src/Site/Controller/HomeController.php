@@ -12,7 +12,7 @@ namespace Site\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class SitHomeController extends AbstractActionController
+class HomeController extends AbstractActionController
 {
     public function homeAction()
     {         

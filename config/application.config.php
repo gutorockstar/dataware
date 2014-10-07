@@ -8,9 +8,9 @@ return array(
         'Tecnon',
         
         // module
-        'Site',
+        'Basic',
         'Admin',
-        'Article'
+        'Site'
     ),
 
     // These are various options for the listeners attached to the ModuleManager

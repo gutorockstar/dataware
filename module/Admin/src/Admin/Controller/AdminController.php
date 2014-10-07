@@ -12,9 +12,9 @@ namespace Admin\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class AdmHomeController extends AbstractActionController
+class AdminController extends AbstractActionController
 {
-    public function homeAction()
+    public function startAction()
     {
         if ( !$this->getServiceLocator()->get('AuthenticationService')->hasIdentity() )
         {
