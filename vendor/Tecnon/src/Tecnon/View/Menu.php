@@ -52,9 +52,9 @@ class Menu extends ViewHelper
     private function getModules()
     {
         $modulesArray = array(
-            "Artigos" => array(
-                "Categorias e subcategorias" => '/category',
-                "Artigos" => '/article'
+            "Básico" => array(
+                "País" => '/country',
+                "Estado" => '/state'
             ),
             "Destaques" => '/featured',
             "Blocos" => '/block',
