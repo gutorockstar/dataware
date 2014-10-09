@@ -2,19 +2,24 @@
 
 $form = $this->form;
 $form->prepare();
-$form->setAttribute('action', $this->url('countrysave'));
+$form->setAttribute('action', $this->url());
 
-$toolbar = $this->Toolbar(array(
+$disableOptions = array(
     \Sysma\View\Helper\Toolbar::TB_ACTION_DELETE, 
     \Sysma\View\Helper\Toolbar::TB_ACTION_EDIT, 
     \Sysma\View\Helper\Toolbar::TB_ACTION_PRINT
-));
+);
 
 $formContent .= "{$this->form()->openTag($form)}
                  {$this->formCollection($form)}
                  {$this->form()->closeTag()}";
+
+$viewContent = array(
+    $this->Toolbar($disableOptions),
+    $this->Panel($formContent)
+);         
               
-echo $this->View('Novo país', $toolbar . $this->Panel($formContent));
+echo $this->View('Novo estado', $viewContent);
 
 ?>
 

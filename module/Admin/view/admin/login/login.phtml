@@ -8,6 +8,6 @@ $formLogin = "{$this->form()->openTag($form)}
               {$this->formCollection($form)}
               {$this->form()->closeTag()}";
               
-echo $this->View('Efetuar login', $this->Panel($formLogin));
+echo $this->View('Efetuar login', array($this->Panel($formLogin)), array('width' => '50%'));
 
 ?>

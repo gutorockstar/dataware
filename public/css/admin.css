@@ -132,6 +132,7 @@ th{
 
 .navbar {
     z-index: 95;
+    background-image: linear-gradient(to bottom, #ffffff 0%, #eee 100%) !important; 
 }
 
 label {
@@ -310,8 +311,8 @@ legend{
     border-right: 1px solid #ddd;
 }
 
-.tool:hover{
-    
+.tool:active{
+    opacity: 0.8;
 }
 
 .img-toolbar-disable{

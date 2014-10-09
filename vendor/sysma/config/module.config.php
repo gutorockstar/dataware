@@ -9,6 +9,12 @@ namespace Sysma;
 
 return array(
     
+    'controllers' => array(
+        'invokables' => array(
+            'Sysma\Controller\Controller' => 'Sysma\Controller\Controller',
+        ),
+    ),
+    
     // definir gerenciador de servicos
     'service_manager' => array(
         'factories' => array(

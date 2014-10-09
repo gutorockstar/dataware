@@ -6,7 +6,12 @@ $disableOptions = array(
     \Sysma\View\Helper\Toolbar::TB_ACTION_DELETE
 );
 
-echo $this->View('País', $this->Toolbar($disableOptions) . $this->Grid());
+$viewContent = array(
+    $this->Toolbar($disableOptions),
+    $this->Grid()
+);
+
+echo $this->View('Estado',  $viewContent);
 
 ?>
 

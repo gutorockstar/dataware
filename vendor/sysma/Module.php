@@ -32,6 +32,18 @@ class Module
         );
     }
     
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'AuthenticationService' => function($sm) 
+                {
+                    return $sm->get('doctrine.authenticationservice.orm_default');
+                }
+            )
+        );
+    }
+    
     public function getViewHelperConfig()
     {
     	return array(

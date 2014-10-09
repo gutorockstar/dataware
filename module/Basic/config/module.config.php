@@ -11,85 +11,49 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Basic\Controller\CountryController' => 'Basic\Controller\CountryController',
+            'Basic\Controller\StateController' => 'Basic\Controller\StateController',
         ),
     ),
     
     'router' => array(
         'routes' => array(
             
-            // Rotas da manutenção de países.
+            // Rota para as interfaces de manutenção de Países.
             'country' => array(
-                'type'    => 'Literal',
+                'type' => 'Segment',
                 'options' => array(
-                    'route'    => '/country',
+                    'route' => '/[country][/:action]',
+                    'constraints' => array(
+                        'module' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Basic\Controller',
-                        'controller'    => 'CountryController',
-                        'action'        => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'process' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:action]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
+                        'controller' => 'CountryController',
+                        'action'     => 'index',
                     ),
                 ),
             ),
             
-            'countrysearch' => array(
-                'type'    => 'Literal',
+            // Rota para as interfaces de manutenção de Estados.
+            'state' => array(
+                'type' => 'Segment',
                 'options' => array(
-                    'route'    => '/country/search',
+                    'route' => '/[state][/:action]',
+                    'constraints' => array(
+                        'module' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Basic\Controller',
-                        'controller'    => 'CountryController',
-                        'action'        => 'search',
+                        'controller' => 'StateController',
+                        'action'     => 'index',
                     ),
                 ),
-            ),
+            ),    
             
-            'countrynew' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/country/new',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Basic\Controller',
-                        'controller'    => 'CountryController',
-                        'action'        => 'new',
-                    ),
-                ),
-            ),
-            
-            'countrysave' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/country/save',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Basic\Controller',
-                        'controller'    => 'CountryController',
-                        'action'        => 'save',
-                    ),
-                ),
-            ),                      
         ),
     ),
-
-
-
-
-
-
-
-
     
     'doctrine' => array(
         'driver' => array(
