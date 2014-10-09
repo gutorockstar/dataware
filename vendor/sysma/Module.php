@@ -10,7 +10,7 @@
  *
  * @author augusto
  */
-namespace Tecnon;
+namespace Sysma;
 
 class Module 
 {
@@ -41,49 +41,49 @@ class Module
                     $em = $sm->getServiceLocator()
                              ->get('Doctrine\ORM\EntityManager');   				
 
-                    return new View\Loading($em);
+                    return new View\Helper\Loading($em);
                 },
                 'Alert' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()
                              ->get('Doctrine\ORM\EntityManager');   				
 
-                    return new View\Alert($em);
+                    return new View\Helper\Alert($em);
                 },
                 'Menu' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()
                              ->get('Doctrine\ORM\EntityManager');   				
 
-                    return new View\Menu($em);
+                    return new View\Helper\Menu($em);
                 },
                 'View' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()
                              ->get('Doctrine\ORM\EntityManager');   				
 
-                    return new View\View($em);
+                    return new View\Helper\View($em);
                 },
                 'Panel' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()
                              ->get('Doctrine\ORM\EntityManager');   				
 
-                    return new View\Panel($em);
+                    return new View\Helper\Panel($em);
                 },
                 'Grid' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()
                              ->get('Doctrine\ORM\EntityManager');   				
 
-                    return new View\Grid($em);
+                    return new View\Helper\Grid($em);
                 },
                 'Toolbar' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()
                              ->get('Doctrine\ORM\EntityManager');   				
 
-                    return new View\Toolbar($em);
+                    return new View\Helper\Toolbar($em);
                 }
             )
     	);

@@ -11,9 +11,9 @@
  *
  * @author augusto
  */
-namespace Tecnon\View;
+namespace Sysma\View\Helper;
 
-use Tecnon\View\ViewHelper;
+use Sysma\View\Helper\ViewHelper;
 
 class Panel extends ViewHelper
 {

@@ -10,7 +10,7 @@
  *
  * @author augusto
  */
-namespace Tecnon\View;
+namespace Sysma\View\Helper;
 
 use Zend\View\Helper\AbstractHelper,
     Doctrine\ORM\EntityManager;

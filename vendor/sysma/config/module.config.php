@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 
-namespace Tecnon;
+namespace Sysma;
 
 return array(
     
