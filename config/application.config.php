@@ -5,7 +5,7 @@ return array(
         // vendor
         'DoctrineModule',
         'DoctrineORMModule',
-        'Tecnon',
+        'sysma',
         
         // module
         'Basic',

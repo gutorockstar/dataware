@@ -33,7 +33,7 @@ class Login
     /** 
      * @ORM\Column(type="string", length=255)
      * 
-     * @Annotation\Type("Tecnon\Component\Form\Lookup")
+     * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Login"})
      * @Annotation\Attributes({"class":"form-control"})

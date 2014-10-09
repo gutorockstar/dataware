@@ -63,7 +63,7 @@ class Country
     /**
      * @ORM\Column(type="string")
      * 
-     * @Annotation\Type("Tecnon\Component\Form\TextAreaEditor")
+     * @Annotation\Type("Zend\Form\Element\Textarea")
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Descrição"})
      * @Annotation\Attributes({"class":"form-control"})

@@ -5,9 +5,9 @@ $form->prepare();
 $form->setAttribute('action', $this->url('countrysave'));
 
 $toolbar = $this->Toolbar(array(
-    \Tecnon\View\Toolbar::TB_ACTION_DELETE, 
-    \Tecnon\View\Toolbar::TB_ACTION_EDIT, 
-    \Tecnon\View\Toolbar::TB_ACTION_PRINT
+    \Sysma\View\Helper\Toolbar::TB_ACTION_DELETE, 
+    \Sysma\View\Helper\Toolbar::TB_ACTION_EDIT, 
+    \Sysma\View\Helper\Toolbar::TB_ACTION_PRINT
 ));
 
 $formContent .= "{$this->form()->openTag($form)}
