@@ -17,7 +17,7 @@ use Basic\Entity\State;
 class StateController extends Controller
 {
     /**
-     * Ação inicial da tela de país
+     * Ação inicial da tela de estado
      * 
      * @return type
      */
@@ -27,7 +27,7 @@ class StateController extends Controller
     }
     
     /**
-     * Tela de busca por país
+     * Tela de busca por estado
      * 
      * @return \Zend\View\Model\ViewModel
      */
@@ -37,7 +37,7 @@ class StateController extends Controller
     }
     
     /**
-     * Tela de novo registro para país
+     * Tela de novo registro para estado
      * 
      * @return \Zend\View\Model\ViewModel
      */

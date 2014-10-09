@@ -22,121 +22,107 @@ class State
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", columnDefinition="INTEGER NOT NULL")
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\SequenceGenerator(sequenceName="artcategory_categoryid_seq", initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="state_idstate_seq", initialValue=1)
      * 
      * @Annotation\Type("Zend\Form\Element\Hidden")
      */
-    protected $categoryid;
-
+    protected $idstate;
+    
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", columnDefinition="INTEGER NOT NULL")
      * 
      * @Annotation\Type("Zend\Form\Element\Select")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Categoria pai"})
+     * @Annotation\Options({"label":"País"})
      * @Annotation\Attributes({"class":"form-control"})
+     * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":45}})
+     * @Annotation\ErrorMessage("O valor para 'País' é requerido.");
      */
-    protected $parentcategoryid;
+    protected $idcountry;
     
     /**
-     * @ORM\Column(type="string", length=255)
-     * 
-     * @Annotation\Type("Zend\Form\Element\Text")
-     * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Título"})
-     * @Annotation\Attributes({"class":"form-control"})
-     */
-    protected $title;
-    
-    /**
-     * @ORM\Column(type="string", length=255)
-     * 
-     * @Annotation\Type("Zend\Form\Element\File")
-     * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Imagem de capa"})
-     * @Annotation\Attributes({"class":"form-control file"})
-     */
-    protected $cover;
-    
-    /**
-     * @ORM\Column(type="string")
-     * 
-     * @Annotation\Type("Zend\Form\Element\Textarea")
-     * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Descrição"})
-     * @Annotation\Attributes({"class":"form-control"})
-     */
-    protected $description;
-    
-    /**
-     * @ORM\Column(type="boolean")
-     * 
-     * @Annotation\Type("Zend\Form\Element\Checkbox")
-     * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Ativo"})
-     * @Annotation\Attributes({"class":"form-control checkbox"}) 
-     */
-    protected $status;
-    
-    /**
-     * @ORM\ManyToOne(targetEntity="State")
-     * @ORM\JoinColumn(name="parentcategoryid", referencedColumnName="categoryid")
+     * @ORM\ManyToOne(targetEntity="Country")
+     * @ORM\JoinColumn(name="idcountry", referencedColumnName="idcountry")
      * 
      * @Annotation\Type("Zend\Form\Element\Hidden")
      */
-    public $parentcategory;
+    protected  $country;
     
-    public function getCategoryid() 
+    /**
+     * @ORM\Column(type="string", columnDefinition="CHAR(2) NOT NULL")
+     * 
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Filter({"name":"StripTags"})
+     * @Annotation\Options({"label":"UF"})
+     * @Annotation\Attributes({"class":"form-control"})
+     * @Annotation\Validator({"name":"StringLength", "options":{"min":2, "max":2}})
+     * @Annotation\ErrorMessage("O valor para 'UF' é requerido.");
+     */
+    protected $uf;
+    
+    /**
+     * @ORM\Column(type="string", columnDefinition="VARCHAR(45) NOT NULL")
+     * 
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Filter({"name":"StripTags"})
+     * @Annotation\Options({"label":"Nome"})
+     * @Annotation\Attributes({"class":"form-control"})
+     * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":45}})
+     * @Annotation\ErrorMessage("O valor para 'Nome' é requerido.");
+     */
+    protected $name;
+    
+    public function getIdstate() 
     {
-        return $this->categoryid;
+        return $this->idstate;
     }
 
-    public function getParentcategoryid() 
+    public function setIdstate($idstate) 
     {
-        return $this->parentcategoryid;
+        $this->idstate = $idstate;
     }
 
-    public function getTitle() 
+    public function getIdcountry() 
     {
-        return $this->title;
+        return $this->idcountry;
     }
 
-    public function getCover() 
+    public function setIdcountry($idcountry) 
     {
-        return $this->cover;
+        $this->idcountry = $idcountry;
     }
 
-    public function getDescription() 
+    public function getCountry() 
     {
-        return $this->description;
+        return $this->country;
     }
 
-    public function setCategoryid($categoryid) 
+    public function setCountry($country) 
     {
-        $this->categoryid = $categoryid;
+        $this->country = $country;
     }
 
-    public function setParentcategoryid($parentcategoryid) 
+    public function getUf() 
     {
-        $this->parentcategoryid = $parentcategoryid;
+        return $this->uf;
     }
 
-    public function setTitle($title) 
+    public function setUf($uf) 
     {
-        $this->title = $title;
+        $this->uf = $uf;
     }
 
-    public function setCover($cover) 
+    public function getName() 
     {
-        $this->cover = $cover;
+        return $this->name;
     }
 
-    public function setDescription($description) 
+    public function setName($name) 
     {
-        $this->description = $description;
-    }    
+        $this->name = $name;
+    }
 }
 
 ?>

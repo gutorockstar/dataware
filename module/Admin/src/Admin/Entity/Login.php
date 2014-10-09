@@ -24,11 +24,11 @@ class Login
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\SequenceGenerator(sequenceName="admlogin_loginid_seq", initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="login_idlogin_seq", initialValue=1)
      * 
      * @Annotation\Type("Zend\Form\Element\Hidden")
      */
-    protected $loginid;
+    protected $idlogin;
     
     /** 
      * @ORM\Column(type="string", length=255)
@@ -60,14 +60,14 @@ class Login
      */
     protected $send;
     
-    public function getLoginid() 
+    public function getIdlogin() 
     {
-        return $this->loginid;
+        return $this->idlogin;
     }
 
-    public function setLoginid($loginid) 
+    public function setIdlogin($idlogin) 
     {
-        $this->loginid = $loginid;
+        $this->idlogin = $idlogin;
     }
 
     public function getUsername() 
