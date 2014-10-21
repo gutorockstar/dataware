@@ -1028,61 +1028,6 @@
         ]
     },
     {
-        "name": "synergy/common",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/odiaseo/synergy-common.git",
-            "reference": "309972a9017eb2f3c7ea3afe391ce14f292c4168"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/odiaseo/synergy-common/zipball/309972a9017eb2f3c7ea3afe391ce14f292c4168",
-            "reference": "309972a9017eb2f3c7ea3afe391ce14f292c4168",
-            "shasum": ""
-        },
-        "require": {
-            "doctrine/doctrine-module": ">=0.7",
-            "doctrine/doctrine-orm-module": ">=0.5",
-            "gedmo/doctrine-extensions": ">=v2.2.0",
-            "php": ">=5.3.3",
-            "zendframework/zendframework": ">=2.0"
-        },
-        "suggest": {
-            "ewgo/solarium-module": "For solr search aware models",
-            "monolog/monolog": "For enhanced logging features"
-        },
-        "time": "2014-09-05 22:22:19",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "SynergyCommon": "lib/",
-                "SynergyCommonTest": "tests/"
-            },
-            "classmap": [
-                "./tests/Module.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Pele Odiase",
-                "email": "peleodiase@yahoo.co.uk"
-            }
-        ],
-        "description": "Library Abstract and concrete classes common to Synergy Modules",
-        "homepage": "http://developer.peleodiase.com/synergy-data-grid",
-        "keywords": [
-            "abstract classes",
-            "synergy library"
-        ]
-    },
-    {
         "name": "synergy/synergydatagrid",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -1139,6 +1084,61 @@
             "jqgrid",
             "module",
             "zf2"
+        ]
+    },
+    {
+        "name": "synergy/common",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/odiaseo/synergy-common.git",
+            "reference": "309972a9017eb2f3c7ea3afe391ce14f292c4168"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/odiaseo/synergy-common/zipball/309972a9017eb2f3c7ea3afe391ce14f292c4168",
+            "reference": "309972a9017eb2f3c7ea3afe391ce14f292c4168",
+            "shasum": ""
+        },
+        "require": {
+            "doctrine/doctrine-module": ">=0.7",
+            "doctrine/doctrine-orm-module": ">=0.5",
+            "gedmo/doctrine-extensions": ">=v2.2.0",
+            "php": ">=5.3.3",
+            "zendframework/zendframework": ">=2.0"
+        },
+        "suggest": {
+            "ewgo/solarium-module": "For solr search aware models",
+            "monolog/monolog": "For enhanced logging features"
+        },
+        "time": "2014-09-05 22:22:19",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "SynergyCommon": "lib/",
+                "SynergyCommonTest": "tests/"
+            },
+            "classmap": [
+                "./tests/Module.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Pele Odiase",
+                "email": "peleodiase@yahoo.co.uk"
+            }
+        ],
+        "description": "Library Abstract and concrete classes common to Synergy Modules",
+        "homepage": "http://developer.peleodiase.com/synergy-data-grid",
+        "keywords": [
+            "abstract classes",
+            "synergy library"
         ]
     }
 ]
