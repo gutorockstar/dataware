@@ -52,8 +52,12 @@ class StateController extends Controller
         $grid     = $this->getServiceLocator()->get('jqgrid')->setGridIdentity(self::STATE_ENTITY);
         $response = $grid->prepareGridData();
 
+        return new JsonModel($response);
+        /**
         echo json_encode($response);
         exit;
+         * 
+         */
     }
     
     /**
