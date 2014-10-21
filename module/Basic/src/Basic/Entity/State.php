@@ -22,7 +22,7 @@ class State
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer", columnDefinition="INTEGER NOT NULL")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\SequenceGenerator(sequenceName="state_idstate_seq", initialValue=1)
      * 

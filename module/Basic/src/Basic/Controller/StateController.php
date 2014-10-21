@@ -16,6 +16,9 @@ use Basic\Entity\State;
 
 class StateController extends Controller
 {
+    const STATE_ENTITY = 'Basic\Entity\State';
+    const STATE_CRUD_URL = '/basic/state/crud';
+    
     /**
      * Ação inicial da tela de estado
      * 
@@ -33,7 +36,24 @@ class StateController extends Controller
      */
     public function searchAction()
     {         
-        return new ViewModel();
+        $grid = $this->getServiceLocator()->get('jqgrid')->setGridIdentity(self::STATE_ENTITY);
+        $grid->setUrl(self::STATE_CRUD_URL);
+
+        return array('grid' => $grid);
+               
+        //return new ViewModel();
+    }
+    
+    /**
+     * CRUD de estados.
+     */
+    public function crudAction()
+    {
+        $grid     = $this->getServiceLocator()->get('jqgrid')->setGridIdentity(self::STATE_ENTITY);
+        $response = $grid->prepareGridData();
+
+        echo json_encode($response);
+        exit;
     }
     
     /**

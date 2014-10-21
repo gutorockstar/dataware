@@ -8,7 +8,7 @@ $disableOptions = array(
 
 $viewContent = array(
     $this->Toolbar($disableOptions),
-    $this->Grid()
+    $this->displayGrid($this->grid)
 );
 
 echo $this->View('Estado',  $viewContent);

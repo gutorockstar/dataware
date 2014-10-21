@@ -21,7 +21,7 @@ class Country
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer", columnDefinition="INTEGER NOT NULL")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\SequenceGenerator(sequenceName="country_idcountry_seq", initialValue=1)
      * 
@@ -60,8 +60,6 @@ class Country
     {
         $this->name = $name;
     }
-
-
 }
 
 ?>

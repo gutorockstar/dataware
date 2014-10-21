@@ -5,6 +5,7 @@ return array(
         // vendor
         'DoctrineModule',
         'DoctrineORMModule',
+        'SynergyDataGrid',
         'sysma',
         
         // module
@@ -12,6 +13,12 @@ return array(
         'Admin',
         'Site'
     ),
+    
+    'synergy' => array(
+        'logger' => array(
+            'directory' => __DIR__ . '/../data/logs',
+        )
+     ),
 
     // These are various options for the listeners attached to the ModuleManager
     'module_listener_options' => array(
