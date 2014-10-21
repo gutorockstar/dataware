@@ -45,7 +45,7 @@ class Toolbar extends ViewHelper
         {
             $toolbar .= "<div class='tools'>";
             
-            $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_NEW, 'Novo', !in_array(self::TB_ACTION_NEW, $disableOptions));
+            $toolbar .= $this->getToolbarOption('add_grid_', self::TB_ACTION_NEW, 'Novo', !in_array(self::TB_ACTION_NEW, $disableOptions));
             $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_EDIT, 'Editar', !in_array(self::TB_ACTION_EDIT, $disableOptions));
             $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_SEARCH, 'Buscar', !in_array(self::TB_ACTION_SEARCH, $disableOptions));
             $toolbar .= $this->getToolbarOption($baseUri, self::TB_ACTION_SAVE, 'Salvar', !in_array(self::TB_ACTION_SAVE, $disableOptions));
@@ -67,10 +67,10 @@ class Toolbar extends ViewHelper
      * @param boolean $enable
      * @return String html
      */
-    private function getToolbarOption($baseUri, $namespace, $label, $enable = true)
+    private function getToolbarOption($tbAction, $namespace, $label, $enable = true)
     {
         $class = $enable ? "img-toolbar" : "img-toolbar-disable";
-        $href  = $enable ? "href='{$baseUri}/{$namespace}' class='loading'" : "";
+        $href  = $enable ? "href='javascript:void(0)' onClick=\"document.getElementById('{$tbAction}').click()\"" : "";
         
         return "<a {$href} title='{$label}'>
                     <div class='tool'>

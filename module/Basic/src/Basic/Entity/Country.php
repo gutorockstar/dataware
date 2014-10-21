@@ -41,6 +41,11 @@ class Country
      */
     protected $name;
     
+    public function getId()
+    {
+        return $this->idcountry;
+    }
+    
     public function getIdcountry() 
     {
         return $this->idcountry;

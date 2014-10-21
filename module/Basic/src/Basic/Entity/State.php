@@ -74,6 +74,11 @@ class State
      */
     protected $name;
     
+    public function getId()
+    {
+        return $this->idstate;
+    }
+    
     public function getIdstate() 
     {
         return $this->idstate;

@@ -176,6 +176,17 @@ class Country extends \Basic\Entity\Country implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getId()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', array());
+
+        return parent::getId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getIdcountry()
     {
         if ($this->__isInitialized__ === false) {
