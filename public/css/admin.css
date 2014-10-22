@@ -357,3 +357,7 @@ nav{
 .grid-action-row{
     text-align: center;
 }
+
+.iToolbarDisabled {
+    color: #ccc !important;
+}

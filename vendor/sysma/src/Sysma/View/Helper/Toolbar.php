@@ -69,12 +69,12 @@ class Toolbar extends ViewHelper
      */
     private function getToolbarOption($tbAction, $namespace, $label, $enable = true)
     {
-        $class = $enable ? "iToolbar" : "iToolbarDisabled";
+        $class = $enable ? "" : "iToolbarDisabled";
         $href  = $enable ? "href='javascript:void(0)' onClick=\"document.getElementById('{$tbAction}').click()\"" : "";
         
         return "<a {$href} title='{$label}'>
                     <div class='tool'>
-                        <i class='fa {$namespace} fa-2x'></i>
+                        <i class='fa {$namespace} fa-2x {$class}'></i>
                     </div>
                 </a>";
     }
