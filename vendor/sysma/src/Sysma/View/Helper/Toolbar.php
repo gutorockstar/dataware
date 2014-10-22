@@ -18,13 +18,13 @@ use Zend\Session\Container;
 
 class Toolbar extends ViewHelper
 {    
-    const TB_ACTION_NEW    = 'new';
-    const TB_ACTION_EDIT   = 'edit';
-    const TB_ACTION_SEARCH = 'search';
-    const TB_ACTION_SAVE   = 'save';
-    const TB_ACTION_DELETE = 'delete';
-    const TB_ACTION_PRINT  = 'print';
-    const TB_ACTION_BACK   = 'back';
+    const TB_ACTION_NEW    = 'fa-file-o';
+    const TB_ACTION_EDIT   = 'fa-pencil-square-o';
+    const TB_ACTION_SEARCH = 'fa-search';
+    const TB_ACTION_SAVE   = 'fa-floppy-o';
+    const TB_ACTION_DELETE = 'fa-trash-o';
+    const TB_ACTION_PRINT  = 'fa-print';
+    const TB_ACTION_BACK   = 'fa-arrow-circle-o-left';
     
     /**
      * Carrega a toolbar conforme parâmetros.
@@ -69,12 +69,12 @@ class Toolbar extends ViewHelper
      */
     private function getToolbarOption($tbAction, $namespace, $label, $enable = true)
     {
-        $class = $enable ? "img-toolbar" : "img-toolbar-disable";
+        $class = $enable ? "iToolbar" : "iToolbarDisabled";
         $href  = $enable ? "href='javascript:void(0)' onClick=\"document.getElementById('{$tbAction}').click()\"" : "";
         
         return "<a {$href} title='{$label}'>
                     <div class='tool'>
-                        <img class='{$class}' src='/img/toolbar/{$namespace}.png' />
+                        <i class='fa {$namespace} fa-2x'></i>
                     </div>
                 </a>";
     }

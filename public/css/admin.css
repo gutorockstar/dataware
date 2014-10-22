@@ -37,6 +37,7 @@ footer{
     margin-right: 5px;
     margin-top: 4px;
     float: left;
+    color: #f6a828 !important;
 }
 
 .menu{
@@ -313,10 +314,6 @@ legend{
 
 .tool:active{
     opacity: 0.8;
-}
-
-.img-toolbar-disable{
-    opacity: 0.3 !important;
 }
 
 thead tr{

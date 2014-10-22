@@ -31,7 +31,7 @@ class Menu extends ViewHelper
         {            
             $menu .= "<a href='/admin' title='Home' class='loading'>
                         <div class='home'>
-                            <img src='/img/icons/home_menu.png' class='img-home' />
+                            <i class='img-home fa fa-home fa-3x'></i>
                         </div>
                       </a>
                       {$this->getModules()}";

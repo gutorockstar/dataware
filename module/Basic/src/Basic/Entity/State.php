@@ -51,7 +51,7 @@ class State
     protected  $country;
     
     /**
-     * @ORM\Column(type="string", columnDefinition="CHAR(2) NOT NULL")
+     * @ORM\Column(type="string", length=2, columnDefinition="CHAR(2) NOT NULL")
      * 
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
@@ -63,7 +63,7 @@ class State
     protected $uf;
     
     /**
-     * @ORM\Column(type="string", columnDefinition="VARCHAR(45) NOT NULL")
+     * @ORM\Column(type="string", length=45, columnDefinition="VARCHAR(45) NOT NULL")
      * 
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
