@@ -23,11 +23,11 @@ class Country
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\SequenceGenerator(sequenceName="country_idcountry_seq", initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="country_id_seq", initialValue=1)
      * 
      * @Annotation\Type("Zend\Form\Element\Hidden")
      */
-    protected $idcountry;
+    protected $id;
     
     /**
      * @ORM\Column(type="string", columnDefinition="VARCHAR(45) NOT NULL")
@@ -39,31 +39,41 @@ class Country
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":45}})
      * @Annotation\ErrorMessage("O valor para 'Nome' é requerido.");
      */
-    protected $name;
+    protected $title;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="State", mappedBy="country", cascade={"persist", "remove", "merge"}, orphanRemoval=true)
+     */
+    protected $states;
     
     public function getId()
     {
-        return $this->idcountry;
+        return $this->id;
+    }
+
+    public function setId($id) 
+    {
+        $this->id = $id;
+    }
+
+    public function getTitle() 
+    {
+        return $this->title;
+    }
+
+    public function setTitle($title) 
+    {
+        $this->title = $title;
     }
     
-    public function getIdcountry() 
+    public function getStates() 
     {
-        return $this->idcountry;
+        return $this->states;
     }
 
-    public function setIdcountry($idcountry) 
+    public function setStates($states) 
     {
-        $this->idcountry = $idcountry;
-    }
-
-    public function getName() 
-    {
-        return $this->name;
-    }
-
-    public function setName($name) 
-    {
-        $this->name = $name;
+        $this->states = $states;
     }
 }
 

@@ -24,29 +24,16 @@ class State
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\SequenceGenerator(sequenceName="state_idstate_seq", initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="state_id_seq", initialValue=1)
      * 
-     * @Annotation\Type("Zend\Form\Element\Hidden")
+     * @Annotation\Type("Zend\Form\Element\Text")
      */
-    protected $idstate;
-    
+    protected $id;
+        
     /**
-     * @ORM\Column(type="integer", columnDefinition="INTEGER NOT NULL")
+     * @ORM\ManyToOne(targetEntity="Country", cascade={"all"}, fetch="EAGER")
      * 
      * @Annotation\Type("Zend\Form\Element\Select")
-     * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"País"})
-     * @Annotation\Attributes({"class":"form-control"})
-     * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":45}})
-     * @Annotation\ErrorMessage("O valor para 'País' é requerido.");
-     */
-    protected $idcountry;
-    
-    /**
-     * @ORM\ManyToOne(targetEntity="Country")
-     * @ORM\JoinColumn(name="idcountry", referencedColumnName="idcountry")
-     * 
-     * @Annotation\Type("Zend\Form\Element\Hidden")
      */
     protected  $country;
     
@@ -72,31 +59,16 @@ class State
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":45}})
      * @Annotation\ErrorMessage("O valor para 'Nome' é requerido.");
      */
-    protected $name;
+    protected $title;
     
     public function getId()
     {
-        return $this->idstate;
-    }
-    
-    public function getIdstate() 
-    {
-        return $this->idstate;
+        return $this->id;
     }
 
-    public function setIdstate($idstate) 
+    public function setId($id) 
     {
-        $this->idstate = $idstate;
-    }
-
-    public function getIdcountry() 
-    {
-        return $this->idcountry;
-    }
-
-    public function setIdcountry($idcountry) 
-    {
-        $this->idcountry = $idcountry;
+        $this->id = $id;
     }
 
     public function getCountry() 
@@ -119,14 +91,14 @@ class State
         $this->uf = $uf;
     }
 
-    public function getName() 
+    public function getTitle() 
     {
-        return $this->name;
+        return $this->title;
     }
 
-    public function setName($name) 
+    public function setTitle($title) 
     {
-        $this->name = $name;
+        $this->title = $title;
     }
 }
 
