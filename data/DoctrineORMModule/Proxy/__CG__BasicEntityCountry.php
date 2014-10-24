@@ -64,10 +64,10 @@ class Country extends \Basic\Entity\Country implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'idcountry', 'name');
+            return array('__isInitialized__', 'id', 'title', 'states');
         }
 
-        return array('__isInitialized__', 'idcountry', 'name');
+        return array('__isInitialized__', 'id', 'title', 'states');
     }
 
     /**
@@ -178,6 +178,10 @@ class Country extends \Basic\Entity\Country implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getId()
     {
+        if ($this->__isInitialized__ === false) {
+            return (int)  parent::getId();
+        }
+
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', array());
 
@@ -187,49 +191,56 @@ class Country extends \Basic\Entity\Country implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getIdcountry()
+    public function setId($id)
     {
-        if ($this->__isInitialized__ === false) {
-            return (int)  parent::getIdcountry();
-        }
 
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setId', array($id));
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIdcountry', array());
-
-        return parent::getIdcountry();
+        return parent::setId($id);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setIdcountry($idcountry)
+    public function getTitle()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIdcountry', array($idcountry));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTitle', array());
 
-        return parent::setIdcountry($idcountry);
+        return parent::getTitle();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getName()
+    public function setTitle($title)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTitle', array($title));
 
-        return parent::getName();
+        return parent::setTitle($title);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setName($name)
+    public function getStates()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', array($name));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStates', array());
 
-        return parent::setName($name);
+        return parent::getStates();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setStates($states)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStates', array($states));
+
+        return parent::setStates($states);
     }
 
 }

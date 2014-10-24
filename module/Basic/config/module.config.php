@@ -42,11 +42,11 @@ return array(
             'state' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '[/:module][/state][/:action][/:id]',
+                    'route' => '[/:module][/state][/:action][/:fieldName]',
                     'constraints' => array(
                         'module' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]+'
+                        'fieldName' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Basic\Controller',
@@ -58,6 +58,27 @@ return array(
             
         ),
     ),
+    
+    'jqgrid' => array(
+        'column_model' => array(
+            'Country' => array(
+                'isSubGridAsGrid' => true
+            ),
+        ),
+        
+        // PARA REGISTROS QUE POSSUEM RELACIONAMENTOS.
+        'grid_url_generator' => function ($sm, $entity, $fieldName, $targetEntity, $urlType) {
+            switch($urlType)
+            {
+                case 4:   
+                    $helper = $sm->get('viewhelpermanager')->get('url');
+                    $url    = $helper('country', array('action' => 'crud', 'fieldName' => $fieldName));
+                    echo $fieldName;
+                    
+                    return new \Zend\Json\Expr("'" . $url . "?subgridid='+row_id");
+            }
+        }
+    ),    
     
     'doctrine' => array(
         'driver' => array(

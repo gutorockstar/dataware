@@ -49,9 +49,12 @@ class StateController extends Controller
      */
     public function crudAction()
     {
+        $options['fieldName'] = $this->params()->fromRoute('country', null);
+        
         $grid     = $this->getServiceLocator()->get('jqgrid')->setGridIdentity(self::ENTITY_NAMESPACE);
-        $response = $grid->prepareGridData();
+        $response = $grid->prepareGridData($this->getRequest(), $options);
 
-        return new JsonModel($response);
+        echo json_encode($response);
+        exit;
     }
 }
