@@ -25,13 +25,8 @@ class CountryController extends Controller
      * @return type
      */
     public function indexAction() 
-    {   
-        $args = array(
-            'module' => 'basic', 
-            'action' => 'search'
-        );
-        
-        return $this->redirect()->toRoute('country', $args);
+    {           
+        return $this->redirect()->toRoute('country', array('action' => 'search'));
     }
     
     /**

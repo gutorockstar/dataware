@@ -24,7 +24,7 @@ return array(
             'country' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '[/:module][/country][/:action][/:id]',
+                    'route' => '/basic/country[/:action][/:id]',
                     'constraints' => array(
                         'module' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -42,7 +42,7 @@ return array(
             'state' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '[/:module][/state][/:action][/:fieldName]',
+                    'route' => '/basic/state[/:action][/:fieldName]',
                     'constraints' => array(
                         'module' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -54,7 +54,7 @@ return array(
                         'action'     => 'index',
                     ),
                 ),
-            ),    
+            ), 
             
         ),
     ),

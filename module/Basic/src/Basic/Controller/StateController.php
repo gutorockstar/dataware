@@ -23,12 +23,7 @@ class StateController extends Controller
      */
     public function indexAction() 
     {   
-        $args = array(
-            'module' => 'basic', 
-            'action' => 'search'
-        );
-        
-        return $this->redirect()->toRoute('state', $args);
+        return $this->redirect()->toRoute('state', array('action' => 'search'));
     }
     
     /**
