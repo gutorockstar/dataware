@@ -12,6 +12,7 @@
  */
 
 namespace Basic\Entity;
+
 use Doctrine\ORM\Mapping as ORM,
     Zend\Form\Annotation;
 

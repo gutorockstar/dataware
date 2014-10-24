@@ -19,9 +19,39 @@ class Controller extends AbstractActionController
 {
     const ROUTE_DEFAULT = 'login';
     
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    protected $em;
+
+    /**
+     * @param \Doctrine\ORM\EntityManager $em
+     */
+    public function setEntityManager(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
+    /**
+     * @return array|\Doctrine\ORM\EntityManager|object
+     */
+    public function getEntityManager()
+    {
+        if ( is_null($this->em) ) 
+        {
+            $this->em = $this->getServiceLocator()->get('ServiceLocator');
+        }
+
+        return $this->em;
+    }
+    
+    /**
+     * @param \Zend\Mvc\MvcEvent $e
+     * @return mixed
+     */
     public function onDispatch(MvcEvent $e) 
     {
-        if ( !$this->getServiceLocator()->get('AuthenticationService')->hasIdentity() )
+        if ( !$this->getEntityManager()->hasIdentity() )
         {
             $this->redirect()->toRoute(self::ROUTE_DEFAULT);
         }

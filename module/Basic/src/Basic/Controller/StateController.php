@@ -10,14 +10,11 @@
 namespace Basic\Controller;
 
 use Sysma\Controller\Controller;
-use Zend\View\Model\ViewModel;
-use Zend\Form\Annotation\AnnotationBuilder; 
-use Basic\Entity\State;
 
 class StateController extends Controller
-{
-    const STATE_ENTITY = 'Basic\Entity\State';
-    const STATE_CRUD_URL = '/basic/state/crud';
+{    
+    const ENTITY_NAMESPACE = 'Basic\Entity\State';
+    const CRUD_URL = '/basic/state/crud';
     
     /**
      * Ação inicial da tela de estado
@@ -25,8 +22,13 @@ class StateController extends Controller
      * @return type
      */
     public function indexAction() 
-    {         
-        return $this->redirect()->toRoute('state', array('action' => 'search'));
+    {   
+        $args = array(
+            'module' => 'basic', 
+            'action' => 'search'
+        );
+        
+        return $this->redirect()->toRoute('state', $args);
     }
     
     /**
@@ -36,12 +38,10 @@ class StateController extends Controller
      */
     public function searchAction()
     {         
-        $grid = $this->getServiceLocator()->get('jqgrid')->setGridIdentity(self::STATE_ENTITY);
-        $grid->setUrl(self::STATE_CRUD_URL);
+        $grid = $this->getServiceLocator()->get('jqgrid')->setGridIdentity(self::ENTITY_NAMESPACE);
+        $grid->setUrl(self::CRUD_URL);
 
         return array('grid' => $grid);
-               
-        //return new ViewModel();
     }
     
     /**
@@ -49,38 +49,9 @@ class StateController extends Controller
      */
     public function crudAction()
     {
-        $grid     = $this->getServiceLocator()->get('jqgrid')->setGridIdentity(self::STATE_ENTITY);
+        $grid     = $this->getServiceLocator()->get('jqgrid')->setGridIdentity(self::ENTITY_NAMESPACE);
         $response = $grid->prepareGridData();
 
         return new JsonModel($response);
-        /**
-        echo json_encode($response);
-        exit;
-         * 
-         */
-    }
-    
-    /**
-     * Tela de novo registro para estado
-     * 
-     * @return \Zend\View\Model\ViewModel
-     */
-    public function newAction()
-    {        
-        $State = new State();
-        $builder = new AnnotationBuilder();
-
-        $form = $builder->createForm($State);
-        //$form->setInputFilter($State->getInputFilter());
-         
-        return array('form' => $form);
-    }
-    
-    /**
-     * Método controlador de inserts e updates
-     */
-    public function saveAction()
-    {
-        
     }
 }

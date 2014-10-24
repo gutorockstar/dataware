@@ -13,20 +13,25 @@
 namespace Basic\Controller;
 
 use Sysma\Controller\Controller;
-use Zend\View\Model\ViewModel;
-use Zend\Form\Annotation\AnnotationBuilder; 
-use Basic\Entity\Country;
 
 class CountryController extends Controller
 {
+    const ENTITY_NAMESPACE = 'Basic\Entity\Country';
+    const CRUD_URL = '/basic/country/crud';
+    
     /**
      * Ação inicial da tela de país
      * 
      * @return type
      */
     public function indexAction() 
-    {         
-        return $this->redirect()->toRoute('country', array('action' => 'search'));
+    {   
+        $args = array(
+            'module' => 'basic', 
+            'action' => 'search'
+        );
+        
+        return $this->redirect()->toRoute('country', $args);
     }
     
     /**
@@ -36,23 +41,21 @@ class CountryController extends Controller
      */
     public function searchAction()
     {         
-        return new ViewModel();
+        $grid = $this->getServiceLocator()->get('jqgrid')->setGridIdentity(self::ENTITY_NAMESPACE);
+        $grid->setUrl(self::CRUD_URL);
+
+        return array('grid' => $grid);
     }
     
     /**
-     * Tela de novo registro para país
-     * 
-     * @return array
+     * CRUD de países.
      */
-    public function newAction()
-    {        
-        $Country = new Country();
-        $builder = new AnnotationBuilder();
+    public function crudAction()
+    {
+        $grid     = $this->getServiceLocator()->get('jqgrid')->setGridIdentity(self::ENTITY_NAMESPACE);
+        $response = $grid->prepareGridData();
 
-        $form = $builder->createForm($Country);
-        //$form->setInputFilter($Country->getInputFilter());
-         
-        return array('form' => $form);
+        return new JsonModel($response);
     }
 }
 

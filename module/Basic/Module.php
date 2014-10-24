@@ -46,7 +46,7 @@ class Module
     {
         return array(
             'factories' => array(
-                'AuthenticationService' => function($sm) 
+                'ServiceLocator' => function($sm) 
                 {
                     return $sm->get('doctrine.authenticationservice.orm_default');
                 }

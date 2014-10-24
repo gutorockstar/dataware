@@ -46,7 +46,7 @@ class LoginController extends AbstractActionController
         $form = $this->getFormLogin();
         $form->setData($data);
         
-        if ( $this->getServiceLocator()->get('AuthenticationService')->hasIdentity() )
+        if ( $this->getServiceLocator()->get('ServiceLocator')->hasIdentity() )
         {
             $this->redirect()->toRoute('admin');
         }
@@ -80,7 +80,7 @@ class LoginController extends AbstractActionController
      */
     private function authenticate($username, $password)
     {
-        $authService = $this->getServiceLocator()->get('AuthenticationService');
+        $authService = $this->getServiceLocator()->get('ServiceLocator');
         
         $adapter = $authService->getAdapter();
         $adapter->setIdentityValue($username);

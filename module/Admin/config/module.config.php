@@ -7,6 +7,8 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
+namespace Admin;
+
 return array(
     'controllers' => array(
         'invokables' => array(
@@ -88,15 +90,14 @@ return array(
     
     'doctrine' => array(
         'driver' => array(
-            'admin_entities' => array(
-                'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+            __NAMESPACE__ . '_driver' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => array(__DIR__ . '/../src/Admin/Entity')
+                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity')
             ),
-
             'orm_default' => array(
                 'drivers' => array(
-                    'Admin\Entity' => 'admin_entities'
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
                 )
             )
         ),

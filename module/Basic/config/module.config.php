@@ -7,6 +7,8 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
+namespace Basic;
+
 return array(
     'controllers' => array(
         'invokables' => array(
@@ -22,10 +24,11 @@ return array(
             'country' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/[country][/:action]',
+                    'route' => '[/:module][/country][/:action][/:id]',
                     'constraints' => array(
                         'module' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+'
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Basic\Controller',
@@ -39,10 +42,11 @@ return array(
             'state' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/[state][/:action]',
+                    'route' => '[/:module][/state][/:action][/:id]',
                     'constraints' => array(
                         'module' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+'
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Basic\Controller',
@@ -57,18 +61,17 @@ return array(
     
     'doctrine' => array(
         'driver' => array(
-            'basic_entities' => array(
-                'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+            __NAMESPACE__ . '_driver' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => array(__DIR__ . '/../src/Basic/Entity')
+                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity')
             ),
-
             'orm_default' => array(
                 'drivers' => array(
-                    'Basic\Entity' => 'basic_entities'
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
                 )
             )
-        )
+        ),
     ),
     
     'service_manager' => array(
