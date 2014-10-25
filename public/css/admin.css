@@ -361,3 +361,71 @@ nav{
 .iToolbarDisabled {
     color: #ccc !important;
 }
+
+.ui-jqdialog{
+    width: auto !important;
+    height: auto !important;
+}
+
+.FormGrid{
+    padding: 10px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+}
+
+.req{
+    color: red;
+    font-size: 18px;
+}
+
+.FormElement{
+    float: left;
+}
+
+.ui-search-input input, 
+.ui-search-input select{
+    padding: .3em !important;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 12px;
+    height: 25px !important;
+}
+
+.ui-search-input select{
+    background: #eee !important;
+}
+
+.jqgrow{
+    font-size: 12px !important;
+    height: 25px !important;
+}
+
+.ui-jqgrid-sortable{
+    text-transform: uppercase !important;
+}
+
+.ui-jqgrid-titlebar{
+    height: 30px !important;
+}
+
+.ui-jqgrid-title{
+    text-transform: uppercase !important;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+.ui-jqgrid-bdiv{
+    height: 320px !important;
+}
+
+.cbox{
+    font-size: 3em !important;
+}
+
+.ui-jqgrid-pager{
+    height: 30px !important;
+}
+
+.ui-pg-table{
+    font-size: 12px;
+}
