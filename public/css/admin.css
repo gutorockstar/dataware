@@ -384,11 +384,17 @@ nav{
 
 .ui-search-input input, 
 .ui-search-input select{
-    padding: .3em !important;
+    padding: .4em !important;
     border-radius: 4px;
     border: 1px solid #ddd;
     font-size: 12px;
     height: 25px !important;
+}
+
+.ui-search-toolbar{
+    height: 31px;
+    line-height: none;
+    overflow: visible !important;
 }
 
 .ui-search-input select{
@@ -428,4 +434,35 @@ nav{
 
 .ui-pg-table{
     font-size: 12px;
+}
+
+.soptclass{
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff !important;
+}
+
+.ui-menu-item{
+    font-size: 12px;
+    height: 25px;
+    padding: 0 !important;
+}
+
+.ui-search-menu table{
+    padding: 0 !important;
+    top: 0px !important;
+}
+
+.ui-menu .ui-menu-item{
+    list-style-image: none;
+}
+
+.ui-state-hover{
+    list-style-image: none;
+    font-weight: normal;
+    border: none !important;
+}
+
+.ui-menu-item table tr td {
+    padding: 5px;
 }

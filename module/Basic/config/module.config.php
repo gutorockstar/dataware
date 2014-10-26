@@ -24,11 +24,11 @@ return array(
             'country' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/basic/country[/:action][/:id]',
+                    'route' => '/basic/country[/:action][/:fieldName]',
                     'constraints' => array(
                         'module' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]+'
+                        'fieldName' => '[a-zA-Z][a-zA-Z0-9_-]*'
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Basic\Controller',
@@ -46,7 +46,7 @@ return array(
                     'constraints' => array(
                         'module' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'fieldName' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'fieldName' => '[a-zA-Z][a-zA-Z0-9_-]*'
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Basic\Controller',
@@ -64,12 +64,17 @@ return array(
             'Country' => array(
                 'isSubGridAsGrid' => true
             ),
+            'States' => array(
+                'isSubGridAsGrid' => true
+            ),
         ),
         
         // PARA REGISTROS QUE POSSUEM RELACIONAMENTOS.
         'grid_url_generator' => function ($sm, $entity, $fieldName, $targetEntity, $urlType) {
+    
+            exit($targetEntity);
             switch($urlType)
-            {
+            {                
                 case 4:   
                     $helper = $sm->get('viewhelpermanager')->get('url');
                     $url    = $helper('country', array('action' => 'crud', 'fieldName' => $fieldName));

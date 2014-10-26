@@ -1,5 +1,5 @@
 <?php return array (
-  'state' => 'Basic\\Entity\\State',
   'country' => 'Basic\\Entity\\Country',
+  'state' => 'Basic\\Entity\\State',
   'login' => 'Admin\\Entity\\Login',
 );
