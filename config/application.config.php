@@ -6,7 +6,7 @@ return array(
         'DoctrineModule',
         'DoctrineORMModule',
         'SynergyDataGrid',
-        'sysma',
+        'innerbridge',
         
         // module
         'Basic',

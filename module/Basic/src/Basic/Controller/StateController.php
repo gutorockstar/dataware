@@ -9,7 +9,7 @@
 
 namespace Basic\Controller;
 
-use Sysma\Controller\Controller;
+use Innerbridge\Controller\Controller;
 
 class StateController extends Controller
 {    
