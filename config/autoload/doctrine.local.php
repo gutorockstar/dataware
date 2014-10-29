@@ -18,7 +18,7 @@ return array(
                     'port'     => '5432',
                     'user'     => 'postgres',
                     'password' => 'postgres',
-                    'dbname'   => 'zend_app',
+                    'dbname'   => 'dataware'
                 )
             )
         )
