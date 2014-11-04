@@ -15,7 +15,7 @@ namespace Innerbridge\View\Helper;
 
 use Innerbridge\View\Helper\ViewHelper;
 
-class Loading extends ViewHelper
+class LoadingHelper extends ViewHelper
 {    
     public function __invoke()
     {

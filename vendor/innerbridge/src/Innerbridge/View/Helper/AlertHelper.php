@@ -16,7 +16,7 @@ namespace Innerbridge\View\Helper;
 use Innerbridge\View\Helper\ViewHelper,
     \Zend\Mvc\Controller\Plugin\FlashMessenger;
 
-class Alert extends ViewHelper
+class AlertHelper extends ViewHelper
 {
     /**
      * Constantes dos headers.

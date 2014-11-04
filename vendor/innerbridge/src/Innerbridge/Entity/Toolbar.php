@@ -10,9 +10,17 @@
  *
  * @author augusto
  */
+namespace Innerbridge\Entity;
+
 class Toolbar 
 {
-    //put your code here
+    const TB_ACTION_NEW = 'fa-file-o';
+    const TB_ACTION_EDIT = 'fa-pencil-square-o';
+    const TB_ACTION_SEARCH = 'fa-search';
+    const TB_ACTION_SAVE = 'fa-floppy-o';
+    const TB_ACTION_DELETE = 'fa-trash-o';
+    const TB_ACTION_PRINT = 'fa-print';
+    const TB_ACTION_BACK = 'fa-arrow-circle-o-left';
 }
 
 ?>

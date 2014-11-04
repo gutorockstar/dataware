@@ -15,7 +15,7 @@ namespace Innerbridge\View\Helper;
 
 use Innerbridge\View\Helper\ViewHelper;
 
-class Grid extends ViewHelper
+class GridHelper extends ViewHelper
 {
     public function __invoke()
     {

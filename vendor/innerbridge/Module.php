@@ -50,46 +50,46 @@ class Module
     {
     	return array(
             'factories' => array(
-                'Loading' => function ($sm) 
+                'LoadingHelper' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
-                    return new View\Helper\Loading($em);
+                    return new View\Helper\LoadingHelper($em);
                 },
                         
-                'Alert' => function ($sm) 
+                'AlertHelper' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
-                    return new View\Helper\Alert($em);
+                    return new View\Helper\AlertHelper($em);
                 },
                         
-                'Menu' => function ($sm) 
+                'MenuHelper' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
-                    return new View\Helper\Menu($em);
+                    return new View\Helper\MenuHelper($em);
                 },
                         
-                'View' => function ($sm) 
+                'ViewHelper' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
-                    return new View\Helper\View($em);
+                    return new View\Helper\ViewHelper($em);
                 },
                         
-                'Panel' => function ($sm) 
+                'PanelHelper' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
-                    return new View\Helper\Panel($em);
+                    return new View\Helper\PanelHelper($em);
                 },
                         
-                'Grid' => function ($sm) 
+                'GridHelper' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
-                    return new View\Helper\Grid($em);
+                    return new View\Helper\GridHelper($em);
                 },
                         
-                'Toolbar' => function ($sm) 
+                'ToolbarHelper' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);   				
-                    return new View\Helper\Toolbar($em);
+                    return new View\Helper\ToolbarHelper($em);
                 }
             )
     	);

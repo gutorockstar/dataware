@@ -15,7 +15,7 @@ namespace Innerbridge\View\Helper;
 
 use Innerbridge\View\Helper\ViewHelper;
 
-class Panel extends ViewHelper
+class PanelHelper extends ViewHelper
 {
     /**
      * Cria painel de um formulário o conteúdo por parâmetro

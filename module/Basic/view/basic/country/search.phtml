@@ -1,17 +1,17 @@
 <?php
 
 $disableOptions = array(
-    \Innerbridge\View\Helper\Toolbar::TB_ACTION_SAVE,
-    \Innerbridge\View\Helper\Toolbar::TB_ACTION_EDIT,
-    \Innerbridge\View\Helper\Toolbar::TB_ACTION_DELETE
+    \Innerbridge\Entity\Toolbar::TB_ACTION_SAVE,
+    \Innerbridge\Entity\Toolbar::TB_ACTION_EDIT,
+    \Innerbridge\Entity\Toolbar::TB_ACTION_DELETE
 );
 
 $viewContent = array(
-    $this->Toolbar($disableOptions),
+    $this->ToolbarHelper($disableOptions),
     $this->displayGrid($this->grid)
 );
 
-echo $this->View('País',  $viewContent);
+echo $this->ViewHelper('País',  $viewContent);
 
 ?>
 

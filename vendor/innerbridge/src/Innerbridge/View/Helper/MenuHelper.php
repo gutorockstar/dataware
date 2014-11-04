@@ -17,7 +17,7 @@ use Innerbridge\View\Helper\ViewHelper;
 use Zend\Session\Container;
 use Zend\View\Helper\BasePath;
 
-class Menu extends ViewHelper
+class MenuHelper extends ViewHelper
 {    
     public function __invoke()
     {        
