@@ -14,6 +14,9 @@
 namespace Innerbridge\View\Helper;
 
 use Innerbridge\Entity\Toolbar;
+use \Innerbridge\Entity\ToolbarOption;
+use Innerbridge\Controller\ToolbarController;
+
 use Innerbridge\View\Helper\ViewHelper;
 use Zend\Session\Container;
 
@@ -22,68 +25,54 @@ class ToolbarHelper extends ViewHelper
     /**
      * Carrega a toolbar conforme parâmetros.
      * 
-     * @param $disableOptions array
      * @return String html
      */
-    public function __invoke($disableOptions = array())
+    public function __invoke()
     {
         $userSession = new Container('user');
-        $username    = $userSession->username;
-        $baseUri     = $this->getBaseUri();
+        $username = $userSession->username;
         
-        $toolbar = "<nav class='navbar navbar-default'>
+        $toolbarController = new ToolbarController();
+        $toolbarOptions = $toolbarController->getToolbar()->getToolbarOptions();
+        
+        $toolbarView = "<nav class='navbar navbar-default'>
                         <div class='toolbar'>";
         
         if ( strlen($username) > 0 )
         {
-            $toolbar .= "<div class='tools'>";
+            $toolbarView .= "<div class='tools'>";
             
-            $toolbar .= $this->getToolbarOption('add_grid_', Toolbar::TB_ACTION_NEW, 'Novo', !in_array(Toolbar::TB_ACTION_NEW, $disableOptions));
-            $toolbar .= $this->getToolbarOption($baseUri, Toolbar::TB_ACTION_EDIT, 'Editar', !in_array(Toolbar::TB_ACTION_EDIT, $disableOptions));
-            $toolbar .= $this->getToolbarOption($baseUri, Toolbar::TB_ACTION_SEARCH, 'Buscar', !in_array(Toolbar::TB_ACTION_SEARCH, $disableOptions));
-            $toolbar .= $this->getToolbarOption($baseUri, Toolbar::TB_ACTION_SAVE, 'Salvar', !in_array(Toolbar::TB_ACTION_SAVE, $disableOptions));
-            $toolbar .= $this->getToolbarOption($baseUri, Toolbar::TB_ACTION_DELETE, 'Excluir', !in_array(Toolbar::TB_ACTION_DELETE, $disableOptions));
-            $toolbar .= $this->getToolbarOption($baseUri, Toolbar::TB_ACTION_PRINT, 'Imprimir', !in_array(Toolbar::TB_ACTION_PRINT, $disableOptions));
-            $toolbar .= $this->getToolbarOption($baseUri, Toolbar::TB_ACTION_BACK, 'Voltar', !in_array(Toolbar::TB_ACTION_BACK, $disableOptions));
+            if ( count($toolbarOptions) > 0 )
+            {
+                foreach ( $toolbarOptions as $toolbarOption )
+                {
+                    $toolbarView .= $this->createToolbarOption($toolbarOption);
+                }
+            }
             
-            $toolbar .= "</div>";
+            $toolbarView .= "</div>";
         }
         
-        return $toolbar . "</div></nav>";
+        return $toolbarView . "</div></nav>";
     }
     
     /**
      * Monta e retorna ferramenta da barra de ferramentas.
      * 
-     * @param String $baseUri
-     * @param String $namespace
-     * @param boolean $enable
+     * @param int $id
+     * @param String $title
+     * @param String $action
+     * @param String $cssIconClass
+     * @param boolean $enabled
+     * @param String $method
      * @return String html
      */
-    private function getToolbarOption($tbAction, $namespace, $label, $enable = true)
+    private function createToolbarOption(ToolbarOption $toolbarOption)
     {
-        $class = $enable ? "" : "iToolbarDisabled";
-        $href  = $enable ? "href='javascript:void(0)' onClick=\"document.getElementById('{$tbAction}').click()\"" : "";
-        
-        return "<a {$href} title='{$label}'>
-                    <div class='tool'>
-                        <i class='fa {$namespace} fa-2x {$class}'></i>
+        return "<a id=\"tb_option_{$toolbarOption->getId()}\" title=\"{$toolbarOption->getTitle()}\" href=\"{$toolbarOption->getHref()}\" onClick=\"{$toolbarOption->getOnClick()}\">
+                    <div class=\"tool\">
+                        <i class=\"fa {$toolbarOption->getCssIconClass()} fa-2x\"></i>
                     </div>
                 </a>";
-    }
-    
-    /**
-     * Retorna a url base da tela.
-     * 
-     * @return String
-     */
-    private function getBaseUri()
-    {
-        $uri = explode('/', $_SERVER['REQUEST_URI']);
-        unset($uri[count($uri) - 1]);
-        
-        $baseUri = implode('/', $uri);
-        
-        return $baseUri;
     }
 }
