@@ -24,18 +24,17 @@ class Toolbar
     const TITLE_OPTION_PRINT = 'Imprimir';
     const TITLE_OPTION_BACK = 'Voltar';
     
-    const ACTION_OPTION_NEW = 'add_grid_';
-    const ACTION_OPTION_SEARCH = 'add_grid_';
-    const ACTION_OPTION_PRINT = 'add_grid_';
-    const ACTION_OPTION_BACK = 'add_grid_';
+    const ACTION_OPTION_NEW = 'new';
+    const ACTION_OPTION_SEARCH = 'search';
+    const ACTION_OPTION_PRINT = 'print';
+    const ACTION_OPTION_BACK = 'back';
     
     const CSS_CLASS_ICON_OPTION_NEW = 'fa-file-o';
     const CSS_CLASS_ICON_OPTION_SEARCH = 'fa-search';
     const CSS_CLASS_ICON_OPTION_PRINT = 'fa-print';
     const CSS_CLASS_ICON_OPTION_BACK = 'fa-arrow-circle-o-left';
     
-    const METHOD_ACTION_AJAX = 'ajax';
-    const METHOD_ACTION_POST = 'post';
+    const CSS_CLASS_DISABLE_TOOLBAR = 'iToolbarDisabled';
     
     private $toolbarOptions = array();
     

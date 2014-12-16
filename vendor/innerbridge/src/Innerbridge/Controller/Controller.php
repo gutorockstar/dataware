@@ -14,6 +14,7 @@ namespace Innerbridge\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
+use Zend\View\Helper\ServerUrl;
 
 class Controller extends AbstractActionController
 {
@@ -57,6 +58,19 @@ class Controller extends AbstractActionController
         }
 
         return parent::onDispatch($e);
+    }
+    
+    /**
+     * Retorna a url atual.
+     * 
+     * @return String
+     */
+    public function getCurrentUrl()
+    {
+        $serverUrl = new ServerUrl();
+        $currentUrl = $serverUrl->__invoke(true);
+        
+        return $currentUrl;
     }
 }
 

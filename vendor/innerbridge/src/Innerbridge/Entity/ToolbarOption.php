@@ -44,34 +44,13 @@ class ToolbarOption
      */
     private $enabled;
     
-    /**
-     *
-     * @var String
-     */
-    private $method;
-    
-    /**
-     *
-     * @var String
-     */
-    private $href;
-    
-    /**
-     *
-     * @var String
-     */
-    private $onClick;
-    
-    public function __construct($id, $title, $action, $cssIconClass, $enabled = true, $method = Toolbar::METHOD_ACTION_AJAX, $href = null, $onClick = null)
+    public function __construct($id, $title, $action, $cssIconClass, $enabled = true)
     {
         $this->id = $id;
         $this->title = $title;
         $this->action = $action;
         $this->cssIconClass = $cssIconClass;
         $this->enabled = $enabled;
-        $this->method = $method;
-        $this->href = $href;
-        $this->onClick = $onClick;
     }
     
     public function getId() 
@@ -123,38 +102,6 @@ class ToolbarOption
     {
         $this->enabled = $enabled;
     }
-    
-    public function getMethod() 
-    {
-        return $this->method;
-    }
-
-    public function setMethod($method) 
-    {
-        $this->method = $method;
-    }
-    
-    public function getHref() 
-    {
-        return $this->href;
-    }
-
-    public function setHref($href) 
-    {
-        $this->href = $href;
-    }
-    
-    public function getOnClick() 
-    {
-        return $this->onClick;
-    }
-
-    public function setOnClick($onClick) 
-    {
-        $this->onClick = $onClick;
-    }
-
-
 }
 
 ?>

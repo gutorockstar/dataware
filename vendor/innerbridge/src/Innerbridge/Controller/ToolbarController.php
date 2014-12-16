@@ -16,8 +16,6 @@ use Innerbridge\Controller\Controller;
 use Innerbridge\Entity\Toolbar;
 use Innerbridge\Entity\ToolbarOption;
 
-use Zend\Mvc\Controller\Plugin\Url;
-
 class ToolbarController extends Controller
 {    
     private $toolbar;
@@ -35,7 +33,7 @@ class ToolbarController extends Controller
         {
             // Sempre serão criadas as ferramentas padrões.
             $toolbarOptions = array(
-                Toolbar::ID_OPTION_NEW => new ToolbarOption(Toolbar::ID_OPTION_NEW, Toolbar::TITLE_OPTION_NEW, 'new', Toolbar::CSS_CLASS_ICON_OPTION_NEW, true, 'post'),
+                Toolbar::ID_OPTION_NEW => new ToolbarOption(Toolbar::ID_OPTION_NEW, Toolbar::TITLE_OPTION_NEW, Toolbar::ACTION_OPTION_NEW, Toolbar::CSS_CLASS_ICON_OPTION_NEW),
                 Toolbar::ID_OPTION_SEARCH => new ToolbarOption(Toolbar::ID_OPTION_SEARCH, Toolbar::TITLE_OPTION_SEARCH, Toolbar::ACTION_OPTION_SEARCH, Toolbar::CSS_CLASS_ICON_OPTION_SEARCH),
                 Toolbar::ID_OPTION_PRINT => new ToolbarOption(Toolbar::ID_OPTION_PRINT, Toolbar::TITLE_OPTION_PRINT, Toolbar::ACTION_OPTION_PRINT, Toolbar::CSS_CLASS_ICON_OPTION_PRINT),
                 Toolbar::ID_OPTION_BACK => new ToolbarOption(Toolbar::ID_OPTION_BACK, Toolbar::TITLE_OPTION_BACK, Toolbar::ACTION_OPTION_BACK, Toolbar::CSS_CLASS_ICON_OPTION_BACK),
@@ -60,22 +58,18 @@ class ToolbarController extends Controller
     private function generateActionOption(ToolbarOption $toolbarOption)
     {        
         if ( $toolbarOption->getEnabled() )
-        {            
-            if ( $toolbarOption->getMethod() === Toolbar::METHOD_ACTION_POST )
-            {
-                $urlPlugin = new Url();
-                $toolbarOption->setHref($urlPlugin->fromRoute($toolbarOption->getAction()));
-            }
-            else if ( $toolbarOption->getMethod() === Toolbar::METHOD_ACTION_AJAX )
-            {
-                $toolbarOption->setHref('javascript:void(0)');
-                $toolbarOption->setOnClick("document.getElementById('{$toolbarOption->getAction()}').click()");
-            }
+        {   
+            $currentUrl = $this->getCurrentUrl();
+            $explodeUrl = explode("/", $currentUrl);
+            $explodeUrl[count($explodeUrl) - 1] = $toolbarOption->getAction();
+            
+            $tbOptionAction = implode("/", $explodeUrl);
+            $toolbarOption->setAction($tbOptionAction);
         }
         else
         {
             $toolbarOption->setAction(null);
-            $toolbarOption->setCssIconClass($toolbarOption->getCssIconClass() . 'iToolbarDisabled');
+            $toolbarOption->setCssIconClass($toolbarOption->getCssIconClass() . Toolbar::CSS_CLASS_DISABLE_TOOLBAR);
         }
         
         return $toolbarOption;
@@ -119,21 +113,6 @@ class ToolbarController extends Controller
         unset($toolbarOptions[$idToolbarOption]);
         
         $this->toolbar->setToolbarOptions($toolbarOptions);
-    }
-    
-    /**
-     * Retorna a url base da interface.
-     * 
-     * @return String
-     */
-    public function getBaseUri()
-    {
-        $uri = explode('/', $_SERVER['REQUEST_URI']);
-        unset($uri[count($uri) - 1]);
-        
-        $baseUri = implode('/', $uri);
-        
-        return $baseUri;
     }
 }
 
