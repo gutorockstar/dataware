@@ -32,7 +32,8 @@ return array(
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Basic\Controller',
-                        'controller' => 'CountryController',
+                        'entity' => 'Basic\Entity\Country',
+                        'controller' => 'Basic\Controller\CountryController',
                         'action'     => 'index',
                     ),
                 ),
@@ -50,7 +51,8 @@ return array(
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Basic\Controller',
-                        'controller' => 'StateController',
+                        'entity' => 'Basic\Entity\State',
+                        'controller' => 'Basic\Controller\StateController',
                         'action'     => 'index',
                     ),
                 ),

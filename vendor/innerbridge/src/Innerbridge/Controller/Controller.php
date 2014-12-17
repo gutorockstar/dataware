@@ -21,11 +21,33 @@ class Controller extends AbstractActionController
 {
     const ROUTE_DEFAULT = 'login';
     
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
+    protected $route;
+    protected $entityName;
     protected $em;
+    
+    public function getRoute() 
+    {
+        return $this->route;
+    }
 
+    public function setRoute($route) 
+    {
+        $this->route = $route;
+    }
+    
+    public function getEntityName() 
+    {
+        $this->getEvent()->getRouteMatch()->getParam("entity");
+        
+        
+        return $this->entityName;
+    }
+
+    public function setEntityName($entityName) 
+    {
+        $this->entityName = $entityName;
+    }
+    
     /**
      * @param \Doctrine\ORM\EntityManager $em
      */
@@ -74,17 +96,58 @@ class Controller extends AbstractActionController
         return $currentUrl;
     }
     
+    /**
+     * Retorna a rota atual.
+     * 
+     * @return String
+     */
+    public function getCurrentRoute()
+    {   
+        $route = $this->getEvent()->getRouteMatch()->getMatchedRouteName();
+        return $route;
+    }
+    
+    /**
+     * Retorna a entidade atual.
+     * 
+     * @return String
+     */
+    public function getCurrentEntity()
+    {
+        $entity = $this->getEvent()->getRouteMatch()->getParam("entity");
+        return $entity;
+    }
+    
+    /**
+     * Retorna o controlador atual.
+     * 
+     * @return String
+     */
+    public function getCurrentController()
+    {
+        $controller = $this->getEvent()->getRouteMatch()->getParam("controller");
+        return $controller;
+    }
+    
+    /**
+     * Primeira ação a ser executada.
+     * Por padrão, executa a ação de busca, responsável por carregar
+     * a grid.
+     */
     public function indexAction()
     {
-        
+        $this->redirect()->toRoute($this->getCurrentRoute(), array('action' => 'search'));
     }
     
     public function searchAction()
     {
-        return new ViewModel();
+        $grid = $this->getServiceLocator()->get('jqgrid')->setGridIdentity($this->getCurrentEntity());
+        $grid->setUrl('/basic/state/find');
+
+        return array('grid' => $grid);
     }
     
-    public function crudAction()
+    public function findAction()
     {
         
     }

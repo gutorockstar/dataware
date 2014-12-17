@@ -13,17 +13,15 @@ use Innerbridge\Controller\Controller;
 
 class StateController extends Controller
 {    
-    const ENTITY_NAMESPACE = 'Basic\Entity\State';
-    const CRUD_URL = '/basic/state/crud';
-    
     /**
-     * Ação inicial da tela de estado
-     * 
-     * @return type
+     * CRUD de estados.
      */
-    public function indexAction() 
-    {   
-        return $this->redirect()->toRoute('state', array('action' => 'search'));
+    public function searchAction()
+    {
+        $grid = $this->getServiceLocator()->get('jqgrid')->setGridIdentity('Basic\Entity\State');
+        $grid->setUrl('/basic/state/find');
+
+        return array('grid' => $grid);
     }
     
     /**
@@ -31,22 +29,11 @@ class StateController extends Controller
      * 
      * @return \Zend\View\Model\ViewModel
      */
-    public function searchAction()
-    {         
-        $grid = $this->getServiceLocator()->get('jqgrid')->setGridIdentity(self::ENTITY_NAMESPACE);
-        $grid->setUrl(self::CRUD_URL);
-
-        return array('grid' => $grid);
-    }
-    
-    /**
-     * CRUD de estados.
-     */
-    public function crudAction()
-    {
+    public function findAction()
+    {   
         $options['fieldName'] = $this->params()->fromRoute('country', null);
         
-        $grid     = $this->getServiceLocator()->get('jqgrid')->setGridIdentity(self::ENTITY_NAMESPACE);
+        $grid     = $this->getServiceLocator()->get('jqgrid')->setGridIdentity('Basic\Entity\State');
         $response = $grid->prepareGridData($this->getRequest(), $options);
 
         echo json_encode($response);
