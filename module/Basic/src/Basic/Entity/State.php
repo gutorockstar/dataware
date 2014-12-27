@@ -33,6 +33,7 @@ class State
         
     /**
      * @ORM\ManyToOne(targetEntity="Country", cascade={"all"}, fetch="EAGER")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", nullable=false)
      * 
      * @Annotation\Type("Zend\Form\Element\Select")
      */
