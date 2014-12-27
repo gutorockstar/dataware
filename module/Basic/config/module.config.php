@@ -79,7 +79,7 @@ return array(
             exit($targetEntity);
             switch($urlType)
             {                
-                case 4:   
+                case BaseGrid::DYNAMIC_URL_TYPE_ROW_EXPAND:   
                     $helper = $sm->get('viewhelpermanager')->get('url');
                     $url    = $helper('country', array('action' => 'crud', 'fieldName' => $fieldName));
                     echo $fieldName;

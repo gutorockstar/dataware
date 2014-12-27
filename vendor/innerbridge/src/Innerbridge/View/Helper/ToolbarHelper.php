@@ -69,7 +69,18 @@ class ToolbarHelper extends ViewHelper
      */
     private function createToolbarOption(ToolbarOption $toolbarOption)
     {
-        return "<a id=\"tb_option_{$toolbarOption->getId()}\" title=\"{$toolbarOption->getTitle()}\" href=\"{$toolbarOption->getAction()}\" >
+        if ( $toolbarOption->getIsJQGridAction() )
+        {
+            $href = "href=\"javascript:void(0);\"";
+            $onClick = "onClick=\"document.getElementById('{$toolbarOption->getId()}').click();\"";
+        }
+        else
+        {
+            $href = "href=\"{$toolbarOption->getAction()}\"";
+            $onClick = "";
+        }
+        
+        return "<a id=\"tb_option_{$toolbarOption->getId()}\" title=\"{$toolbarOption->getTitle()}\" {$href} {$onClick}>
                     <div class=\"tool\">
                         <i class=\"fa {$toolbarOption->getCssIconClass()} fa-2x\"></i>
                     </div>

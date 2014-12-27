@@ -466,3 +466,7 @@ nav{
 .ui-menu-item table tr td {
     padding: 5px;
 }
+
+#grid__pager_left{
+    display: none;
+}

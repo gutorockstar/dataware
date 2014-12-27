@@ -42,14 +42,21 @@ class ToolbarOption
      *
      * @var boolean
      */
+    private $isJQGridAction;
+    
+    /**
+     *
+     * @var boolean
+     */
     private $enabled;
     
-    public function __construct($id, $title, $action, $cssIconClass, $enabled = true)
+    public function __construct($id, $title, $action, $cssIconClass, $isJQGridAction = false, $enabled = true)
     {
         $this->id = $id;
         $this->title = $title;
         $this->action = $action;
         $this->cssIconClass = $cssIconClass;
+        $this->isJQGridAction = $isJQGridAction;
         $this->enabled = $enabled;
     }
     
@@ -91,6 +98,16 @@ class ToolbarOption
     public function setCssIconClass($cssIconClass) 
     {
         $this->cssIconClass = $cssIconClass;
+    }
+    
+    public function getIsJQGridAction() 
+    {
+        return $this->isJQGridAction;
+    }
+
+    public function setIsJQGridAction($isJQGridAction) 
+    {
+        $this->isJQGridAction = $isJQGridAction;
     }
 
     public function getEnabled() 
