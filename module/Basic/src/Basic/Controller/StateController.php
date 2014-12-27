@@ -12,31 +12,15 @@ namespace Basic\Controller;
 use Innerbridge\Controller\Controller;
 
 class StateController extends Controller
-{    
-    /**
-     * CRUD de estados.
-     */
-    public function searchAction()
-    {
-        $grid = $this->getServiceLocator()->get('jqgrid')->setGridIdentity('Basic\Entity\State');
-        $grid->setUrl('/basic/state/find');
-
-        return array('grid' => $grid);
-    }
-    
+{        
     /**
      * Tela de busca por estado
      * 
      * @return \Zend\View\Model\ViewModel
      */
-    public function findAction()
+    public function crudAction()
     {   
         $options['fieldName'] = $this->params()->fromRoute('country', null);
-        
-        $grid     = $this->getServiceLocator()->get('jqgrid')->setGridIdentity('Basic\Entity\State');
-        $response = $grid->prepareGridData($this->getRequest(), $options);
-
-        echo json_encode($response);
-        exit;
+        parent::crudAction($options);
     }
 }

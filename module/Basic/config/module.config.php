@@ -34,7 +34,8 @@ return array(
                         '__NAMESPACE__' => 'Basic\Controller',
                         'entity' => 'Basic\Entity\Country',
                         'controller' => 'Basic\Controller\CountryController',
-                        'action'     => 'index',
+                        'action' => 'index',
+                        'crud_url' => '/basic/country/crud'
                     ),
                 ),
             ),
@@ -53,7 +54,8 @@ return array(
                         '__NAMESPACE__' => 'Basic\Controller',
                         'entity' => 'Basic\Entity\State',
                         'controller' => 'Basic\Controller\StateController',
-                        'action'     => 'index',
+                        'action' => 'index',
+                        'crud_url' => '/basic/state/crud'
                     ),
                 ),
             ), 

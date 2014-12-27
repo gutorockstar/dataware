@@ -19,7 +19,12 @@ use Zend\View\Model\ViewModel;
 
 class Controller extends AbstractActionController
 {
+    const SERVICE_LOCATOR = 'ServiceLocator';
+    const SERVICE_JQGRID_LOCATOR = 'jqgrid';
     const ROUTE_DEFAULT = 'login';
+    const ENTITY_PARAM = 'entity';
+    const CONTROLLER_PARAM = 'controller';
+    const CRUD_URL_PARAM = 'crud_url';
     
     protected $route;
     protected $entityName;
@@ -37,7 +42,7 @@ class Controller extends AbstractActionController
     
     public function getEntityName() 
     {
-        $this->getEvent()->getRouteMatch()->getParam("entity");
+        $this->getEvent()->getRouteMatch()->getParam(self::ENTITY_PAARAM);
         
         
         return $this->entityName;
@@ -63,7 +68,7 @@ class Controller extends AbstractActionController
     {
         if ( is_null($this->em) ) 
         {
-            $this->em = $this->getServiceLocator()->get('ServiceLocator');
+            $this->em = $this->getServiceLocator()->get(self::SERVICE_LOCATOR);
         }
 
         return $this->em;
@@ -114,7 +119,7 @@ class Controller extends AbstractActionController
      */
     public function getCurrentEntity()
     {
-        $entity = $this->getEvent()->getRouteMatch()->getParam("entity");
+        $entity = $this->getEvent()->getRouteMatch()->getParam(self::ENTITY_PARAM);
         return $entity;
     }
     
@@ -125,8 +130,19 @@ class Controller extends AbstractActionController
      */
     public function getCurrentController()
     {
-        $controller = $this->getEvent()->getRouteMatch()->getParam("controller");
+        $controller = $this->getEvent()->getRouteMatch()->getParam(self::CONTROLLER_PARAM);
         return $controller;
+    }
+    
+    /**
+     * Retorna a url da ação de crud.
+     * 
+     * @return type
+     */
+    public function getCrudUrl()
+    {
+        $crudUrl = $this->getEvent()->getRouteMatch()->getParam(self::CRUD_URL_PARAM);
+        return $crudUrl;
     }
     
     /**
@@ -136,54 +152,27 @@ class Controller extends AbstractActionController
      */
     public function indexAction()
     {
-        $this->redirect()->toRoute($this->getCurrentRoute(), array('action' => 'search'));
-    }
-    
-    public function searchAction()
-    {
-        $grid = $this->getServiceLocator()->get('jqgrid')->setGridIdentity($this->getCurrentEntity());
-        $grid->setUrl('/basic/state/find');
+        //$this->redirect()->toRoute($this->getCurrentRoute(), array('action' => 'search'));
+        
+        $grid = $this->getServiceLocator()->get(self::SERVICE_JQGRID_LOCATOR)->setGridIdentity($this->getCurrentEntity());
+        $grid->setUrl($this->getCrudUrl());
 
         return array('grid' => $grid);
     }
     
-    public function findAction()
+    /**
+     * Executa as ações de inserção, edição, exclusão, e busca.
+     * 
+     * @param array $options
+     */
+    public function crudAction($options = array())
     {
-        
+        $grid = $this->getServiceLocator()->get(self::SERVICE_JQGRID_LOCATOR)->setGridIdentity($this->getCurrentEntity());
+        $response = $grid->prepareGridData($this->getRequest(), $options);
+
+        echo json_encode($response);
+        exit;
     }
-    
-    public function newAction()
-    {
-        return new ViewModel();
-    }
-    
-    public function editAction()
-    {
-        $data = $this->getRequest()->getPost();
-        
-        return new ViewModel();
-    }
-    
-    public function saveAction()
-    {
-        $data = $this->getRequest()->getPost();
-    }
-    
-    public function deleteAction()
-    {
-        $data = $this->getRequest()->getPost();
-    }
-    
-    public function printAction()
-    {
-        
-    }
-    
-    public function backAction()
-    {
-        
-    }
-    
 }
 
 ?>
