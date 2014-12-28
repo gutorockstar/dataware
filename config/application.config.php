@@ -6,11 +6,10 @@ return array(
         'DoctrineModule',
         'DoctrineORMModule',
         'SynergyDataGrid',
-        'innerbridge',
+        'Admin',
         
         // module
         'Basic',
-        'Admin',
         'Site'
     ),
     
