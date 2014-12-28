@@ -13,7 +13,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\Session\Container;
  
-use Admin\Entity\Login;
+use Admin\Entity\UserAccount;
 
 class LoginController extends AbstractActionController
 {
@@ -99,10 +99,10 @@ class LoginController extends AbstractActionController
     {
         if ( !$this->form ) 
         {
-            $Login = new Login();
+            $userAccount = new UserAccount();
             $builder  = new AnnotationBuilder();
             
-            $this->form = $builder->createForm($Login);
+            $this->form = $builder->createForm($userAccount);
         }
          
         return $this->form;

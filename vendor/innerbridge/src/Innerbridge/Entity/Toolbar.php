@@ -31,6 +31,8 @@ class Toolbar
     const TITLE_OPTION_BACK = 'Voltar';
     
     const ACTION_OPTION_NEW = 'new';
+    const ACTION_OPTION_EDIT = 'edit';
+    const ACTION_OPTION_DELETE = 'delete';
     const ACTION_OPTION_VIEW = 'view';
     const ACTION_OPTION_SEARCH = 'search';
     const ACTION_OPTION_REFRESH = 'refresh';

@@ -17,14 +17,15 @@ use Doctrine\ORM\Mapping as ORM,
 
 /** 
  * @ORM\Entity
+ * @ORM\Table(name="admin.useraccount")
  */
-class Login 
+class UserAccount
 {
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\SequenceGenerator(sequenceName="login_id_seq", initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="useraccount_id_seq", initialValue=1)
      * 
      * @Annotation\Type("Zend\Form\Element\Hidden")
      */

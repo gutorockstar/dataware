@@ -19,6 +19,7 @@ return array(
     
     'router' => array(
         'routes' => array(
+            
             'login' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -104,10 +105,10 @@ return array(
         'authentication' => array(
             'orm_default' => array(
                 'object_manager' => 'Doctrine\ORM\EntityManager',
-                'identity_class' => 'Admin\Entity\Login',
+                'identity_class' => 'Admin\Entity\UserAccount',
                 'identity_property' => 'username',
                 'credential_property' => 'password',
-                'credential_callable' => function(\Admin\Entity\Login $Login, $passwordGiven) 
+                'credential_callable' => function(\Admin\Entity\UserAccount $Login, $passwordGiven) 
                 {
                     return ( $Login->getPassword() == md5($passwordGiven) );
                 },
