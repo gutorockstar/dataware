@@ -470,3 +470,7 @@ nav{
 #grid__pager_left{
     display: none;
 }
+
+select[multiple]{
+    height: 100px !important;
+}
