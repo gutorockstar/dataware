@@ -12,7 +12,7 @@
  */
 namespace Basic\Controller;
 
-use Innerbridge\Controller\Controller;
+use Admin\Controller\Controller;
 
 class CountryController extends Controller
 {    
