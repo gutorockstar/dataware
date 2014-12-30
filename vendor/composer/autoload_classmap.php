@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'CommonTest\\Module' => $vendorDir . '/synergy/common/tests/Module.php',
+    'SynergyCommon\\Module' => $vendorDir . '/synergy/common/Module.php',
     'SynergyDataGridTest\\Module' => $vendorDir . '/synergy/synergydatagrid/tests/module/Module.php',
     'SynergyDataGrid\\Module' => $vendorDir . '/synergy/synergydatagrid/Module.php',
 );

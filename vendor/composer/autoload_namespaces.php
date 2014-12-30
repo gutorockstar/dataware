@@ -11,7 +11,7 @@ return array(
     'SynergyDataGridTest' => array($vendorDir . '/synergy/synergydatagrid/tests/module'),
     'SynergyDataGrid' => array($vendorDir . '/synergy/synergydatagrid/src'),
     'SynergyCommonTest' => array($vendorDir . '/synergy/common/tests'),
-    'SynergyCommon' => array($vendorDir . '/synergy/common/lib'),
+    'SynergyCommon' => array($vendorDir . '/synergy/common/src'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'Gedmo\\' => array($vendorDir . '/gedmo/doctrine-extensions/lib'),
     'Doctrine\\ORM\\' => array($vendorDir . '/doctrine/orm/lib'),

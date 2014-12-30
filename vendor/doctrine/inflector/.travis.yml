@@ -7,5 +7,5 @@ php:
   - 5.6
   - hhvm
 
-before_script:
-    - composer --prefer-source --dev install
+install:
+    - composer --prefer-source install
