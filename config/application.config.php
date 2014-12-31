@@ -6,9 +6,9 @@ return array(
         'DoctrineModule',
         'DoctrineORMModule',
         'SynergyDataGrid',
-        'Admin',
         
         // module
+	'Admin',
         'Basic',
         'Site'
     ),

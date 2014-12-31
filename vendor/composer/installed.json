@@ -1048,12 +1048,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/odiaseo/synergy-common.git",
-            "reference": "0f42cfa030c0f22364cd4bc3df2ae8968ae2490d"
+            "reference": "e36cb241503a7191fb5718d60377a15c81933254"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/odiaseo/synergy-common/zipball/0f42cfa030c0f22364cd4bc3df2ae8968ae2490d",
-            "reference": "0f42cfa030c0f22364cd4bc3df2ae8968ae2490d",
+            "url": "https://api.github.com/repos/odiaseo/synergy-common/zipball/e36cb241503a7191fb5718d60377a15c81933254",
+            "reference": "e36cb241503a7191fb5718d60377a15c81933254",
             "shasum": ""
         },
         "require": {
@@ -1067,7 +1067,7 @@
             "ewgo/solarium-module": "For solr search aware models",
             "monolog/monolog": "For enhanced logging features"
         },
-        "time": "2014-12-30 15:35:50",
+        "time": "2014-12-31 00:26:18",
         "type": "library",
         "extra": {
             "branch-alias": {
