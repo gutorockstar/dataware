@@ -65,6 +65,21 @@ return array(
     
     'jqgrid' => array(
         'column_model' => array(
+            'title' => array(
+                'align' => 'left',
+                'label' => 'titulo'
+                /**
+                'formatter' => new \Zend\Json\Expr(""),
+                'unformat' => new \Zend\Json\Expr(""),
+                
+                'editoptions' => array(
+                    'custom_element' => new \Zend\Json\Expr(""),
+                    'custom_value' => 
+                )
+                 * 
+                 */
+            ),
+            
             'Country' => array(
                 'isSubGridAsGrid' => true
             ),
@@ -74,6 +89,7 @@ return array(
         ),
         
         // PARA REGISTROS QUE POSSUEM RELACIONAMENTOS.
+        /**
         'grid_url_generator' => function ($sm, $entity, $fieldName, $targetEntity, $urlType) {
     
             exit($targetEntity);
@@ -87,6 +103,8 @@ return array(
                     return new \Zend\Json\Expr("'" . $url . "?subgridid='+row_id");
             }
         }
+         * 
+         */
     ),    
     
     'doctrine' => array(

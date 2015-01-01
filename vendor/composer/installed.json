@@ -1048,12 +1048,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/odiaseo/synergy-common.git",
-            "reference": "e36cb241503a7191fb5718d60377a15c81933254"
+            "reference": "9d49bd3fd7bdbbaad6164dc57675e8f4ccd41e1a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/odiaseo/synergy-common/zipball/e36cb241503a7191fb5718d60377a15c81933254",
-            "reference": "e36cb241503a7191fb5718d60377a15c81933254",
+            "url": "https://api.github.com/repos/odiaseo/synergy-common/zipball/9d49bd3fd7bdbbaad6164dc57675e8f4ccd41e1a",
+            "reference": "9d49bd3fd7bdbbaad6164dc57675e8f4ccd41e1a",
             "shasum": ""
         },
         "require": {
@@ -1063,11 +1063,14 @@
             "php": ">=5.3.3",
             "zendframework/zendframework": "2.*"
         },
+        "require-dev": {
+            "phpunit/phpunit": "*"
+        },
         "suggest": {
             "ewgo/solarium-module": "For solr search aware models",
             "monolog/monolog": "For enhanced logging features"
         },
-        "time": "2014-12-31 00:26:18",
+        "time": "2014-12-31 21:08:10",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1081,7 +1084,7 @@
                 "SynergyCommonTest": "tests/"
             },
             "classmap": [
-                "./tests/Module.php",
+                "./tests/lib/Module.php",
                 "./Module.php"
             ]
         },
@@ -1108,12 +1111,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/odiaseo/zf2-datagrid.git",
-            "reference": "0ef192b0f0d22251f7dff9d61e3fb65afccadc0e"
+            "reference": "5a9a4317d3279919b37f2287b4a0303f5149e163"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/odiaseo/zf2-datagrid/zipball/0ef192b0f0d22251f7dff9d61e3fb65afccadc0e",
-            "reference": "0ef192b0f0d22251f7dff9d61e3fb65afccadc0e",
+            "url": "https://api.github.com/repos/odiaseo/zf2-datagrid/zipball/5a9a4317d3279919b37f2287b4a0303f5149e163",
+            "reference": "5a9a4317d3279919b37f2287b4a0303f5149e163",
             "shasum": ""
         },
         "require": {
@@ -1128,7 +1131,7 @@
             "gedmo/doctrine-extensions": ">=v2.2.0",
             "monolog/monolog": "For enhanced logging features"
         },
-        "time": "2014-12-29 06:19:07",
+        "time": "2015-01-01 20:40:28",
         "type": "synergy-module",
         "extra": {
             "branch-alias": {
