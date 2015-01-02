@@ -29,7 +29,8 @@ class Controller extends AbstractActionController
     protected $route;
     protected $entityName;
     protected $em;
-    
+    protected $_objectManager;
+
     public function getRoute() 
     {
         return $this->route;
@@ -62,6 +63,8 @@ class Controller extends AbstractActionController
     }
 
     /**
+     * Retorna administrador de entidades para autenticação.
+     * 
      * @return array|\Doctrine\ORM\EntityManager|object
      */
     public function getEntityManager()
@@ -72,6 +75,21 @@ class Controller extends AbstractActionController
         }
 
         return $this->em;
+    }
+    
+    /**
+     * Retorna administrador de entidades para consultas diversas.
+     * 
+     * @return array|\Doctrine\ORM\EntityManager|object
+     */
+    protected function getObjectManager()
+    {
+        if ( !$this->_objectManager ) 
+        {
+            $this->_objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        }
+
+        return $this->_objectManager;
     }
     
     /**
@@ -135,43 +153,41 @@ class Controller extends AbstractActionController
     }
     
     /**
-     * Retorna a url da ação de crud.
-     * 
-     * @return type
-     */
-    public function getCrudUrl()
-    {
-        $crudUrl = $this->getEvent()->getRouteMatch()->getParam(self::CRUD_URL_PARAM);
-        return $crudUrl;
-    }
-    
-    /**
      * Primeira ação a ser executada.
      * Por padrão, executa a ação de busca, responsável por carregar
      * a grid.
      */
     public function indexAction()
     {
-        //$this->redirect()->toRoute($this->getCurrentRoute(), array('action' => 'search'));
-        
-        $grid = $this->getServiceLocator()->get(self::SERVICE_JQGRID_LOCATOR)->setGridIdentity($this->getCurrentEntity());
-        $grid->setUrl($this->getCrudUrl());
+        $allData = $this->getObjectManager()->getRepository($this->getCurrentEntity())->findAll();
 
-        return array('grid' => $grid);
+        return new ViewModel(array('allData' => $allData));
     }
     
-    /**
-     * Executa as ações de inserção, edição, exclusão, e busca.
-     * 
-     * @param array $options
-     */
-    public function crudAction($options = array())
+    public function addAction()
     {
-        $grid = $this->getServiceLocator()->get(self::SERVICE_JQGRID_LOCATOR)->setGridIdentity($this->getCurrentEntity());
-        $response = $grid->prepareGridData($this->getRequest(), $options);
+        if ( $this->request->isPost() ) 
+        {
+            $entityClass = $this->getCurrentEntity();
+            
+            
+            
+            
+            
+            $entity = new $entityClass();
+            $entity->setTitle($this->getRequest()->getPost('title'));
+            
+            
+            
 
-        echo json_encode($response);
-        exit;
+            $this->getObjectManager()->persist($entity);
+            $this->getObjectManager()->flush();
+            $newId = $entity->getId();
+
+            return $this->redirect()->toRoute($this->getCurrentRoute(), array('newId' => $newId));
+        }
+        
+        return new ViewModel();
     }
 }
 

@@ -1,11 +1,36 @@
-<?php
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Users</h3>
+            </div>
+            <div class="panel-body">
+                <a href="<?php echo $this->url('country', array('action'=>'add'));?>">Add Country</a>
 
-$viewContent = array(
-    $this->ToolbarHelper(),
-    $this->displayGrid($this->grid)
-);
-
-echo $this->ViewHelper('País',  $viewContent);
-
-?>
-
+                <?php if (isset($allData)) : ?>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                <?php foreach($allData as $country): ?>
+                    <tbody>
+                    <tr>
+                        <td><?php echo $country->getId(); ?></td>
+                        <td><?php echo $country->getTitle(); ?></td>
+                        <td>
+                            <a href="<?php echo $this->url('country', array('action' => 'edit', 'id' => $country->getId()));?>">Edit</a> |
+                            <a href="<?php echo $this->url('country', array('action' => 'delete', 'id' => $country->getId()));?>">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                <?php endforeach; ?>
+                </table>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>

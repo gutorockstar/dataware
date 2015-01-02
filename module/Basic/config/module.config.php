@@ -24,18 +24,16 @@ return array(
             'country' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/basic/country[/:action][/:fieldName]',
+                    'route' => '/basic/country[/:action][/:id]',
                     'constraints' => array(
-                        'module' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'fieldName' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                        'id' => '[0-9]+'
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Basic\Controller',
                         'entity' => 'Basic\Entity\Country',
                         'controller' => 'Basic\Controller\CountryController',
                         'action' => 'index',
-                        'crud_url' => '/basic/country/crud'
                     ),
                 ),
             ),

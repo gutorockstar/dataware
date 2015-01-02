@@ -1,0 +1,11 @@
+<?php
+
+$title = 'Edit Country';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<form method="post">
+  id: <label><?php echo $country->getId(); ?></label><br>
+  title: <input type="text" name="title" value="<?php echo $country->getTitle(); ?>"><br>
+  <input type="submit" value="Submit">
+</form>
