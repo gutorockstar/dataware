@@ -169,12 +169,12 @@ class Controller extends AbstractActionController
         if ( $this->request->isPost() ) 
         {
             $entityClass = $this->getCurrentEntity();
-            
-            
-            
-            
-            
             $entity = new $entityClass();
+            $postData = $this->getRequest()->getPost()->toArray();
+            
+            
+            
+            
             $entity->setTitle($this->getRequest()->getPost('title'));
             
             
