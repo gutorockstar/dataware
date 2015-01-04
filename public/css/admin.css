@@ -5,7 +5,7 @@ body {
 }
 
 .container{
-    margin-top: 15px !important;
+    max-width: 100%;
 }
 
 footer{
@@ -95,12 +95,6 @@ footer{
 .menu li a:hover{
     background: #2187e7 !important;
     color: #fff !important;
-}
-
-th{
-    background: #999 !important;
-    color: #fff !important;
-    text-align: center !important;
 }
 
 .row{
@@ -463,10 +457,6 @@ nav{
     list-style-image: none;
     font-weight: normal;
     border: none !important;
-}
-
-.table tr{
-    background: #fff;
 }
 
 .ui-menu-item table tr td {
