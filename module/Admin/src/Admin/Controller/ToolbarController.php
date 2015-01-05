@@ -33,6 +33,19 @@ class ToolbarController extends Controller
         {
             // Sempre serão criadas as ferramentas padrões.
             $toolbarOptions = array(
+                /**
+                 * Novo,
+                 * Editar,
+                 * Excluír,
+                 * Procurar,
+                 * Unificar,
+                 * Duplicar,
+                 * Imprimir,
+                 * Voltar
+                 */
+                
+                
+                
                 Toolbar::ID_OPTION_NEW => new ToolbarOption(Toolbar::ID_OPTION_NEW, Toolbar::TITLE_OPTION_NEW, Toolbar::ACTION_OPTION_NEW, Toolbar::CSS_CLASS_ICON_OPTION_NEW, true),
                 Toolbar::ID_OPTION_VIEW => new ToolbarOption(Toolbar::ID_OPTION_VIEW, Toolbar::TITLE_OPTION_VIEW, Toolbar::ACTION_OPTION_VIEW, Toolbar::CSS_CLASS_ICON_OPTION_VIEW, true),
                 Toolbar::ID_OPTION_SEARCH => new ToolbarOption(Toolbar::ID_OPTION_SEARCH, Toolbar::TITLE_OPTION_SEARCH, Toolbar::ACTION_OPTION_SEARCH, Toolbar::CSS_CLASS_ICON_OPTION_SEARCH, true),
