@@ -200,7 +200,7 @@ select {
 }
 
 .panel-body {
-    padding: 25px !important;
+    padding: 0px !important;
     background: #eee;
 }
 
