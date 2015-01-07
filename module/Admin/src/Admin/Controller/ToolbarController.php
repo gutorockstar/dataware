@@ -26,43 +26,13 @@ class ToolbarController extends Controller
      * @param \Admin\Entity\ToolbarOption $toolbarOptions
      */
     public function __construct($toolbarOptions = array())
-    {
-        $tbOptions = array();
-            
-        if ( !(count($toolbarOptions) > 0) )
+    {        
+        foreach ( $toolbarOptions as $toolbarOption )
         {
-            // Sempre serão criadas as ferramentas padrões.
-            $toolbarOptions = array(
-                /**
-                 * Novo,
-                 * Editar,
-                 * Excluír,
-                 * Procurar,
-                 * Unificar,
-                 * Duplicar,
-                 * Imprimir,
-                 * Voltar
-                 */
-                
-                
-                
-                Toolbar::ID_OPTION_NEW => new ToolbarOption(Toolbar::ID_OPTION_NEW, Toolbar::TITLE_OPTION_NEW, Toolbar::ACTION_OPTION_NEW, Toolbar::CSS_CLASS_ICON_OPTION_NEW, true),
-                Toolbar::ID_OPTION_VIEW => new ToolbarOption(Toolbar::ID_OPTION_VIEW, Toolbar::TITLE_OPTION_VIEW, Toolbar::ACTION_OPTION_VIEW, Toolbar::CSS_CLASS_ICON_OPTION_VIEW, true),
-                Toolbar::ID_OPTION_SEARCH => new ToolbarOption(Toolbar::ID_OPTION_SEARCH, Toolbar::TITLE_OPTION_SEARCH, Toolbar::ACTION_OPTION_SEARCH, Toolbar::CSS_CLASS_ICON_OPTION_SEARCH, true),
-                Toolbar::ID_OPTION_REFRESH => new ToolbarOption(Toolbar::ID_OPTION_REFRESH, Toolbar::TITLE_OPTION_REFRESH, Toolbar::ACTION_OPTION_REFRESH, Toolbar::CSS_CLASS_ICON_OPTION_REFRESH, true),
-                Toolbar::ID_OPTION_FILTER => new ToolbarOption(Toolbar::ID_OPTION_FILTER, Toolbar::TITLE_OPTION_FILTER, Toolbar::ACTION_OPTION_SEARCH, Toolbar::CSS_CLASS_ICON_OPTION_FILTER, true),
-                Toolbar::ID_OPTION_PRINT => new ToolbarOption(Toolbar::ID_OPTION_PRINT, Toolbar::TITLE_OPTION_PRINT, Toolbar::ACTION_OPTION_PRINT, Toolbar::CSS_CLASS_ICON_OPTION_PRINT),
-                Toolbar::ID_OPTION_BACK => new ToolbarOption(Toolbar::ID_OPTION_BACK, Toolbar::TITLE_OPTION_BACK, Toolbar::ACTION_OPTION_BACK, Toolbar::CSS_CLASS_ICON_OPTION_BACK),
-            );
             
-            // Para criar as ações das opções.
-            foreach ( $toolbarOptions as $tbOption )
-            {
-                $tbOptions[$tbOption->getId()] = $this->generateActionOption($tbOption);
-            }
         }
         
-        $this->toolbar = new Toolbar($tbOptions);
+        $this->toolbar = new Toolbar();
     }
     
     /**

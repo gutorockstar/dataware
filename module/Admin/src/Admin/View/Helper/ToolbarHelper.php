@@ -36,24 +36,25 @@ class ToolbarHelper extends ViewHelper
         $toolbarOptions = $toolbarController->getToolbar()->getToolbarOptions();
         
         $toolbarView = "<nav class='navbar navbar-default'>
-                        <div class='toolbar'>";
+                            <div class='toolbar'>
+                                <div class='tools'>";
         
+        //if ( strlen($username) > 0 && count($toolbarOptions) > 0 )
         if ( strlen($username) > 0 )
         {
-            $toolbarView .= "<div class='tools'>";
-            
-            if ( count($toolbarOptions) > 0 )
-            {
-                foreach ( $toolbarOptions as $toolbarOption )
-                {
-                    $toolbarView .= $this->createToolbarOption($toolbarOption);
-                }
-            }
-            
-            $toolbarView .= "</div>";
+            $toolbarView .= $this->createToolbarOption(array('id' => 1, 'title' => 'Novo', 'action' => 'add', 'fontAwesomeCssClass' => 'fa-file-o'));
+            $toolbarView .= $this->createToolbarOption(array('id' => 2, 'title' => 'Editar', 'action' => 'edit', 'fontAwesomeCssClass' => 'fa-edit'));
+            $toolbarView .= $this->createToolbarOption(array('id' => 3, 'title' => 'Excluir', 'action' => 'delete', 'fontAwesomeCssClass' => 'fa-trash-o'));
+            $toolbarView .= $this->createToolbarOption(array('id' => 4, 'title' => 'Procurar', 'action' => 'index', 'fontAwesomeCssClass' => 'fa-search'));
+            $toolbarView .= $this->createToolbarOption(array('id' => 5, 'title' => 'Unificar', 'action' => 'unify', 'fontAwesomeCssClass' => 'fa-share-alt fa-rotate-180'));
+            $toolbarView .= $this->createToolbarOption(array('id' => 6, 'title' => 'Duplicar', 'action' => 'duplicate', 'fontAwesomeCssClass' => 'fa-share-alt'));
+            $toolbarView .= $this->createToolbarOption(array('id' => 7, 'title' => 'Imprimir', 'action' => 'print', 'fontAwesomeCssClass' => 'fa-print'));
+            $toolbarView .= $this->createToolbarOption(array('id' => 8, 'title' => 'Voltar', 'action' => 'back', 'fontAwesomeCssClass' => 'fa-arrow-circle-o-left'));
         }
         
-        return $toolbarView . "</div></nav>";
+        return $toolbarView . " </div>
+                            </div>
+                        </nav>";
     }
     
     /**
@@ -67,22 +68,11 @@ class ToolbarHelper extends ViewHelper
      * @param String $method
      * @return String html
      */
-    private function createToolbarOption(ToolbarOption $toolbarOption)
-    {
-        if ( $toolbarOption->getIsJQGridAction() )
-        {
-            $href = "href=\"javascript:void(0);\"";
-            $onClick = "onClick=\"document.getElementById('{$toolbarOption->getId()}').click();\"";
-        }
-        else
-        {
-            $href = "href=\"{$toolbarOption->getAction()}\"";
-            $onClick = "";
-        }
-        
-        return "<a id=\"tb_option_{$toolbarOption->getId()}\" title=\"{$toolbarOption->getTitle()}\" {$href} {$onClick}>
+    private function createToolbarOption(array $toolbarOption)
+    {                
+        return "<a id=\"tb_option_{$toolbarOption['id']}\" title=\"{$toolbarOption['title']}\" href=\"{$toolbarOption['action']}\">
                     <div class=\"tool\">
-                        <i class=\"fa {$toolbarOption->getCssIconClass()} fa-2x\"></i>
+                        <i class=\"fa {$toolbarOption['fontAwesomeCssClass']} fa-2x\"></i>
                     </div>
                 </a>";
     }

@@ -33,16 +33,11 @@ class ToolbarOption
     private $action;
     
     /**
-     *
+     * http://fortawesome.github.io/Font-Awesome/icons/
+     * 
      * @var String
      */
-    private $cssIconClass;
-    
-    /**
-     *
-     * @var boolean
-     */
-    private $isJQGridAction;
+    private $cssClass;
     
     /**
      *
@@ -50,13 +45,21 @@ class ToolbarOption
      */
     private $enabled;
     
-    public function __construct($id, $title, $action, $cssIconClass, $isJQGridAction = false, $enabled = true)
+    /**
+     * Método construtor da classe ToolbarOption
+     * 
+     * @param String $id
+     * @param String $title
+     * @param String $action
+     * @param String $cssClass
+     * @param boolean $enabled
+     */
+    public function __construct($id, $title, $action, $cssClass, $enabled = true)
     {
         $this->id = $id;
         $this->title = $title;
         $this->action = $action;
-        $this->cssIconClass = $cssIconClass;
-        $this->isJQGridAction = $isJQGridAction;
+        $this->cssClass = $cssClass;
         $this->enabled = $enabled;
     }
     
@@ -89,27 +92,22 @@ class ToolbarOption
     {
         $this->action = $action;
     }
-
-    public function getCssIconClass() 
+    
+    /**
+     * http://fortawesome.github.io/Font-Awesome/icons/
+     * 
+     * @return type
+     */
+    public function getCssClass() 
     {
-        return $this->cssIconClass;
+        return $this->cssClass;
     }
 
-    public function setCssIconClass($cssIconClass) 
+    public function setCssClass($cssClass) 
     {
-        $this->cssIconClass = $cssIconClass;
+        $this->cssClass = $cssClass;
     }
     
-    public function getIsJQGridAction() 
-    {
-        return $this->isJQGridAction;
-    }
-
-    public function setIsJQGridAction($isJQGridAction) 
-    {
-        $this->isJQGridAction = $isJQGridAction;
-    }
-
     public function getEnabled() 
     {
         return $this->enabled;
