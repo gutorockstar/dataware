@@ -127,7 +127,7 @@ footer{
 
 .navbar {
     z-index: 95;
-    background-image: linear-gradient(to bottom, #ffffff 0%, #eee 100%) !important; 
+    background-image: linear-gradient(to bottom, #ffffff 0%, #ddd 100%) !important; 
 }
 
 label {
