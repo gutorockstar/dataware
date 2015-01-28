@@ -4,10 +4,48 @@ $form = $this->form;
 $form->prepare();
 $form->setAttribute('action', $this->url('login'));
 
-$formLogin = "{$this->form()->openTag($form)}
-              {$this->formCollection($form)}
-              {$this->form()->closeTag()}";
-              
-echo $this->ViewHelper('Efetuar login', array($this->PanelHelper($formLogin)), array('width' => '50%'));
+$formLogin = $this->form()->openTag($form);              
+//$formLogin .= $this->formCollection($form); // PARA OBTER OS CAMPOS DA ENTIDADE!
+$formLogin .= "
+<style>
+.fieldset-input{
+    border: 1px solid #31b0d5;
+    width: 350px;
+    padding-left: 4px !important;
+    background: #fff;
+}
 
+.legend-input{
+    padding: 0px !important;
+    color: #2187e7;
+}
+
+.input-input{
+    border: none;
+    width: 100%;
+    font-size: 14px;
+}
+
+.input-input:focus{
+    clear: both;
+    border: none;
+}
+</style>
+
+<fieldset class='fieldset-input'>
+<legend class='legend-input'>Login</legend>
+    <input class='input-input' type='text' name='username'/>
+</fieldset>
+
+<fieldset class='fieldset-input'>
+<legend class='legend-input'>Senha</legend>
+    <input class='input-input' type='password' name='password'/>
+</fieldset> 
+<input type='submit' name='send' value='Logar' class='btn btn-primary'/>
+";
+$formLogin .= $this->form()->closeTag();
+              
+echo $this->Panel('Bem vindo!', 'Efetuar login', $formLogin, null, 'width: 50%');
+              
+//echo $this->ViewHelper('Efetuar login', array($this->Panel($formLogin)), array('width' => '50%'));
 ?>

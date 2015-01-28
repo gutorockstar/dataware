@@ -37,7 +37,7 @@ class UserAccount
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Login"})
-     * @Annotation\Attributes({"class":"form-control form-usrname"})
+     * @Annotation\Attributes({"class":"form-control form-username"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":25}})
      * @Annotation\ErrorMessage("O campo 'Login' é requerido.");
      */
@@ -49,7 +49,7 @@ class UserAccount
      * @Annotation\Type("Zend\Form\Element\Password")
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Senha"})
-     * @Annotation\Attributes({"class":"form-control form-psswd"})
+     * @Annotation\Attributes({"class":"form-control form-password"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":25}})
      * @Annotation\ErrorMessage("O campo 'Senha' é requerido.");
      */
