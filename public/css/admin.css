@@ -198,8 +198,8 @@ select {
     background-repeat: repeat-x !important;
     font-weight: bold !important;
     color: #fff !important;
-    height: 30px !important;
-    padding: 5px 15px !important;
+    height: 40px !important;
+    /**padding: 5px 15px !important;*/
 }
 
 .panel-body {
