@@ -225,13 +225,13 @@ select {
     color: #fff !important;
 }
 
-.form-username{
+.form-username-teste{
     background: #fff url(../img/username.png) no-repeat !important;
     padding-left: 35px;
     background-color: #f5f5f5 !important;
 }
 
-.form-password{
+.form-password-teste{
     background: #fff url(../img/password.png) no-repeat !important;
     padding-left: 35px;
     background-color: #f5f5f5 !important;

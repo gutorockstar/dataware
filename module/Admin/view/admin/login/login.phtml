@@ -5,7 +5,8 @@ $form->prepare();
 $form->setAttribute('action', $this->url('login'));
 
 $formLogin = $this->form()->openTag($form);              
-//$formLogin .= $this->formCollection($form); // PARA OBTER OS CAMPOS DA ENTIDADE!
+$formLogin .= $this->formCollection($form); // PARA OBTER OS CAMPOS DA ENTIDADE!
+/**
 $formLogin .= "
 <style>
 .fieldset-input{
@@ -45,6 +46,8 @@ $formLogin .= "
 </fieldset> 
 <input type='submit' name='send' value='Logar' class='btn btn-primary'/>
 ";
+ * 
+ */
 $formLogin .= $this->form()->closeTag();
               
 echo $this->Panel('Bem vindo!', 'Efetuar login', $formLogin, null, 'width: 50%');
