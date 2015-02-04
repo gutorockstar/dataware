@@ -5,7 +5,8 @@ body {
 }
 
 .container{
-    /**max-width: 100%;**/
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 footer{
@@ -43,6 +44,13 @@ footer{
 .menu{
     background: #0075b0;
     height: 53px;
+}
+
+.img-logo{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    z-index: 100;
 }
 
 .img-logout{
@@ -144,27 +152,26 @@ label {
 }
 
 .form-control {
-    margin-left: 10px;
-    margin-right: 40%;
     display: inline;
-    width: 300px;
-    height: 30px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: 40px;
 }
 
 form .btn-primary {
-    float: left;
-    margin-top: 10px;
+    float: right;
+    margin-top: 5px;
     margin-bottom: 10px;
-    margin-left: 150px;
     clear: both;
 }
 
 form ul{
-    margin-top: 25px;
     color: red;
-    float:left;
+    float: right;
     padding: 0;
     padding-left: 5px;
+    display: inline;
+    clear: both;
 }
 
 form li{
@@ -499,4 +506,8 @@ select[multiple]{
 
 form {
     padding: 10px;
+}
+
+.table-form{
+    
 }

@@ -36,8 +36,8 @@ class UserAccount
      * 
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Login:"})
-     * @Annotation\Attributes({"class":"form-control form-username"})
+     
+     * @Annotation\Attributes({"class":"form-control", "placeholder":"Informe seu login!"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":25}})
      * @Annotation\ErrorMessage("O campo 'Login' é requerido.");
      */
@@ -48,12 +48,19 @@ class UserAccount
      * 
      * @Annotation\Type("Zend\Form\Element\Password")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Senha:"})
-     * @Annotation\Attributes({"class":"form-control form-password"})
+     
+     * @Annotation\Attributes({"class":"form-control", "placeholder":"Informe sua senha!"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":25}})
      * @Annotation\ErrorMessage("O campo 'Senha' é requerido.");
      */
     protected $password;
+    
+    /**
+     * @Annotation\Type("Zend\Form\Element\Checkbox")
+     * @Annotation\Options({"label":"Mantenha-me conectado"})
+     * @Annotation\Attributes({"class":"form-control checkbox"})
+     */
+    protected $remember;
     
     /**
      * @Annotation\Type("Zend\Form\Element\Submit")

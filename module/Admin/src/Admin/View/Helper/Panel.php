@@ -26,18 +26,23 @@ class Panel extends ViewHelper
      * @param String html $toolbar
      * @return String html
      */
-    public function __invoke($header, $title, $body, $toolbar = null, $style = null)
+    public function __invoke($title, $body, $toolbar = null, $style = null, $cssClassIcon = null, $header = null)
     {
+        if ( !is_null($header) )
+        {
+            $head = "<div class='view-header'>
+                         <font>{$header}</font>
+                     </div>";
+        }
+        
         return "<div class='row' style='{$style}'>
-                    <div class='view-header'>
-                        <font>{$header}</font>
-                    </div>
+                    {$head}
                     
                     {$toolbar}
                         
                     <div class='panel panel-default'>
                         <div class='panel-heading'>
-                            <h3 class='panel-title'>{$title}</h3>
+                            <h3 class='panel-title'><i class='fa {$cssClassIcon}'></i>&nbsp;&nbsp;{$title}</h3>
                         </div>
                         
                         <div class='panel-body'>

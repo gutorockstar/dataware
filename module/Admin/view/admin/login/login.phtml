@@ -4,9 +4,11 @@ $form = $this->form;
 $form->prepare();
 $form->setAttribute('action', $this->url('login'));
 
-$formLogin = $this->form()->openTag($form);              
+//$formLogin = "<img class='img-logo' src='{$this->basePath()}/img/dataware.png'/>";
+
+$formLogin .= $this->form()->openTag($form);              
 $formLogin .= $this->formCollection($form); // PARA OBTER OS CAMPOS DA ENTIDADE!
 $formLogin .= $this->form()->closeTag();
               
-echo $this->Panel('Bem vindo!', 'Efetuar login', $formLogin, null, 'width: 50%');
+echo $this->Panel('Efetuar login', $formLogin, null, 'width: 30%', 'fa-user');
 ?>
