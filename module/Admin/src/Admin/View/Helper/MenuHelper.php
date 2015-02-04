@@ -24,22 +24,22 @@ class MenuHelper extends ViewHelper
         $userSession = new Container('user');
         $username    = $userSession->username;
         
-        $menu = "<div class='container'>
-                    <div class='collapse navbar-collapse'>";
-        
         if ( strlen($username) > 0 )
         {            
-            $menu .= "<a href='/admin' title='Home' class='loading'>
-                        <div class='home'>
-                            <i class='img-home fa fa-home fa-3x'></i>
-                        </div>
-                      </a>
-                      {$this->getModules()}";
+            $menu .= "<nav class='menu' role='navigation'>
+                          <div class='container'>
+                              <div class='collapse navbar-collapse'>
+                                  <a href='/admin' title='Home' class='loading'>
+                                      <div class='home'>
+                                          <i class='img-home fa fa-home fa-3x'></i>
+                                      </div>
+                                  </a>
+                                  {$this->getModules()}
+                              </div>
+                          </div>
+                      </nav>";
                
         }
-        
-        $menu .= "  </div>
-                 </div>";
         
         return $menu;
     }
