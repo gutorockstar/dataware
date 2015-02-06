@@ -105,11 +105,6 @@ footer{
     color: #fff !important;
 }
 
-.row{
-    margin-right: 0px !important;
-    margin-left: 0px !important;
-}
-
 .pagination{
     margin: 0 !important;
     margin-top: 2px !important;
@@ -210,8 +205,8 @@ select {
 }
 
 .row{
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 .panel-heading {
