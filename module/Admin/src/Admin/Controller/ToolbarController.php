@@ -52,6 +52,9 @@ class ToolbarController extends Controller
                 $explodeUrl[] = $toolbarOption->getAction();
 
                 $tbOptionAction = implode("/", $explodeUrl);
+                
+                var_dump($tbOptionAction);
+                
                 $toolbarOption->setAction($tbOptionAction);
             }
         }

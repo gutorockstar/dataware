@@ -2121,6 +2121,7 @@
 			jqFilter
 				.attr('aria-controls', oSettings.sTableId)
 				.attr('class', 'form-control search-grid')
+				.attr('placeholder', oSettings.sSearchPlaceHolder)
 				.bind( 'keypress.DT', function(e) {
 					/* Prevent form submission */
 					if ( e.keyCode == 13 )
@@ -9483,7 +9484,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "Localizar:",
+			"sSearch": "",
 		
 		
 			/**
@@ -10992,6 +10993,11 @@
 		 *  @default <i>Empty string</i>
 		 */
 		"sTableId": "",
+                
+                /**
+                 *
+                 */
+		"sSearchPlaceHolder": "Localizo meus registros por aqui!",
 		
 		/**
 		 * The TABLE node for the main table
