@@ -193,7 +193,7 @@ form li{
 select {
     margin-bottom: 5px;
     width: 300px;
-    height: 30px !important;
+    height: 40px !important;
 }
 
 .search-grid{
@@ -277,9 +277,15 @@ select {
     padding: 15px !important;
 }
 
+.dataTables_length label{
+    padding-top: 0px !important;
+}
+
 .dataTables_filter label{
     width: 370px;
     float:left;
+    margin-right: 0px !important;
+    padding-top: 0px !important;
 }
 
 .table-striped > tbody > tr:nth-child(odd){
@@ -341,7 +347,7 @@ thead tr{
 }
 
 .dataTables_wrapper{
-    padding: 10px;
+    padding: 5px;
 }
 
 nav{
