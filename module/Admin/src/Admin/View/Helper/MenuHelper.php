@@ -21,7 +21,7 @@ class MenuHelper extends ViewHelper
 {    
     public function __invoke()
     {        
-        $userSession = new Container('user');
+        $userSession = new Container('UserAccount');
         $username    = $userSession->username;
         
         if ( strlen($username) > 0 )

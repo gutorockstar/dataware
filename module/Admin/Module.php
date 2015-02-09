@@ -88,10 +88,10 @@ class Module
                     return new View\Helper\ViewHelper($em);
                 },
                         
-                'Panel' => function ($sm) 
+                'PanelHelper' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
-                    return new View\Helper\Panel($em);
+                    return new View\Helper\PanelHelper($em);
                 },
                         
                 'GridHelper' => function ($sm) 

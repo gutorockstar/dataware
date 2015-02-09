@@ -3,7 +3,38 @@
         <font>País</font>
     </div>
     
-    <?php echo $this->ToolbarHelper(); ?>
+    
+    
+    
+    
+    
+    <?php 
+    
+    $tbOptions = array(
+        'showDefaultToolbarActions' => true,
+        'addCustomToolbarActions' => array(
+            new \Admin\Entity\ToolbarAction('tb_option_refresh', 'Atualizar', 'refresh', 'fa-refresh'),
+            new \Admin\Entity\ToolbarAction('tb_option_config', 'Configurações', 'config', 'fa-cog', false)
+        ),
+        'disableToolbarActions' => array(
+            Admin\Entity\Toolbar::TB_ACTION_PRINT,
+        ),
+        'removeToolbarActions' => array(
+            //\Admin\Entity\Toolbar::TB_ACTION_UNIFY,
+            //\Admin\Entity\Toolbar::TB_ACTION_CLONE
+        )
+    );
+    
+    echo $this->ToolbarHelper($tbOptions); 
+    
+    ?>
+    
+    
+    
+    
+    
+    
+    
     
     <div class="panel panel-default">
         <div class="panel-heading">

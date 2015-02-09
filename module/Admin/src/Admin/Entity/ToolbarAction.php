@@ -12,8 +12,11 @@
  */
 namespace Admin\Entity;
 
-class ToolbarOption 
+class ToolbarAction
 {
+    const TB_DISABLE_CLASS_CSS = 'disabled-style';
+    const TB_DISABLE_ACTION = 'javascript:void(0)';
+    
     /**
      *
      * @var int
@@ -60,7 +63,8 @@ class ToolbarOption
         $this->title = $title;
         $this->action = $action;
         $this->cssClass = $cssClass;
-        $this->enabled = $enabled;
+        
+        $this->setEnabled($enabled);
     }
     
     public function getId() 
@@ -108,6 +112,11 @@ class ToolbarOption
         $this->cssClass = $cssClass;
     }
     
+    public function addCssClass($cssClass)
+    {
+        $this->cssClass .= ' ' . $cssClass;
+    }
+    
     public function getEnabled() 
     {
         return $this->enabled;
@@ -116,6 +125,12 @@ class ToolbarOption
     public function setEnabled($enabled) 
     {
         $this->enabled = $enabled;
+        
+        if ( !$this->enabled )
+        {
+            $this->addCssClass(self::TB_DISABLE_CLASS_CSS);
+            $this->setAction(self::TB_DISABLE_ACTION);
+        }
     }
 }
 

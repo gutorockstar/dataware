@@ -15,7 +15,7 @@ namespace Admin\View\Helper;
 
 use Admin\View\Helper\ViewHelper;
 
-class Panel extends ViewHelper
+class PanelHelper extends ViewHelper
 {
     /**
      * Cria painel contendo o conteúdo recebido por parâmetro.

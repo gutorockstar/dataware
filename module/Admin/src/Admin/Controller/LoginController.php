@@ -56,7 +56,7 @@ class LoginController extends AbstractActionController
             {
                 if ( $this->authenticate($data['username'], $data['password']) ) 
                 {
-                    $userSession = new Container('user');
+                    $userSession = new Container('UserAccount');
                     $userSession->username = $data['username'];
                     $this->redirect()->toRoute('admin');
                 }

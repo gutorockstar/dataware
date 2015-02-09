@@ -380,8 +380,9 @@ nav{
     text-align: center;
 }
 
-.iToolbarDisabled {
+.disabled-style {
     color: #ccc !important;
+    cursor: not-allowed;
 }
 
 .ui-jqdialog{

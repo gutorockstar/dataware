@@ -10,7 +10,6 @@ return array(
         // module
 	'Admin',
         'Basic',
-        'Site'
     ),
     
     'synergy' => array(
