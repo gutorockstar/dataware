@@ -131,6 +131,21 @@ class Controller extends AbstractActionController
     }
     
     /**
+     * Retorna a url completa da rota atual.
+     * 
+     * @return string
+     */
+    public function getCurrentRouteUrl()
+    {
+        $currentUrl = $this->getCurrentUrl();
+        $teste = $this->getCurrentRoute();
+        
+        file_put_contents('/tmp/vd.txt', var_dump($currentUrl));
+        
+        
+        return "";
+    }
+    /**
      * Retorna a entidade atual.
      * 
      * @return String

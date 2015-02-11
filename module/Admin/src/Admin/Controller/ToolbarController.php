@@ -55,7 +55,12 @@ class ToolbarController extends Controller
      */
     public function __construct($tbOptions = array())
     {      
-        $this->currentUrl = $this->getCurrentUrl();
+        $this->currentUrl = $this->getCurrentUrl();        
+        
+        
+        //$this->getCurrentRouteUrl();
+        
+        
         $this->setToolbarOptions($tbOptions);
     }
     
@@ -148,6 +153,7 @@ class ToolbarController extends Controller
         {
             if ( $customToolbarAction instanceof ToolbarAction)
             {
+                $customToolbarAction->setAction($this->currentUrl . '/' . $customToolbarAction->getAction());
                 $this->toolbar->addToolbarAction($customToolbarAction);
             }
         }
