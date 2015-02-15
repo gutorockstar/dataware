@@ -34,6 +34,7 @@ return array(
                         'entity' => 'Basic\Entity\Country',
                         'controller' => 'Basic\Controller\CountryController',
                         'action' => 'index',
+                        'module' => 'basic'
                     ),
                 ),
             ),
@@ -53,7 +54,7 @@ return array(
                         'entity' => 'Basic\Entity\State',
                         'controller' => 'Basic\Controller\StateController',
                         'action' => 'index',
-                        'crud_url' => '/basic/state/crud'
+                        'module' => 'basic'
                     ),
                 ),
             ), 

@@ -8,6 +8,21 @@
 
 /**
  * Description of Toolbar
+ * $tbOptions ex.: 
+       array(
+            'showDefaultToolbarActions' => true,
+            'addCustomToolbarActions' => array(
+                new \Admin\Entity\ToolbarAction('tb_option_refresh', 'Atualizar', 'refresh', 'fa-refresh'),
+                new \Admin\Entity\ToolbarAction('tb_option_config', 'Configurações', 'config', 'fa-cog', false)
+            ),
+            'disableToolbarActions' => array(
+                Admin\Entity\Toolbar::TB_ACTION_PRINT,
+            ),
+            'removeToolbarActions' => array(
+                \Admin\Entity\Toolbar::TB_ACTION_UNIFY,
+                \Admin\Entity\Toolbar::TB_ACTION_CLONE
+            )
+       )
  *
  * @author augusto
  */
@@ -25,27 +40,13 @@ class ToolbarHelper extends ViewHelper
     /**
      * Carrega a toolbar conforme parâmetros.
      * 
-     * @param array $tbOptions ex.: 
-       array(
-            'showDefaultToolbarActions' => true,
-            'addCustomToolbarActions' => array(
-                new \Admin\Entity\ToolbarAction('tb_option_refresh', 'Atualizar', 'refresh', 'fa-refresh'),
-                new \Admin\Entity\ToolbarAction('tb_option_config', 'Configurações', 'config', 'fa-cog', false)
-            ),
-            'disableToolbarActions' => array(
-                Admin\Entity\Toolbar::TB_ACTION_PRINT,
-            ),
-            'removeToolbarActions' => array(
-                \Admin\Entity\Toolbar::TB_ACTION_UNIFY,
-                \Admin\Entity\Toolbar::TB_ACTION_CLONE
-            )
-       )
+     * @param array $tbOptions
      * @return String html
      */
     public function __invoke($tbOptions = array())
     {
         $userSession = new Container('UserAccount');
-        $username = $userSession->username;   
+        $username = $userSession->username;           
         
         $toolbarController = new ToolbarController($tbOptions);
         $toolbarActions = $toolbarController->getToolbar()->getToolbarActions();
@@ -74,8 +75,10 @@ class ToolbarHelper extends ViewHelper
      * @return String html
      */
     private function createToolbarAction(ToolbarAction $toolbarAction)
-    {                
-        return "<a id=\"tb_option_{$toolbarAction->getId()}\" title=\"{$toolbarAction->getTitle()}\" href=\"{$toolbarAction->getAction()}\">
+    {  
+        $currentRouteUrl = $toolbarAction->getEnabled() ? $this->getCurrentRouteUrl() : null;
+        
+        return "<a id=\"tb_option_{$toolbarAction->getId()}\" title=\"{$toolbarAction->getTitle()}\" href=\"{$currentRouteUrl}{$toolbarAction->getAction()}\">
                     <div class=\"tool\">
                         <i class=\"fa {$toolbarAction->getCssClass()} fa-2x\"></i>
                     </div>

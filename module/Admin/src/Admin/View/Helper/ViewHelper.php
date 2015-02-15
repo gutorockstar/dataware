@@ -12,10 +12,12 @@
  */
 namespace Admin\View\Helper;
 
-use Zend\View\Helper\AbstractHelper,
-    Doctrine\ORM\EntityManager;
+use Zend\View\Helper\AbstractHelper;
+use Doctrine\ORM\EntityManager;
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
+use Zend\View\Helper\ServerUrl;
 
-class ViewHelper extends AbstractHelper
+class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
 {
     /**
      * Recebe EntityManager do Doctrine.
@@ -23,6 +25,8 @@ class ViewHelper extends AbstractHelper
      * @var EntityManegr
      */
     protected $entityManager;
+    
+    public $serviceLocator;
 	
     /**
      * Retorna uma Entidade de trabalho para doctrine.
@@ -32,6 +36,16 @@ class ViewHelper extends AbstractHelper
     public function __construct(EntityManager $em) 
     {
         $this->entityManager = $em;      
+    }
+    
+    public function getServiceLocator() 
+    {
+        return $this->serviceLocator;
+    }
+
+    public function setServiceLocator(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) 
+    {
+        $this->serviceLocator = $serviceLocator;
     }
     
     /**
@@ -77,6 +91,39 @@ class ViewHelper extends AbstractHelper
         $view .= "</fieldset>";
         
         return $view;
+    }
+    
+    /**
+     * Retorna a url atual.
+     * 
+     * @return String
+     */
+    public function getCurrentUrl()
+    {
+        $serverUrl = new ServerUrl();
+        $currentUrl = $serverUrl->__invoke(true);
+        
+        return $currentUrl;
+    }
+    
+    /**
+     * Retorna a url completa da rota atual.
+     * 
+     * @return string
+     */
+    public function getCurrentRouteUrl()
+    {
+        $currentUrl = $this->getCurrentUrl();
+        $expCurrentUrl = explode('/', $currentUrl);
+        $baseUrl = $expCurrentUrl[0] . '//' . $expCurrentUrl[2] . '/';
+        
+        $sm = $this->getView()->getHelperPluginManager()->getServiceLocator();
+        $router = $sm->get('Router');
+        $request = $sm->get('Request');
+        $routeMatch = $router->match($request);
+        $viewRoute = $routeMatch->getParam('module') . '/' . $routeMatch->getMatchedRouteName() . '/';
+        
+        return $baseUrl . $viewRoute;
     }
 }
 

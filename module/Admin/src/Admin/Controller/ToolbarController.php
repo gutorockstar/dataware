@@ -44,23 +44,12 @@ class ToolbarController extends Controller
     private $removeToolbarActions = array();
     
     /**
-     * @var String
-     */
-    private $currentUrl;
-    
-    /**
      * Método construtor do controlador da barra de ferramentas.
      * 
      * @param array
      */
     public function __construct($tbOptions = array())
-    {      
-        $this->currentUrl = $this->getCurrentUrl();        
-        
-        
-        //$this->getCurrentRouteUrl();
-        
-        
+    {   
         $this->setToolbarOptions($tbOptions);
     }
     
@@ -134,14 +123,14 @@ class ToolbarController extends Controller
      */
     private function generateDefaultToolbarActions()
     {
-        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_NEW, 'Novo', $this->currentUrl . '/add', 'fa-file-o'));
-        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_EDIT, 'Editar', $this->currentUrl . '/edit', 'fa-edit'));
-        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_DELETE, 'Excluir', $this->currentUrl . '/delete', 'fa-trash-o'));
-        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_SEARCH, 'Procurar', $this->currentUrl . '/index', 'fa-search'));
-        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_UNIFY, 'Unificar', $this->currentUrl . '/unify', 'fa-share-alt fa-rotate-180'));
-        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_CLONE, 'Clonar', $this->currentUrl . '/clone', 'fa-share-alt'));
-        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_PRINT, 'Imprimir', $this->currentUrl . '/print', 'fa-print'));
-        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_BACK, 'Voltar', $this->currentUrl . '/back', 'fa-arrow-circle-o-left'));
+        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_NEW, 'Novo', 'add', 'fa-file-o'));
+        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_EDIT, 'Editar', 'edit', 'fa-edit'));
+        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_DELETE, 'Excluir', 'delete', 'fa-trash-o'));
+        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_SEARCH, 'Procurar', 'index', 'fa-search'));
+        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_UNIFY, 'Unificar', 'unify', 'fa-share-alt fa-rotate-180'));
+        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_CLONE, 'Clonar', 'clone', 'fa-share-alt'));
+        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_PRINT, 'Imprimir', 'print', 'fa-print'));
+        $this->toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_BACK, 'Voltar', 'back', 'fa-arrow-circle-o-left'));
     }
     
     /**
@@ -153,7 +142,7 @@ class ToolbarController extends Controller
         {
             if ( $customToolbarAction instanceof ToolbarAction)
             {
-                $customToolbarAction->setAction($this->currentUrl . '/' . $customToolbarAction->getAction());
+                $customToolbarAction->setAction($customToolbarAction->getAction());
                 $this->toolbar->addToolbarAction($customToolbarAction);
             }
         }

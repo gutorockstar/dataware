@@ -13,8 +13,8 @@
     $tbOptions = array(
         'showDefaultToolbarActions' => true,
         'addCustomToolbarActions' => array(
-            new \Admin\Entity\ToolbarAction('tb_option_refresh', 'Atualizar', 'refresh', 'fa-refresh'),
-            new \Admin\Entity\ToolbarAction('tb_option_config', 'Configurações', 'config', 'fa-cog', false)
+            new \Admin\Entity\ToolbarAction('tb_option_refresh', $this->translate('Refresh'), 'refresh', 'fa-refresh'),
+            new \Admin\Entity\ToolbarAction('tb_option_config', $this->translate('Configurations'), 'config', 'fa-cog', false)
         ),
         'disableToolbarActions' => array(
             Admin\Entity\Toolbar::TB_ACTION_PRINT,

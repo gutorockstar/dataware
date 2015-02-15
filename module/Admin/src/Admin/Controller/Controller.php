@@ -43,7 +43,7 @@ class Controller extends AbstractActionController
     
     public function getEntityName() 
     {
-        $this->getEvent()->getRouteMatch()->getParam(self::ENTITY_PAARAM);
+        $this->getEvent()->getRouteMatch()->getParam(self::ENTITY_PARAM);
         
         
         return $this->entityName;
@@ -130,21 +130,6 @@ class Controller extends AbstractActionController
         return $route;
     }
     
-    /**
-     * Retorna a url completa da rota atual.
-     * 
-     * @return string
-     */
-    public function getCurrentRouteUrl()
-    {
-        $currentUrl = $this->getCurrentUrl();
-        $teste = $this->getCurrentRoute();
-        
-        file_put_contents('/tmp/vd.txt', var_dump($currentUrl));
-        
-        
-        return "";
-    }
     /**
      * Retorna a entidade atual.
      * 
