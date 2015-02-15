@@ -46,7 +46,7 @@ class GridHelper extends ViewHelper
         // Gera o corpo da grid, contendo os registros obtidos para a listagem.
         if ( count($grid->getData()) > 0 )
         {
-            $displayGrid .= $this->generateGridRow($grid);
+            $displayGrid .= $this->generateGridRows($grid);
         }
         
         $displayGrid .= "</tbody></table></div>";
@@ -79,7 +79,7 @@ class GridHelper extends ViewHelper
      * @param \Admin\Entity\Grid $grid
      * @return string
      */
-    private function generateGridRow(Grid $grid)
+    private function generateGridRows(Grid $grid)
     {
         $rows = "";
         $cont = 0;
