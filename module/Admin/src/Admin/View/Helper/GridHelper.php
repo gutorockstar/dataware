@@ -14,6 +14,8 @@ namespace Admin\View\Helper;
 
 use Admin\Entity\Grid;
 use Admin\Entity\GridColumn;
+use Zend\Form\Annotation;
+use Zend\Form\Annotation\AnnotationBuilder;
 
 class GridHelper extends ViewHelper
 {
@@ -67,7 +69,6 @@ class GridHelper extends ViewHelper
                     rowspan='{$gridColumn->getRowSpan()}' 
                     colspan='{$gridColumn->getColSpan()}' 
                     aria-sort='{$gridColumn->getAriaSort()}' 
-                    aria-label='{$gridColumn->getAriaLabel()}' 
                     style='{$gridColumn->getStyle()}'>
                     {$gridColumn->getTitle()}
                 </th>";
@@ -84,19 +85,38 @@ class GridHelper extends ViewHelper
         $rows = "";
         $cont = 0;
         
-        foreach ( $grid->getData() as $data )
+        foreach ( $grid->getData() as $entity )
         {
             $classColor = ($cont % 2 == 0) ? 'odd' : 'even'; $cont++;
             $rows .= "<tr class='gradeA {$classColor}' role='row'>";
 
             // Gera o checkbox de seleção do registro.
-            if ( !$grid->getDisableSelections() && strlen($data->getId()) > 0 )
+            if ( !$grid->getDisableSelections() && strlen($entity->getId()) > 0 )
             {
-                $rows .= "<td><input type='checkbox' class='form-control checkbox' value='{$data->getId()}'/></td>";
+                $rows .= "<td><input type='checkbox' class='form-control checkbox' value='{$entity->getId()}'/></td>";
             }
             
             
             // PENSAR EM UMA MANEIRA DE OBTER O TÍTULO DA COLUNA E ID, DIRETOS PELA ENTIDADE.
+            
+            
+            /**
+             * Como fazer isto, primerio oter todos os atributos da classe de forma automática;
+             * Depois, obter todos atributos que possuem annotações que serão utilizadas;
+             * Estes atributos serão gerados na grid.
+             * 
+             */
+            $annotationBuilder = new AnnotationBuilder();
+            $formEspecification = $annotationBuilder->getFormSpecification($entity);
+            
+            foreach ( $formEspecification['elements'] as $element )
+            {
+                var_export($element['spec']);
+                echo "<br>";
+            }
+            
+            echo "<br><br>";
+            
             
             
 
@@ -106,7 +126,7 @@ class GridHelper extends ViewHelper
                 $lowerColumn = strtolower($gridColumn->getId());
                 $getFunction = "get" . ucfirst($lowerColumn);
                 
-                $rows .= "<td>{$data->$getFunction()}</td>";
+                $rows .= "<td>{$entity->$getFunction()}</td>";
             }
 
             $rows .= "</tr>";

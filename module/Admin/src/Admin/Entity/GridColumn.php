@@ -77,13 +77,6 @@ class GridColumn
     private $ariaSort;
     
     /**
-     * String de rótulo (hint) da coluna.
-     * 
-     * @var String
-     */
-    private $ariaLabel;
-    
-    /**
      * Seta estilo costumizado para a coluna.
      * 
      * @var String
@@ -96,11 +89,10 @@ class GridColumn
      * @param String $title
      * @param String $ariaLabel (rótulo)
      */
-    public function __construct($id, $title, $ariaLabel) 
+    public function __construct($id, $title) 
     {
         $this->id = $id;
         $this->title = $title;
-        $this->ariaLabel = $ariaLabel;
         $this->class = "sorting";
         $this->tabIndex = 0;
         $this->ariaControls = "example";
@@ -188,16 +180,6 @@ class GridColumn
     public function setAriaSort($ariaSort) 
     {
         $this->ariaSort = $ariaSort;
-    }
-
-    public function getAriaLabel() 
-    {
-        return $this->ariaLabel;
-    }
-
-    public function setAriaLabel($ariaLabel) 
-    {
-        $this->ariaLabel = $ariaLabel;
     }
 
     public function getStyle() 

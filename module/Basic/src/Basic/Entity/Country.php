@@ -27,6 +27,7 @@ class Country
      * @ORM\SequenceGenerator(sequenceName="country_id_seq", initialValue=1)
      * 
      * @Annotation\Type("Zend\Form\Element\Hidden")
+     * @Annotation\Options({"label":"Código"})
      */
     protected $id;
     
@@ -35,7 +36,7 @@ class Country
      * 
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Nome"})
+     * @Annotation\Options({"label":"Título"})
      * @Annotation\Attributes({"class":"form-control"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":45}})
      * @Annotation\ErrorMessage("O valor para 'Nome' é requerido.");
