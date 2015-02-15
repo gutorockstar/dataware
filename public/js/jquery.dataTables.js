@@ -2713,7 +2713,7 @@
 			 * sZeroRecords - assuming that is given.
 			 */
 			if ( !oLanguage.sEmptyTable && oLanguage.sZeroRecords &&
-				oDefaults.sEmptyTable === "No data available in table" )
+				oDefaults.sEmptyTable === "Ops! Ainda não temos dados disponíveis para estes registros. Selecione a opção 'Novo' na barra de ferramentas, e vamos começar a cadastrá-los!" )
 			{
 				_fnMap( oLanguage, oLanguage, 'sZeroRecords', 'sEmptyTable' );
 			}
@@ -9269,7 +9269,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			"sEmptyTable": "Ops! Ainda não temos dados disponíveis para estes registros. Selecione a opção 'Novo' na barra de ferramentas, e vamos começar a cadastrá-los!",
 		
 		
 			/**
@@ -9309,7 +9309,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "Exibindo 0 a 0 de 0 registros",
 		
 		
 			/**
