@@ -55,6 +55,11 @@ class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
      */
     public function getEntityManager()
     {
+        if ( !$this->entityManager ) 
+        {
+            $this->entityManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        }
+        
         return $this->entityManager;
     }
     

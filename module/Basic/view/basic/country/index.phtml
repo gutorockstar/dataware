@@ -67,18 +67,9 @@ echo $this->ToolbarHelper($tbOptions);
 
 <?php
 use Admin\Entity\Grid;
-use Admin\Entity\GridColumn;
-
-// PENSAR EM UMA MANEIRA DE OBTER AS COLUNAS, DIRETAS PELA ENTIDADE.
-$columns = array(
-    new GridColumn("id", "Código"),
-    new GridColumn("title", "Título")
-);
-
-
 
 $grid = new Grid();
-$grid->setColumns($columns);
+$grid->setEntity('Basic\Entity\Country');
 $grid->setData($allData);
 
 echo $this->GridHelper($grid);

@@ -14,7 +14,6 @@ namespace Admin\View\Helper;
 
 use Admin\Entity\Grid;
 use Admin\Entity\GridColumn;
-use Zend\Form\Annotation;
 use Zend\Form\Annotation\AnnotationBuilder;
 
 class GridHelper extends ViewHelper
@@ -32,6 +31,12 @@ class GridHelper extends ViewHelper
             $displayGrid .= "<th class='selection' tabindex='0' aria-controls='example' rowspan='1' colspan='1' aria-label='Com quais registros devo agir?' style='width: 30px;'>
                                 <input type='checkbox' class='form-control checkbox' value='all' />
                              </th>";
+        }       
+        
+        // Cria as colunas da grid, baseadas nos atributos da entidade.
+        if ( strlen($grid->getEntity()) > 0 )
+        {
+            $this->makeGridColumnsByEntity($grid);
         }
         
         // Gera o cabeçalho da grid, caso esitam colunas atribuidas.
@@ -41,7 +46,7 @@ class GridHelper extends ViewHelper
             {
                 $displayGrid .= $this->generateGridColumn($gridColumn);
             }
-        }
+        }        
         
         $displayGrid .= "</tr></thead><tbody>";
         
@@ -53,6 +58,29 @@ class GridHelper extends ViewHelper
         
         $displayGrid .= "</tbody></table></div>";
         return $displayGrid;
+    }
+    
+    /**
+     * Primerio oter todos os atributos da classe de forma automática;
+     * Depois, obter todos atributos que possuem annotações que serão utilizadas;
+     * Estes atributos serão gerados na grid. 
+     * 
+     * @param \Admin\Entity\Grid $grid
+     */
+    private function makeGridColumnsByEntity(Grid $grid)
+    {
+        $annotationBuilder = new AnnotationBuilder();
+        $formEspecification = $annotationBuilder->getFormSpecification($grid->getEntity());
+
+        foreach ( $formEspecification['elements'] as $element )
+        {
+            if ( strlen($element['spec']['options']['label']) > 0 )
+            {
+                // É possível a partir do tipo, conseguir descobrir o alinhamento dos registros.
+                $gridColumn = new GridColumn($element['spec']['name'], $element['spec']['options']['label']);
+                $grid->addColumn($gridColumn);
+            }
+        }
     }
     
     /**
@@ -95,30 +123,6 @@ class GridHelper extends ViewHelper
             {
                 $rows .= "<td><input type='checkbox' class='form-control checkbox' value='{$entity->getId()}'/></td>";
             }
-            
-            
-            // PENSAR EM UMA MANEIRA DE OBTER O TÍTULO DA COLUNA E ID, DIRETOS PELA ENTIDADE.
-            
-            
-            /**
-             * Como fazer isto, primerio oter todos os atributos da classe de forma automática;
-             * Depois, obter todos atributos que possuem annotações que serão utilizadas;
-             * Estes atributos serão gerados na grid.
-             * 
-             */
-            $annotationBuilder = new AnnotationBuilder();
-            $formEspecification = $annotationBuilder->getFormSpecification($entity);
-            
-            foreach ( $formEspecification['elements'] as $element )
-            {
-                var_export($element['spec']);
-                echo "<br>";
-            }
-            
-            echo "<br><br>";
-            
-            
-            
 
             // Gera os dados do registro.
             foreach ( $grid->getColumns() as $gridColumn )

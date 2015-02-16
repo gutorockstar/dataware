@@ -16,8 +16,25 @@ use Admin\Entity\GridColumn;
 
 class Grid 
 {
+    /**
+     * @var ObjClass
+     */
+    private $entity;
+    
+    /**
+     * @var array
+     */
     private $columns = array();
+    
+    /**
+     *
+     * @var ArrayObject
+     */
     private $data;
+    
+    /**
+     * @var boolean
+     */
     private $disableSelections = false;
     
     public function __construct($data = null) 
@@ -33,6 +50,16 @@ class Grid
         $this->columns[] = $gridColumn;
     }
     
+    public function getEntity() 
+    {
+        return $this->entity;
+    }
+
+    public function setEntity($entity) 
+    {
+        $this->entity = $entity;
+    }
+        
     public function getColumns() 
     {
         return $this->columns;
