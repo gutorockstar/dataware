@@ -26,38 +26,45 @@ class GridHelper extends ViewHelper
                                     <tr role='row'>";
         
         // Gera o checkbox de seleção de todos os registros da grid, se habilitado.
+        $displayGrid .= $this->generateComboboxSelectionAll($grid);
+        
+        // Cria as colunas da grid, baseadas nos atributos da entidade.
+        $this->makeGridColumnsByEntity($grid);
+        
+        // Gera o cabeçalho da grid, caso esitam colunas atribuidas.
+        $displayGrid .= $this->generateGridColumns($grid);
+        $displayGrid .= "           </tr>
+                                </thead>
+                                <tbody>";
+        
+        // Gera o corpo da grid, contendo os registros obtidos para a listagem.
+        $displayGrid .= $this->generateGridRows($grid);
+        $displayGrid .= "       </tbody>
+                            </table>
+                        </div>";
+        
+        return $displayGrid;
+    }
+    
+    /**
+     * Gera o html para o combobox responsável por selecionar
+     * todos os registros da página, na grid.
+     * 
+     * @param \Admin\Entity\Grid $grid
+     * @return string html
+     */
+    private function generateComboboxSelectionAll(Grid $grid)
+    {
+        $comboBoxAll = "";
+        
         if ( !$grid->getDisableSelections() )
         {
-            $displayGrid .= "<th class='selection' tabindex='0' aria-controls='example' rowspan='1' colspan='1' aria-label='Com quais registros devo agir?' style='width: 30px;'>
+            $comboBoxAll .= "<th class='selection' tabindex='0' aria-controls='example' rowspan='1' colspan='1' aria-label='Com quais registros devo agir?' style='width: 30px;'>
                                 <input type='checkbox' class='form-control checkbox' value='all' />
                              </th>";
         }       
         
-        // Cria as colunas da grid, baseadas nos atributos da entidade.
-        if ( strlen($grid->getEntity()) > 0 )
-        {
-            $this->makeGridColumnsByEntity($grid);
-        }
-        
-        // Gera o cabeçalho da grid, caso esitam colunas atribuidas.
-        if ( count($grid->getColumns()) > 0 )
-        {
-            foreach ( $grid->getColumns() as $gridColumn )
-            {
-                $displayGrid .= $this->generateGridColumn($gridColumn);
-            }
-        }        
-        
-        $displayGrid .= "</tr></thead><tbody>";
-        
-        // Gera o corpo da grid, contendo os registros obtidos para a listagem.
-        if ( count($grid->getData()) > 0 )
-        {
-            $displayGrid .= $this->generateGridRows($grid);
-        }
-        
-        $displayGrid .= "</tbody></table></div>";
-        return $displayGrid;
+        return $comboBoxAll;
     }
     
     /**
@@ -69,18 +76,42 @@ class GridHelper extends ViewHelper
      */
     private function makeGridColumnsByEntity(Grid $grid)
     {
-        $annotationBuilder = new AnnotationBuilder();
-        $formEspecification = $annotationBuilder->getFormSpecification($grid->getEntity());
-
-        foreach ( $formEspecification['elements'] as $element )
+        if ( strlen($grid->getEntity()) > 0 )
         {
-            if ( strlen($element['spec']['options']['label']) > 0 )
+            $annotationBuilder = new AnnotationBuilder();
+            $formEspecification = $annotationBuilder->getFormSpecification($grid->getEntity());
+
+            foreach ( $formEspecification['elements'] as $element )
             {
-                // É possível a partir do tipo, conseguir descobrir o alinhamento dos registros.
-                $gridColumn = new GridColumn($element['spec']['name'], $element['spec']['options']['label']);
-                $grid->addColumn($gridColumn);
+                if ( strlen($element['spec']['options']['label']) > 0 )
+                {
+                    // É possível a partir do tipo, conseguir descobrir o alinhamento dos registros.
+                    $gridColumn = new GridColumn($element['spec']['name'], $element['spec']['options']['label']);
+                    $grid->addColumn($gridColumn);
+                }
             }
         }
+    }
+    
+    /**
+     * Gera o cabeçalho da grid.
+     * 
+     * @param \Admin\Entity\Grid $grid
+     * @return string html
+     */
+    private function generateGridColumns(Grid $grid)
+    {
+        $headerGrid = "";
+        
+        if ( count($grid->getColumns()) > 0 )
+        {
+            foreach ( $grid->getColumns() as $gridColumn )
+            {
+                $headerGrid .= $this->generateGridColumn($gridColumn);
+            }
+        }      
+        
+        return $headerGrid;
     }
     
     /**
@@ -113,27 +144,30 @@ class GridHelper extends ViewHelper
         $rows = "";
         $cont = 0;
         
-        foreach ( $grid->getData() as $entity )
+        if ( count($grid->getData()) > 0 )
         {
-            $classColor = ($cont % 2 == 0) ? 'odd' : 'even'; $cont++;
-            $rows .= "<tr class='gradeA {$classColor}' role='row'>";
-
-            // Gera o checkbox de seleção do registro.
-            if ( !$grid->getDisableSelections() && strlen($entity->getId()) > 0 )
+            foreach ( $grid->getData() as $entity )
             {
-                $rows .= "<td><input type='checkbox' class='form-control checkbox' value='{$entity->getId()}'/></td>";
-            }
+                $classColor = ($cont % 2 == 0) ? 'odd' : 'even'; $cont++;
+                $rows .= "<tr class='gradeA {$classColor}' role='row'>";
 
-            // Gera os dados do registro.
-            foreach ( $grid->getColumns() as $gridColumn )
-            {
-                $lowerColumn = strtolower($gridColumn->getId());
-                $getFunction = "get" . ucfirst($lowerColumn);
-                
-                $rows .= "<td>{$entity->$getFunction()}</td>";
-            }
+                // Gera o checkbox de seleção do registro.
+                if ( !$grid->getDisableSelections() && strlen($entity->getId()) > 0 )
+                {
+                    $rows .= "<td><input type='checkbox' class='form-control checkbox' value='{$entity->getId()}'/></td>";
+                }
 
-            $rows .= "</tr>";
+                // Gera os dados do registro.
+                foreach ( $grid->getColumns() as $gridColumn )
+                {
+                    $lowerColumn = strtolower($gridColumn->getId());
+                    $getFunction = "get" . ucfirst($lowerColumn);
+
+                    $rows .= "<td>{$entity->$getFunction()}</td>";
+                }
+
+                $rows .= "</tr>";
+            }
         }
         
         return $rows;

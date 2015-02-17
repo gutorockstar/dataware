@@ -23,6 +23,29 @@ class Toolbar
     const TB_ACTION_PRINT = 'tb_action_print';
     const TB_ACTION_BACK = 'tb_action_back';
     
+    /**
+     * @var boolean
+     */
+    private $showDefaultToolbarActions = true;
+    
+    /**
+     * @var array
+     */
+    private $addCustomToolbarActions = array();
+    
+    /**
+     * @var array
+     */
+    private $disableToolbarActions = array();
+    
+    /**
+     * @var array
+     */
+    private $removeToolbarActions = array();
+    
+    /**
+     * @var array
+     */
     private $toolbarActions = array();
     
     public function __construct($toobarActions = array())
@@ -30,6 +53,46 @@ class Toolbar
         $this->toolbarActions = $toobarActions;
     }
     
+    public function getShowDefaultToolbarActions() 
+    {
+        return $this->showDefaultToolbarActions;
+    }
+
+    public function setShowDefaultToolbarActions($showDefaultToolbarActions) 
+    {
+        $this->showDefaultToolbarActions = $showDefaultToolbarActions;
+    }
+
+    public function getAddCustomToolbarActions() 
+    {
+        return $this->addCustomToolbarActions;
+    }
+
+    public function setAddCustomToolbarActions($addCustomToolbarActions) 
+    {
+        $this->addCustomToolbarActions = $addCustomToolbarActions;
+    }
+
+    public function getDisableToolbarActions() 
+    {
+        return $this->disableToolbarActions;
+    }
+
+    public function setDisableToolbarActions($disableToolbarActions) 
+    {
+        $this->disableToolbarActions = $disableToolbarActions;
+    }
+
+    public function getRemoveToolbarActions() 
+    {
+        return $this->removeToolbarActions;
+    }
+
+    public function setRemoveToolbarActions($removeToolbarActions) 
+    {
+        $this->removeToolbarActions = $removeToolbarActions;
+    }
+
     public function getToolbarActions() 
     {
         return $this->toolbarActions;
@@ -47,7 +110,10 @@ class Toolbar
     
     public function disableToolbarAction($toolbarActionId)
     {        
-        $this->toolbarActions[$toolbarActionId]->setEnabled(false);
+        if ( $this->toolbarActions[$toolbarActionId] instanceof ToolbarAction )
+        {
+            $this->toolbarActions[$toolbarActionId]->setEnabled(false);
+        }
     }
     
     public function removeToolbarAction($toolbarActionId)
