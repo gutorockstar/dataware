@@ -48,6 +48,12 @@ class Country
      */
     protected $states;
     
+    /**
+     * @Annotation\Type("Zend\Form\Element\Submit")
+     * @Annotation\Attributes({"value":"Confirmar", "class":"btn btn-primary"})
+     */
+    protected $send;
+    
     public function getId()
     {
         return $this->id;

@@ -12,6 +12,7 @@
  */
 namespace Admin\Controller;
 
+use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
 use Zend\View\Helper\ServerUrl;
@@ -164,21 +165,28 @@ class Controller extends AbstractActionController
         return new ViewModel(array('allData' => $allData));
     }
     
+    /**
+     * Ação padrão para adicionar novos registros.
+     */
     public function addAction()
     {
+        $entityClass = $this->getCurrentEntity();
+        $entity = new $entityClass();
+            
         if ( $this->request->isPost() ) 
         {
-            $entityClass = $this->getCurrentEntity();
-            $entity = new $entityClass();
             $postData = $this->getRequest()->getPost()->toArray();
             
-            
-            
-            
-            $entity->setTitle($this->getRequest()->getPost('title'));
-            
-            
-            
+            foreach ( $postData as $attribute => $data )
+            {
+                $lowerAttribute = strtolower($attribute);
+                $setFunction = "set" . ucfirst($lowerAttribute);
+                
+                if ( method_exists($entity, $setFunction) )
+                {
+                    $entity->$setFunction($data);
+                }
+            }
 
             $this->getObjectManager()->persist($entity);
             $this->getObjectManager()->flush();
@@ -187,7 +195,10 @@ class Controller extends AbstractActionController
             return $this->redirect()->toRoute($this->getCurrentRoute(), array('newId' => $newId));
         }
         
-        return new ViewModel();
+        $builder  = new AnnotationBuilder();    
+        $form = $builder->createForm($entity);
+        
+        return array('form' => $form);
     }
 }
 

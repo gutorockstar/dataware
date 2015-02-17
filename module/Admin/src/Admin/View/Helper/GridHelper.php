@@ -162,8 +162,14 @@ class GridHelper extends ViewHelper
                 {
                     $lowerColumn = strtolower($gridColumn->getId());
                     $getFunction = "get" . ucfirst($lowerColumn);
+                    $tdValue = "";
 
-                    $rows .= "<td>{$entity->$getFunction()}</td>";
+                    if ( method_exists($entity, $getFunction) )
+                    {
+                        $tdValue .= $entity->$getFunction();
+                    }
+                    
+                    $rows .= "<td>{$tdValue}</td>";
                 }
 
                 $rows .= "</tr>";
