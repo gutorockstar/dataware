@@ -32,11 +32,6 @@ class Grid
      */
     private $data;
     
-    /**
-     * @var boolean
-     */
-    private $disableSelections = false;
-    
     public function __construct($data = null) 
     {
         if ( !is_null($data) )
@@ -78,16 +73,6 @@ class Grid
     public function setData($data) 
     {
         $this->data = $data;
-    }
-        
-    public function getDisableSelections() 
-    {
-        return $this->disableSelections;
-    }
-
-    public function setDisableSelections($disableSelections) 
-    {
-        $this->disableSelections = $disableSelections;
     }
 }
 

@@ -14,6 +14,9 @@ namespace Admin\Entity;
 
 class GridColumn 
 {
+    const GRID_COLUMN_ACTIONS_ID = 'actions';
+    const GRID_COLUMN_ACTIONS_TITLE = 'Ações';
+    
     /**
      * Código de referência da coluna.
      * 

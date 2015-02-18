@@ -25,9 +25,6 @@ class GridHelper extends ViewHelper
                                 <thead>
                                     <tr role='row'>";
         
-        // Gera o checkbox de seleção de todos os registros da grid, se habilitado.
-        $displayGrid .= $this->generateComboboxSelectionAll($grid);
-        
         // Cria as colunas da grid, baseadas nos atributos da entidade.
         $this->makeGridColumnsByEntity($grid);
         
@@ -44,27 +41,6 @@ class GridHelper extends ViewHelper
                         </div>";
         
         return $displayGrid;
-    }
-    
-    /**
-     * Gera o html para o combobox responsável por selecionar
-     * todos os registros da página, na grid.
-     * 
-     * @param \Admin\Entity\Grid $grid
-     * @return string html
-     */
-    private function generateComboboxSelectionAll(Grid $grid)
-    {
-        $comboBoxAll = "";
-        
-        if ( !$grid->getDisableSelections() )
-        {
-            $comboBoxAll .= "<th class='selection' tabindex='0' aria-controls='example' rowspan='1' colspan='1' aria-label='Com quais registros devo agir?' style='width: 30px;'>
-                                <input type='checkbox' class='form-control checkbox' value='all' />
-                             </th>";
-        }       
-        
-        return $comboBoxAll;
     }
     
     /**
@@ -111,6 +87,11 @@ class GridHelper extends ViewHelper
             }
         }      
         
+        // Gera a coluna de ações dos registros na grid.
+        $gridColumnActions = new GridColumn(GridColumn::GRID_COLUMN_ACTIONS_ID, GridColumn::GRID_COLUMN_ACTIONS_TITLE);
+        $gridColumnActions->setStyle("width: 8%");
+        $headerGrid .= $this->generateGridColumn($gridColumnActions);
+        
         return $headerGrid;
     }
     
@@ -149,13 +130,7 @@ class GridHelper extends ViewHelper
             foreach ( $grid->getData() as $entity )
             {
                 $classColor = ($cont % 2 == 0) ? 'odd' : 'even'; $cont++;
-                $rows .= "<tr class='gradeA {$classColor}' role='row'>";
-
-                // Gera o checkbox de seleção do registro.
-                if ( !$grid->getDisableSelections() && strlen($entity->getId()) > 0 )
-                {
-                    $rows .= "<td><input type='checkbox' class='form-control checkbox' value='{$entity->getId()}'/></td>";
-                }
+                $rows .= "<tr class='gradeA {$classColor}' role='row'>";                
 
                 // Gera os dados do registro.
                 foreach ( $grid->getColumns() as $gridColumn )
@@ -171,12 +146,50 @@ class GridHelper extends ViewHelper
                     
                     $rows .= "<td>{$tdValue}</td>";
                 }
-
+                
+                // Gera as ações padrões dos registros na grid (Editar e Excluir).
+                $rows .= $this->generateGridRowActions($entity);
                 $rows .= "</tr>";
             }
         }
         
         return $rows;
+    }
+    
+    /**
+     * Cria as ações padrões para um registro da grid
+     * 
+     * @param obj $entity
+     * @return string html
+     */
+    private function generateGridRowActions($entity)
+    {
+        $actions = "";
+        
+        if ( is_object($entity) )
+        {
+            if ( strlen($entity->getId()) > 0 )
+            {
+                $urlHelper = $this->view->plugin('url');
+                $entityNamespace = get_class($entity);
+                $entityClass = explode("\\", $entityNamespace);
+                $entityName = strtolower($entityClass[2]);
+
+                $actions .= "<td>
+                                <a title='Visualizar' href='{$urlHelper($entityName, array('action' => 'view', 'id' => $entity->getId()))}'>
+                                    <i class='fa fa-eye fa-lg'></i>
+                                </a>
+                                <a title='Editar' href='{$urlHelper($entityName, array('action' => 'edit', 'id' => $entity->getId()))}'>
+                                    <i class='fa fa-pencil-square-o fa-lg'></i>
+                                </a>
+                                <a title='Excluir' href='{$urlHelper($entityName, array('action' => 'delete', 'id' => $entity->getId()))}'>
+                                    <i class='fa fa-trash-o fa-lg'></i>
+                                </a>
+                             </td>";
+            }
+        }
+        
+        return $actions;
     }
 }
 
