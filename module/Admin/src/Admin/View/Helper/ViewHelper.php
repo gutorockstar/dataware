@@ -16,6 +16,10 @@ use Zend\View\Helper\AbstractHelper;
 use Doctrine\ORM\EntityManager;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\View\Helper\ServerUrl;
+use Admin\Entity\View;
+use Admin\Entity\Tree;
+use Admin\Entity\Toolbar;
+use Admin\Entity\Panel;
 
 class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
 {
@@ -68,34 +72,26 @@ class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
      * 
      * @param String html $insideElements
      */
-    public function __invoke($header = null, $viewContent = array(), $styles = array())
+    public function __invoke(View $view)
     {
-        if ( count($styles) > 0 )
+        $viewRender = "<div class='row'>";
+        
+        if ( $view->getTree() instanceof Tree )
         {
-            foreach ( $styles as $attribute => $value )
-            {
-                $style .= "{$attribute}:$value;";
-            }
+            
         }
         
-        $view = "<fieldset style='{$style}'>
-                     <legend>{$header}</legend>";
-        
-        if ( count($viewContent) > 0 )
+        if ( $view->getToolbar() instanceof Toolbar )
         {
-            foreach ( $viewContent as $content )
-            {
-                $view .= $content;
-            }
+            
         }
-        else
-        {
-            $view .= "<p>Nenhum conteúdo encontrado...</p>";
-        }
-                    
-        $view .= "</fieldset>";
         
-        return $view;
+        if ( $view->getPanel() instanceof Panel )
+        {
+            
+        }
+        
+        
     }
     
     /**
