@@ -10,7 +10,7 @@ $toolbar->setDisableToolbarActions(array(Admin\Entity\Toolbar::TB_ACTION_PRINT))
 
 $grid = new Admin\Entity\Grid();
 $grid->setEntity('Basic\Entity\Country');
-$grid->setData($allData);
+$grid->setData($dataGrid);
 $panel = new Admin\Entity\Panel('Países', $this->GridHelper($grid));
 
 $view = new Admin\Entity\View();

@@ -44,11 +44,6 @@ class Country
     protected $title;
     
     /**
-     * @ORM\OneToMany(targetEntity="State", mappedBy="country", cascade={"persist", "remove", "merge"}, orphanRemoval=true)
-     */
-    protected $states;
-    
-    /**
      * @Annotation\Type("Zend\Form\Element\Submit")
      * @Annotation\Attributes({"value":"Confirmar", "class":"btn btn-primary"})
      */

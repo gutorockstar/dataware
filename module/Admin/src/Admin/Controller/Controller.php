@@ -17,6 +17,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
 use Zend\View\Helper\ServerUrl;
 use Zend\View\Model\ViewModel;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 class Controller extends AbstractActionController
 {
@@ -160,9 +161,9 @@ class Controller extends AbstractActionController
      */
     public function indexAction()
     {
-        $allData = $this->getObjectManager()->getRepository($this->getCurrentEntity())->findAll();
+        $dataGrid = $this->getObjectManager()->getRepository($this->getCurrentEntity())->findAll();
 
-        return new ViewModel(array('allData' => $allData));
+        return new ViewModel(array('dataGrid' => $dataGrid));
     }
     
     /**
@@ -175,30 +176,69 @@ class Controller extends AbstractActionController
             
         if ( $this->request->isPost() ) 
         {
-            $postData = $this->getRequest()->getPost()->toArray();
-            
-            foreach ( $postData as $attribute => $data )
-            {
-                $lowerAttribute = strtolower($attribute);
-                $setFunction = "set" . ucfirst($lowerAttribute);
-                
-                if ( method_exists($entity, $setFunction) )
-                {
-                    $entity->$setFunction($data);
-                }
-            }
+            $this->populateEntity($entity);
 
             $this->getObjectManager()->persist($entity);
             $this->getObjectManager()->flush();
-            $newId = $entity->getId();
+            $id = $entity->getId();
 
-            return $this->redirect()->toRoute($this->getCurrentRoute(), array('newId' => $newId));
+            return $this->redirect()->toRoute($this->getCurrentRoute(), array('id' => $id));
         }
         
         $builder  = new AnnotationBuilder();    
         $form = $builder->createForm($entity);
         
         return array('form' => $form);
+    }
+    
+    /**
+     * Ação padrão para edição de registros.
+     */
+    public function editAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        
+        $entityClass = $this->getCurrentEntity();
+        $entity = $this->getObjectManager()->find($entityClass, $id);
+
+        if ( $this->request->isPost() ) 
+        {
+            $this->populateEntity($entity);
+
+            $this->getObjectManager()->persist($entity);
+            $this->getObjectManager()->flush();
+
+            return $this->redirect()->toRoute($this->getCurrentRoute());
+        }
+        
+        $builder  = new AnnotationBuilder();    
+        $form = $builder->createForm($entity);
+        $form->setHydrator(new DoctrineHydrator($this->getObjectManager(), $entityClass));
+        $form->bind($entity);
+
+        return array('form' => $form);
+    }
+    
+    /**
+     * Popula os atributos de uma entidade, com os
+     * valores recebidos pelo post.
+     * 
+     * @param type $entity
+     */
+    private function populateEntity($entity)
+    {
+        $postData = $this->getRequest()->getPost()->toArray();
+            
+        foreach ( $postData as $attribute => $data )
+        {
+            $lowerAttribute = strtolower($attribute);
+            $setFunction = "set" . ucfirst($lowerAttribute);
+
+            if ( method_exists($entity, $setFunction) )
+            {
+                $entity->$setFunction($data);
+            }
+        }
     }
 }
 
