@@ -1,82 +1,22 @@
-<!-- VIEW -->
+<?php
 
-<div class="row">
-    <div class="view-header">
-        <font>País</font>
-    </div>
-    
-    
-    
-    
-    
-<!-- TOOLBAR -->
-<?php 
-
-use Admin\Entity\Toolbar;
-use Admin\Entity\ToolbarAction;
-
-$toolbar = new Toolbar();
+$toolbar = new Admin\Entity\Toolbar();
 $toolbar->setShowDefaultToolbarActions(true);
 $toolbar->setAddCustomToolbarActions(array(
-    new ToolbarAction('tb_option_refresh', $this->translate("Refresh"), 'refresh', 'fa-refresh'),
-    new ToolbarAction('tb_option_config', $this->translate("Configurations"), 'config', 'fa-cog', false)
+    new Admin\Entity\ToolbarAction('tb_option_refresh', $this->translate("Refresh"), 'refresh', 'fa-refresh'),
+    new Admin\Entity\ToolbarAction('tb_option_config', $this->translate("Configurations"), 'config', 'fa-cog', false)
 ));
 $toolbar->setDisableToolbarActions(array(Admin\Entity\Toolbar::TB_ACTION_PRINT));
 
-echo $this->ToolbarHelper($toolbar); 
-
-?>
-    
-    
-    
-    
-
-
-
-
-
-    
-    
-    <!-- PAINEL -->
-    
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Países</h3>
-        </div>
-        <div class="panel-body">
-            <!--<a href="<?php echo $this->url('country', array('action'=>'add'));?>">Novo país</a>-->
-            
-            <div class="container">
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-<!-- GRID -->
-
-<?php
-use Admin\Entity\Grid;
-
-$grid = new Grid();
+$grid = new Admin\Entity\Grid();
 $grid->setEntity('Basic\Entity\Country');
 $grid->setData($allData);
+$panel = new Admin\Entity\Panel('Países', $this->GridHelper($grid));
 
-echo $this->GridHelper($grid);
+$view = new Admin\Entity\View();
+$view->setToolbar($toolbar);
+$view->setPanel($panel);
+
+echo $this->ViewHelper($view);
 
 ?>
-                
-                
-                
-            </div>
-            
-            
-        </div>
-    </div>
-</div>

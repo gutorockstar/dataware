@@ -1,5 +1,14 @@
 <?php
 
+$toolbar = new \Admin\Entity\Toolbar();
+$toolbar->setDisableToolbarActions(array(
+    Admin\Entity\Toolbar::TB_ACTION_PRINT,
+    Admin\Entity\Toolbar::TB_ACTION_EDIT,
+    Admin\Entity\Toolbar::TB_ACTION_DELETE,
+    Admin\Entity\Toolbar::TB_ACTION_CLONE,
+    Admin\Entity\Toolbar::TB_ACTION_UNIFY
+));
+
 $form = $this->form;
 $form->prepare();
 
@@ -7,7 +16,11 @@ $addForm = $this->form()->openTag($form);
 $addForm .= $this->formRow($form->get('title'));
 $addForm .= $this->formRow($form->get('send'));
 $addForm .= $this->form()->closeTag();
+$panel = new \Admin\Entity\Panel('Novo país', $addForm);
 
-echo $addForm;
+$view = new \Admin\Entity\View();
+$view->setToolbar($toolbar);
+$view->setPanel($panel);
 
+echo $this->ViewHelper($view);
 ?>

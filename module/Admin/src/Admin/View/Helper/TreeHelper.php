@@ -12,9 +12,10 @@
  */
 namespace Admin\View\Helper;
 
+use Admin\View\Helper\ViewHelper;
 use Admin\Entity\Tree;
 
-class TreeHelper 
+class TreeHelper extends ViewHelper
 {
     public function __invoke(Tree $tree) 
     {

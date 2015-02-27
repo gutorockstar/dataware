@@ -1,5 +1,7 @@
 <?php
 
+use Admin\Entity\Panel;
+
 $form = $this->form;
 $form->prepare();
 $form->setAttribute('action', $this->url('login'));
@@ -7,6 +9,8 @@ $form->setAttribute('action', $this->url('login'));
 $formLogin = $this->form()->openTag($form);              
 $formLogin .= $this->formCollection($form); // PARA OBTER OS CAMPOS DA ENTIDADE!
 $formLogin .= $this->form()->closeTag();
-              
-echo $this->PanelHelper('Efetuar login', $formLogin, null, 'width: 30%; margin-top: 5%', 'fa-user');
+
+$panel = new Panel('Efetuar login', $formLogin, 'fa-user', 'width: 30%; margin-top: 5%');
+echo $this->PanelHelper($panel);
+
 ?>

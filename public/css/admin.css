@@ -209,6 +209,11 @@ select {
     margin-right: auto !important;
 }
 
+.panel-default{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .panel-heading {
     background-image: linear-gradient(to bottom, #e78f08 0, #f6a828 100%) !important;
     background-repeat: repeat-x !important;
