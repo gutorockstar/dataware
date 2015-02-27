@@ -78,20 +78,21 @@ class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
         
         if ( $view->getTree() instanceof Tree )
         {
-            
+            $viewRender .= $this->TreeHelper($view->getTree());
         }
         
         if ( $view->getToolbar() instanceof Toolbar )
         {
-            
+            $viewRender .= $this->ToolbarHelper($view->getToolbar());
         }
         
         if ( $view->getPanel() instanceof Panel )
         {
-            
+            $viewRender .= $this->PanelHelper($view->getPanel());
         }
         
-        
+        $viewRender = "</div>";
+        return $viewRender;
     }
     
     /**
