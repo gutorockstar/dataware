@@ -10,9 +10,9 @@
  *
  * @author augusto
  */
-namespace Admin\Entity;
+namespace Admin\Object;
 
-use Admin\Entity\GridColumn;
+use Admin\Object\GridColumn;
 
 class Grid 
 {

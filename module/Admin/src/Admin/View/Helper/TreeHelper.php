@@ -13,7 +13,7 @@
 namespace Admin\View\Helper;
 
 use Admin\View\Helper\ViewHelper;
-use Admin\Entity\Tree;
+use Admin\Object\Tree;
 
 class TreeHelper extends ViewHelper
 {

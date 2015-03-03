@@ -14,7 +14,7 @@
 namespace Admin\View\Helper;
 
 use Admin\View\Helper\ViewHelper;
-use Admin\Entity\Panel;
+use Admin\Object\Panel;
 
 class PanelHelper extends ViewHelper
 {

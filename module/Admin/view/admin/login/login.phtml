@@ -8,7 +8,7 @@ $formLogin = $this->form()->openTag($form);
 $formLogin .= $this->formCollection($form); // PARA OBTER OS CAMPOS DA ENTIDADE!
 $formLogin .= $this->form()->closeTag();
 
-$panel = new \Admin\Entity\Panel('Efetuar login', $formLogin, 'fa-user', 'width: 30%; margin-top: 5%');
+$panel = new \Admin\Object\Panel('Efetuar login', $formLogin, 'fa-user', 'width: 30%; margin-top: 5%');
 echo $this->PanelHelper($panel);
 
 ?>

@@ -10,7 +10,7 @@
  *
  * @author augusto
  */
-namespace Admin\Entity;
+namespace Admin\Object;
 
 class GridColumn 
 {

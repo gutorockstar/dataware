@@ -1,19 +1,19 @@
 <?php
 
-$toolbar = new Admin\Entity\Toolbar();
+$toolbar = new Admin\Object\Toolbar();
 $toolbar->setShowDefaultToolbarActions(true);
 $toolbar->setAddCustomToolbarActions(array(
-    new Admin\Entity\ToolbarAction('tb_option_refresh', $this->translate("Refresh"), 'refresh', 'fa-refresh'),
-    new Admin\Entity\ToolbarAction('tb_option_config', $this->translate("Configurations"), 'config', 'fa-cog', false)
+    new Admin\Object\ToolbarAction('tb_option_refresh', $this->translate("Refresh"), 'refresh', 'fa-refresh'),
+    new Admin\Object\ToolbarAction('tb_option_config', $this->translate("Configurations"), 'config', 'fa-cog', false)
 ));
-$toolbar->setDisableToolbarActions(array(Admin\Entity\Toolbar::TB_ACTION_PRINT));
+$toolbar->setDisableToolbarActions(array(Admin\Object\Toolbar::TB_ACTION_PRINT));
 
-$grid = new Admin\Entity\Grid();
+$grid = new Admin\Object\Grid();
 $grid->setEntity('Basic\Entity\Country');
 $grid->setData($dataGrid);
-$panel = new Admin\Entity\Panel('Países', $this->GridHelper($grid));
+$panel = new Admin\Object\Panel('Países', $this->GridHelper($grid));
 
-$view = new Admin\Entity\View();
+$view = new Admin\Object\View();
 $view->setToolbar($toolbar);
 $view->setPanel($panel);
 

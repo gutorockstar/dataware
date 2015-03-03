@@ -16,10 +16,10 @@ use Zend\View\Helper\AbstractHelper;
 use Doctrine\ORM\EntityManager;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\View\Helper\ServerUrl;
-use Admin\Entity\View;
-use Admin\Entity\Tree;
-use Admin\Entity\Toolbar;
-use Admin\Entity\Panel;
+use Admin\Object\View;
+use Admin\Object\Tree;
+use Admin\Object\Toolbar;
+use Admin\Object\Panel;
 
 class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
 {

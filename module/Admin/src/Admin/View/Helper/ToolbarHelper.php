@@ -13,8 +13,8 @@
  */
 namespace Admin\View\Helper;
 
-use Admin\Entity\Toolbar;
-use Admin\Entity\ToolbarAction;
+use Admin\Object\Toolbar;
+use Admin\Object\ToolbarAction;
 
 use Admin\View\Helper\ViewHelper;
 use Zend\Session\Container;

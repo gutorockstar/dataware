@@ -12,8 +12,8 @@
  */
 namespace Admin\View\Helper;
 
-use Admin\Entity\Grid;
-use Admin\Entity\GridColumn;
+use Admin\Object\Grid;
+use Admin\Object\GridColumn;
 use Zend\Form\Annotation\AnnotationBuilder;
 
 class GridHelper extends ViewHelper
@@ -48,7 +48,7 @@ class GridHelper extends ViewHelper
      * Depois, obter todos atributos que possuem annotações que serão utilizadas;
      * Estes atributos serão gerados na grid. 
      * 
-     * @param \Admin\Entity\Grid $grid
+     * @param \Admin\Object\Grid $grid
      */
     private function makeGridColumnsByEntity(Grid $grid)
     {
@@ -72,7 +72,7 @@ class GridHelper extends ViewHelper
     /**
      * Gera o cabeçalho da grid.
      * 
-     * @param \Admin\Entity\Grid $grid
+     * @param \Admin\Object\Grid $grid
      * @return string html
      */
     private function generateGridColumns(Grid $grid)
@@ -98,7 +98,7 @@ class GridHelper extends ViewHelper
     /**
      * Gera o html de uma coluna para a grid.
      * 
-     * @param \Admin\Entity\GridColumn $gridColumn
+     * @param \Admin\Object\GridColumn $gridColumn
      * @return string
      */
     private function generateGridColumn(GridColumn $gridColumn)
@@ -117,7 +117,7 @@ class GridHelper extends ViewHelper
     /**
      * Gera os registros que serão listados na grid.
      * 
-     * @param \Admin\Entity\Grid $grid
+     * @param \Admin\Object\Grid $grid
      * @return string
      */
     private function generateGridRows(Grid $grid)

@@ -6,16 +6,15 @@
  */
 
 /**
- * Description of Entity
+ * Description of Menu
  *
  * @author augusto
  */
+namespace Admin\Object;
 
-namespace Admin\Entity;
-
-class Entity 
+class Menu 
 {
-    
+    //put your code here
 }
 
 ?>
