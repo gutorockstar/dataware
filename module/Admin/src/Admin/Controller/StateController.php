@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Basic\Controller;
+namespace Admin\Controller;
 
 use System\Controller\Controller;
 

@@ -11,14 +11,14 @@
  * @author augusto
  */
 
-namespace Basic\Entity;
+namespace Admin\Entity;
 
 use Doctrine\ORM\Mapping as ORM,
     Zend\Form\Annotation;
 
 /** 
  * @ORM\Entity
- * @ORM\Table(name="basic.state")
+ * @ORM\Table(name="admin.state")
  */
 class State
 {

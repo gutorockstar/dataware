@@ -53,8 +53,8 @@ class MenuHelper extends ViewHelper
     {
         $modulesArray = array(
             "Básico" => array(
-                "País" => '/basic/country',
-                "Estado" => '/basic/state'
+                "País" => '/admin/country',
+                "Estado" => '/admin/state'
             ),
             "Destaques" => '/featured',
             "Blocos" => '/block',

@@ -7,57 +7,19 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Basic;
+namespace Site;
 
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Basic\Controller\CountryController' => 'Basic\Controller\CountryController',
-            'Basic\Controller\StateController' => 'Basic\Controller\StateController',
+            
         ),
     ),
     
     'router' => array(
         'routes' => array(
             
-            // Rota para as interfaces de manutenção de Países.
-            'country' => array(
-                'type' => 'Segment',
-                'options' => array(
-                    'route' => '/basic/country[/:action][/:id]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]+'
-                    ),
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Basic\Controller',
-                        'entity' => 'Basic\Entity\Country',
-                        'controller' => 'Basic\Controller\CountryController',
-                        'action' => 'index',
-                        'module' => 'basic'
-                    ),
-                ),
-            ),
             
-            // Rota para as interfaces de manutenção de Estados.
-            'state' => array(
-                'type' => 'Segment',
-                'options' => array(
-                    'route' => '/basic/state[/:action][/:fieldName]',
-                    'constraints' => array(
-                        'module' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'fieldName' => '[a-zA-Z][a-zA-Z0-9_-]*'
-                    ),
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Basic\Controller',
-                        'entity' => 'Basic\Entity\State',
-                        'controller' => 'Basic\Controller\StateController',
-                        'action' => 'index',
-                        'module' => 'basic'
-                    ),
-                ),
-            ), 
             
         ),
     ), 

@@ -10,10 +10,10 @@
  *
  * @author augusto
  */
-namespace Basic\Controller;
+namespace Admin\Controller;
 
 use System\Controller\Controller;
-use Basic\Entity\Country;
+use Admin\Entity\Country;
 use Zend\View\Model\ViewModel;
 
 class CountryController extends Controller
@@ -22,7 +22,7 @@ class CountryController extends Controller
     public function deleteAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
-        $country = $this->getObjectManager()->find('\Basic\Entity\Country', $id);
+        $country = $this->getObjectManager()->find('\Admin\Entity\Country', $id);
 
         if ( $this->request->isPost() ) 
         {

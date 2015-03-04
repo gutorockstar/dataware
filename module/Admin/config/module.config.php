@@ -14,7 +14,10 @@ return array(
         'invokables' => array(
             'Admin\Controller\Controller' => 'Admin\Controller\Controller',
             'Admin\Controller\LoginController' => 'Admin\Controller\LoginController',
-            'Admin\Controller\AdminController' => 'Admin\Controller\AdminController'
+            'Admin\Controller\AdminController' => 'Admin\Controller\AdminController',
+            
+            'Admin\Controller\CountryController' => 'Admin\Controller\CountryController',
+            'Admin\Controller\StateController' => 'Admin\Controller\StateController',
         ),
     ),
     
@@ -85,7 +88,46 @@ return array(
                         ),
                     ),
                 ),
-            ),            
+            ), 
+            
+            // Rota para as interfaces de manutenção de Países.
+            'country' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/admin/country[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+'
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Admin\Controller',
+                        'entity' => 'Admin\Entity\Country',
+                        'controller' => 'Admin\Controller\CountryController',
+                        'action' => 'index',
+                        'module' => 'admin'
+                    ),
+                ),
+            ),
+            
+            // Rota para as interfaces de manutenção de Estados.
+            'state' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/admin/state[/:action][/:fieldName]',
+                    'constraints' => array(
+                        'module' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'fieldName' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Admin\Controller',
+                        'entity' => 'Admin\Entity\State',
+                        'controller' => 'Admin\Controller\StateController',
+                        'action' => 'index',
+                        'module' => 'admin'
+                    ),
+                ),
+            ), 
             
         ),
     ),
