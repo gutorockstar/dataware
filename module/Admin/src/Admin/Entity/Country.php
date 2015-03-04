@@ -14,6 +14,8 @@ namespace Admin\Entity;
 use Doctrine\ORM\Mapping as ORM,
     Zend\Form\Annotation;
 
+//Zend\Form\Element\Range::
+
 /** 
  * @ORM\Entity
  * @ORM\Table(name="admin.country")
@@ -26,8 +28,10 @@ class Country
      * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\SequenceGenerator(sequenceName="country_id_seq", initialValue=1)
      * 
-     * @Annotation\Type("Zend\Form\Element\Hidden")
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Código"})
+     * @Annotation\Attributes({"class":"form-control", "readOnly":"true"})
      */
     protected $id;
     
