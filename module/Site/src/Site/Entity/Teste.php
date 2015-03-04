@@ -6,18 +6,13 @@
  */
 
 /**
- * Description of Entity
+ * Description of Teste
  *
  * @author augusto
  */
-namespace System\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
-use Zend\Form\Annotation;
-
-class Entity 
+class Teste 
 {
-    
+    //put your code here
 }
 
 ?>
