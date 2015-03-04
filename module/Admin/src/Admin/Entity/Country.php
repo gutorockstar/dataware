@@ -14,7 +14,6 @@ namespace Admin\Entity;
 use Doctrine\ORM\Mapping as ORM,
     Zend\Form\Annotation;
 
-//Zend\Form\Element\Range::
 
 /** 
  * @ORM\Entity
@@ -31,7 +30,7 @@ class Country
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Código"})
-     * @Annotation\Attributes({"class":"form-control", "readOnly":"true"})
+     * @Annotation\Attributes({"class":"input-numeric form-control", "readOnly":"true"})
      */
     protected $id;
     
@@ -41,7 +40,7 @@ class Country
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Título"})
-     * @Annotation\Attributes({"class":"form-control"})
+     * @Annotation\Attributes({"class":"input-text form-control"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":45}})
      * @Annotation\ErrorMessage("O valor para 'Nome' é requerido.");
      */
@@ -49,7 +48,7 @@ class Country
     
     /**
      * @Annotation\Type("Zend\Form\Element\Submit")
-     * @Annotation\Attributes({"value":"Confirmar", "class":"btn btn-primary"})
+     * @Annotation\Attributes({"value":"Confirmar", "class":"input-submit btn btn-primary"})
      */
     protected $send;
     

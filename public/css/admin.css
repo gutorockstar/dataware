@@ -155,7 +155,7 @@ label span{
 }
 
 #UserAccount label{
-    margin-top: 2px;
+    margin-top: 10px;
     text-align: left !important;
     width: 55%;
 }
@@ -165,7 +165,7 @@ label span{
 }
 
 #UserAccount .btn{
-    margin-top: 0 !important;
+    margin-top: 8px;
     clear: none !important;
 }
 
@@ -545,4 +545,20 @@ form {
 
 .table-form{
     
+}
+
+.input-numeric{
+    width: 15%;
+    float: left;
+    clear: both;
+}
+
+.input-text{
+    width: 40%;
+    float: left;
+    clear: both;
+}
+
+.input-submit{
+    float: left !important;
 }
