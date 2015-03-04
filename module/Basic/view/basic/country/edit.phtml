@@ -1,10 +1,10 @@
 <?php
 
-$toolbar = new \Admin\Object\Toolbar();
+$toolbar = new \System\Model\Toolbar();
 $toolbar->setDisableToolbarActions(array(
-    Admin\Object\Toolbar::TB_ACTION_PRINT,
-    Admin\Object\Toolbar::TB_ACTION_CLONE,
-    Admin\Object\Toolbar::TB_ACTION_UNIFY
+    System\Model\Toolbar::TB_ACTION_PRINT,
+    System\Model\Toolbar::TB_ACTION_CLONE,
+    System\Model\Toolbar::TB_ACTION_UNIFY
 ));
 
 $form = $this->form;
@@ -13,9 +13,9 @@ $form->prepare();
 $editForm = $this->form()->openTag($form);              
 $editForm .= $this->formCollection($form);
 $editForm .= $this->form()->closeTag();
-$panel = new \Admin\Object\Panel('Editar país', '');
+$panel = new \System\Model\Panel('Editar país', '');
 
-$view = new \Admin\Object\View();
+$view = new \System\Model\View();
 $view->setToolbar($toolbar);
 $view->setPanel($panel);
 

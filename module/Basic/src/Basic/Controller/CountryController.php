@@ -12,7 +12,7 @@
  */
 namespace Basic\Controller;
 
-use Admin\Controller\Controller;
+use System\Controller\Controller;
 use Basic\Entity\Country;
 use Zend\View\Model\ViewModel;
 

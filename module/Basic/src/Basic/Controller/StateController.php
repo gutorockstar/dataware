@@ -9,7 +9,7 @@
 
 namespace Basic\Controller;
 
-use Admin\Controller\Controller;
+use System\Controller\Controller;
 
 class StateController extends Controller
 {    
