@@ -146,6 +146,29 @@ label {
     font-weight: bold;
 }
 
+label span{
+    float: left !important;
+}
+
+#UserAccount fieldset{
+    display: table;
+}
+
+#UserAccount label{
+    margin-top: 2px;
+    text-align: left !important;
+    width: 55%;
+}
+
+#UserAccount label span{
+    float: right !important;
+}
+
+#UserAccount .btn{
+    margin-top: 0 !important;
+    clear: none !important;
+}
+
 .form-control {
     display: inline;
     margin-bottom: 5px;
