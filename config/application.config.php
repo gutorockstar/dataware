@@ -8,6 +8,7 @@ return array(
         'SynergyDataGrid',
         
         // module
+        'System',
 	'Admin',
         'Basic',
     ),

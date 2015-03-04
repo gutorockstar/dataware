@@ -5,16 +5,12 @@
     "keywords": [
         "dataware",
         "zf2",
-	"doctrine",
-	"synergy",
-	"erp"
+	"doctrine"
     ],
     "homepage": "http://framework.zend.com/",
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.2.*",
-	"doctrine/doctrine-orm-module": "0.*",
-	"synergy/common": "dev-master",
-	"synergy/synergydatagrid": "dev-master"
+	"doctrine/doctrine-orm-module": "0.*"
     }
 }
