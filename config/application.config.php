@@ -5,12 +5,11 @@ return array(
         // vendor
         'DoctrineModule',
         'DoctrineORMModule',
-        'SynergyDataGrid',
         
         // module
         'System',
 	'Admin',
-        'Basic',
+        'Site',
     ),
     
     'synergy' => array(
