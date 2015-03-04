@@ -353,8 +353,8 @@ select {
 
 .tool{
     margin-top: 2px;
-    width: 45px;
-    height: 40px;
+    width: 100px;
+    height: 60px;
     margin-left: 5px;
     padding: 5px;
     float: left;

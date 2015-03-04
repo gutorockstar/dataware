@@ -164,6 +164,7 @@ class ToolbarHelper extends ViewHelper
         return "<a id=\"tb_option_{$toolbarAction->getId()}\" title=\"{$toolbarAction->getTitle()}\" href=\"{$currentRouteUrl}{$toolbarAction->getAction()}\">
                     <div class=\"tool\">
                         <i class=\"fa {$toolbarAction->getCssClass()} fa-2x\"></i>
+                        <p>{$toolbarAction->getTitle()}</p>
                     </div>
                 </a>";
     }
