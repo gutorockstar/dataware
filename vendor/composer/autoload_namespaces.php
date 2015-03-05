@@ -8,12 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Zend\\' => array($vendorDir . '/zendframework/zendframework/library'),
     'ZendXml' => array($vendorDir . '/zendframework/zendxml/library'),
-    'SynergyDataGridTest' => array($vendorDir . '/synergy/synergydatagrid/tests/module'),
-    'SynergyDataGrid' => array($vendorDir . '/synergy/synergydatagrid/src'),
-    'SynergyCommonTest' => array($vendorDir . '/synergy/common/tests'),
-    'SynergyCommon' => array($vendorDir . '/synergy/common/src'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
-    'Gedmo\\' => array($vendorDir . '/gedmo/doctrine-extensions/lib'),
     'Doctrine\\ORM\\' => array($vendorDir . '/doctrine/orm/lib'),
     'Doctrine\\DBAL\\' => array($vendorDir . '/doctrine/dbal/lib'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib'),

@@ -86,8 +86,8 @@ class ToolbarHelper extends ViewHelper
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_EDIT, 'Editar', 'edit', 'fa-edit'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_DELETE, 'Excluir', 'delete', 'fa-trash-o'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_SEARCH, 'Procurar', 'index', 'fa-search'));
-            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_UNIFY, 'Unificar', 'unify', 'fa-share-alt fa-rotate-180'));
-            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_CLONE, 'Clonar', 'clone', 'fa-share-alt'));
+            //$toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_UNIFY, 'Unificar', 'unify', 'fa-share-alt fa-rotate-180'));
+            //$toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_CLONE, 'Clonar', 'clone', 'fa-share-alt'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_PRINT, 'Imprimir', 'print', 'fa-print'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_BACK, 'Voltar', 'back', 'fa-arrow-circle-o-left'));
         }
@@ -163,8 +163,9 @@ class ToolbarHelper extends ViewHelper
         
         return "<a id=\"tb_option_{$toolbarAction->getId()}\" title=\"{$toolbarAction->getTitle()}\" href=\"{$currentRouteUrl}{$toolbarAction->getAction()}\">
                     <div class=\"tool\">
-                        <i class=\"fa {$toolbarAction->getCssClass()} fa-2x\"></i>
-                        <p>{$toolbarAction->getTitle()}</p>
+                        <i class=\"fa {$toolbarAction->getCssClass()} fa-2x\">
+                            <p class=\"title-tool\">{$toolbarAction->getTitle()}</p>
+                        </i>
                     </div>
                 </a>";
     }
