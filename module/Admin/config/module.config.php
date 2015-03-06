@@ -12,7 +12,6 @@ namespace Admin;
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Admin\Controller\Controller' => 'Admin\Controller\Controller',
             'Admin\Controller\LoginController' => 'Admin\Controller\LoginController',
             'Admin\Controller\AdminController' => 'Admin\Controller\AdminController',
             
@@ -95,6 +94,7 @@ return array(
                 'type' => 'Segment',
                 'options' => array(
                     'route' => '/admin/country[/:action][/:id]',
+                    //'route' => '/system/crud[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]+'
@@ -113,7 +113,7 @@ return array(
             'state' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/admin/state[/:action][/:fieldName]',
+                    'route' => '/admin/state[/:action][/:id]',
                     'constraints' => array(
                         'module' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',

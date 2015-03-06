@@ -12,11 +12,10 @@
  */
 namespace Admin\Controller;
 
-use System\Controller\Controller;
+use System\Controller\CrudController;
 use Admin\Entity\Country;
-use Zend\View\Model\ViewModel;
 
-class CountryController extends Controller
+class CountryController extends CrudController
 {   
 }
 
