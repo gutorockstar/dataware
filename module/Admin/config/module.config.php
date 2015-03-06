@@ -197,11 +197,6 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
-                        
-    'module_layouts' => array(
-        'Admin' => 'layout/admin.phtml',
-        'Basic' => 'layout/admin.phtml'
-    ),
     
     // Placeholder for console routes
     'console' => array(

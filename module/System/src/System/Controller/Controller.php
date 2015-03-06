@@ -26,7 +26,11 @@ class Controller extends AbstractActionController
     const ROUTE_DEFAULT = 'login';
     const ENTITY_PARAM = 'entity';
     const CONTROLLER_PARAM = 'controller';
-    const CRUD_URL_PARAM = 'crud_url';
+    const MODULE_PARAM = 'module';
+    
+    const MODULE_SITE = 'site';
+    const MODULE_ADMIN = 'admin';
+    const MODULE_SYSTEM = 'system';
     
     protected $route;
     protected $entityName;
@@ -100,12 +104,26 @@ class Controller extends AbstractActionController
      */
     public function onDispatch(MvcEvent $e) 
     {
-        if ( !$this->getEntityManager()->hasIdentity() )
+        if ( $this->getCurrentModule() != self::MODULE_SITE )
         {
-            $this->redirect()->toRoute(self::ROUTE_DEFAULT);
+            if ( !$this->getEntityManager()->hasIdentity() )
+            {
+                $this->redirect()->toRoute(self::ROUTE_DEFAULT);
+            }
         }
 
         return parent::onDispatch($e);
+    }
+    
+    /**
+     * Retorna o módulo atual da rota.
+     * 
+     * @return String
+     */
+    public function getCurrentModule()
+    {
+        $entity = $this->getEvent()->getRouteMatch()->getParam(self::MODULE_PARAM);
+        return $entity;
     }
     
     /**

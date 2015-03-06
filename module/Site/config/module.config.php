@@ -12,15 +12,24 @@ namespace Site;
 return array(
     'controllers' => array(
         'invokables' => array(
-            
+            'Site\Controller\HomeController' => 'Site\Controller\HomeController',
         ),
     ),
     
     'router' => array(
         'routes' => array(
-            
-            
-            
+            'home' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Site\Controller',
+                        'controller'    => 'HomeController',
+                        'action'        => 'home',
+                        'module' => 'site'
+                    ),
+                ),
+            ),            
         ),
     ), 
     
@@ -67,6 +76,8 @@ return array(
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
         'template_map' => array(
+            'layout/layout'           => __DIR__ . '/../view/layout/site.phtml',
+            'site/home/home' => __DIR__ . '/../view/site/home/home.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),

@@ -75,6 +75,12 @@ return array(
         ),
     ),
     
+    'module_layouts' => array(
+        'Admin' => 'layout/admin.phtml',
+        'System' => 'layout/system.phtml',
+        'Site' => 'layout/site.phtml'
+    ),
+    
     // Placeholder for console routes
     'console' => array(
         'router' => array(
