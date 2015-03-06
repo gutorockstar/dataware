@@ -21,9 +21,10 @@ class AlertHelper extends ViewHelper
     /**
      * Constantes dos headers.
      */
-    const HEADER_INFO    = 'Aviso!';
+    const HEADER_INFO    = 'Informação!';
     const HEADER_SUCCESS = 'Sucesso!';
     const HEADER_ERROR   = 'Erro!';
+    const HEADER_WARNING   = 'Aviso!';
     
     /**
      * Verifica o alert que deve ser exibido na tela, caso tenha sido chamado.
@@ -50,6 +51,14 @@ class AlertHelper extends ViewHelper
                 if ( count($errorMessages) > 0 )
                 {
                     $alert = $this->errorMessage($errorMessages);
+                }
+                else
+                {
+                    $warningMessages = $this->view->flashMessenger()->getWarningMessages();
+                    if ( count($warningMessages) > 0 )
+                    {
+                        $alert = $this->warningMessage($warningMessages);
+                    }
                 }
             }
         }
@@ -87,6 +96,22 @@ class AlertHelper extends ViewHelper
         }
         
         return $this->popupAlert(FlashMessenger::NAMESPACE_SUCCESS, self::HEADER_SUCCESS, $content);
+    }
+    
+    /**
+     * Retorna alert de Aviso/escolha.
+     * 
+     * @param array $messages
+     * @return String html
+     */
+    private function warningMessage($messages)
+    {
+        foreach($messages as $message)
+        {
+            $content .= "<p>{$message}</p>";
+        }
+        
+        return $this->popupAlert('warning', self::HEADER_WARNING, $content);
     }
     
     /**

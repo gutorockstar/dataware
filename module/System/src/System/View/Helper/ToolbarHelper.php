@@ -84,10 +84,9 @@ class ToolbarHelper extends ViewHelper
         {
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_NEW, 'Novo', 'add', 'fa-file-o'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_EDIT, 'Editar', 'edit', 'fa-edit'));
+            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_VIEW, 'Visualizar', 'view', 'fa-eye'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_DELETE, 'Excluir', 'delete', 'fa-trash-o'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_SEARCH, 'Procurar', 'index', 'fa-search'));
-            //$toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_UNIFY, 'Unificar', 'unify', 'fa-share-alt fa-rotate-180'));
-            //$toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_CLONE, 'Clonar', 'clone', 'fa-share-alt'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_PRINT, 'Imprimir', 'print', 'fa-print'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_BACK, 'Voltar', 'back', 'fa-arrow-circle-o-left'));
         }

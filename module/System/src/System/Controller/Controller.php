@@ -155,6 +155,28 @@ class Controller extends AbstractActionController
     }
     
     /**
+     * Popula os atributos de uma entidade, com os
+     * valores recebidos pelo post.
+     * 
+     * @param type $entity
+     */
+    private function populateEntity($entity)
+    {
+        $postData = $this->getRequest()->getPost()->toArray();
+            
+        foreach ( $postData as $attribute => $data )
+        {
+            $lowerAttribute = strtolower($attribute);
+            $setFunction = "set" . ucfirst($lowerAttribute);
+
+            if ( method_exists($entity, $setFunction) )
+            {
+                $entity->$setFunction($data);
+            }
+        }
+    }
+    
+    /**
      * Primeira ação a ser executada.
      * Por padrão, executa a ação de busca, responsável por carregar
      * a grid.
@@ -220,25 +242,51 @@ class Controller extends AbstractActionController
     }
     
     /**
-     * Popula os atributos de uma entidade, com os
-     * valores recebidos pelo post.
+     * Ação padrão de exclusão de registros.
      * 
-     * @param type $entity
+     * 
+     *   PENSAR EM FAZER AS VIEWS PADRÕES .phtml !!!!!!!!
+     * 
+     * @return \Zend\View\Model\ViewModel
      */
-    private function populateEntity($entity)
+    public function deleteAction()
     {
-        $postData = $this->getRequest()->getPost()->toArray();
-            
-        foreach ( $postData as $attribute => $data )
-        {
-            $lowerAttribute = strtolower($attribute);
-            $setFunction = "set" . ucfirst($lowerAttribute);
+        $id = (int) $this->params()->fromRoute('id', 0);
+        
+        $entityClass = $this->getCurrentEntity();
+        $entity = $this->getObjectManager()->find($entityClass, $id);
 
-            if ( method_exists($entity, $setFunction) )
-            {
-                $entity->$setFunction($data);
-            }
+        if ( $this->request->isPost() ) 
+        {
+            $this->getObjectManager()->remove($entity);
+            $this->getObjectManager()->flush();
+
+            return $this->redirect()->toRoute($this->getCurrentRoute());
         }
+
+        
+        $this->flashMessenger()->addWarningMessage("Este registro será excluído, e você não terá mais acesso a ele. Deseja realmente excluí-lo?");
+    }
+    
+    /**
+     * Ação padrão de visualização de registros.
+     */
+    public function viewAction()
+    {
+    }
+    
+    /**
+     * Ação padrão de impressão de registros.
+     */
+    public function printAction()
+    {   
+    }
+    
+    /**
+     * Ação padrão para voltar.
+     */
+    public function backAction()
+    {
     }
 }
 

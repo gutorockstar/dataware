@@ -264,9 +264,15 @@ select {
 }
 
 .panel-info .panel-heading { 
-    background: #ced04c !important;
-    border-color: yellow !important;
+    background: blue !important;
+    border-color: blue !important;
     color: #fff !important;
+}
+
+.panel-warning .panel-heading { 
+    background: yellow !important;
+    border-color: yellow !important;
+    color: #000 !important;
 }
 
 .form-username{
