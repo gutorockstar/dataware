@@ -11,15 +11,26 @@ and open the template in the editor.
 body {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
+    margin: 0px !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    background-image: none;
 }
 
 .header{
-    height: 140px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 118px;
+    background-color: #0088cc;
+    box-shadow: inset 0 5px 10px 0 RGBA(0,0,0,0.1), 0 0px 12px RGBA(0,0,0,0.2);
+    border-bottom: solid 1px #CCC;
 }
 
 .header-content{
-    display: block;
-    width: 1000px;
+    display: table;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -27,70 +38,122 @@ body {
 .logo{
     width: 30%;
     height: 90px;
-    margin-top: 25px;
     float: left;
-}
-
-.img-logo{
-    width: 100%;
-    height: 100px;
-}
-
-.right-logo{
-    width: 70%;
-    height: 100px;
-    margin-top: 10px;
-    float: left;
-}
-
-.nav-pills{
-    margin-left: 100px;
-    margin-top: 55px;
-    float: right;
-}
-
-.navbar-inverse{
-    border-radius: 0 !important;
 }
 
 .menu{
-    background: #2187e7;
-    height: 50px;
+    float: left;
+    width: 70%;
 }
 
-.menu-content{
-    width: 1000px;
-    height: 50px;
+#menu ul {
+    padding:0px;
+    margin:0px;
+    float: right;
+    font-size: 15px;
+    margin-top: 5%;
+}
+
+#menu ul li { 
+    display: inline; 
+    padding: 10px;
+}
+
+#menu ul li a {
+    padding: 2px 10px;
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+}
+
+#menu ul li a:hover{
+    color: #ddd;
+}
+
+.content{
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.banner{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 240px;
+}
+
+#slider{
+    width: 80% !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.chocoslider{
+    margin-bottom: 0px !important;
 }
 
 .container{
-    width: 1000px;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
-}
-
-footer{
-    margin-right: auto;
-    margin-left: auto;
-    position: fixed;
-    bottom: 0;
-    width: 100% !important;
-    border-top: 1px solid #ddd;
-    background: #fff;
-    z-index: 100;
+    min-height: 350px;
 }
 
 .footer{
-    max-width: 1170px !important;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;    
+    background: orange;
+}
+
+.footer-content{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;    
+    min-height: 250px;
+}
+
+.destaques{
+    display: table;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.footer-content{
-    font-weight: normal;
-    color: #0075b0;
-    font-size: 12px;
+.resumo-produto{
+    float: left;
+    width: 200px;
+    min-height: 320px;
+    margin-right: 50px;
 }
+
+.capa-produto{
+    width: 100%;
+    min-height: 150px;
+    max-height: 150px;
+    background: #0088cc;
+}
+
+.capa-produto img{
+    width: 100%;
+    height: 150px;
+    float: right;
+}
+
+.titulo-produto{
+    width: 100%;
+    padding-top: 10px;
+    min-height: 30px;
+    color: #0088cc;
+    font-size: 18px;
+}
+
+.descricao-produto{
+    color: gray;
+}
+
+
+
+
 
