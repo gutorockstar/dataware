@@ -23,14 +23,14 @@ body {
     margin-left: auto;
     margin-right: auto;
     min-height: 118px;
-    background-color: #0088cc;
+    background-color: #0075b0; /**#0088cc;*/
     box-shadow: inset 0 5px 10px 0 RGBA(0,0,0,0.1), 0 0px 12px RGBA(0,0,0,0.2);
     border-bottom: solid 1px #CCC;
 }
 
 .header-content{
     display: table;
-    width: 80%;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -44,6 +44,7 @@ body {
 .menu{
     float: left;
     width: 70%;
+    margin-top: 1%;
 }
 
 #menu ul {
@@ -51,7 +52,7 @@ body {
     margin:0px;
     float: right;
     font-size: 15px;
-    margin-top: 5%;
+    margin-top: 40px;
 }
 
 #menu ul li { 
@@ -60,33 +61,37 @@ body {
 }
 
 #menu ul li a {
-    padding: 2px 10px;
+    padding: 5px 10px;
     display: inline-block;
     color: #fff;
     text-decoration: none;
 }
 
-#menu ul li a:hover{
+#menu ul li:hover{
     color: #ddd;
+    background: #333;
 }
 
 .content{
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 30px;
 }
 
 .banner{
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    min-height: 240px;
+    min-height: 380px;
 }
 
 #slider{
-    width: 80% !important;
+    width: 70% !important;
     margin-left: auto;
     margin-right: auto;
+    height: 330px;
+    
 }
 
 .chocoslider{
@@ -94,7 +99,7 @@ body {
 }
 
 .container{
-    width: 80%;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
     min-height: 350px;
@@ -104,28 +109,34 @@ body {
     width: 100%;
     margin-left: auto;
     margin-right: auto;    
-    background: orange;
+    background: #333;
 }
 
 .footer-content{
-    width: 80%;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;    
     min-height: 250px;
 }
 
 .destaques{
-    display: table;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
 
+.produtos-destaque{
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+}
+
 .resumo-produto{
     float: left;
-    width: 200px;
+    width: 175px;
     min-height: 320px;
     margin-right: 50px;
+    margin-bottom: 20px;
 }
 
 .capa-produto{

@@ -2,7 +2,8 @@
     <meta charset="utf-8">
     <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/simple_logo_mini.png'))
                     ->prependStylesheet($this->basePath() . '/css/site.css')
-                    ->prependStylesheet($this->basePath() . '/Choco-Slider-master/estilo.css');
+                    ->prependStylesheet($this->basePath() . '/Choco-Slider-master/estilo.css')
+                    ->prependStylesheet($this->basePath() . '/font-awesome/css/font-awesome.min.css');
     ?>
     
     <?php
@@ -23,10 +24,10 @@
             <div class="menu">
                 <nav id="menu">
                     <ul>
-                        <li style="background: orange"><a href="#">Principal</a></li>
-                        <li><a href="#">Produtos</a></li>
-                        <li><a href="#">Sobre nós</a></li>
-                        <li><a href="#">Entre em contato</a></li>
+                        <li style="background: #333"><a href="#"><i class="fa fa-home">&nbsp;&nbsp;</i>Principal</a></li>
+                        <li><a href="#"><i class="fa fa-shopping-cart">&nbsp;&nbsp;</i>Produtos</a></li>
+                        <li><a href="#"><i class="fa fa-history">&nbsp;&nbsp;</i>Sobre nós</a></li>
+                        <li><a href="#"><i class="fa fa-envelope">&nbsp;&nbsp;</i>Entre em contato</a></li>
                     </ul>
                 </nav>
             </div>
