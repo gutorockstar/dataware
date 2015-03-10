@@ -175,7 +175,7 @@ class Controller extends AbstractActionController
      * 
      * @param type $entity
      */
-    private function populateEntity($entity)
+    protected function populateEntity($entity)
     {
         $postData = $this->getRequest()->getPost()->toArray();
             

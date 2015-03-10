@@ -12,8 +12,10 @@
  */
 namespace System\Model;
 
+use \Zend\Mvc\Controller\Plugin\FlashMessenger;
+
 class Panel 
-{
+{    
     /**
      * @return String
      */
@@ -34,12 +36,19 @@ class Panel
      */
     private $style;
     
+    /**
+     *
+     * @var String
+     */
+    private $type;
+    
     public function __construct($title, $body = null, $cssClassIcon = null, $style = null)
     {
         $this->title = $title;
         $this->body = $body;
         $this->cssClassIcon = $cssClassIcon;
         $this->style = $style;
+        $this->type = FlashMessenger::NAMESPACE_DEFAULT;
     }
     
     public function getCssClassIcon() 
@@ -81,6 +90,18 @@ class Panel
     {
         $this->style = $style;
     }
+    
+    public function getType() 
+    {
+        return $this->type;
+    }
+
+    public function setType($type) 
+    {
+        $this->type = $type;
+    }
+
+
 }
 
 ?>

@@ -106,9 +106,8 @@ class CrudController extends Controller
 
             return $this->redirect()->toRoute($this->getCurrentRoute());
         }
-
         
-        $this->flashMessenger()->addWarningMessage("Este registro será excluído, e você não terá mais acesso a ele. Deseja realmente excluí-lo?");
+        return array('entity' => $entity);
     }
     
     /**

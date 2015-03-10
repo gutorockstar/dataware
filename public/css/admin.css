@@ -232,9 +232,14 @@ select {
     margin-right: auto !important;
 }
 
-.panel-default{
+.panel{
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
+}
+
+.panel-default{
+    text-align: left !important;
 }
 
 .panel-heading {
@@ -246,7 +251,12 @@ select {
     /**padding: 5px 15px !important;*/
 }
 
-.panel-body {
+.panel-body{
+    background: #eee;
+    padding: 20px;
+}
+
+.panel-default .panel-body {
     padding: 0px !important;
     background: #eee;
 }
@@ -272,7 +282,7 @@ select {
 .panel-warning .panel-heading { 
     background: yellow !important;
     border-color: yellow !important;
-    color: #000 !important;
+    color: #333 !important;
 }
 
 .form-username{

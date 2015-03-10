@@ -1,11 +1,12 @@
 <?php
 
-$title = 'Delete Country';
-$this->headTitle($title);
+$panelContent = "Têm certeza de que deseja excluir este registro?";
+$panelContent .= "<form method='post'><input type='submit' value='Sim' class='input-submit btn btn-primary'></form>";
+
+$panel = new System\Model\Panel("Aviso!", $panelContent, 'fa-exclamation-triangle', 'width: 50%; margin-top: 5%');
+$panel->setType(\Zend\Mvc\Controller\Plugin\FlashMessenger::NAMESPACE_WARNING);
+
+echo $this->PanelHelper($panel);
+
 ?>
-<h1><?php echo $this->escapeHtml($title); ?></h1>
-Are you sure you want to delete country <?php //echo $country->getTitle(); ?>? <br/>
-<form method="post">
-  <input type="submit" value="Delete">
-</form>
 
