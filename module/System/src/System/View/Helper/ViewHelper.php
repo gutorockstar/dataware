@@ -77,8 +77,19 @@ class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
         $viewRender = "<div class='row'>";
         
         // Deverá gerar a árvore automaticamente.
+        $currentViewRoute = $this->getCurrentViewRoute();
+        //var_export($currentViewRoute);
+        
+        //admin/country
+        
+        
         $tree = new Tree('basic', 'country', 'index');
         $viewRender .= $this->view->TreeHelper($tree);
+        
+        
+        
+        
+        
         
         if ( $view->getToolbar() instanceof Toolbar )
         {
@@ -108,6 +119,22 @@ class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
     }
     
     /**
+     * Retorna o caminho da rota atual.
+     * 
+     * @return String
+     */
+    public function getCurrentViewRoute()
+    {
+        $sm = $this->getView()->getHelperPluginManager()->getServiceLocator();
+        $router = $sm->get('Router');
+        $request = $sm->get('Request');
+        $routeMatch = $router->match($request);
+        $viewRoute = $routeMatch->getParam('module') . '/' . $routeMatch->getMatchedRouteName() . '/';
+        
+        return $viewRoute;
+    }
+    
+    /**
      * Retorna a url completa da rota atual.
      * 
      * @return string
@@ -118,13 +145,7 @@ class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
         $expCurrentUrl = explode('/', $currentUrl);
         $baseUrl = $expCurrentUrl[0] . '//' . $expCurrentUrl[2] . '/';
         
-        $sm = $this->getView()->getHelperPluginManager()->getServiceLocator();
-        $router = $sm->get('Router');
-        $request = $sm->get('Request');
-        $routeMatch = $router->match($request);
-        $viewRoute = $routeMatch->getParam('module') . '/' . $routeMatch->getMatchedRouteName() . '/';
-        
-        return $baseUrl . $viewRoute;
+        return $baseUrl . $this->getCurrentViewRoute();
     }
 }
 
