@@ -77,7 +77,7 @@ class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
         $viewRender = "<div class='row'>";
         
         // Deverá gerar a árvore automaticamente.
-        $tree = new Tree();
+        $tree = new Tree('basic', 'country', 'index');
         $viewRender .= $this->view->TreeHelper($tree);
         
         if ( $view->getToolbar() instanceof Toolbar )
