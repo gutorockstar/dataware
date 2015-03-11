@@ -6,15 +6,15 @@
  */
 
 /**
- * Description of Menu
+ * Description of CityController
  *
  * @author augusto
  */
-namespace System\Model;
+namespace Admin\Controller;
 
-class Menu 
+class BrandController 
 {
-    //put your code here
+    
 }
 
 ?>

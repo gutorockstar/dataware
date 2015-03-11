@@ -52,16 +52,22 @@ class MenuHelper extends ViewHelper
     private function getModules()
     {
         $modulesArray = array(
-            "Básico" => array(
-                "País" => '/admin/country',
-                "Estado" => '/admin/state'
+            "Principal" => array(
+                "Banner" => '/admin/banner',
             ),
-            "Destaques" => '/featured',
-            "Blocos" => '/block',
-            "Menu" => '/menu',
-            "Interface" => '/interface',
-            "Estoque" => '/warehouse',
-            "Configurações" => '/settings'
+            "Produtos" => array(
+                "Categoria" => '/admin/category',
+                "Marca" => '/admin/brand',
+                "Produto" => '/admin/product'
+            ),
+            "Sobre nós" => array(
+                "Empresa" => '/admin/company',
+                "Missão" => '/admin/companymission',
+                "Visão" => '/admin/companyview'
+            ),
+            "Configurações" => array(
+                "Usuário" => '/admin/useraccount'
+            )
         );
         
         return $this->getOptionsMenu($modulesArray);

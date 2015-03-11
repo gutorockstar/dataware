@@ -15,8 +15,9 @@ return array(
             'Admin\Controller\LoginController' => 'Admin\Controller\LoginController',
             'Admin\Controller\AdminController' => 'Admin\Controller\AdminController',
             
-            'Admin\Controller\CountryController' => 'Admin\Controller\CountryController',
-            'Admin\Controller\StateController' => 'Admin\Controller\StateController',
+            'Admin\Controller\CategoryController' => 'Admin\Controller\CategoryController',
+            'Admin\Controller\BrandController' => 'Admin\Controller\BrandController',
+            'Admin\Controller\ProductController' => 'Admin\Controller\ProductController'
         ),
     ),
     
@@ -89,11 +90,11 @@ return array(
                 ),
             ), 
             
-            // Rota para as interfaces de manutenção de Países.
-            'country' => array(
+            // Rota para as interfaces de manutenção de Categorias.
+            'category' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/admin/country[/:action][/:id]',
+                    'route' => '/admin/category[/:action][/:id]',
                     //'route' => '/system/crud[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -101,28 +102,46 @@ return array(
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Admin\Controller',
-                        'entity' => 'Admin\Entity\Country',
-                        'controller' => 'Admin\Controller\CountryController',
+                        'entity' => 'Admin\Entity\Category',
+                        'controller' => 'Admin\Controller\CategoryController',
                         'action' => 'index',
                         'module' => 'admin'
                     ),
                 ),
             ),
             
-            // Rota para as interfaces de manutenção de Estados.
-            'state' => array(
+            // Rota para as interfaces de manutenção de Marcas.
+            'brand' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/admin/state[/:action][/:id]',
+                    'route' => '/admin/brand[/:action][/:id]',
                     'constraints' => array(
-                        'module' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'fieldName' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                        'id' => '[0-9]+'
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Admin\Controller',
-                        'entity' => 'Admin\Entity\State',
-                        'controller' => 'Admin\Controller\StateController',
+                        'entity' => 'Admin\Entity\Brand',
+                        'controller' => 'Admin\Controller\BrandController',
+                        'action' => 'index',
+                        'module' => 'admin'
+                    ),
+                ),
+            ),
+            
+            // Rota para as interfaces de manutenção de Produtos.
+            'product' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/admin/product[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+'
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Admin\Controller',
+                        'entity' => 'Admin\Entity\Product',
+                        'controller' => 'Admin\Controller\ProductController',
                         'action' => 'index',
                         'module' => 'admin'
                     ),

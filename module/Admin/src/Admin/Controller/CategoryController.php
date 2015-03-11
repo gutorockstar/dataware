@@ -13,10 +13,12 @@
 namespace Admin\Controller;
 
 use System\Controller\CrudController;
-use Admin\Entity\Country;
+use Admin\Entity\Category;
 
-class CountryController extends CrudController
+class CategoryController extends CrudController
 {   
+    
+    
 }
 
 ?>

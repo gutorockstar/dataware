@@ -6,7 +6,7 @@
  */
 
 /**
- * Description of Country
+ * Description of Category
  *
  * @author augusto
  */
@@ -17,9 +17,9 @@ use Doctrine\ORM\Mapping as ORM,
 
 /** 
  * @ORM\Entity
- * @ORM\Table(name="admin.country")
+ * @ORM\Table(name="admin.category")
  */
-class Country 
+class Category 
 {
     /**
      * @ORM\Id

@@ -9,9 +9,9 @@ $toolbar->setAddCustomToolbarActions(array(
 $toolbar->setDisableToolbarActions(array(System\Model\Toolbar::TB_ACTION_PRINT));
 
 $grid = new System\Model\Grid();
-$grid->setEntity('Admin\Entity\Country');
+$grid->setEntity('Admin\Entity\Category');
 $grid->setData($dataGrid);
-$panel = new System\Model\Panel('Países', $this->GridHelper($grid));
+$panel = new System\Model\Panel('Categorias', $this->GridHelper($grid));
 
 $view = new System\Model\View();
 $view->setToolbar($toolbar);

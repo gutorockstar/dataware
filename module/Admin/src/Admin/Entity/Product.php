@@ -6,7 +6,7 @@
  */
 
 /**
- * Description of Adm_User
+ * Description of Product
  *
  * @author augusto
  */
@@ -18,9 +18,9 @@ use Doctrine\ORM\Mapping as ORM,
 
 /** 
  * @ORM\Entity
- * @ORM\Table(name="admin.state")
+ * @ORM\Table(name="admin.product")
  */
-class State
+class Product
 {
     /**
      * @ORM\Id
@@ -33,12 +33,12 @@ class State
     protected $id;
         
     /**
-     * @ORM\ManyToOne(targetEntity="Country", cascade={"all"}, fetch="EAGER")
-     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Category", cascade={"all"}, fetch="EAGER")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
      * 
      * @Annotation\Type("Zend\Form\Element\Select")
      */
-    protected  $country;
+    protected  $category;
     
     /**
      * @ORM\Column(type="string", length=2, columnDefinition="CHAR(2) NOT NULL")

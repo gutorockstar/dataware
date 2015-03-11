@@ -6,11 +6,11 @@
  */
 
 /**
- * Description of City
+ * Description of Brand
  *
  * @author augusto
  */
-class City 
+class Brand 
 {
     
 }

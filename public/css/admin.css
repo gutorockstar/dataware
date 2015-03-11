@@ -332,6 +332,10 @@ select {
     padding-top: 0px !important;
 }
 
+.dataTables_empty{
+    color: green;
+}
+
 .table-striped > tbody > tr:nth-child(odd){
   background-color: #f9f9f9;
 }
