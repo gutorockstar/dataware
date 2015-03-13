@@ -158,10 +158,11 @@ class ToolbarHelper extends ViewHelper
      */
     private function createToolbarAction(ToolbarAction $toolbarAction)
     {  
+        $selected = ($toolbarAction->getId() == Toolbar::TB_ACTION_SEARCH) ? " tool-selected" : "";
         $currentRouteUrl = $toolbarAction->getEnabled() ? $this->getCurrentRouteUrl() : null;
         
         return "<a id=\"tb_option_{$toolbarAction->getId()}\" title=\"{$toolbarAction->getTitle()}\" href=\"{$currentRouteUrl}{$toolbarAction->getAction()}\">
-                    <div class=\"tool\">
+                    <div class=\"tool {$selected}\">
                         <i class=\"fa {$toolbarAction->getCssClass()} fa-2x\">
                             <p class=\"title-tool\">{$toolbarAction->getTitle()}</p>
                         </i>

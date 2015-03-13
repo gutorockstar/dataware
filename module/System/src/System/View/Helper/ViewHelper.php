@@ -84,7 +84,7 @@ class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
         
         
         $tree = new Tree('basic', 'country', 'index');
-        $viewRender .= $this->view->TreeHelper($tree);
+        //$viewRender .= $this->view->TreeHelper($tree);
         
         
         
