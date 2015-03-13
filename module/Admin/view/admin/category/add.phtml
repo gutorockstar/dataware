@@ -13,12 +13,7 @@ $form = $this->form;
 $form->prepare();
 
 $addForm = $this->form()->openTag($form);              
-$addForm .= $this->formRow($form->get('categoryfather'));
-$addForm .= $this->formRow($form->get('title'));
-$addForm .= $this->formRow($form->get('cover'));
-$addForm .= $this->formRow($form->get('description'));
-$addForm .= $this->formRow($form->get('status'));
-$addForm .= $this->formRow($form->get('send'));
+$addForm .= $this->formCollection($form);
 $addForm .= $this->form()->closeTag();
 $panel = new \System\Model\Panel('Novo país', $addForm);
 
