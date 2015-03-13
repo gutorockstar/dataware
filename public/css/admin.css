@@ -138,7 +138,6 @@ label {
     font-weight: normal !important;
     float: left;
     clear: both;
-    
     width: 100%;
     margin-right: 0.5em;
     padding-top: 0.2em;
@@ -148,6 +147,25 @@ label {
 
 label span{
     float: left !important;
+}
+
+input[type="radio"]{
+    width: 2em;
+    margin: 0;
+    margin-right: 5px;
+    border: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: none;
+    transition: none;    
+}
+
+fieldset label {
+    width: 7%; 
+    float: left; 
+    clear: none;
+    color: gray;
+    text-align: left;
 }
 
 #UserAccount fieldset{

@@ -72,7 +72,7 @@ class Category
      * 
      * @Annotation\Type("Zend\Form\Element\Textarea")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"descrição"})
+     * @Annotation\Options({"label":"Descrição"})
      * @Annotation\Attributes({"class":"input-text form-control"})
      */
     protected $description;
@@ -83,7 +83,7 @@ class Category
      * @Annotation\Type("Zend\Form\Element\Radio")
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Status", "value_options":{"t":"Ativo", "f":"Inativo"}})
-     * @Annotation\Attributes({"class":"input-text form-control"})
+     * @Annotation\Attributes({"class":"form-control", "value":"t"})
      */
     protected $status;
 
