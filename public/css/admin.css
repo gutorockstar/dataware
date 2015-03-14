@@ -1,13 +1,16 @@
 /** Admin */
-body {
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
+html, body {
+    height:100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .container{
     max-width: 100%;
     padding-right: 0px;
     padding-left: 0px;
+    height: 92%;
+    bottom: 0;
 }
 
 footer{
@@ -44,7 +47,6 @@ footer{
 
 .menu{
     background: #0075b0;
-    height: 53px;
 }
 
 .img-logo{
@@ -97,7 +99,7 @@ footer{
 }
 
 .menu li a{
-    height: 50px !important;
+    height: 7.5%;
     color: #fff !important;
 }
     
@@ -259,6 +261,7 @@ select {
     margin-left: auto !important;
     margin-right: auto !important;
     display: flex;
+    height: 100%;
 }
 
 .panel{
@@ -345,7 +348,7 @@ input{
 }
 
 .navbar-nav li{
-    height: 53px !important;
+    height: 7.5% !important;
 }
 
 .dropdown-menu>li>a {
@@ -429,6 +432,11 @@ input{
 
 thead tr{
     max-height: 20px !important;
+}
+
+thead{
+    background: #999;
+    color: #fff;
 }
 
 .gradeA{
