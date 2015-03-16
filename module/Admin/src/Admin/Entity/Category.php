@@ -40,7 +40,7 @@ class Category
      * 
      * @Annotation\Type("Zend\Form\Element\Select")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Categoria pai"})
+     * @Annotation\Options({"label":"Categoria pai", "entity":"Admin\Entity\Category"})
      * @Annotation\Attributes({"class":"input-text form-control"})
      */
     protected  $categoryfather;

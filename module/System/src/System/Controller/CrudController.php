@@ -16,9 +16,59 @@ use System\Controller\Controller;
 use Zend\View\Model\ViewModel;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Zend\Form\Annotation\AnnotationBuilder;
+use Zend\Form\Form;
+use Zend\Form\Element\Select;
 
 class CrudController extends Controller
 {
+    /**
+     * Ajusta os elementos especiais do formulário,
+     * como por exemplo os campos de tipo select, que
+     * deverão listar todos os registros de uma entidade
+     * por padrão.
+     * 
+     * @param \Zend\Form\Form $form
+     */
+    private function adjustOfSpecialElements(Form $form)
+    {
+        foreach ( $form->getElements() as $element )
+        {
+            if ( $element instanceof Select && !is_null($element->getOption('entity')) )
+            {
+                // Obtém os registros de listagens padrões, a partir da entidade definida para o campo.
+                $results = $this->getListValuesToSelectElement($element);
+                $listValues = array(null => null);
+        
+                foreach ( $results as $result )
+                {
+                    $listValues[$result['id']] = $result['title'];
+                }
+                
+                $form->get($element->getAttribute('name'))->setValueOptions($listValues);
+            }
+        }
+    }
+            
+    /**
+     * Retorna todos os registros para serem populados em campos de tipo select,
+     * conforme registros padrões 'id' e 'title'.
+     * 
+     * @param Select $element
+     * @return array
+     */
+    public function getListValuesToSelectElement(Select $element)
+    {
+        $entity = $element->getOption('entity');
+        
+        $repository = $this->getObjectManager()->getRepository($entity);
+        $query = $repository->createQueryBuilder('list')
+                            ->select("list.id, list.title")
+                            ->orderBy("list.title")
+                            ->getQuery();        
+        
+        return $query->getResult();
+    }
+    
     /**
      * Primeira ação a ser executada.
      * Por padrão, executa a ação de busca, responsável por carregar
@@ -36,7 +86,7 @@ class CrudController extends Controller
      */
     public function addAction()
     {
-        $entityClass = $this->getCurrentEntity();
+        $entityClass = $this->getCurrentEntity();        
         $entity = new $entityClass();
             
         if ( $this->request->isPost() ) 
@@ -52,16 +102,7 @@ class CrudController extends Controller
         
         $builder  = new AnnotationBuilder();    
         $form = $builder->createForm($entity);
-        
-        
-        
-        
-        
-        $form->get('categoryfather')->setValueOptions(array(null => null, '1' => 'Teste 1', '2' => 'Teste 2'));
-        
-        
-        
-        
+        $this->adjustOfSpecialElements($form);
         
         return array('form' => $form);
     }
@@ -88,6 +129,8 @@ class CrudController extends Controller
         
         $builder  = new AnnotationBuilder();    
         $form = $builder->createForm($entity);
+        $this->adjustOfSpecialElements($form);
+        
         $form->setHydrator(new DoctrineHydrator($this->getObjectManager(), $entityClass));
         $form->bind($entity);
 
