@@ -277,11 +277,10 @@ select {
 
 .panel-body{
     background: #eee;
-    padding: 20px;
+    padding: 5px !important;
 }
 
 .panel-default .panel-body {
-    padding: 0px !important;
     background: #eee;
 }
 
@@ -593,10 +592,6 @@ select[multiple]{
     color: #333333;
     border: 0;
     border-bottom: 1px solid #e5e5e5;
-}
-
-form {
-    padding: 10px;
 }
 
 .table-form{
