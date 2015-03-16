@@ -1,16 +1,12 @@
 /** Admin */
-html, body {
-    height:100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
+body {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
 }
 
 .container{
-    max-width: 100%;
     padding-right: 0px;
     padding-left: 0px;
-    height: 92%;
-    bottom: 0;
 }
 
 footer{
@@ -47,6 +43,7 @@ footer{
 
 .menu{
     background: #0075b0;
+    height: 53px;
 }
 
 .img-logo{
@@ -99,7 +96,7 @@ footer{
 }
 
 .menu li a{
-    height: 7.5%;
+    height: 50px !important;
     color: #fff !important;
 }
     
@@ -132,10 +129,8 @@ footer{
 }
 
 .navbar {
-    width: 10%;
     z-index: 95;
-    background: #eee;
-    margin-bottom: 0;
+    background-image: linear-gradient(to bottom, #ffffff 0%, #ddd 100%) !important; 
 }
 
 label {
@@ -169,7 +164,6 @@ fieldset{
     padding: 10px;
     border: 1px solid #cccccc;
     border-radius: 4px;
-    background: #eee;
 }
 
 fieldset > fieldset label {
@@ -258,19 +252,13 @@ select {
 }
 
 .row{
-    width: 100%;
     margin-left: auto !important;
     margin-right: auto !important;
-    display: flex;
-    height: 100%;
 }
 
 .panel{
-    width: 90%;
-    float:right;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 0;
     text-align: center;
 }
 
@@ -279,19 +267,22 @@ select {
 }
 
 .panel-heading {
-    /**background-image: linear-gradient(to bottom, #e78f08 0, #f6a828 100%) !important;*/
-    background: #0075b0 !important;
-    color: #fff !important;
+    background-image: linear-gradient(to bottom, #e78f08 0, #f6a828 100%) !important;
     background-repeat: repeat-x !important;
     font-weight: bold !important;
+    color: #fff !important;
     height: 40px !important;
     /**padding: 5px 15px !important;*/
 }
 
 .panel-body{
-    padding: 5px !important;
     background: #eee;
-    height: 100%;
+    padding: 20px;
+}
+
+.panel-default .panel-body {
+    padding: 0px !important;
+    background: #eee;
 }
 
 .panel-danger .panel-heading { 
@@ -346,7 +337,7 @@ select {
 }
 
 .navbar-nav li{
-    height: 7.5% !important;
+    height: 53px !important;
 }
 
 .dropdown-menu>li>a {
@@ -406,17 +397,13 @@ select {
 
 .tool{
     margin-top: 2px;
-    width: 95%;
+    width: 110px;
+    height: 55px;
     margin-left: 5px;
-    padding: 10px;
+    padding: 5px;
     float: left;
     text-align: center;
-    border-bottom: 1px solid #ddd;
-}
-
-.tool-selected{
-    background: #0075b0;
-    color: #fff;    
+    border-right: 1px solid #ddd;
 }
 
 .tool:active{
@@ -429,11 +416,6 @@ select {
 
 thead tr{
     max-height: 20px !important;
-}
-
-thead{
-    background: #999;
-    color: #fff;
 }
 
 .gradeA{
@@ -453,11 +435,8 @@ thead{
 }
 
 nav{
-    border-radius: 0px !important;
-}
-
-.navbar-collapse{
-    margin-left: 40px !important;
+    margin-bottom: 5px !important;
+    border: 1px solid #ddd !important;
 }
 
 .nav-panel{
@@ -617,7 +596,7 @@ select[multiple]{
 }
 
 form {
-    /**padding: 5px;*/
+    padding: 10px;
 }
 
 .table-form{
