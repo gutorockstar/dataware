@@ -93,6 +93,10 @@ class CrudController extends Controller
         {
             $this->populateEntity($entity);
 
+            
+            // PARA O REGISTRO DA CATEGORIA PAI, É NECESSÁRIO PASSAR O OBJETO CATEGORIA,
+            // E NÃO O CÓDIGO DA CATEGORIA.
+            
             $this->getObjectManager()->persist($entity);
             $this->getObjectManager()->flush();
             $id = $entity->getId();
