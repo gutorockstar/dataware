@@ -20,25 +20,27 @@ class GridHelper extends ViewHelper
 {
     public function __invoke(Grid $grid)
     {
-        $displayGrid = "<div id='example_wrapper' class='dataTables_wrapper form-inline no-footer'>
-                            <table cellpadding='0' cellspacing='0' border='0' class='table table-striped table-bordered dataTable no-footer' id='example' role='grid' aria-describedby='example_info'>
-                                <thead>
-                                    <tr role='row'>";
+        $displayGrid = "<fieldset>
+                            <div id='example_wrapper' class='dataTables_wrapper form-inline no-footer'>
+                                <table cellpadding='0' cellspacing='0' border='0' class='table table-striped table-bordered dataTable no-footer' id='example' role='grid' aria-describedby='example_info'>
+                                    <thead>
+                                        <tr role='row'>";
         
         // Cria as colunas da grid, baseadas nos atributos da entidade.
         $this->makeGridColumnsByEntity($grid);
         
         // Gera o cabeçalho da grid, caso esitam colunas atribuidas.
         $displayGrid .= $this->generateGridColumns($grid);
-        $displayGrid .= "           </tr>
-                                </thead>
-                                <tbody>";
+        $displayGrid .= "               </tr>
+                                    </thead>
+                                    <tbody>";
         
         // Gera o corpo da grid, contendo os registros obtidos para a listagem.
         $displayGrid .= $this->generateGridRows($grid);
-        $displayGrid .= "       </tbody>
-                            </table>
-                        </div>";
+        $displayGrid .= "           </tbody>
+                                </table>
+                            </div>
+                        </fieldset>";
         
         return $displayGrid;
     }

@@ -169,6 +169,7 @@ fieldset{
     padding: 10px;
     border: 1px solid #cccccc;
     border-radius: 4px;
+    background: #eee;
 }
 
 fieldset > fieldset label {
@@ -278,6 +279,9 @@ select {
 }
 
 .panel-heading {
+    /**background-image: linear-gradient(to bottom, #e78f08 0, #f6a828 100%) !important;*/
+    background: #0075b0 !important;
+    color: #fff !important;
     background-repeat: repeat-x !important;
     font-weight: bold !important;
     height: 40px !important;
@@ -285,15 +289,9 @@ select {
 }
 
 .panel-body{
-    padding: 20px;
-}
-
-.panel-default .panel-body {
-    padding: 0px !important;
-}
-
-input{
-    background: #eee !important;
+    padding: 5px !important;
+    background: #eee;
+    height: 100%;
 }
 
 .panel-danger .panel-heading { 
@@ -409,7 +407,6 @@ input{
 .tool{
     margin-top: 2px;
     width: 95%;
-    height: 60px;
     margin-left: 5px;
     padding: 10px;
     float: left;
@@ -418,7 +415,7 @@ input{
 }
 
 .tool-selected{
-    background: #f6a828;
+    background: #0075b0;
     color: #fff;    
 }
 
@@ -620,7 +617,7 @@ select[multiple]{
 }
 
 form {
-    padding: 5px;
+    /**padding: 5px;*/
 }
 
 .table-form{
