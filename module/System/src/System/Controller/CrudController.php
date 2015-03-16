@@ -53,6 +53,16 @@ class CrudController extends Controller
         $builder  = new AnnotationBuilder();    
         $form = $builder->createForm($entity);
         
+        
+        
+        
+        
+        $form->get('categoryfather')->setValueOptions(array(null => null, '1' => 'Teste 1', '2' => 'Teste 2'));
+        
+        
+        
+        
+        
         return array('form' => $form);
     }
     

@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM,
 
 
 /** 
- * @ORM\Entity(repositoryClass="System\Repository\SystemEntityRepository")
+ * @ORM\Entity
  * @ORM\Table(name="admin.category")
  */
 class Category 
@@ -40,7 +40,7 @@ class Category
      * 
      * @Annotation\Type("Zend\Form\Element\Select")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Categoria pai", "name":"getSelectValues"})
+     * @Annotation\Options({"label":"Categoria pai"})
      * @Annotation\Attributes({"class":"input-text form-control"})
      */
     protected  $categoryfather;
@@ -89,9 +89,9 @@ class Category
 
     /**
      * @Annotation\Type("Zend\Form\Element\Submit")
-     * @Annotation\Attributes({"value":"Confirmar", "class":"input-submit btn btn-primary"})
+     * @Annotation\Attributes({"value":"Salvar", "class":"input-submit btn btn-primary"})
      */
-    protected $send;
+    protected $save;
     
     public function getId() 
     {
