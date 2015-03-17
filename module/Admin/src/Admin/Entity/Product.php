@@ -26,7 +26,7 @@ class Product
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\SequenceGenerator(sequenceName="state_id_seq", initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="product_id_seq", initialValue=1)
      * 
      * @Annotation\Type("Zend\Form\Element\Text")
      */

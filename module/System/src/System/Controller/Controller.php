@@ -18,6 +18,7 @@ use Zend\View\Helper\ServerUrl;
 use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\Form\Form;
 use Zend\Form\Element\Select;
+use Zend\Form\Element\File;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 class Controller extends AbstractActionController
@@ -192,13 +193,31 @@ class Controller extends AbstractActionController
             foreach ( $form->getElements() as $element )
             {
                 if ( ($element instanceof Select) && (!is_null($element->getOption('entity'))) && ($element->getAttribute('name') == $attribute) )
-                {                             
-                    $entityName = $element->getOption('entity'); // Obter o namespace da entidade relacional do atributo.
-                    $entityRep = $this->getObjectManager()->getRepository($entityName);
-                    $value = $entityRep->findOneBy(array('id' => $value));
-                    
+                {      
+                    $value = $this->getEntityByElementField($element, $value);
                     break;
                 }
+                
+                
+                
+                
+                
+                /**
+                 * Se estiver recebendo um arquivo nos dados do post, deverá primeiro efetuar o upload do arquivo
+                 * e registrar o arquivo na system.file. Após o registro, então será populado o atributo referente ao relacionamento
+                 * do arquivo, na entidade principal do registro.
+                 */
+                if ( ($element instanceof File) && (!is_null($element->getOption('entity'))) && ($element->getAttribute('name') == $attribute) )
+                {
+                    $fileId = $this->uploadFile($value, $form);
+                    $value = $this->getEntityByElementField($element, $fileId);
+                    break;
+                }
+                
+                
+                
+                
+                
             }
             
             $lowerAttribute = strtolower($attribute);
@@ -291,6 +310,72 @@ class Controller extends AbstractActionController
                             ->getQuery();        
         
         return $query->getResult();
+    }
+    
+    /**
+     * Gera e popula um objeto pela entidade registrada para
+     * o elemento do formulário.
+     * 
+     * @param Element $element
+     * @param int $id
+     * @return Entity
+     */
+    private function getEntityByElementField($element, $id)
+    {
+        $entityName = $element->getOption('entity'); // Obter o namespace da entidade relacional do atributo.
+        $entityRep = $this->getObjectManager()->getRepository($entityName);
+        $value = $entityRep->findOneBy(array('id' => $id));
+        
+        return $value;
+    }
+    
+    /**
+     * Efetua o upload e registro de um arquivo.
+     * 
+     * @param array $fileArgs
+     * @return int
+     */
+    private function uploadFile(array $fileArgs, Form $form)
+    {
+        $size = new \Zend\Validator\File\Size(array('max' => 2000000, 'min' => 2000));
+                 
+        $adapter = new \Zend\File\Transfer\Adapter\Http(); 
+        $adapter->setValidators(array($size), $fileArgs['name']);
+        
+        if ( !$adapter->isValid() )
+        {
+            $dataError = $adapter->getMessages();
+            $error = array();
+            
+            foreach ( $dataError as $key => $row )
+            {
+                $error[] = $row;
+            }
+            
+            exit(var_export($error));
+            
+            $form->setMessages(array('fileupload' => $error));
+        } 
+        else 
+        {   
+            $filePath = dirname(__DIR__) . '/../../../../public/files';
+            if ( !is_dir($filePath) )
+            {
+                mkdir($filePath);
+            }
+            
+            $adapter->setDestination($filePath);
+            
+            if ( $adapter->receive($fileArgs['name']) ) 
+            {
+                exit(var_export("AGORA, AQUI SERÁ NECESSÁRIO EFETUAR O REGISTRO NA system.file"));
+            }
+        } 
+        
+        
+        
+        
+        return $fileId;
     }
 }
 

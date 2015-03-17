@@ -25,7 +25,7 @@ class Category
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\SequenceGenerator(sequenceName="country_id_seq", initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="category_id_seq", initialValue=1)
      * 
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
@@ -58,11 +58,12 @@ class Category
     protected  $categoryfather;
     
     /**
-     * @ORM\Column(type="string", length=255, columnDefinition="VARCHAR(255)")
+     * @ORM\ManyToOne(targetEntity="System\Entity\File", cascade={"all"}, fetch="EAGER")
+     * @ORM\JoinColumn(name="cover_id", referencedColumnName="id", nullable=true)
      * 
      * @Annotation\Type("Zend\Form\Element\File")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Imagem de capa"})
+     * @Annotation\Options({"label":"Imagem de capa", "entity":"System\Entity\File"})
      * @Annotation\Attributes({"class":"input-text form-control"})
      */
     protected $cover;

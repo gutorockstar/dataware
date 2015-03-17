@@ -35,12 +35,18 @@ class CrudController extends Controller
      */
     public function addAction()
     {
+        $request = $this->getRequest();
+        
         $entityClass = $this->getCurrentEntity();        
         $entity = new $entityClass();
             
-        if ( $this->request->isPost() ) 
+        if ( $request->isPost() ) 
         {
-            $postData = $this->getRequest()->getPost()->toArray();
+            $postData = array_merge_recursive(
+                $request->getPost()->toArray(),
+                $request->getFiles()->toArray()
+            );
+            
             $this->populateEntityToPersist($entity, $postData);
             
             $this->getObjectManager()->persist($entity);
@@ -63,13 +69,18 @@ class CrudController extends Controller
     public function editAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
+        $request = $this->getRequest();
         
         $entityClass = $this->getCurrentEntity();
         $entity = $this->getObjectManager()->find($entityClass, $id);
 
-        if ( $this->request->isPost() ) 
+        if ( $request->isPost() ) 
         {
-            $postData = $this->getRequest()->getPost()->toArray();
+            $postData = array_merge_recursive(
+                $request->getPost()->toArray(),
+                $request->getFiles()->toArray()
+            );
+            
             $this->populateEntityToPersist($entity, $postData);
 
             $this->getObjectManager()->persist($entity);
