@@ -344,6 +344,10 @@ select {
     padding: 15px !important;
 }
 
+.dataTable td{
+    font-size: 13px;
+}
+
 .dataTables_length label{
     padding-top: 0px !important;
 }
