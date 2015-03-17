@@ -192,7 +192,7 @@ class Controller extends AbstractActionController
             foreach ( $form->getElements() as $element )
             {
                 if ( ($element instanceof Select) && (!is_null($element->getOption('entity'))) && ($element->getAttribute('name') == $attribute) )
-                {                    
+                {                             
                     $entityName = $element->getOption('entity'); // Obter o namespace da entidade relacional do atributo.
                     $entityRep = $this->getObjectManager()->getRepository($entityName);
                     $value = $entityRep->findOneBy(array('id' => $value));
@@ -231,8 +231,11 @@ class Controller extends AbstractActionController
                 $attributeName = $element->getAttribute('name');
                 $setFunction = "set" . $attributeName;
                 $getFunction = "get" . $attributeName;
-                
-                $entity->$setFunction($entity->$getFunction()->getId());
+                                
+                if ( is_object($entity->$getFunction()) )
+                {
+                    $entity->$setFunction($entity->$getFunction()->getId());
+                }
             }
         }
         
@@ -258,7 +261,7 @@ class Controller extends AbstractActionController
             {
                 // Obtém os registros de listagens padrões, a partir da entidade definida para o campo.
                 $results = $this->getListValuesToSelectElement($element);
-                $listValues = array(null => null);
+                $listValues = array(0 => '--Nenhum registro selecionado--');
         
                 foreach ( $results as $result )
                 {

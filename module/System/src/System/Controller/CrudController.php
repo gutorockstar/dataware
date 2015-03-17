@@ -66,8 +66,6 @@ class CrudController extends Controller
         
         $entityClass = $this->getCurrentEntity();
         $entity = $this->getObjectManager()->find($entityClass, $id);
-        
-        
 
         if ( $this->request->isPost() ) 
         {

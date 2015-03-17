@@ -146,10 +146,11 @@ class GridHelper extends ViewHelper
                         $data = $entity->$getFunction();
                         $value = $data;
                         
-                        if ( is_object($data) )
-                        {
-                            $value = $data->getId() . ' - ' . $data->getTitle();
-                        }
+                        // Para registros relacionais.
+                        $value = $this->adjustToShowRelationalEntityValue($value);
+                        
+                        // Para registros booleanos.
+                        $value = $this->adjustToShowBooleanValue($value);
                         
                         $tdValue .= $value;
                     }
@@ -164,6 +165,42 @@ class GridHelper extends ViewHelper
         }
         
         return $rows;
+    }
+    
+    /**
+     * Verifica se o valor é um objeto relacional, e ajusta
+     * os dados necessários para exibição na grid.
+     * 
+     * @param string $value
+     */
+    private function adjustToShowRelationalEntityValue($value)
+    {
+        if ( is_object($value) )
+        {
+            $value = $value->getId() . ' - ' . $value->getTitle();
+        }
+        
+        return $value;
+    }
+    
+    /**
+     * Verifica se o valor é booleano, e ajusta
+     * os dados necessários para exibição na grid.
+     * 
+     * @param type $value
+     */
+    private function adjustToShowBooleanValue($value)
+    {
+        if ( $value === true )
+        {
+            $value = "<font color='green'>" . GridColumn::GRID_VALUE_BOOLEAN_TRUE . "</font>";
+        }
+        else if ( $value === false )
+        {
+            $value = "<font color='red'>" . GridColumn::GRID_VALUE_BOOLEAN_FALSE . "</font>";
+        }
+        
+        return $value;
     }
     
     /**

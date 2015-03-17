@@ -80,12 +80,12 @@ class Category
     /**
      * @ORM\Column(type="boolean", columnDefinition="BOOLEAN NOT NULL DEFAULT TRUE")
      * 
-     * @Annotation\Type("Zend\Form\Element\Radio")
+     * @Annotation\Type("Zend\Form\Element\Checkbox")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Status", "value_options":{"t":"Ativo", "f":"Inativo"}})
-     * @Annotation\Attributes({"class":"form-control", "value":"t"})
+     * @Annotation\Options({"label":"Ativo", "type":"boolean", "value_options":{"1":"Sim", "0":"Não"}})
+     * @Annotation\Attributes({"class":"input-checkbox form-control", "value":"1"})
      */
-    protected $status;
+    protected $active;
 
     /**
      * @Annotation\Type("Zend\Form\Element\Submit")
@@ -142,15 +142,15 @@ class Category
     {
         $this->description = $description;
     }
-
-    public function getStatus() 
+    
+    public function getActive() 
     {
-        return $this->status;
+        return $this->active;
     }
 
-    public function setStatus($status) 
+    public function setActive($active) 
     {
-        $this->status = $status;
+        $this->active = $active;
     }
 }
 

@@ -161,7 +161,8 @@ input[type="radio"]{
 }
 
 fieldset{
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     border: 1px solid #cccccc;
     border-radius: 4px;
 }
@@ -191,6 +192,10 @@ fieldset > fieldset label {
 #UserAccount .btn{
     margin-top: 8px;
     clear: none !important;
+}
+
+.btn{
+    margin-top: 20px !important;
 }
 
 .form-control {
@@ -235,6 +240,14 @@ form li{
     height: 18px !important;
     width: 18px !important;
     margin-top: 0px !important;
+}
+
+.input-checkbox{
+    width: 10% !important;
+    float: left;
+    height: 30px !important;
+    width: 30px !important;
+    clear: both;
 }
 
 select {

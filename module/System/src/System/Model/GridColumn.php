@@ -17,6 +17,9 @@ class GridColumn
     const GRID_COLUMN_ACTIONS_ID = 'actions';
     const GRID_COLUMN_ACTIONS_TITLE = 'Ações';
     
+    const GRID_VALUE_BOOLEAN_TRUE = 'Sim';
+    const GRID_VALUE_BOOLEAN_FALSE = 'Não';
+    
     /**
      * Código de referência da coluna.
      * 
