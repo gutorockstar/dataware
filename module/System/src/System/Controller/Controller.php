@@ -15,6 +15,9 @@ namespace System\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
 use Zend\View\Helper\ServerUrl;
+use Zend\Form\Annotation\AnnotationBuilder;
+use Zend\Form\Form;
+use Zend\Form\Element\Select;
 
 class Controller extends AbstractActionController
 {
@@ -173,22 +176,86 @@ class Controller extends AbstractActionController
      * Popula os atributos de uma entidade, com os
      * valores recebidos pelo post.
      * 
-     * @param type $entity
+     * @param ORM/Object $entity
+     * @param array $data
      */
-    protected function populateEntity($entity)
-    {
-        $postData = $this->getRequest()->getPost()->toArray();
-            
-        foreach ( $postData as $attribute => $data )
+    protected function populateEntity($entity, $data)
+    {    
+        $builder = new AnnotationBuilder();    
+        $form = $builder->createForm($entity);
+        
+        // Percorre os dados dos atributos recebidos.
+        foreach ( $data as $attribute => $value )
         {
+            // Percorre os attributos da entidade, para reconhecimento de elementos especiais.
+            foreach ( $form->getElements() as $element )
+            {
+                if ( ($element instanceof Select) && (!is_null($element->getOption('entity'))) && ($element->getAttribute('name') == $attribute) )
+                {                    
+                    $entityName = $element->getOption('entity'); // Obter o namespace da entidade relacional do atributo.
+                    $entityRep = $this->getObjectManager()->getRepository($entityName);
+                    $value = $entityRep->findOneBy(array('id' => $value));
+                    
+                    break;
+                }
+            }
+            
             $lowerAttribute = strtolower($attribute);
             $setFunction = "set" . ucfirst($lowerAttribute);
 
             if ( method_exists($entity, $setFunction) )
             {
-                $entity->$setFunction($data);
+                $entity->$setFunction($value);
             }
         }
+    }
+    
+    /**
+     * Ajusta os elementos especiais do formulário,
+     * como por exemplo os campos de tipo select, que
+     * deverão listar todos os registros de uma entidade
+     * por padrão.
+     * 
+     * @param \Zend\Form\Form $form
+     */
+    protected function adjustOfSpecialElements(Form $form)
+    {
+        foreach ( $form->getElements() as $element )
+        {
+            if ( $element instanceof Select && !is_null($element->getOption('entity')) )
+            {
+                // Obtém os registros de listagens padrões, a partir da entidade definida para o campo.
+                $results = $this->getListValuesToSelectElement($element);
+                $listValues = array(null => null);
+        
+                foreach ( $results as $result )
+                {
+                    $listValues[$result['id']] = $result['title'];
+                }
+                
+                $form->get($element->getAttribute('name'))->setValueOptions($listValues);
+            }
+        }
+    }
+            
+    /**
+     * Retorna todos os registros para serem populados em campos de tipo select,
+     * conforme registros padrões 'id' e 'title'.
+     * 
+     * @param Select $element
+     * @return array
+     */
+    public function getListValuesToSelectElement(Select $element)
+    {
+        $entity = $element->getOption('entity');
+        
+        $repository = $this->getObjectManager()->getRepository($entity);
+        $query = $repository->createQueryBuilder('list')
+                            ->select("list.id, list.title")
+                            ->orderBy("list.title")
+                            ->getQuery();        
+        
+        return $query->getResult();
     }
 }
 

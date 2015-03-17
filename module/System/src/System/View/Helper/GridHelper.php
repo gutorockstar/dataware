@@ -143,7 +143,15 @@ class GridHelper extends ViewHelper
 
                     if ( method_exists($entity, $getFunction) )
                     {
-                        $tdValue .= $entity->$getFunction();
+                        $data = $entity->$getFunction();
+                        $value = $data;
+                        
+                        if ( is_object($data) )
+                        {
+                            $value = $data->getId() . ' - ' . $data->getTitle();
+                        }
+                        
+                        $tdValue .= $value;
                     }
                     
                     $rows .= "<td>{$tdValue}</td>";

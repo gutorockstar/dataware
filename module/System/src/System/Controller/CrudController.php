@@ -16,59 +16,9 @@ use System\Controller\Controller;
 use Zend\View\Model\ViewModel;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Zend\Form\Annotation\AnnotationBuilder;
-use Zend\Form\Form;
-use Zend\Form\Element\Select;
 
 class CrudController extends Controller
-{
-    /**
-     * Ajusta os elementos especiais do formulário,
-     * como por exemplo os campos de tipo select, que
-     * deverão listar todos os registros de uma entidade
-     * por padrão.
-     * 
-     * @param \Zend\Form\Form $form
-     */
-    private function adjustOfSpecialElements(Form $form)
-    {
-        foreach ( $form->getElements() as $element )
-        {
-            if ( $element instanceof Select && !is_null($element->getOption('entity')) )
-            {
-                // Obtém os registros de listagens padrões, a partir da entidade definida para o campo.
-                $results = $this->getListValuesToSelectElement($element);
-                $listValues = array(null => null);
-        
-                foreach ( $results as $result )
-                {
-                    $listValues[$result['id']] = $result['title'];
-                }
-                
-                $form->get($element->getAttribute('name'))->setValueOptions($listValues);
-            }
-        }
-    }
-            
-    /**
-     * Retorna todos os registros para serem populados em campos de tipo select,
-     * conforme registros padrões 'id' e 'title'.
-     * 
-     * @param Select $element
-     * @return array
-     */
-    public function getListValuesToSelectElement(Select $element)
-    {
-        $entity = $element->getOption('entity');
-        
-        $repository = $this->getObjectManager()->getRepository($entity);
-        $query = $repository->createQueryBuilder('list')
-                            ->select("list.id, list.title")
-                            ->orderBy("list.title")
-                            ->getQuery();        
-        
-        return $query->getResult();
-    }
-    
+{    
     /**
      * Primeira ação a ser executada.
      * Por padrão, executa a ação de busca, responsável por carregar
@@ -91,11 +41,8 @@ class CrudController extends Controller
             
         if ( $this->request->isPost() ) 
         {
-            $this->populateEntity($entity);
-
-            
-            // PARA O REGISTRO DA CATEGORIA PAI, É NECESSÁRIO PASSAR O OBJETO CATEGORIA,
-            // E NÃO O CÓDIGO DA CATEGORIA.
+            $postData = $this->getRequest()->getPost()->toArray();
+            $this->populateEntity($entity, $postData);
             
             $this->getObjectManager()->persist($entity);
             $this->getObjectManager()->flush();
@@ -123,7 +70,8 @@ class CrudController extends Controller
 
         if ( $this->request->isPost() ) 
         {
-            $this->populateEntity($entity);
+            $postData = $this->getRequest()->getPost()->toArray();
+            $this->populateEntity($entity, $postData);
 
             $this->getObjectManager()->persist($entity);
             $this->getObjectManager()->flush();
