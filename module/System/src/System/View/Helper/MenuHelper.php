@@ -56,9 +56,9 @@ class MenuHelper extends ViewHelper
                 "Banner" => '/admin/banner',
             ),
             "Produtos" => array(
-                "Categoria" => '/admin/category',
-                "Marca" => '/admin/brand',
-                "Produto" => '/admin/product'
+                "Categorias" => '/admin/category',
+                "Marcas" => '/admin/brand',
+                "Produtos" => '/admin/product'
             ),
             "Sobre nós" => array(
                 "Empresa" => '/admin/company',
@@ -66,7 +66,7 @@ class MenuHelper extends ViewHelper
                 "Visão" => '/admin/companyview'
             ),
             "Configurações" => array(
-                "Usuário" => '/admin/useraccount'
+                "Usuários" => '/admin/useraccount'
             )
         );
         

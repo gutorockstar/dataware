@@ -13,7 +13,7 @@ $form->prepare();
 $editForm = $this->form()->openTag($form);              
 $editForm .= $this->formCollection($form);
 $editForm .= $this->form()->closeTag();
-$panel = new \System\Model\Panel('Editar categoria', $editForm);
+$panel = new \System\Model\Panel('Editar categoria', $editForm, 'fa-folder-open');
 
 $view = new \System\Model\View();
 $view->setToolbar($toolbar);

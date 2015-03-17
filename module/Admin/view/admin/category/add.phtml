@@ -15,7 +15,7 @@ $form->prepare();
 $addForm = $this->form()->openTag($form);              
 $addForm .= $this->formCollection($form);
 $addForm .= $this->form()->closeTag();
-$panel = new \System\Model\Panel('Nova categoria', $addForm);
+$panel = new \System\Model\Panel('Nova categoria', $addForm, 'fa-folder-open');
 
 $view = new \System\Model\View();
 $view->setToolbar($toolbar);

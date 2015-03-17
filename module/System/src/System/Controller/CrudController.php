@@ -14,7 +14,6 @@ namespace System\Controller;
 
 use System\Controller\Controller;
 use Zend\View\Model\ViewModel;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Zend\Form\Annotation\AnnotationBuilder;
 
 class CrudController extends Controller
@@ -42,7 +41,7 @@ class CrudController extends Controller
         if ( $this->request->isPost() ) 
         {
             $postData = $this->getRequest()->getPost()->toArray();
-            $this->populateEntity($entity, $postData);
+            $this->populateEntityToPersist($entity, $postData);
             
             $this->getObjectManager()->persist($entity);
             $this->getObjectManager()->flush();
@@ -67,11 +66,13 @@ class CrudController extends Controller
         
         $entityClass = $this->getCurrentEntity();
         $entity = $this->getObjectManager()->find($entityClass, $id);
+        
+        
 
         if ( $this->request->isPost() ) 
         {
             $postData = $this->getRequest()->getPost()->toArray();
-            $this->populateEntity($entity, $postData);
+            $this->populateEntityToPersist($entity, $postData);
 
             $this->getObjectManager()->persist($entity);
             $this->getObjectManager()->flush();
@@ -79,12 +80,7 @@ class CrudController extends Controller
             return $this->redirect()->toRoute($this->getCurrentRoute());
         }
         
-        $builder  = new AnnotationBuilder();    
-        $form = $builder->createForm($entity);
-        $this->adjustOfSpecialElements($form);
-        
-        $form->setHydrator(new DoctrineHydrator($this->getObjectManager(), $entityClass));
-        $form->bind($entity);
+        $form = $this->getFormBindByEntity($entity);
 
         return array('form' => $form);
     }

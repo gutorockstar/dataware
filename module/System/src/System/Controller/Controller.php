@@ -18,6 +18,7 @@ use Zend\View\Helper\ServerUrl;
 use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\Form\Form;
 use Zend\Form\Element\Select;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 class Controller extends AbstractActionController
 {
@@ -179,7 +180,7 @@ class Controller extends AbstractActionController
      * @param ORM/Object $entity
      * @param array $data
      */
-    protected function populateEntity($entity, $data)
+    protected function populateEntityToPersist($entity, $data)
     {    
         $builder = new AnnotationBuilder();    
         $form = $builder->createForm($entity);
@@ -211,6 +212,37 @@ class Controller extends AbstractActionController
     }
     
     /**
+     * Ajusta os registros populados na entidade,
+     * para contemplar o formato requerido do formulário.
+     * 
+     * @param ORM/Object $entity
+     * @return Form
+     */
+    public function getFormBindByEntity($entity)
+    {
+        $builder  = new AnnotationBuilder();    
+        $form = $builder->createForm($entity);
+        $this->adjustOfSpecialElements($form);
+        
+        foreach ( $form->getElements() as $element )
+        {
+            if ( $element instanceof Select && !is_null($element->getOption('entity')) )
+            {
+                $attributeName = $element->getAttribute('name');
+                $setFunction = "set" . $attributeName;
+                $getFunction = "get" . $attributeName;
+                
+                $entity->$setFunction($entity->$getFunction()->getId());
+            }
+        }
+        
+        $form->setHydrator(new DoctrineHydrator($this->getObjectManager(), $this->getCurrentEntity()));
+        $form->bind($entity);
+        
+        return $form;
+    }
+    
+    /**
      * Ajusta os elementos especiais do formulário,
      * como por exemplo os campos de tipo select, que
      * deverão listar todos os registros de uma entidade
@@ -230,7 +262,7 @@ class Controller extends AbstractActionController
         
                 foreach ( $results as $result )
                 {
-                    $listValues[$result['id']] = $result['title'];
+                    $listValues[$result['id']] = $result['id'] . ' - ' . $result['title'];
                 }
                 
                 $form->get($element->getAttribute('name'))->setValueOptions($listValues);

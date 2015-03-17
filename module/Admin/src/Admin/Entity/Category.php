@@ -35,17 +35,6 @@ class Category
     protected $id;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Category", cascade={"all"}, fetch="EAGER")
-     * @ORM\JoinColumn(name="categoryfather_id", referencedColumnName="id", nullable=true)
-     * 
-     * @Annotation\Type("Zend\Form\Element\Select")
-     * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Categoria pai", "entity":"Admin\Entity\Category"})
-     * @Annotation\Attributes({"class":"input-text form-control"})
-     */
-    protected  $categoryfather;
-    
-    /**
      * @ORM\Column(type="string", length=45, columnDefinition="VARCHAR(45) NOT NULL")
      * 
      * @Annotation\Type("Zend\Form\Element\Text")
@@ -56,6 +45,17 @@ class Category
      * @Annotation\ErrorMessage("O valor para 'Nome' é requerido.")
      */
     protected $title;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", cascade={"all"}, fetch="EAGER")
+     * @ORM\JoinColumn(name="categoryfather_id", referencedColumnName="id", nullable=true)
+     * 
+     * @Annotation\Type("Zend\Form\Element\Select")
+     * @Annotation\Filter({"name":"StripTags"})
+     * @Annotation\Options({"label":"Categoria pai", "entity":"Admin\Entity\Category"})
+     * @Annotation\Attributes({"class":"input-text form-control"})
+     */
+    protected  $categoryfather;
     
     /**
      * @ORM\Column(type="string", length=255, columnDefinition="VARCHAR(255)")
