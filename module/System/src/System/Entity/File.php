@@ -35,7 +35,12 @@ class File
     /**
      * @ORM\Column(type="string", length=45, columnDefinition="VARCHAR(45) NOT NULL")
      */
-    private $contenttype;
+    private $type;
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $size;
     
     /**
      * @ORM\Column(type="string", length=255, columnDefinition="VARCHAR(255) NOT NULL")
@@ -61,15 +66,25 @@ class File
     {
         $this->title = $title;
     }
-
-    public function getContenttype() 
+    
+    public function getType() 
     {
-        return $this->contenttype;
+        return $this->type;
     }
 
-    public function setContenttype($contenttype) 
+    public function setType($type) 
     {
-        $this->contenttype = $contenttype;
+        $this->type = $type;
+    }
+
+    public function getSize() 
+    {
+        return $this->size;
+    }
+
+    public function setSize($size) 
+    {
+        $this->size = $size;
     }
 
     public function getFilepath() 

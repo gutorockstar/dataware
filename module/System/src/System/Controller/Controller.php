@@ -198,10 +198,6 @@ class Controller extends AbstractActionController
                     break;
                 }
                 
-                
-                
-                
-                
                 /**
                  * Se estiver recebendo um arquivo nos dados do post, deverá primeiro efetuar o upload do arquivo
                  * e registrar o arquivo na system.file. Após o registro, então será populado o atributo referente ao relacionamento
@@ -213,11 +209,6 @@ class Controller extends AbstractActionController
                     $value = $this->getEntityByElementField($element, $fileId);
                     break;
                 }
-                
-                
-                
-                
-                
             }
             
             $lowerAttribute = strtolower($attribute);
@@ -359,6 +350,7 @@ class Controller extends AbstractActionController
         else 
         {   
             $filePath = dirname(__DIR__) . '/../../../../public/files';
+            
             if ( !is_dir($filePath) )
             {
                 mkdir($filePath);
@@ -368,12 +360,17 @@ class Controller extends AbstractActionController
             
             if ( $adapter->receive($fileArgs['name']) ) 
             {
-                exit(var_export("AGORA, AQUI SERÁ NECESSÁRIO EFETUAR O REGISTRO NA system.file"));
+                $file = new \System\Entity\File();
+                $file->setTitle($fileArgs['name']);
+                $file->setType($fileArgs['type']);
+                $file->setSize($fileArgs['size']);
+                $file->setFilepath($filePath);
+                
+                $this->getObjectManager()->persist($file);
+                $this->getObjectManager()->flush();
+                $fileId = $file->getId();
             }
         } 
-        
-        
-        
         
         return $fileId;
     }
