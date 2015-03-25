@@ -18,7 +18,6 @@ use Zend\View\Helper\ServerUrl;
 use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\Form\Form;
 use Zend\Form\Element\Select;
-use Zend\Form\Element\File;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 class Controller extends AbstractActionController
@@ -189,11 +188,15 @@ class Controller extends AbstractActionController
         // Percorre os dados dos atributos recebidos.
         foreach ( $data as $attribute => $value )
         {
+            $lowerAttribute = strtolower($attribute);
+            $setFunction = "set" . ucfirst($lowerAttribute);
+            $getFunction = "get" . ucfirst($lowerAttribute);
+            
             // Percorre os attributos da entidade, para reconhecimento de elementos especiais.
             foreach ( $form->getElements() as $element )
             {
                 if ( ($element instanceof Select) && (!is_null($element->getOption('entity'))) && ($element->getAttribute('name') == $attribute) )
-                {      
+                {                          
                     $value = $this->getEntityByElementField($element, $value);
                     break;
                 }
@@ -203,16 +206,26 @@ class Controller extends AbstractActionController
                  * e registrar o arquivo na system.file. Após o registro, então será populado o atributo referente ao relacionamento
                  * do arquivo, na entidade principal do registro.
                  */
-                if ( ($element instanceof File) && (!is_null($element->getOption('entity'))) && ($element->getAttribute('name') == $attribute) )
+                if ( ($element instanceof \Zend\Form\Element\File) && (!is_null($element->getOption('entity'))) && ($element->getAttribute('name') == $attribute) )
                 {
+                    // Efetua o upload da nova imagem
                     $fileId = $this->uploadFile($value, $form);
                     $value = $this->getEntityByElementField($element, $fileId);
+                    
+                    // Se a entidade principal já possuir uma imagem para o attributo, remove a velha para substituir pela nova.
+                    if ( method_exists($entity, $getFunction) && !is_null($fileId) )
+                    {
+                        $file = $entity->$getFunction();
+
+                        if ( $file instanceof \System\Entity\File && !is_null($file->getId()) )
+                        {
+                            $this->removeFile($file);
+                        }
+                    }
+                    
                     break;
                 }
             }
-            
-            $lowerAttribute = strtolower($attribute);
-            $setFunction = "set" . ucfirst($lowerAttribute);
 
             if ( method_exists($entity, $setFunction) )
             {
@@ -321,6 +334,38 @@ class Controller extends AbstractActionController
     }
     
     /**
+     * Valida se o arquivo é um arquivo válido para upload.
+     * 
+     * @param array $fileArgs
+     * @return boolean
+     * @throws Exception
+     */
+    private function validateFile(array $fileArgs)
+    {
+        $size = new \Zend\Validator\File\Size(array('max' => 2000000, 'min' => 2000));
+        $return = true;
+        
+        $adapter = new \Zend\File\Transfer\Adapter\Http(); 
+        $adapter->setValidators(array($size), $fileArgs['name']);
+
+        if ( !$adapter->isValid() )
+        {
+            $dataError = $adapter->getMessages();
+            $errors = "";
+
+            foreach ( $dataError as $key => $row )
+            {
+                $errors .= $row . "<br>";
+            }
+
+            $return = false;
+            throw new Exception($errors);
+        } 
+            
+       return $return;
+    }
+    
+    /**
      * Efetua o upload e registro de um arquivo.
      * 
      * @param array $fileArgs
@@ -328,51 +373,71 @@ class Controller extends AbstractActionController
      */
     private function uploadFile(array $fileArgs, Form $form)
     {
-        $size = new \Zend\Validator\File\Size(array('max' => 2000000, 'min' => 2000));
-                 
-        $adapter = new \Zend\File\Transfer\Adapter\Http(); 
-        $adapter->setValidators(array($size), $fileArgs['name']);
-        
-        if ( !$adapter->isValid() )
+        try
         {
-            $dataError = $adapter->getMessages();
-            $error = array();
-            
-            foreach ( $dataError as $key => $row )
+            if ( $this->validateFile($fileArgs) )
             {
-                $error[] = $row;
-            }
-            
-            exit(var_export($error));
-            
-            $form->setMessages(array('fileupload' => $error));
-        } 
-        else 
-        {   
-            $filePath = dirname(__DIR__) . '/../../../../public/files';
-            
-            if ( !is_dir($filePath) )
+                $filePath = dirname(__DIR__) . '/../../../../public/files';
+
+                if ( !is_dir($filePath) )
+                {
+                    mkdir($filePath);
+                }
+
+                $adapter = new \Zend\File\Transfer\Adapter\Http(); 
+                $adapter->setDestination($filePath);
+
+                if ( $adapter->receive($fileArgs['name']) ) 
+                {
+                    $file = new \System\Entity\File();
+                    $file->setTitle($fileArgs['name']);
+                    $file->setType($fileArgs['type']);
+                    $file->setSize($fileArgs['size']);
+                    $file->setFilepath($filePath);
+
+                    $this->getObjectManager()->persist($file);
+                    $this->getObjectManager()->flush();
+                    $fileId = $file->getId();
+                }
+            } 
+
+            return $fileId;
+        }
+        catch (Exception $err)
+        {
+            exit($err->getMessage());
+        }
+    }
+    
+    /**
+     * Remove um arquivo de seu diretório atual.
+     * 
+     * @param \System\Entity\File $file
+     */
+    private function removeFile(\System\Entity\File $file)
+    {
+        try
+        {
+            $filePath = $file->getFilepath();
+            $fileName = $filePath . '/' . $file->getTitle();
+
+            if ( file_exists($fileName) )
             {
-                mkdir($filePath);
+                if ( unlink($fileName) )
+                {                    
+                    $this->getObjectManager()->remove($file);
+                    $this->getObjectManager()->flush();
+                }
+                else
+                {
+                    throw new Exception("Não foi possível remover o arquivo '" . $fileName . "'! Contate um administrador.");
+                }
             }
-            
-            $adapter->setDestination($filePath);
-            
-            if ( $adapter->receive($fileArgs['name']) ) 
-            {
-                $file = new \System\Entity\File();
-                $file->setTitle($fileArgs['name']);
-                $file->setType($fileArgs['type']);
-                $file->setSize($fileArgs['size']);
-                $file->setFilepath($filePath);
-                
-                $this->getObjectManager()->persist($file);
-                $this->getObjectManager()->flush();
-                $fileId = $file->getId();
-            }
-        } 
-        
-        return $fileId;
+        }
+        catch (Exception $err)
+        {
+            exit($err->getMessage());
+        }
     }
 }
 
