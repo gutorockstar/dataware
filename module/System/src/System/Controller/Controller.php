@@ -208,6 +208,16 @@ class Controller extends AbstractActionController
                  */
                 if ( ($element instanceof \Zend\Form\Element\File) && (!is_null($element->getOption('entity'))) && ($element->getAttribute('name') == $attribute) )
                 {
+                    /**
+                     * Como deverá funcionar o algoritmo:
+                     * -Verifica se a entidade principal, já possui um arquivo registrado para o attributo;
+                     * -Se não existir, efetua o upload do arquivo, e monta a referencia normalmente;
+                     * -Se já existir, remove o arquivo físico velho, faz o upload do arquivo físico novo, 
+                     * e atualiza o registro do arquivo na base de dados, contemplando os dados do novo arquivo.
+                     */
+                    
+                    
+                    
                     // Efetua o upload da nova imagem
                     $fileId = $this->uploadFile($value, $form);
                     $value = $this->getEntityByElementField($element, $fileId);
