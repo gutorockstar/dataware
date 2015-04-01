@@ -6,6 +6,7 @@ body {
 }
 
 .container{
+    max-width: 100% !important;
     padding-right: 0px;
     padding-left: 0px;
 }
@@ -62,13 +63,17 @@ footer{
     margin-top: 0px !important;
 }
 
+.navbar{
+    margin-bottom: 0px;
+}
+
 .menu .navbar-header{
     float: right !important;
     clear: both;
 }
 
 .menu .navbar-collapse{
-    padding-left: 0px !important;
+    padding-left: 20px !important;
 }
 
 .menu .dropdown-menu a{
@@ -97,7 +102,7 @@ footer{
 }
 
 .menu li a{
-    height: 50px !important;
+    height: 53px !important;
     color: #fff !important;
 }
     
@@ -131,7 +136,7 @@ footer{
 
 .navbar {
     z-index: 95;
-    background-image: linear-gradient(to bottom, #ffffff 0%, #ddd 100%) !important; 
+    background-image: linear-gradient(to bottom, #ffffff 0%, #ccc 100%) !important; 
 }
 
 label {
@@ -279,11 +284,12 @@ select {
 }
 
 .panel-heading {
-    background-image: linear-gradient(to bottom, #e78f08 0, #f6a828 100%) !important;
+    background-image: linear-gradient(to bottom, #ed9c28 0, #eb8f00 100%) !important;
     background-repeat: repeat-x !important;
     font-weight: bold !important;
     color: #fff !important;
     height: 40px !important;
+    
     /**padding: 5px 15px !important;*/
 }
 
@@ -401,7 +407,7 @@ select {
 
 .toolbar{
     width: 100%;
-    height: 44px;
+    height: 64px;
     left: 0 !important;
     right: 0 !important;
 }
@@ -413,7 +419,7 @@ select {
 .tool{
     margin-top: 2px;
     width: 110px;
-    height: 55px;
+    height: 60px;
     margin-left: 5px;
     padding: 5px;
     float: left;
@@ -423,6 +429,10 @@ select {
 
 .tool:active{
     opacity: 0.8;
+}
+
+.tool .fa{
+    margin-top: 5px !important;
 }
 
 .title-tool{
@@ -449,10 +459,6 @@ thead tr{
     color: #999;
 }
 
-nav{
-    margin-bottom: 5px !important;
-    border-bottom: 1px solid #ddd !important;
-}
 
 .nav-panel{
     padding: 10px;
@@ -480,7 +486,7 @@ nav{
 }
 
 .disabled-style {
-    color: #ccc !important;
+    color: #aaa !important;
     cursor: not-allowed;
 }
 
