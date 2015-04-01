@@ -284,7 +284,7 @@ select {
 }
 
 .panel-heading {
-    background-image: linear-gradient(to bottom, #ed9c28 0, #eb8f00 100%) !important;
+    background-image: linear-gradient(to bottom, #999 0, gray 100%) !important;
     background-repeat: repeat-x !important;
     font-weight: bold !important;
     color: #fff !important;
@@ -437,10 +437,19 @@ select {
 
 .tool .fa{
     margin-top: 5px !important;
+    color: #eb8f00;
 }
 
 .title-tool{
     font-size: 14px;
+    color: #222;
+}
+
+.tool-selected,
+.tool:active,
+.tool:focus{
+    background: #eb8f00;
+    color: #fff !important;
 }
 
 thead tr{

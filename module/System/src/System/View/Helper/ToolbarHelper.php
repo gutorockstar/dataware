@@ -82,13 +82,13 @@ class ToolbarHelper extends ViewHelper
     {
         if ( $toolbar->getShowDefaultToolbarActions() )
         {
-            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_NEW, 'Novo', 'add', 'fa-file-o'));
+            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_NEW, 'Novo', 'add', 'fa-file'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_EDIT, 'Editar', 'edit', 'fa-edit'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_VIEW, 'Visualizar', 'view', 'fa-eye'));
-            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_DELETE, 'Excluir', 'delete', 'fa-trash-o'));
+            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_DELETE, 'Excluir', 'delete', 'fa-trash'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_SEARCH, 'Procurar', 'index', 'fa-search'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_PRINT, 'Imprimir', 'print', 'fa-print'));
-            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_BACK, 'Voltar', 'back', 'fa-arrow-circle-o-left'));
+            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_BACK, 'Voltar', 'back', 'fa-arrow-circle-left'));
         }
     }
     
@@ -151,6 +151,38 @@ class ToolbarHelper extends ViewHelper
     }
     
     /**
+     * Obtém a ação atual.
+     * 
+     * @return string
+     */
+    private function getCurrentAction()
+    {
+        $currentUrl = $this->getCurrentUrl();
+        $urlExplode = explode("/", $currentUrl);
+        $action = $urlExplode[count($urlExplode) - 1];
+        
+        $currentRouteExplode = explode("/", $this->getCurrentViewRoute());
+        
+        if ( $action == $currentRouteExplode[count($currentRouteExplode) - 1])
+        {
+            $action = 'index';
+        }
+        
+        return $action;
+    }
+    
+    /**
+     * Verifica se a ação a ser gerada é a selecionada.
+     * 
+     * @param type $action
+     * @return type
+     */
+    private function wasSelected($action)
+    {
+        return ($action == $this->getCurrentAction());
+    }
+    
+    /**
      * Monta e retorna ferramenta da barra de ferramentas.
      * 
      * @param ToolbarAction $toolbarAction
@@ -158,14 +190,14 @@ class ToolbarHelper extends ViewHelper
      */
     private function createToolbarAction(ToolbarAction $toolbarAction)
     {  
-        $selected = ($toolbarAction->getId() == Toolbar::TB_ACTION_SEARCH) ? " tool-selected" : "";
         $currentRouteUrl = $toolbarAction->getEnabled() ? $this->getCurrentRouteUrl() : null;
+        $disableStyleClass = $toolbarAction->getEnabled() ? "" : "disabled-style";
+        $toolSelectedClass = $this->wasSelected($toolbarAction->getAction()) ? "tool-selected" : "";
         
         return "<a id=\"tb_option_{$toolbarAction->getId()}\" title=\"{$toolbarAction->getTitle()}\" href=\"{$currentRouteUrl}{$toolbarAction->getAction()}\">
-                    <div class=\"tool {$selected}\">
-                        <i class=\"fa {$toolbarAction->getCssClass()} fa-2x\">
-                            <p class=\"title-tool\">{$toolbarAction->getTitle()}</p>
-                        </i>
+                    <div class=\"tool {$toolSelectedClass}\">
+                        <i class=\"fa {$toolbarAction->getCssClass()} fa-2x {$toolSelectedClass}\"></i>
+                        <p class=\"title-tool {$disableStyleClass} {$toolSelectedClass}\">{$toolbarAction->getTitle()}</p>
                     </div>
                 </a>";
     }

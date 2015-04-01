@@ -17,9 +17,9 @@ use System\Model\Tree;
 
 class TreeHelper extends ViewHelper
 {
-    public function __invoke(Tree $tree) 
+    public function __invoke(Tree $tree = null) 
     {
-        return "<div class='view-header'>
+        return "<div class='tree'>
                     <font>Teste árvore</font>
                 </div>";
     }
