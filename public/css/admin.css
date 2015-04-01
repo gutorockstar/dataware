@@ -649,3 +649,11 @@ select[multiple]{
 .input-submit{
     float: left !important;
 }
+
+.action-grid{
+    margin-right: 5px;
+}
+
+.action-grid:hover{
+    text-decoration: none;
+}

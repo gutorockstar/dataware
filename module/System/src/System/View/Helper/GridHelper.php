@@ -223,13 +223,14 @@ class GridHelper extends ViewHelper
                 $entityName = strtolower($entityClass[2]);
 
                 $actions .= "<td>
-                                <a title='Visualizar' href='{$urlHelper($entityName, array('action' => 'view', 'id' => $entity->getId()))}'>
+                                <!--
+                                <a class='action-grid' title='Visualizar' href='{$urlHelper($entityName, array('action' => 'view', 'id' => $entity->getId()))}'>
                                     <i class='fa fa-eye fa-lg'></i>
-                                </a>
-                                <a title='Editar' href='{$urlHelper($entityName, array('action' => 'edit', 'id' => $entity->getId()))}'>
+                                </a>-->
+                                <a class='action-grid' title='Editar' href='{$urlHelper($entityName, array('action' => 'edit', 'id' => $entity->getId()))}'>
                                     <i class='fa fa-pencil-square-o fa-lg'></i>
                                 </a>
-                                <a title='Excluir' href='{$urlHelper($entityName, array('action' => 'delete', 'id' => $entity->getId()))}'>
+                                <a class='action-grid' title='Excluir' href='{$urlHelper($entityName, array('action' => 'delete', 'id' => $entity->getId()))}'>
                                     <i class='fa fa-trash-o fa-lg'></i>
                                 </a>
                              </td>";

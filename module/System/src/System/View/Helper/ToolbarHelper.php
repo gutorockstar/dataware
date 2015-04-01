@@ -160,7 +160,7 @@ class ToolbarHelper extends ViewHelper
     {
         $currentUrl = $this->getCurrentUrl();
         $urlExplode = explode("/", $currentUrl);
-        $action = $urlExplode[count($urlExplode) - 1];
+        $action = is_numeric($urlExplode[count($urlExplode) - 1]) ? $urlExplode[count($urlExplode) - 2] : $urlExplode[count($urlExplode) - 1];
         
         $currentRouteExplode = explode("/", $this->getCurrentViewRoute());
         $currentUrlExplode = explode("/", $this->getCurrentUrl());
