@@ -285,6 +285,7 @@ select {
 
 .panel-heading {
     background-image: linear-gradient(to bottom, #999 0, gray 100%) !important;
+    /**background-image: linear-gradient(to bottom, #eb8f00 0, #ec971f 100%) !important;*/
     background-repeat: repeat-x !important;
     font-weight: bold !important;
     color: #fff !important;

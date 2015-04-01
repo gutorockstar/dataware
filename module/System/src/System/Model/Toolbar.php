@@ -16,6 +16,7 @@ class Toolbar
 {    
     const TB_ACTION_NEW = 'tb_action_new';
     const TB_ACTION_EDIT = 'tb_action_edit';
+    const TB_ACTION_SAVE = 'tb_action_save';
     const TB_ACTION_VIEW = 'tb_action_view';
     const TB_ACTION_DELETE = 'tb_action_delete';
     const TB_ACTION_SEARCH = 'tb_action_search';
