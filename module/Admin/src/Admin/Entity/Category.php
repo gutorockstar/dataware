@@ -31,6 +31,7 @@ class Category
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Código"})
      * @Annotation\Attributes({"class":"input-numeric form-control", "readOnly":"true"})
+     * @Annotation\AllowEmpty(true)
      */
     protected $id;
     
@@ -42,7 +43,7 @@ class Category
      * @Annotation\Options({"label":"Título"})
      * @Annotation\Attributes({"class":"input-text form-control"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":45}})
-     * @Annotation\ErrorMessage("O valor para 'Nome' é requerido.")
+     * @Annotation\ErrorMessage("O campo 'Título' é requerido!")
      */
     protected $title;
     
@@ -52,8 +53,9 @@ class Category
      * 
      * @Annotation\Type("Zend\Form\Element\Select")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Categoria pai", "entity":"Admin\Entity\Category"})
+     * @Annotation\Options({"label":"Categoria pai", "disable_inarray_validator":true, "entity":"Admin\Entity\Category"})
      * @Annotation\Attributes({"class":"input-text form-control"})
+     * @Annotation\AllowEmpty(true)
      */
     protected  $categoryfather;
     
@@ -65,6 +67,7 @@ class Category
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Imagem de capa", "entity":"System\Entity\File"})
      * @Annotation\Attributes({"class":"input-text form-control"})
+     * @Annotation\AllowEmpty(true)
      */
     protected $cover;
     
@@ -75,6 +78,7 @@ class Category
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Descrição"})
      * @Annotation\Attributes({"class":"input-textarea form-control"})
+     * @Annotation\AllowEmpty(true)
      */
     protected $description;
     
@@ -87,12 +91,6 @@ class Category
      * @Annotation\Attributes({"class":"input-checkbox form-control", "value":"1"})
      */
     protected $active;
-
-    /**
-     * @Annotation\Type("Zend\Form\Element\Submit")
-     * @Annotation\Attributes({"value":"Salvar", "class":"input-submit btn btn-primary"})
-     */
-    //protected $save;
     
     public function getId() 
     {

@@ -39,6 +39,9 @@ class CrudController extends Controller
         
         $entityClass = $this->getCurrentEntity();        
         $entity = new $entityClass();
+        
+        $builder  = new AnnotationBuilder();    
+        $form = $builder->createForm($entity);
             
         if ( $request->isPost() ) 
         {
@@ -47,19 +50,21 @@ class CrudController extends Controller
                 $request->getFiles()->toArray()
             );
             
-            $this->populateEntityToPersist($entity, $postData);
+            $form->setData($postData);
             
-            $this->getObjectManager()->persist($entity);
-            $this->getObjectManager()->flush();
-            $id = $entity->getId();
+            if ( $form->isValid() )
+            {
+                $this->populateEntityToPersist($entity, $postData);
 
-            return $this->redirect()->toRoute($this->getCurrentRoute(), array('id' => $id));
+                $this->getObjectManager()->persist($entity);
+                $this->getObjectManager()->flush();
+                $id = $entity->getId();
+
+                return $this->redirect()->toRoute($this->getCurrentRoute(), array('id' => $id));
+            }
         }
         
-        $builder  = new AnnotationBuilder();    
-        $form = $builder->createForm($entity);
         $this->adjustOfSpecialElements($form);
-        
         return array('form' => $form);
     }
     
@@ -73,6 +78,10 @@ class CrudController extends Controller
         
         $entityClass = $this->getCurrentEntity();
         $entity = $this->getObjectManager()->find($entityClass, $id);
+        
+        $objEntity = new $entityClass();
+        $builder  = new AnnotationBuilder();    
+        $form = $builder->createForm($objEntity);
 
         if ( $request->isPost() ) 
         {
@@ -81,17 +90,26 @@ class CrudController extends Controller
                 $request->getFiles()->toArray()
             );
             
-            $this->populateEntityToPersist($entity, $postData);
+            $form->setData($postData);
+            
+            if ( $form->isValid() )
+            {
+                $this->populateEntityToPersist($entity, $postData);
+                
+                $this->getObjectManager()->persist($entity);
+                $this->getObjectManager()->flush();
 
-            $this->getObjectManager()->persist($entity);
-            $this->getObjectManager()->flush();
-
-            return $this->redirect()->toRoute($this->getCurrentRoute());
+                return $this->redirect()->toRoute($this->getCurrentRoute());
+            }
+            else
+            {
+                $this->adjustOfSpecialElements($form);
+                return array('form' => $form);
+            }
         }
         
-        $form = $this->getFormBindByEntity($entity);
-
-        return array('form' => $form);
+        $formBind = $this->getFormBindByEntity($entity);
+        return array('form' => $formBind);
     }
     
     /**
