@@ -197,7 +197,7 @@ class ToolbarHelper extends ViewHelper
         $toolSelectedClass = $this->wasSelected($toolbarAction->getAction()) ? "tool-selected" : "";
         $href = is_null($toolbarAction->getOnClick()) ? $currentRouteUrl . $toolbarAction->getAction() : "javascript:void(0)";
         
-        return "<a id=\"tb_option_{$toolbarAction->getId()}\" title=\"{$toolbarAction->getTitle()}\" href=\"{$href}\" onClick=\"{$toolbarAction->getOnClick()}\">
+        return "<a class='loading' id=\"tb_option_{$toolbarAction->getId()}\" title=\"{$toolbarAction->getTitle()}\" href=\"{$href}\" onClick=\"{$toolbarAction->getOnClick()}\">
                     <div class=\"tool {$toolSelectedClass}\">
                         <i class=\"fa {$toolbarAction->getCssClass()} fa-2x {$toolSelectedClass}\"></i>
                         <p class=\"title-tool {$disableStyleClass} {$toolSelectedClass}\">{$toolbarAction->getTitle()}</p>
