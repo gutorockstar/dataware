@@ -152,6 +152,7 @@ label {
 
 label span{
     float: left !important;
+    font-weight: bold;
 }
 
 input[type="radio"]{
@@ -438,12 +439,10 @@ select {
 
 .tool .fa{
     margin-top: 5px !important;
-    color: #eb8f00;
 }
 
 .title-tool{
     font-size: 14px;
-    color: #222;
 }
 
 .tool-selected,
@@ -642,6 +641,13 @@ select[multiple]{
 
 .input-text{
     width: 40%;
+    float: left;
+    clear: both;
+}
+
+.input-textarea{
+    width: 40%;
+    height: 6em !important;
     float: left;
     clear: both;
 }

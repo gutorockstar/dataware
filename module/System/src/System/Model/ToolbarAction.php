@@ -49,6 +49,12 @@ class ToolbarAction
     private $enabled;
     
     /**
+     * 
+     * @var String
+     */
+    private $onClick;
+    
+    /**
      * Método construtor da classe ToolbarOption
      * 
      * @param String $id
@@ -57,12 +63,13 @@ class ToolbarAction
      * @param String $cssClass
      * @param boolean $enabled
      */
-    public function __construct($id, $title, $action, $cssClass, $enabled = true)
+    public function __construct($id, $title, $action, $cssClass, $enabled = true, $onClick = null)
     {
         $this->id = $id;
         $this->title = $title;
         $this->action = $action;
         $this->cssClass = $cssClass;
+        $this->onClick = $onClick;
         
         $this->setEnabled($enabled);
     }
@@ -131,6 +138,16 @@ class ToolbarAction
             $this->addCssClass(self::TB_DISABLE_CLASS_CSS);
             $this->setAction(self::TB_DISABLE_ACTION);
         }
+    }
+    
+    public function getOnClick() 
+    {
+        return $this->onClick;
+    }
+
+    public function setOnClick($onClick) 
+    {
+        $this->onClick = $onClick;
     }
 }
 

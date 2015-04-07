@@ -74,7 +74,7 @@ class Category
      * @Annotation\Type("Zend\Form\Element\Textarea")
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Descrição"})
-     * @Annotation\Attributes({"class":"input-text form-control"})
+     * @Annotation\Attributes({"class":"input-textarea form-control"})
      */
     protected $description;
     
@@ -92,7 +92,7 @@ class Category
      * @Annotation\Type("Zend\Form\Element\Submit")
      * @Annotation\Attributes({"value":"Salvar", "class":"input-submit btn btn-primary"})
      */
-    protected $save;
+    //protected $save;
     
     public function getId() 
     {
