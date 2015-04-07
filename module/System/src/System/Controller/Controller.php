@@ -215,22 +215,28 @@ class Controller extends AbstractActionController
                      * -Se já existir, remove o arquivo físico velho, faz o upload do arquivo físico novo, 
                      * e atualiza o registro do arquivo na base de dados, contemplando os dados do novo arquivo.
                      */
-                    
-                    
-                    
-                    // Efetua o upload da nova imagem
-                    $fileId = $this->uploadFile($value, $form);
-                    $value = $this->getEntityByElementField($element, $fileId);
-                    
-                    // Se a entidade principal já possuir uma imagem para o attributo, remove a velha para substituir pela nova.
-                    if ( method_exists($entity, $getFunction) && !is_null($fileId) )
+                    if ( method_exists($entity, $getFunction) )
                     {
-                        $file = $entity->$getFunction();
-
-                        if ( $file instanceof \System\Entity\File && !is_null($file->getId()) )
-                        {
-                            $this->removeFile($file);
+                        $originalFile = $entity->$getFunction();
+                    
+                        // Verifica se a entidade principal, já possui um arquivo registrado para o attributo;
+                        if ( $originalFile instanceof \System\Entity\File && !is_null($originalFile->getId()) )
+                        {                            
+                            $fileId = $originalFile->getId();
+                            
+                            // Remover o arquivo físico velho, sem remove-lo da base.
+                            $this->removeFile($originalFile, false);
+                            
+                            // Efetua upload do arquivo físico novo, sem registrá-lo na base.
+                            // Ajusta os dados da base do arquivo velho, recebendo as informações do novo, e atualiza o registro na base.
+                            $this->uploadFile($value, $fileId);
                         }
+                        else
+                        {                            
+                            $fileId = $this->uploadFile($value);
+                        }
+                        
+                        $value = $this->getEntityByElementField($element, $fileId);
                     }
                     
                     break;
@@ -381,12 +387,14 @@ class Controller extends AbstractActionController
      * @param array $fileArgs
      * @return int
      */
-    private function uploadFile(array $fileArgs, Form $form)
+    private function uploadFile(array $fileArgs, $fileId = null)
     {
         try
         {
-            if ( $this->validateFile($fileArgs) )
-            {
+            if ( (strlen($fileArgs['type']) > 0) && $this->validateFile($fileArgs) )
+            {    
+                // TALVEZ SEJA NECESSÁRIO UM CONTROLE PARA QUEBRAR EM MAIS DIRETÓRIOS, PARA NÃO PESAR O SERVIDOR
+                // TALVEZ public/files/ano/mes/dia
                 $filePath = dirname(__DIR__) . '/../../../../public/files';
 
                 if ( !is_dir($filePath) )
@@ -398,8 +406,14 @@ class Controller extends AbstractActionController
                 $adapter->setDestination($filePath);
 
                 if ( $adapter->receive($fileArgs['name']) ) 
-                {
+                {       
                     $file = new \System\Entity\File();
+                    
+                    if ( !is_null($fileId) )
+                    {
+                        $file = $this->getObjectManager()->find('System\Entity\File', $fileId);
+                    }
+                    
                     $file->setTitle($fileArgs['name']);
                     $file->setType($fileArgs['type']);
                     $file->setSize($fileArgs['size']);
@@ -407,6 +421,7 @@ class Controller extends AbstractActionController
 
                     $this->getObjectManager()->persist($file);
                     $this->getObjectManager()->flush();
+                    
                     $fileId = $file->getId();
                 }
             } 
@@ -423,24 +438,21 @@ class Controller extends AbstractActionController
      * Remove um arquivo de seu diretório atual.
      * 
      * @param \System\Entity\File $file
+     * @param $removeFromBase boolean
      */
-    private function removeFile(\System\Entity\File $file)
+    private function removeFile(\System\Entity\File $file, $removeFromBase = true)
     {
         try
         {
             $filePath = $file->getFilepath();
             $fileName = $filePath . '/' . $file->getTitle();
 
-            if ( file_exists($fileName) )
+            if ( file_exists($fileName) && unlink($fileName) )
             {
-                if ( unlink($fileName) )
+                if ( $removeFromBase )
                 {                    
                     $this->getObjectManager()->remove($file);
                     $this->getObjectManager()->flush();
-                }
-                else
-                {
-                    throw new Exception("Não foi possível remover o arquivo '" . $fileName . "'! Contate um administrador.");
                 }
             }
         }
