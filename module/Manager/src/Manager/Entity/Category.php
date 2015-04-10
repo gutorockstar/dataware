@@ -10,14 +10,14 @@
  *
  * @author augusto
  */
-namespace Admin\Entity;
+namespace Manager\Entity;
 use Doctrine\ORM\Mapping as ORM,
     Zend\Form\Annotation;
 
 
 /** 
  * @ORM\Entity
- * @ORM\Table(name="admin.category")
+ * @ORM\Table(name="manager.category")
  */
 class Category 
 {
@@ -53,7 +53,7 @@ class Category
      * 
      * @Annotation\Type("Zend\Form\Element\Select")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Categoria pai", "disable_inarray_validator":true, "entity":"Admin\Entity\Category"})
+     * @Annotation\Options({"label":"Categoria pai", "disable_inarray_validator":true, "entity":"Manager\Entity\Category"})
      * @Annotation\Attributes({"class":"input-text form-control"})
      * @Annotation\AllowEmpty(true)
      */

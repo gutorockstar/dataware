@@ -6,11 +6,15 @@
  */
 
 /**
- * Description of AddressController
+ * Description of CityController
  *
  * @author augusto
  */
-class AddressController 
+namespace Manager\Controller;
+
+use System\Controller\CrudController;
+
+class BrandController extends CrudController
 {
     
 }

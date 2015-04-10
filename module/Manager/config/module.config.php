@@ -2,74 +2,33 @@
 /**
  * Zend Framework (http://framework.zend.com/)
  *
- * @link      http://github.com/zendframework/ZendSkeletonAdmin for the canonical source repository
+ * @link      http://github.com/zendframework/ZendSkeletonManager for the canonical source repository
  * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Admin;
+namespace Manager;
 
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Admin\Controller\LoginController' => 'Admin\Controller\LoginController',
-            'Admin\Controller\AdminController' => 'Admin\Controller\AdminController',
-            
-            'Admin\Controller\CategoryController' => 'Admin\Controller\CategoryController',
-            'Admin\Controller\BrandController' => 'Admin\Controller\BrandController',
-            'Admin\Controller\ProductController' => 'Admin\Controller\ProductController'
+            'Manager\Controller\ManagerController' => 'Manager\Controller\ManagerController',
+            'Manager\Controller\CategoryController' => 'Manager\Controller\CategoryController',
+            'Manager\Controller\BrandController' => 'Manager\Controller\BrandController',
+            'Manager\Controller\ProductController' => 'Manager\Controller\ProductController'
         ),
     ),
     
     'router' => array(
         'routes' => array(
             
-            'login' => array(
+            'manager' => array(
                 'type'    => 'Literal',
                 'options' => array(
-                    'route'    => '/login',
+                    'route'    => '/manager',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Admin\Controller',
-                        'controller'    => 'LoginController',
-                        'action'        => 'login',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'process' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:action]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-            
-            'logout' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/logout',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Admin\Controller',
-                        'controller'    => 'LoginController',
-                        'action'        => 'logout',
-                    ),
-                ),
-            ),
-            
-            'admin' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/admin',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Admin\Controller',
-                        'controller'    => 'AdminController',
+                        '__NAMESPACE__' => 'Manager\Controller',
+                        'controller'    => 'ManagerController',
                         'action'        => 'start',
                     ),
                 ),
@@ -94,18 +53,18 @@ return array(
             'category' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/admin/category[/:action][/:id]',
+                    'route' => '/manager/category[/:action][/:id]',
                     //'route' => '/system/crud[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]+'
                     ),
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Admin\Controller',
-                        'entity' => 'Admin\Entity\Category',
-                        'controller' => 'Admin\Controller\CategoryController',
+                        '__NAMESPACE__' => 'Manager\Controller',
+                        'entity' => 'Manager\Entity\Category',
+                        'controller' => 'Manager\Controller\CategoryController',
                         'action' => 'index',
-                        'module' => 'admin'
+                        'module' => 'manager'
                     ),
                 ),
             ),
@@ -114,17 +73,17 @@ return array(
             'brand' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/admin/brand[/:action][/:id]',
+                    'route' => '/manager/brand[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]+'
                     ),
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Admin\Controller',
-                        'entity' => 'Admin\Entity\Brand',
-                        'controller' => 'Admin\Controller\BrandController',
+                        '__NAMESPACE__' => 'Manager\Controller',
+                        'entity' => 'Manager\Entity\Brand',
+                        'controller' => 'Manager\Controller\BrandController',
                         'action' => 'index',
-                        'module' => 'admin'
+                        'module' => 'manager'
                     ),
                 ),
             ),
@@ -133,17 +92,17 @@ return array(
             'product' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/admin/product[/:action][/:id]',
+                    'route' => '/manager/product[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]+'
                     ),
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Admin\Controller',
-                        'entity' => 'Admin\Entity\Product',
-                        'controller' => 'Admin\Controller\ProductController',
+                        '__NAMESPACE__' => 'Manager\Controller',
+                        'entity' => 'Manager\Entity\Product',
+                        'controller' => 'Manager\Controller\ProductController',
                         'action' => 'index',
-                        'module' => 'admin'
+                        'module' => 'manager'
                     ),
                 ),
             ), 
@@ -163,18 +122,6 @@ return array(
                     __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
                 )
             )
-        ),
-        'authentication' => array(
-            'orm_default' => array(
-                'object_manager' => 'Doctrine\ORM\EntityManager',
-                'identity_class' => 'Admin\Entity\UserAccount',
-                'identity_property' => 'username',
-                'credential_property' => 'password',
-                'credential_callable' => function(\Admin\Entity\UserAccount $Login, $passwordGiven) 
-                {
-                    return ( $Login->getPassword() == md5($passwordGiven) );
-                },
-            ),
         ),
     ),
     
@@ -207,21 +154,13 @@ return array(
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
         'template_map' => array(
-            'layout/layout'           => __DIR__ . '/../view/layout/admin.phtml',
-            'admin/index/index' => __DIR__ . '/../view/admin/admin/start.phtml',
+            'layout/layout'           => __DIR__ . '/../view/layout/system.phtml',
+            'manager/index/index' => __DIR__ . '/../view/manager/manager/start.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
-        ),
-    ),
-    
-    // Placeholder for console routes
-    'console' => array(
-        'router' => array(
-            'routes' => array(
-            ),
         ),
     ),
 );

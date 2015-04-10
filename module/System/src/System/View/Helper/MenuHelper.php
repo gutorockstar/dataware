@@ -21,7 +21,7 @@ class MenuHelper extends ViewHelper
 {    
     public function __invoke()
     {        
-        $userSession = new Container('UserAccount');
+        $userSession = new Container('Login');
         $username    = $userSession->username;
         
         if ( strlen($username) > 0 )
@@ -29,7 +29,7 @@ class MenuHelper extends ViewHelper
             $menu .= "<nav class='menu' role='navigation'>
                           <div class='container'>
                               <div class='collapse navbar-collapse'>
-                                  <a href='/admin' title='Home' class='loading'>
+                                  <a href='/manager' title='Home' class='loading'>
                                       <div class='home'>
                                           <i class='img-home fa fa-home fa-3x'></i>
                                       </div>
@@ -53,20 +53,20 @@ class MenuHelper extends ViewHelper
     {
         $modulesArray = array(
             "Principal" => array(
-                "Banner" => '/admin/banner',
+                "Banner" => '/manager/banner',
             ),
             "Produtos" => array(
-                "Categorias" => '/admin/category',
-                "Marcas" => '/admin/brand',
-                "Produtos" => '/admin/product'
+                "Categorias" => '/manager/category',
+                "Marcas" => '/manager/brand',
+                "Produtos" => '/manager/product'
             ),
             "Sobre nós" => array(
-                "Empresa" => '/admin/company',
-                "Missão" => '/admin/companymission',
-                "Visão" => '/admin/companyview'
+                "Empresa" => '/manager/company',
+                "Missão" => '/manager/companymission',
+                "Visão" => '/manager/companyview'
             ),
             "Configurações" => array(
-                "Usuários" => '/admin/useraccount'
+                "Usuários" => '/manager/useraccount'
             )
         );
         

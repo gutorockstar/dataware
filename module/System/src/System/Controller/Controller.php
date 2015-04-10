@@ -29,8 +29,8 @@ class Controller extends AbstractActionController
     const CONTROLLER_PARAM = 'controller';
     const MODULE_PARAM = 'module';
     
+    const MODULE_MANAGER = 'manager';
     const MODULE_SITE = 'site';
-    const MODULE_ADMIN = 'admin';
     const MODULE_SYSTEM = 'system';
     
     protected $route;
@@ -224,12 +224,15 @@ class Controller extends AbstractActionController
                         {                            
                             $fileId = $originalFile->getId();
                             
-                            // Remover o arquivo físico velho, sem remove-lo da base.
-                            $this->removeFile($originalFile, false);
-                            
-                            // Efetua upload do arquivo físico novo, sem registrá-lo na base.
-                            // Ajusta os dados da base do arquivo velho, recebendo as informações do novo, e atualiza o registro na base.
-                            $this->uploadFile($value, $fileId);
+                            if ( (strlen($value['type']) > 0) )
+                            {
+                                // Remover o arquivo físico velho, sem remove-lo da base.
+                                $this->removeFile($originalFile, false);
+
+                                // Efetua upload do arquivo físico novo, sem registrá-lo na base.
+                                // Ajusta os dados da base do arquivo velho, recebendo as informações do novo, e atualiza o registro na base.
+                                $this->uploadFile($value, $fileId);
+                            }
                         }
                         else
                         {                            

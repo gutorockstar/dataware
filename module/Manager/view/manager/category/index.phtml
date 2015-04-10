@@ -2,6 +2,10 @@
 
 $toolbar = new System\Model\Toolbar();
 $toolbar->setShowDefaultToolbarActions(true);
+$toolbar->setAddCustomToolbarActions(array(
+    //new System\Model\ToolbarAction('tb_option_refresh', $this->translate("Atualizar"), 'refresh', 'fa-refresh'),
+    //new System\Model\ToolbarAction('tb_option_config', $this->translate("Configurações"), 'config', 'fa-cog', false)
+));
 $toolbar->setDisableToolbarActions(array(
     System\Model\Toolbar::TB_ACTION_PRINT,
     System\Model\Toolbar::TB_ACTION_EDIT,
@@ -11,9 +15,9 @@ $toolbar->setDisableToolbarActions(array(
 ));
 
 $grid = new System\Model\Grid();
-$grid->setEntity('Admin\Entity\Brand');
+$grid->setEntity('Manager\Entity\Category');
 $grid->setData($dataGrid);
-$panel = new System\Model\Panel('Marcas', $this->GridHelper($grid), 'fa-folder-open');
+$panel = new System\Model\Panel('Categorias', $this->GridHelper($grid), 'fa-folder-open');
 
 $view = new System\Model\View();
 $view->setToolbar($toolbar);

@@ -11,21 +11,21 @@
  * @author augusto
  */
 
-namespace Admin\Entity;
+namespace System\Entity;
 use Doctrine\ORM\Mapping as ORM,
     Zend\Form\Annotation;
 
 /** 
  * @ORM\Entity
- * @ORM\Table(name="admin.useraccount")
+ * @ORM\Table(name="system.login")
  */
-class UserAccount
+class Login
 {
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\SequenceGenerator(sequenceName="useraccount_id_seq", initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="login_id_seq", initialValue=1)
      * 
      * @Annotation\Type("Zend\Form\Element\Hidden")
      */

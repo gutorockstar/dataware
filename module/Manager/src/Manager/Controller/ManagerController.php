@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Admin\Controller;
+namespace Manager\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class AdminController extends AbstractActionController
+class ManagerController extends AbstractActionController
 {
     public function startAction()
     {

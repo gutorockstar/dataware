@@ -29,7 +29,7 @@ class ToolbarHelper extends ViewHelper
      */
     public function __invoke(Toolbar $toolbar)
     {
-        $userSession = new Container('UserAccount');
+        $userSession = new Container('Login');
         $username = $userSession->username;           
         
         $this->prepareToolbar($toolbar);

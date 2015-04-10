@@ -9,7 +9,7 @@ $toolbar->setAddCustomToolbarActions(array(
 $toolbar->setDisableToolbarActions(array(System\Model\Toolbar::TB_ACTION_PRINT));
 
 $grid = new System\Model\Grid();
-$grid->setEntity('Admin\Entity\Country');
+$grid->setEntity('');
 $grid->setData($dataGrid);
 $panel = new System\Model\Panel('Países', $this->GridHelper($grid));
 

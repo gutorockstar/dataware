@@ -15,17 +15,17 @@ namespace System\Model;
 class View 
 {
     /**
-     * @var Admin\Entity\Tree
+     * @var System\Entity\Tree
      */
     private $tree;
     
     /**
-     * @var Admin\Entity\Toolbar
+     * @var System\Entity\Toolbar
      */
     private $toolbar;
     
     /**
-     * @var Admin\Entity\Panel
+     * @var System\Entity\Panel
      */
     private $panel;
     

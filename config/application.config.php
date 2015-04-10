@@ -7,9 +7,9 @@ return array(
         'DoctrineORMModule',
         
         // module
-        'System',
-	'Admin',
+        'Manager',
         'Site',
+        'System'        
     ),
     
     'synergy' => array(

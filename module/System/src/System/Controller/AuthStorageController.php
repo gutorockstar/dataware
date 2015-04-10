@@ -11,7 +11,7 @@
  * @author augusto
  */
 
-namespace Admin\Controller;
+namespace System\Controller;
 use Zend\Authentication\Storage;
 
 class AuthStorageController extends Storage\Session 

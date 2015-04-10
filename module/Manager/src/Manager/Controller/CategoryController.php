@@ -6,16 +6,18 @@
  */
 
 /**
- * Description of CityController
+ * Description of CountryController
  *
  * @author augusto
  */
-namespace Admin\Controller;
+namespace Manager\Controller;
 
 use System\Controller\CrudController;
+use Manager\Entity\Category;
 
-class BrandController extends CrudController
-{
+class CategoryController extends CrudController
+{   
+    
     
 }
 

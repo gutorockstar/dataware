@@ -12,15 +12,51 @@ namespace System;
 return array(
     'controllers' => array(
         'invokables' => array(
-            'System\Controller\Controller' => 'System\Controller\Controller'
+            'System\Controller\Controller' => 'System\Controller\Controller',
+            'System\Controller\LoginController' => 'System\Controller\LoginController',
         ),
     ),
     
     'router' => array(
         'routes' => array(
+            'login' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/login',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'System\Controller',
+                        'controller'    => 'LoginController',
+                        'action'        => 'login',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'process' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/[:action]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                ),
+            ),
             
-            
-            
+            'logout' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/logout',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'System\Controller',
+                        'controller'    => 'LoginController',
+                        'action'        => 'logout',
+                    ),
+                ),
+            ),
         ),
     ),
     
@@ -36,6 +72,19 @@ return array(
                     __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
                 )
             )
+        ),
+        
+        'authentication' => array(
+            'orm_default' => array(
+                'object_manager' => 'Doctrine\ORM\EntityManager',
+                'identity_class' => 'System\Entity\Login',
+                'identity_property' => 'username',
+                'credential_property' => 'password',
+                'credential_callable' => function(\System\Entity\Login $Login, $passwordGiven) 
+                {
+                    return ( $Login->getPassword() == md5($passwordGiven) );
+                },
+            ),
         ),
     ),
     
@@ -76,9 +125,10 @@ return array(
     ),
     
     'module_layouts' => array(
-        'Admin' => 'layout/admin.phtml',
-        'System' => 'layout/system.phtml',
-        'Site' => 'layout/site.phtml'
+        'Manager' => 'layout/system.phtml',
+        'Site' => 'layout/site.phtml',
+        'System' => 'layout/system.phtml'
+        
     ),
     
     // Placeholder for console routes

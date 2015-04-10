@@ -7,11 +7,11 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Admin\Controller;
+namespace Manager\Controller;
 
-use System\Controller\Controller;
+use System\Controller\CrudController;
 
-class ProductController extends Controller
+class ProductController extends CrudController
 { 
     
 }

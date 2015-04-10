@@ -7,13 +7,13 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Admin\Controller;
+namespace System\Controller;
  
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\Session\Container;
  
-use Admin\Entity\UserAccount;
+use System\Entity\Login;
 
 class LoginController extends AbstractActionController
 {
@@ -29,7 +29,7 @@ class LoginController extends AbstractActionController
     {
         if ( !$this->storage ) 
         {
-            $this->storage = $this->getServiceLocator()->get('Admin\Controller\AuthStorageController');
+            $this->storage = $this->getServiceLocator()->get('System\Controller\AuthStorageController');
         }
          
         return $this->storage;
@@ -45,10 +45,11 @@ class LoginController extends AbstractActionController
         $data = $this->getRequest()->getPost();
         $form = $this->getFormLogin();
         $form->setData($data);
+        $sucessRoute = \System\Controller\Controller::MODULE_MANAGER;
         
         if ( $this->getServiceLocator()->get('ServiceLocator')->hasIdentity() )
         {
-            $this->redirect()->toRoute('admin');
+            $this->redirect()->toRoute($sucessRoute);
         }
         else if ( array_key_exists('username', $data) )
         {
@@ -56,9 +57,9 @@ class LoginController extends AbstractActionController
             {
                 if ( $this->authenticate($data['username'], $data['password']) ) 
                 {
-                    $userSession = new Container('UserAccount');
+                    $userSession = new Container('Login');
                     $userSession->username = $data['username'];
-                    $this->redirect()->toRoute('admin');
+                    $this->redirect()->toRoute($sucessRoute);
                 }
                 else
                 {
@@ -99,10 +100,10 @@ class LoginController extends AbstractActionController
     {
         if ( !$this->form ) 
         {
-            $userAccount = new UserAccount();
+            $login = new Login();
             $builder  = new AnnotationBuilder();
             
-            $this->form = $builder->createForm($userAccount);
+            $this->form = $builder->createForm($login);
         }
          
         return $this->form;
