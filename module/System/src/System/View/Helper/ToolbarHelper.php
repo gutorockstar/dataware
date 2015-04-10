@@ -85,7 +85,7 @@ class ToolbarHelper extends ViewHelper
         
         if ( $toolbar->getShowDefaultToolbarActions() )
         {
-            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_NEW, 'Novo', 'add', 'fa-file-o'));
+            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_NEW, 'Novo', 'add', 'fa-file'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_EDIT, 'Editar', 'edit/' . $id, 'fa-edit'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_SAVE, 'Salvar', "void(0)", 'fa-floppy-o', true, "$('#{$entityName}').submit();"));
             //$toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_VIEW, 'Visualizar', 'view', 'fa-eye'));
@@ -197,10 +197,11 @@ class ToolbarHelper extends ViewHelper
     {  
         $currentRouteUrl = $toolbarAction->getEnabled() ? $this->getCurrentRouteUrl() : null;
         $disableStyleClass = $toolbarAction->getEnabled() ? "" : "disabled-style";
+        $loading = $toolbarAction->getEnabled() ? "loading" : "";
         $toolSelectedClass = $this->wasSelected($toolbarAction->getAction()) ? "tool-selected" : "";
         $href = is_null($toolbarAction->getOnClick()) ? $currentRouteUrl . $toolbarAction->getAction() : "javascript:void(0)";
         
-        return "<a class='loading' id=\"tb_option_{$toolbarAction->getId()}\" title=\"{$toolbarAction->getTitle()}\" href=\"{$href}\" onClick=\"{$toolbarAction->getOnClick()}\">
+        return "<a class='{$loading}' id=\"tb_option_{$toolbarAction->getId()}\" title=\"{$toolbarAction->getTitle()}\" href=\"{$href}\" onClick=\"{$toolbarAction->getOnClick()}\">
                     <div class=\"tool {$toolSelectedClass}\">
                         <i class=\"fa {$toolbarAction->getCssClass()} fa-2x {$toolSelectedClass}\"></i>
                         <p class=\"title-tool {$disableStyleClass} {$toolSelectedClass}\">{$toolbarAction->getTitle()}</p>

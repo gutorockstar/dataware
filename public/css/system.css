@@ -64,7 +64,7 @@ footer{
 }
 
 .navbar{
-    margin-bottom: 0px;
+    margin-bottom: 10px;
 }
 
 .menu .navbar-header{
@@ -170,6 +170,11 @@ fieldset{
     padding: 10px;
     border: 1px solid #cccccc;
     border-radius: 4px;
+    background: #eee;
+}
+
+input, select, textarea{
+    /**background: #eee !important;*/
 }
 
 fieldset > fieldset label {
@@ -285,11 +290,12 @@ select {
 }
 
 .panel-heading {
-    /**background-image: linear-gradient(to bottom, #999 0, gray 100%) !important;*/
-    background-image: linear-gradient(to bottom, #eb8f00 0, #ec971f 100%) !important;
+    background-image: linear-gradient(to bottom, #ffffff 0%, #ccc 100%) !important;
+    /**background-image: linear-gradient(to bottom, #ccc 0, #ccc 100%) !important;*/
+    /**background-image: linear-gradient(to bottom, #eb8f00 0, #ec971f 100%) !important;*/
     background-repeat: repeat-x !important;
     font-weight: bold !important;
-    color: #fff !important;
+    color: #333 !important;
     height: 35px !important;
     
     /**padding: 5px 15px !important;*/
@@ -368,6 +374,10 @@ select {
     padding: 15px !important;
 }
 
+.dataTable thead{
+    
+}
+
 .dataTable td{
     font-size: 13px;
 }
@@ -416,6 +426,7 @@ select {
     height: 64px;
     left: 0 !important;
     right: 0 !important;
+    background-image: linear-gradient(to bottom, #ffffff 0%, #ffffff 100%) !important;
 }
 
 .tools{
@@ -435,6 +446,10 @@ select {
 
 .tool:active{
     opacity: 0.8;
+}
+
+.tool:hover{
+    
 }
 
 .tool .fa{
