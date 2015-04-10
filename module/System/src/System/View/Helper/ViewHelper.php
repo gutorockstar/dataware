@@ -130,16 +130,30 @@ class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
     }
     
     /**
+     * Retorna instância de RouteMatch da rota atual.
+     * Utilizado para obtenção de parâmetros configurados
+     * na rota.
+     * 
+     * @return RouteMatch
+     */
+    public function getCurrentRouteMatch()
+    {
+        $sm = $this->getView()->getHelperPluginManager()->getServiceLocator();
+        $router = $sm->get('Router');
+        $request = $sm->get('Request');
+        $routeMatch = $router->match($request);
+        
+        return $routeMatch;
+    }
+    
+    /**
      * Retorna o caminho da rota atual.
      * 
      * @return String
      */
     public function getCurrentViewRoute()
     {
-        $sm = $this->getView()->getHelperPluginManager()->getServiceLocator();
-        $router = $sm->get('Router');
-        $request = $sm->get('Request');
-        $routeMatch = $router->match($request);
+        $routeMatch = $this->getCurrentRouteMatch();
         $viewRoute = $routeMatch->getParam('module') . '/' . $routeMatch->getMatchedRouteName() . '/';
         
         return $viewRoute;
@@ -157,6 +171,53 @@ class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
         $baseUrl = $expCurrentUrl[0] . '//' . $expCurrentUrl[2] . '/';
         
         return $baseUrl . $this->getCurrentViewRoute();
+    }
+    
+    /**
+     * Retorna o id do registro atual sendo trabalhado
+     * na interface.
+     * 
+     * @return int
+     */
+    public function getCurrentRegisterId()
+    {
+        $id = 0;
+        $currentUrl = $this->getCurrentUrl();
+        $urlExplode = explode('/', $currentUrl);
+        
+        if ( is_integer((int)$urlExplode[count($urlExplode) - 1]) )
+        {
+            $id = $urlExplode[count($urlExplode) - 1];
+        }
+        
+        return $id;
+    }
+    
+    /**
+     * Retorna a entidade atual da rota.
+     * 
+     * @return type
+     */
+    public function getCurrentEntity()
+    {
+        $routeMatch = $this->getCurrentRouteMatch();
+        $entity = $routeMatch->getParam('entity');
+        
+        return $entity;
+    }
+    
+    /**
+     * Retorna o nome da entidade, pela rota.
+     * 
+     * @return string
+     */
+    public function getCurrentEntityName()
+    {
+        $entity = $this->getCurrentEntity();
+        $entityExplode = explode("\\", $entity);
+        $entityName = $entityExplode[count($entityExplode) - 1];
+        
+        return $entityName;
     }
 }
 

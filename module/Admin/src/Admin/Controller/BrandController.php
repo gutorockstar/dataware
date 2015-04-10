@@ -12,7 +12,9 @@
  */
 namespace Admin\Controller;
 
-class BrandController 
+use System\Controller\CrudController;
+
+class BrandController extends CrudController
 {
     
 }
