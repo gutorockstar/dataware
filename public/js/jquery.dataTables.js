@@ -10997,7 +10997,7 @@
                 /**
                  *
                  */
-		"sSearchPlaceHolder": "Localizo meus registros por aqui!",
+		"sSearchPlaceHolder": "Procurar registro!",
 		
 		/**
 		 * The TABLE node for the main table

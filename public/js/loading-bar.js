@@ -1,10 +1,5 @@
 $(document).ready( function() 
-{
-    $(".btn").click(function()
-    {
-        loadPopupBox();
-    }); 
-    
+{    
     $(".loading").click(function()
     {
         loadPopupBox();
