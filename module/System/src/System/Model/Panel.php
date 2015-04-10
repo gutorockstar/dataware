@@ -48,7 +48,7 @@ class Panel
         $this->body = $body;
         $this->cssClassIcon = $cssClassIcon;
         $this->style = $style;
-        $this->type = FlashMessenger::NAMESPACE_DEFAULT;
+        $this->type = 'primary';
     }
     
     public function getCssClassIcon() 

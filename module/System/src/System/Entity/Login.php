@@ -60,11 +60,11 @@ class Login
      * @Annotation\Options({"label":"Mantenha-me conectado"})
      * @Annotation\Attributes({"class":"form-control checkbox"})
      */
-    protected $remember;
+   // protected $remember;
     
     /**
      * @Annotation\Type("Zend\Form\Element\Submit")
-     * @Annotation\Attributes({"value":"Logar", "class":"btn btn-primary"})
+     * @Annotation\Attributes({"value":"Logar", "class":"btn btn-primary loading"})
      */
     protected $send;
     
