@@ -134,11 +134,6 @@ footer{
     margin-left: 2px;
 }
 
-.navbar {
-    z-index: 95;
-    background-image: linear-gradient(to bottom, #ffffff 0%, #ccc 100%) !important; 
-}
-
 label {
     display: inline !important;
     font-weight: normal !important;
@@ -204,7 +199,7 @@ fieldset > fieldset label {
 }
 
 .btn{
-    margin-top: 20px !important;
+    min-width: 100px !important;
 }
 
 .form-control {

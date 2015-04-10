@@ -35,7 +35,7 @@ class ToolbarHelper extends ViewHelper
         $this->prepareToolbar($toolbar);
         $toolbarActions = $toolbar->getToolbarActions();
         
-        $toolbarView = "<div class='toolbar'>
+        $toolbarView = "<nav class='navbar navbar-default'>
                             <div class='btn-group' role='group'>";
         
         if ( strlen($username) > 0 && count($toolbarActions) > 0 )
@@ -47,7 +47,7 @@ class ToolbarHelper extends ViewHelper
         }
         
         return $toolbarView . "</div>
-                        </div>";
+                        </nav>";
     }
     
     /**
