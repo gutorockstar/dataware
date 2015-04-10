@@ -170,7 +170,6 @@ fieldset{
     padding: 10px;
     border: 1px solid #cccccc;
     border-radius: 4px;
-    background: #eee;
 }
 
 input, select, textarea{
@@ -282,23 +281,6 @@ select {
 .panel{
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
-}
-
-.panel-default{
-    text-align: left !important;
-}
-
-.panel-heading {
-    background-image: linear-gradient(to bottom, #ffffff 0%, #ccc 100%) !important;
-    /**background-image: linear-gradient(to bottom, #ccc 0, #ccc 100%) !important;*/
-    /**background-image: linear-gradient(to bottom, #eb8f00 0, #ec971f 100%) !important;*/
-    background-repeat: repeat-x !important;
-    font-weight: bold !important;
-    color: #333 !important;
-    height: 35px !important;
-    
-    /**padding: 5px 15px !important;*/
 }
 
 .navbar-nav > li > .dropdown-menu{
@@ -306,36 +288,7 @@ select {
 }
 
 .panel-body{
-    background: #eee;
     padding: 5px !important;
-}
-
-.panel-default .panel-body {
-    background: #eee;
-}
-
-.panel-danger .panel-heading { 
-    background: red !important;
-    border-color: red !important;
-    color: #fff !important;
-}
-
-.panel-success .panel-heading { 
-    background: green !important;
-    border-color: green !important;
-    color: #fff !important;
-}
-
-.panel-info .panel-heading { 
-    background: blue !important;
-    border-color: blue !important;
-    color: #fff !important;
-}
-
-.panel-warning .panel-heading { 
-    background: yellow !important;
-    border-color: yellow !important;
-    color: #333 !important;
 }
 
 .form-username{
@@ -374,6 +327,7 @@ select {
     padding: 15px !important;
 }
 
+/**
 .dataTable thead{
     
 }
@@ -396,17 +350,18 @@ select {
 .dataTables_empty{
     color: green;
 }
+*/
 
 .table-striped > tbody > tr:nth-child(odd){
-  background-color: #f9f9f9;
+    background-color: #eee;
 }
 
 .table-striped > tbody > tr:nth-child(even){
-  background-color: #ddd;
+    background-color: #f9f9f9;
 }
 
 .table-striped > tbody > tr:hover {
-  background-color: #eee;
+  background-color: #ddd;
 }
 
 .label-search{
@@ -474,6 +429,7 @@ thead tr{
     height: 20px !important;
 }
 
+/**
 .dataTables_wrapper{
     padding: 5px;
 }
@@ -485,6 +441,7 @@ thead tr{
 .dataTables_length{
     color: #999;
 }
+*/
 
 
 .nav-panel{
