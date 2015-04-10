@@ -73,20 +73,42 @@ class ToolbarHelper extends ViewHelper
     }
     
     /**
+     * Retorna o id do registro atual sendo trabalhado
+     * na interface.
+     * 
+     * @return int
+     */
+    private function getCurrentRegisterId()
+    {
+        $id = 0;
+        $currentUrl = $this->getCurrentUrl();
+        $urlExplode = explode('/', $currentUrl);
+        
+        if ( is_integer((int)$urlExplode[count($urlExplode) - 1]) )
+        {
+            $id = $urlExplode[count($urlExplode) - 1];
+        }
+        
+        return $id;
+    }
+    
+    /**
      * Popula o objeto Toolbar $this->toolbar, com as ferramentas
      * padrões da barra de ferramentas.
      * 
      * @param Toolbar $toolbar
      */
     private function generateDefaultToolbarActions(Toolbar $toolbar)
-    {
+    {      
+        $id = $this->getCurrentRegisterId();
+        
         if ( $toolbar->getShowDefaultToolbarActions() )
         {
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_NEW, 'Novo', 'add', 'fa-file-o'));
-            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_EDIT, 'Editar', 'edit', 'fa-edit'));
+            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_EDIT, 'Editar', 'edit/' . $id, 'fa-edit'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_SAVE, 'Salvar', "void(0)", 'fa-floppy-o', true, "$('#Category').submit();"));
             //$toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_VIEW, 'Visualizar', 'view', 'fa-eye'));
-            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_DELETE, 'Excluir', 'delete', 'fa-trash'));
+            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_DELETE, 'Excluir', 'delete/' . $id, 'fa-trash'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_SEARCH, 'Procurar', 'index', 'fa-search'));
             //$toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_PRINT, 'Imprimir', 'print', 'fa-print'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_BACK, 'Voltar', 'back', 'fa-arrow-circle-left'));
