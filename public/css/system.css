@@ -426,7 +426,6 @@ select {
     height: 64px;
     left: 0 !important;
     right: 0 !important;
-    background-image: linear-gradient(to bottom, #ffffff 0%, #ffffff 100%) !important;
 }
 
 .tools{

@@ -37,7 +37,7 @@ class ToolbarHelper extends ViewHelper
         
         $toolbarView = "<nav class='navbar navbar-default'>
                             <div class='toolbar'>
-                                <div class='tools'>";
+                                <div class='btn-group' role='group'>";
         
         if ( strlen($username) > 0 && count($toolbarActions) > 0 )
         {
@@ -201,11 +201,11 @@ class ToolbarHelper extends ViewHelper
         $toolSelectedClass = $this->wasSelected($toolbarAction->getAction()) ? "tool-selected" : "";
         $href = is_null($toolbarAction->getOnClick()) ? $currentRouteUrl . $toolbarAction->getAction() : "javascript:void(0)";
         
-        return "<a class='{$loading}' id=\"tb_option_{$toolbarAction->getId()}\" title=\"{$toolbarAction->getTitle()}\" href=\"{$href}\" onClick=\"{$toolbarAction->getOnClick()}\">
-                    <div class=\"tool {$toolSelectedClass}\">
+        return "<button type='button' class=\"btn btn-default {$toolSelectedClass}\">
+                    <a class='{$loading}' id=\"tb_option_{$toolbarAction->getId()}\" title=\"{$toolbarAction->getTitle()}\" href=\"{$href}\" onClick=\"{$toolbarAction->getOnClick()}\">
                         <i class=\"fa {$toolbarAction->getCssClass()} fa-2x {$toolSelectedClass}\"></i>
                         <p class=\"title-tool {$disableStyleClass} {$toolSelectedClass}\">{$toolbarAction->getTitle()}</p>
-                    </div>
-                </a>";
+                    </a>
+                </button>";
     }
 }
