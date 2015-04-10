@@ -9,10 +9,10 @@
 
 namespace Manager\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use System\Controller\Controller;
 use Zend\View\Model\ViewModel;
 
-class ManagerController extends AbstractActionController
+class ManagerController extends Controller
 {
     public function startAction()
     {

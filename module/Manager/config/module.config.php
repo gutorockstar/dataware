@@ -37,7 +37,7 @@ return array(
                     'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/[:action]',
+                            'route'    => '[/:action]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -54,17 +54,18 @@ return array(
                 'type' => 'Segment',
                 'options' => array(
                     'route' => '/manager/category[/:action][/:id]',
-                    //'route' => '/system/crud[/:action][/:id]',
                     'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action' => '[a-zA-Z]*',
                         'id' => '[0-9]+'
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Manager\Controller',
                         'entity' => 'Manager\Entity\Category',
                         'controller' => 'Manager\Controller\CategoryController',
+                        'module' => 'manager',
+                        'template' => 'system/crud',
                         'action' => 'index',
-                        'module' => 'manager'
+                        'caption' => 'Categorias'
                     ),
                 ),
             ),
@@ -75,15 +76,17 @@ return array(
                 'options' => array(
                     'route' => '/manager/brand[/:action][/:id]',
                     'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action' => '[a-zA-Z]*',
                         'id' => '[0-9]+'
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Manager\Controller',
                         'entity' => 'Manager\Entity\Brand',
                         'controller' => 'Manager\Controller\BrandController',
+                        'module' => 'manager',
+                        'template' => 'system/crud',
                         'action' => 'index',
-                        'module' => 'manager'
+                        'caption' => 'Marcas'
                     ),
                 ),
             ),
@@ -94,15 +97,17 @@ return array(
                 'options' => array(
                     'route' => '/manager/product[/:action][/:id]',
                     'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action' => '[a-zA-Z]*',
                         'id' => '[0-9]+'
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Manager\Controller',
                         'entity' => 'Manager\Entity\Product',
                         'controller' => 'Manager\Controller\ProductController',
+                        'module' => 'manager',
+                        'template' => 'system/crud',
                         'action' => 'index',
-                        'module' => 'manager'
+                        'caption' => 'Produtos'
                     ),
                 ),
             ), 

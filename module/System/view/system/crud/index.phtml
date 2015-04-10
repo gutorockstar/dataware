@@ -2,16 +2,18 @@
 
 $toolbar = new System\Model\Toolbar();
 $toolbar->setShowDefaultToolbarActions(true);
-$toolbar->setAddCustomToolbarActions(array(
-    new System\Model\ToolbarAction('tb_option_refresh', $this->translate("Atualizar"), 'refresh', 'fa-refresh'),
-    new System\Model\ToolbarAction('tb_option_config', $this->translate("Configurações"), 'config', 'fa-cog', false)
+$toolbar->setDisableToolbarActions(array(
+    System\Model\Toolbar::TB_ACTION_PRINT,
+    System\Model\Toolbar::TB_ACTION_EDIT,
+    System\Model\Toolbar::TB_ACTION_SAVE,
+    System\Model\Toolbar::TB_ACTION_VIEW,
+    System\Model\Toolbar::TB_ACTION_DELETE
 ));
-$toolbar->setDisableToolbarActions(array(System\Model\Toolbar::TB_ACTION_PRINT));
 
 $grid = new System\Model\Grid();
-$grid->setEntity('');
+$grid->setEntity($entity);
 $grid->setData($dataGrid);
-$panel = new System\Model\Panel('Países', $this->GridHelper($grid));
+$panel = new System\Model\Panel($caption, $this->GridHelper($grid), 'fa-folder-open');
 
 $view = new System\Model\View();
 $view->setToolbar($toolbar);

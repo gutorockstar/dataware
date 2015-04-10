@@ -26,8 +26,15 @@ class CrudController extends Controller
     public function indexAction()
     {
         $dataGrid = $this->getObjectManager()->getRepository($this->getCurrentEntity())->findAll();
-
-        return new ViewModel(array('dataGrid' => $dataGrid));
+        $argsAction = array(
+            'entity' => $this->getCurrentEntity(),
+            'caption' => $this->getCurrentCaption(),
+            'dataGrid' => $dataGrid
+        );
+        
+        $viewModel = $this->defineViewModelTemplate(new ViewModel($argsAction), 'index');
+        
+        return $viewModel;
     }
     
     /**
@@ -65,7 +72,14 @@ class CrudController extends Controller
         }
         
         $this->adjustOfSpecialElements($form);
-        return array('form' => $form);
+        
+        $argsAction = array(
+            'form' => $form,
+            'caption' => $this->getCurrentCaption()
+        );
+        $viewModel = $this->defineViewModelTemplate(new ViewModel($argsAction), 'add');
+        
+        return $viewModel;
     }
     
     /**
@@ -82,6 +96,12 @@ class CrudController extends Controller
         $objEntity = new $entityClass();
         $builder  = new AnnotationBuilder();    
         $form = $builder->createForm($objEntity);
+        
+        $formBind = $this->getFormBindByEntity($entity);
+        $argsAction = array(
+            'form' => $formBind,
+            'caption' => $this->getCurrentCaption()
+        );
 
         if ( $request->isPost() ) 
         {
@@ -104,12 +124,12 @@ class CrudController extends Controller
             else
             {
                 $this->adjustOfSpecialElements($form);
-                return array('form' => $form);
+                $argsAction['form'] = $form;
             }
         }
         
-        $formBind = $this->getFormBindByEntity($entity);
-        return array('form' => $formBind);
+        $viewModel = $this->defineViewModelTemplate(new ViewModel($argsAction), 'edit');        
+        return $viewModel;
     }
     
     /**
@@ -135,7 +155,8 @@ class CrudController extends Controller
             return $this->redirect()->toRoute($this->getCurrentRoute());
         }
         
-        return array('entity' => $entity);
+        $viewModel = $this->defineViewModelTemplate(new ViewModel(), 'delete');        
+        return $viewModel;
     }
     
     /**

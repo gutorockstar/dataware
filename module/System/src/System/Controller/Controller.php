@@ -19,6 +19,7 @@ use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\Form\Form;
 use Zend\Form\Element\Select;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+use Zend\View\Model\ViewModel;
 
 class Controller extends AbstractActionController
 {
@@ -28,6 +29,8 @@ class Controller extends AbstractActionController
     const ENTITY_PARAM = 'entity';
     const CONTROLLER_PARAM = 'controller';
     const MODULE_PARAM = 'module';
+    const CUSTOM_TEMPLATE = 'template';
+    const CAPTION = 'caption';
     
     const MODULE_MANAGER = 'manager';
     const MODULE_SITE = 'site';
@@ -160,6 +163,28 @@ class Controller extends AbstractActionController
     {
         $entity = $this->getEvent()->getRouteMatch()->getParam(self::ENTITY_PARAM);
         return $entity;
+    }
+    
+    /**
+     * Retorna a view para onde será redirecionada a entidade.
+     * 
+     * @return String
+     */
+    public function getCustomTemplate()
+    {
+        $template = $this->getEvent()->getRouteMatch()->getParam(self::CUSTOM_TEMPLATE);
+        return $template;
+    }
+    
+    /**
+     * Retorna a descrição da rota atual.
+     * 
+     * @return String
+     */
+    public function getCurrentCaption()
+    {
+        $caption = $this->getEvent()->getRouteMatch()->getParam(self::CAPTION);
+        return $caption;
     }
     
     /**
@@ -463,6 +488,26 @@ class Controller extends AbstractActionController
         {
             exit($err->getMessage());
         }
+    }
+    
+    /**
+     * Define o template que a visão irá utilizar,
+     * caso tenha sido configurado um template costumizado,
+     * o utiliza, se não, utiliza o padrão.
+     * 
+     * @param \Zend\View\Model\ViewModel $viewModel
+     * @param $action String
+     */
+    public function defineViewModelTemplate(ViewModel $viewModel, $action)
+    {
+        $customTemplate = $this->getCustomTemplate();
+        
+        if ( !empty($customTemplate) )
+        {
+            $viewModel->setTemplate($customTemplate . "/{$action}.phtml");
+        }
+        
+        return $viewModel;
     }
 }
 

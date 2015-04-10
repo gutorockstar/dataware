@@ -6,21 +6,22 @@ $toolbar->setDisableToolbarActions(array(
     System\Model\Toolbar::TB_ACTION_EDIT,
     System\Model\Toolbar::TB_ACTION_DELETE,
     System\Model\Toolbar::TB_ACTION_CLONE,
-    System\Model\Toolbar::TB_ACTION_UNIFY
+    System\Model\Toolbar::TB_ACTION_UNIFY,
+    System\Model\Toolbar::TB_ACTION_VIEW
 ));
 
 $form = $this->form;
 $form->prepare();
 
 $addForm = $this->form()->openTag($form);              
-$addForm .= $this->formRow($form->get('title'));
-$addForm .= $this->formRow($form->get('send'));
+$addForm .= $this->formCollection($form);
 $addForm .= $this->form()->closeTag();
-$panel = new \System\Model\Panel('Novo país', $addForm);
+$panel = new \System\Model\Panel($caption, $addForm, 'fa-folder-open');
 
 $view = new \System\Model\View();
 $view->setToolbar($toolbar);
 $view->setPanel($panel);
 
 echo $this->ViewHelper($view);
+
 ?>
