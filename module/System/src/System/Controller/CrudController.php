@@ -43,6 +43,7 @@ class CrudController extends Controller
     public function addAction()
     {
         $request = $this->getRequest();
+        $formIsValid = true;
         
         $entityClass = $this->getCurrentEntity();        
         $entity = new $entityClass();
@@ -71,18 +72,22 @@ class CrudController extends Controller
             }
             else
             {
-                $this->displayErrorMessages($form->getMessages());
+                $formIsValid = false;
             }
         }
         
         $this->adjustOfSpecialElements($form);
-        
         $argsAction = array(
             'form' => $form,
             'caption' => $this->getCurrentCaption()
         );
-        $viewModel = $this->defineViewModelTemplate(new ViewModel($argsAction), $this->getCurrentAction());
         
+        if ( !$formIsValid )
+        {
+            $this->displayErrorMessages($form->getMessages(), $argsAction);
+        }
+        
+        $viewModel = $this->defineViewModelTemplate(new ViewModel($argsAction), $this->getCurrentAction());
         return $viewModel;
     }
     
@@ -103,6 +108,7 @@ class CrudController extends Controller
         
         $formBind = $this->getFormBindByEntity($entity);
         $argsAction = array(
+            'id' => $id,
             'form' => $formBind,
             'caption' => $this->getCurrentCaption()
         );
@@ -129,6 +135,8 @@ class CrudController extends Controller
             {
                 $this->adjustOfSpecialElements($form);
                 $argsAction['form'] = $form;
+                
+                $this->displayErrorMessages($form->getMessages(), $argsAction);
             }
         }
         
@@ -158,6 +166,8 @@ class CrudController extends Controller
 
             return $this->redirect()->toRoute($this->getCurrentRoute());
         }
+        
+        $this->flashMessenger()->addWarningMessage("Você têm certeza de que deseja excluir este registro?");
         
         $viewModel = $this->defineViewModelTemplate(new ViewModel(), $this->getCurrentAction());        
         return $viewModel;
