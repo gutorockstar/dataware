@@ -155,6 +155,17 @@ class Controller extends AbstractActionController
     }
     
     /**
+     * Retorna a ação atual executada da rota.
+     * 
+     * @return string
+     */
+    public function getCurrentAction()
+    {
+        $action = $this->getEvent()->getRouteMatch()->getParam('action', 'index');
+        return $action;
+    }
+    
+    /**
      * Retorna a entidade atual.
      * 
      * @return String
@@ -508,6 +519,47 @@ class Controller extends AbstractActionController
         }
         
         return $viewModel;
+    }
+    
+    /**
+     * Exibe as mensagens de erro ocasionadas no formulário,
+     * ou em qualquer interface.
+     * 
+     * @param array $messages
+     * @param String $action
+     */
+    public function displayErrorMessages(array $messages)
+    {
+        foreach ( $messages as $errorTypes )
+        {
+            foreach ( $errorTypes as $errorType => $message )
+            {                
+                $this->flashMessenger()->addErrorMessage(str_replace("'", "\\'", $message));
+            }
+        }
+        
+        $this->redirect()->toRoute($this->getCurrentRoute(), array('action' => $this->getCurrentAction()));
+    }
+}
+
+/**
+ * Utilizado para debug.
+ */
+function flog()
+{
+    if ( file_exists('/tmp/var_dump') )
+    {
+        $numArgs = func_num_args();
+        $dump = '';
+
+        for ( $i = 0; $i < $numArgs; $i++ )
+        {
+            $dump .= var_export(func_get_arg($i), true) . "\n";
+        }
+
+        $f = fopen('/tmp/var_dump', 'w');
+        fwrite($f, $dump);
+        fclose($f);
     }
 }
 

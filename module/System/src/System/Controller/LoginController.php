@@ -67,6 +67,19 @@ class LoginController extends AbstractActionController
                     $this->redirect()->toRoute('login');
                 }
             }
+            else
+            {                
+                foreach ( $form->getMessages() as $errorTypes )
+                {
+                    foreach ( $errorTypes as $errorType => $message )
+                    {
+                        $this->flashMessenger()->addErrorMessage(str_replace("'", "\\'", $message));
+                    }
+                }
+                
+                $this->redirect()->toRoute('login');
+            }
+            
         }
         
         return array('form' => $form);

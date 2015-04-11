@@ -21,10 +21,10 @@ class AlertHelper extends ViewHelper
     /**
      * Constantes dos headers.
      */
-    const HEADER_INFO    = 'Informação!';
-    const HEADER_SUCCESS = 'Sucesso!';
-    const HEADER_ERROR   = 'Erro!';
-    const HEADER_WARNING   = 'Aviso!';
+    const TITLE_INFO    = 'Só para constar! :)';
+    const TITLE_SUCCESS = 'Tudo certo! :D';
+    const TITLE_ERROR   = 'Ops! :(';
+    const TITLE_WARNING   = 'Ei, atenção! :o';
     
     /**
      * Verifica o alert que deve ser exibido na tela, caso tenha sido chamado.
@@ -33,37 +33,10 @@ class AlertHelper extends ViewHelper
      */
     public function __invoke()
     {       
-        $infoMessages = $this->view->flashMessenger()->getInfoMessages();
-        if ( count($infoMessages) > 0 )
-        {
-            $alert = $this->infoMessage($infoMessages);
-        }
-        else
-        {
-            $successMessages = $this->view->flashMessenger()->getSuccessMessages();
-            if ( count($successMessages) > 0 )
-            {
-                $alert = $this->successMessage($successMessages);
-            }
-            else
-            {
-                $errorMessages = $this->view->flashMessenger()->getErrorMessages();
-                if ( count($errorMessages) > 0 )
-                {
-                    $alert = $this->errorMessage($errorMessages);
-                }
-                else
-                {
-                    $warningMessages = $this->view->flashMessenger()->getWarningMessages();
-                    if ( count($warningMessages) > 0 )
-                    {
-                        $alert = $this->warningMessage($warningMessages);
-                    }
-                }
-            }
-        }
-        
-        echo ($alert) ? $alert : null;
+        $this->infoMessage();
+        $this->successMessage();
+        $this->warningMessage();
+        $this->errorMessage();
     }
     
     /**
@@ -72,14 +45,19 @@ class AlertHelper extends ViewHelper
      * @param array $messages
      * @return String html
      */
-    private function infoMessage($messages)
+    private function infoMessage()
     {
-        foreach($messages as $message)
+        if ( $this->view->flashMessenger()->hasInfoMessages() )
         {
-            $content .= "<p>{$message}</p>";
+            $text = "";
+            
+            foreach ( $this->view->flashMessenger()->getInfoMessages() as $message )
+            {
+                $text .= "- {$message} \\n\\r";
+            }
+
+            echo $this->showAlert(self::TITLE_INFO, $text, FlashMessenger::NAMESPACE_INFO);
         }
-        
-        return $this->popupAlert(FlashMessenger::NAMESPACE_INFO, self::HEADER_INFO, $content);
     }
     
     /**
@@ -88,14 +66,19 @@ class AlertHelper extends ViewHelper
      * @param array $messages
      * @return String html
      */
-    private function successMessage($messages)
+    private function successMessage()
     {
-        foreach($messages as $message)
+        if ( $this->view->flashMessenger()->hasSuccessMessages() )
         {
-            $content .= "<p>{$message}</p>";
+            $text = "";
+            
+            foreach ( $this->view->flashMessenger()->getSuccessMessages() as $message )
+            {
+                $text .= "- {$message} \\n\\r";
+            }
+
+            echo $this->showAlert(self::TITLE_SUCCESS, $text, FlashMessenger::NAMESPACE_SUCCESS);
         }
-        
-        return $this->popupAlert(FlashMessenger::NAMESPACE_SUCCESS, self::HEADER_SUCCESS, $content);
     }
     
     /**
@@ -104,14 +87,19 @@ class AlertHelper extends ViewHelper
      * @param array $messages
      * @return String html
      */
-    private function warningMessage($messages)
+    private function warningMessage()
     {
-        foreach($messages as $message)
+        if ( $this->view->flashMessenger()->hasWarningMessages() )
         {
-            $content .= "<p>{$message}</p>";
+            $text = "";
+            
+            foreach ( $this->view->flashMessenger()->getWarningMessages() as $message )
+            {
+                $text .= "- {$message} \\n\\r";
+            }
+
+            echo $this->showAlert(self::TITLE_WARNING, $text, FlashMessenger::NAMESPACE_WARNING);
         }
-        
-        return $this->popupAlert('warning', self::HEADER_WARNING, $content);
     }
     
     /**
@@ -120,14 +108,19 @@ class AlertHelper extends ViewHelper
      * @param array $messages
      * @return String html
      */
-    private function errorMessage($messages)
+    private function errorMessage()
     {
-        foreach($messages as $message)
+        if ( $this->view->flashMessenger()->hasErrorMessages() )
         {
-            $content .= "<p>{$message}</p>";
+            $text = "";
+            
+            foreach ( $this->view->flashMessenger()->getErrorMessages() as $message )
+            {
+                $text .= "- {$message} \\n\\r";
+            }
+
+            echo $this->showAlert(self::TITLE_ERROR, $text, FlashMessenger::NAMESPACE_ERROR);
         }
-        
-        return $this->popupAlert('danger', self::HEADER_ERROR, $content);
     }
     
     /**
@@ -135,25 +128,16 @@ class AlertHelper extends ViewHelper
      * 
      * @param String $namespace
      * @param String $header
-     * @param String $content
+     * @param String $text
      * @return String html
      */
-    private function popupAlert($namespace, $header, $content)
+    private function showAlert($title, $text, $type)
     {
         return "<div id='obscure'>
-                    <div id='popup_box'>
-                        <div class='alertPanel panel panel-{$namespace}'>
-                            <div class='panel-heading'>
-                                <div class='heading'>{$header}</div>
-                            </div>
-                        <div class='panel-body'>
-                            {$content}
-                            <input type='submit' name='submit' id='popupBoxClose' class='btn btn-default' value='ok'>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                <script>ALERT=true;</script>";
+                    <script>
+                        sweetAlert('{$title}', '{$text}', '{$type}');
+                    </script>
+                </div>";
     }
 }
 

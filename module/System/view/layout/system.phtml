@@ -20,6 +20,7 @@
                         ->prependStylesheet($this->basePath() . '/css/popup-div.css')
                         ->prependStylesheet($this->basePath() . '/css/loading-bar.css')
                         ->prependStylesheet($this->basePath() . '/font-awesome/css/font-awesome.min.css')
+                        ->prependStylesheet($this->basePath() . '/sweetalert-master/lib/sweet-alert.css')
         ?>
 
         <!-- Scripts -->
@@ -34,6 +35,7 @@
             ->prependFile($this->basePath() . '/js/jquery.min.js')
             ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
             ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))            
+            ->prependFile($this->basePath() . '/sweetalert-master/lib/sweet-alert.min.js')
         ; ?>
 
     </head>

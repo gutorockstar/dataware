@@ -39,7 +39,7 @@ class Login
      
      * @Annotation\Attributes({"class":"form-control", "placeholder":"Informe seu login!"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":25}})
-     * @Annotation\ErrorMessage("O campo 'Login' é requerido.");
+     * @Annotation\ErrorMessage("O preenchimento do campo 'Login', é requerido!");
      */
     protected $username;
     
@@ -51,7 +51,7 @@ class Login
      
      * @Annotation\Attributes({"class":"form-control", "placeholder":"Informe sua senha!"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":25}})
-     * @Annotation\ErrorMessage("O campo 'Senha' é requerido.");
+     * @Annotation\ErrorMessage("O preenchimento do campo 'Senha', é requerido!");
      */
     protected $password;
     

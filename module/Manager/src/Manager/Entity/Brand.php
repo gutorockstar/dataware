@@ -43,7 +43,7 @@ class Brand
      * @Annotation\Options({"label":"Título"})
      * @Annotation\Attributes({"class":"input-text form-control"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":45}})
-     * @Annotation\ErrorMessage("O campo 'Título' é requerido!")
+     * @Annotation\ErrorMessage("O preenchimento do campo 'Título', é requerido!")
      */
     private $title;
     

@@ -69,6 +69,10 @@ class CrudController extends Controller
 
                 return $this->redirect()->toRoute($this->getCurrentRoute(), array('id' => $id));
             }
+            else
+            {
+                $this->displayErrorMessages($form->getMessages());
+            }
         }
         
         $this->adjustOfSpecialElements($form);
@@ -77,7 +81,7 @@ class CrudController extends Controller
             'form' => $form,
             'caption' => $this->getCurrentCaption()
         );
-        $viewModel = $this->defineViewModelTemplate(new ViewModel($argsAction), 'add');
+        $viewModel = $this->defineViewModelTemplate(new ViewModel($argsAction), $this->getCurrentAction());
         
         return $viewModel;
     }
@@ -128,7 +132,7 @@ class CrudController extends Controller
             }
         }
         
-        $viewModel = $this->defineViewModelTemplate(new ViewModel($argsAction), 'edit');        
+        $viewModel = $this->defineViewModelTemplate(new ViewModel($argsAction), $this->getCurrentAction());        
         return $viewModel;
     }
     
@@ -155,7 +159,7 @@ class CrudController extends Controller
             return $this->redirect()->toRoute($this->getCurrentRoute());
         }
         
-        $viewModel = $this->defineViewModelTemplate(new ViewModel(), 'delete');        
+        $viewModel = $this->defineViewModelTemplate(new ViewModel(), $this->getCurrentAction());        
         return $viewModel;
     }
     

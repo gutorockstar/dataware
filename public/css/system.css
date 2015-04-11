@@ -168,7 +168,7 @@ input[type="radio"]{
     transition: none;    
 }
 
-fieldset{
+.panel-body fieldset{
     padding: 10px;
     border: 1px solid #cccccc;
     border-radius: 4px;
@@ -622,4 +622,10 @@ form .btn{
 
 .action-grid:hover{
     text-decoration: none;
+}
+
+.sweet-alert p{
+    text-align: left !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
 }

@@ -43,12 +43,12 @@ class Category
      * @Annotation\Options({"label":"Título"})
      * @Annotation\Attributes({"class":"input-text form-control"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":45}})
-     * @Annotation\ErrorMessage("O campo 'Título' é requerido!")
+     * @Annotation\ErrorMessage("O preenchimento do campo 'Título', é requerido!")
      */
     protected $title;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Category", cascade={"all"}, fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="Category", fetch="EAGER")
      * @ORM\JoinColumn(name="categoryfather_id", referencedColumnName="id", nullable=true)
      * 
      * @Annotation\Type("Zend\Form\Element\Select")
