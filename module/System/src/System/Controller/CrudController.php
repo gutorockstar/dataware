@@ -43,7 +43,7 @@ class CrudController extends Controller
     public function addAction()
     {
         $request = $this->getRequest();
-        $formIsValid = true;
+        $caption = $this->getCurrentCaption();
         
         $entityClass = $this->getCurrentEntity();        
         $entity = new $entityClass();
@@ -72,22 +72,12 @@ class CrudController extends Controller
             }
             else
             {
-                $formIsValid = false;
+                $this->displayErrorMessages($form->getMessages(), array('form' => $form, 'caption' => $caption));
             }
         }
         
         $this->adjustOfSpecialElements($form);
-        $argsAction = array(
-            'form' => $form,
-            'caption' => $this->getCurrentCaption()
-        );
-        
-        if ( !$formIsValid )
-        {
-            $this->displayErrorMessages($form->getMessages(), $argsAction);
-        }
-        
-        $viewModel = $this->defineViewModelTemplate(new ViewModel($argsAction), $this->getCurrentAction());
+        $viewModel = $this->defineViewModelTemplate(new ViewModel(array('form' => $form, 'caption' => $caption)), $this->getCurrentAction());
         return $viewModel;
     }
     

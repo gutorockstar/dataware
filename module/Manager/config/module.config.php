@@ -63,9 +63,16 @@ return array(
                         'entity' => 'Manager\Entity\Category',
                         'controller' => 'Manager\Controller\CategoryController',
                         'module' => 'manager',
-                        'template' => 'system/crud',
                         'action' => 'index',
-                        'caption' => 'Categorias'
+                        'caption' => 'Categorias',
+                        
+                        // Custom templates
+                        'template' => array(
+                            'index' => 'system/crud',
+                            'add' => 'system/crud',
+                            'edit' => 'system/crud',
+                            'delete' => 'system/crud'
+                        )
                     ),
                 ),
             ),
@@ -84,9 +91,16 @@ return array(
                         'entity' => 'Manager\Entity\Brand',
                         'controller' => 'Manager\Controller\BrandController',
                         'module' => 'manager',
-                        'template' => 'system/crud',
                         'action' => 'index',
-                        'caption' => 'Marcas'
+                        'caption' => 'Marcas',
+                        
+                        // Custom templates
+                        'template' => array(
+                            'index' => 'system/crud',
+                            'add' => 'system/crud',
+                            'edit' => 'system/crud',
+                            'delete' => 'system/crud'
+                        )
                     ),
                 ),
             ),
@@ -105,9 +119,16 @@ return array(
                         'entity' => 'Manager\Entity\Product',
                         'controller' => 'Manager\Controller\ProductController',
                         'module' => 'manager',
-                        'template' => 'system/crud',
                         'action' => 'index',
-                        'caption' => 'Produtos'
+                        'caption' => 'Produtos',
+                        
+                        // Custom templates
+                        'template' => array(
+                            'index' => 'system/crud',
+                            'add' => 'system/crud',
+                            'edit' => 'system/crud',
+                            'delete' => 'system/crud'
+                        )
                     ),
                 ),
             ), 

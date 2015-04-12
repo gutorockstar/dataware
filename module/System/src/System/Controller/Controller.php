@@ -181,10 +181,10 @@ class Controller extends AbstractActionController
      * 
      * @return String
      */
-    public function getCustomTemplate()
+    public function getCustomTemplate($action)
     {
         $template = $this->getEvent()->getRouteMatch()->getParam(self::CUSTOM_TEMPLATE);
-        return $template;
+        return $template[$action];
     }
     
     /**
@@ -339,7 +339,8 @@ class Controller extends AbstractActionController
             {
                 // Obtém os registros de listagens padrões, a partir da entidade definida para o campo.
                 $results = $this->getListValuesToSelectElement($element);
-                $listValues = array(0 => '--Nenhum registro selecionado--');
+                $listValues = array($element->getEmptyOption() => '--Nenhum registro selecionado--');
+                $element->setEmptyOption(null);
         
                 foreach ( $results as $result )
                 {
@@ -511,7 +512,7 @@ class Controller extends AbstractActionController
      */
     public function defineViewModelTemplate(ViewModel $viewModel, $action)
     {
-        $customTemplate = $this->getCustomTemplate();
+        $customTemplate = $this->getCustomTemplate($action);
         
         if ( !empty($customTemplate) )
         {

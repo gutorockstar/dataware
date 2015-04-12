@@ -29,7 +29,7 @@ class Category
      * 
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Código"})
+     * @Annotation\Options({"label":"ID"})
      * @Annotation\Attributes({"class":"input-numeric form-control", "readOnly":"true"})
      * @Annotation\AllowEmpty(true)
      */
@@ -53,7 +53,7 @@ class Category
      * 
      * @Annotation\Type("Zend\Form\Element\Select")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Categoria pai", "disable_inarray_validator":true, "entity":"Manager\Entity\Category"})
+     * @Annotation\Options({"label":"Categoria pai", "disable_inarray_validator":true, "empty_option":0, "entity":"Manager\Entity\Category"})
      * @Annotation\Attributes({"class":"input-text form-control"})
      * @Annotation\AllowEmpty(true)
      */

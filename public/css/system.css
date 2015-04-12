@@ -147,6 +147,7 @@ label {
     float: left;
     clear: both;
     width: 35%;
+    min-height: 65px !important;
     margin-right: 0.5em;
     text-align: right;
     font-weight: bold;
@@ -169,7 +170,7 @@ input[type="radio"]{
 }
 
 .panel-body fieldset{
-    padding: 10px;
+    padding: 15px;
     border: 1px solid #cccccc;
     border-radius: 4px;
     background: #f5f5f5;
@@ -421,10 +422,6 @@ thead tr{
 
 .gradeA{
     height: 20px !important;
-}
-
-.dataTables_wrapper{
-    padding: 5px;
 }
 
 .dataTables_info{

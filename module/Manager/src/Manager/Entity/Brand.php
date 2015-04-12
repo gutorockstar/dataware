@@ -29,7 +29,7 @@ class Brand
      * 
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Código"})
+     * @Annotation\Options({"label":"ID"})
      * @Annotation\Attributes({"class":"input-numeric form-control", "readOnly":"true"})
      * @Annotation\AllowEmpty(true)
      */
