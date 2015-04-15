@@ -12,9 +12,9 @@ $toolbar->setDisableToolbarActions(array(
 ));
 
 $tabs = array(
-    new \System\Model\Tab("Empresa", null, true),
-    new \System\Model\Tab("Missão"),
-    new \System\Model\Tab("Visão")
+    new \System\Model\Tab("company", "Empresa", "<b>Teste conteúdo empresa.</b>", true),
+    new \System\Model\Tab("mission", "Missão", "<b>Teste conteúdo missão.</b>"),
+    new \System\Model\Tab("view", "Visão", "<b>Teste conteúdo visão.</b>")
 );
 $panel = new System\Model\Panel($caption, $this->TabHelper($tabs), 'fa-folder-open');
 
