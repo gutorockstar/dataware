@@ -123,6 +123,18 @@ class Module
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);   				
                     return new View\Helper\ToolbarHelper($em);
+                },
+                        
+                'TabHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);   				
+                    return new View\Helper\TabHelper($em);
+                },
+                        
+                'MultiUploadHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);   				
+                    return new View\Helper\MultiUploadHelperr($em);
                 }
             )
     	);

@@ -15,7 +15,8 @@ return array(
             'Manager\Controller\ManagerController' => 'Manager\Controller\ManagerController',
             'Manager\Controller\CategoryController' => 'Manager\Controller\CategoryController',
             'Manager\Controller\BrandController' => 'Manager\Controller\BrandController',
-            'Manager\Controller\ProductController' => 'Manager\Controller\ProductController'
+            'Manager\Controller\ProductController' => 'Manager\Controller\ProductController',
+            'Manager\Controller\CompanymissionviewController' => 'Manager\Controller\CompanymissionviewController'
         ),
     ),
     
@@ -133,6 +134,25 @@ return array(
                 ),
             ), 
             
+            // Rota para as interfaces de manutenção de Produtos.
+            'companymissionview' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/manager/companymissionview[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z]*',
+                        'id' => '[0-9]+'
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Manager\Controller',
+                        'entity' => 'Manager\Entity\Companymissionview',
+                        'controller' => 'Manager\Controller\CompanymissionviewController',
+                        'module' => 'manager',
+                        'action' => 'index',
+                        'caption' => 'Empresa, Missão e Visão'
+                    ),
+                ),
+            ),
         ),
     ),
     

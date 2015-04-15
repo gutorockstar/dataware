@@ -61,9 +61,7 @@ class MenuHelper extends ViewHelper
                 "Produtos" => '/manager/product'
             ),
             "Sobre nós" => array(
-                "Empresa" => '/manager/company',
-                "Missão" => '/manager/companymission',
-                "Visão" => '/manager/companyview'
+                "Empresa, Missão e Visão" => '/manager/companymissionview'
             ),
             "Configurações" => array(
                 "Usuários" => '/manager/useraccount'

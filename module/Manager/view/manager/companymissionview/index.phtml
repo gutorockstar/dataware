@@ -1,0 +1,27 @@
+<?php
+
+$toolbar = new System\Model\Toolbar();
+$toolbar->setShowDefaultToolbarActions(true);
+$toolbar->setDisableToolbarActions(array(
+    System\Model\Toolbar::TB_ACTION_PRINT,
+    System\Model\Toolbar::TB_ACTION_EDIT,
+    System\Model\Toolbar::TB_ACTION_NEW,
+    System\Model\Toolbar::TB_ACTION_VIEW,
+    System\Model\Toolbar::TB_ACTION_DELETE,
+    System\Model\Toolbar::TB_ACTION_SEARCH
+));
+
+$tabs = array(
+    new \System\Model\Tab("Empresa", null, true),
+    new \System\Model\Tab("Missão"),
+    new \System\Model\Tab("Visão")
+);
+$panel = new System\Model\Panel($caption, $this->TabHelper($tabs), 'fa-folder-open');
+
+$view = new System\Model\View();
+$view->setToolbar($toolbar);
+$view->setPanel($panel);
+
+echo $this->ViewHelper($view);
+
+?>
