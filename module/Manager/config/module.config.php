@@ -128,7 +128,8 @@ return array(
                             'index' => 'system/crud',
                             'add' => 'system/crud',
                             'edit' => 'system/crud',
-                            'delete' => 'system/crud'
+                            'delete' => 'system/crud',
+                            'attachments' => 'system/crud'
                         )
                     ),
                 ),

@@ -163,6 +163,11 @@ class CrudController extends Controller
         return $viewModel;
     }
     
+    public function multiuploadAction()
+    {
+        
+    }
+    
     /**
      * Ação padrão de visualização de registros.
      */

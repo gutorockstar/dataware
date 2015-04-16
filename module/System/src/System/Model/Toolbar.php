@@ -24,6 +24,7 @@ class Toolbar
     const TB_ACTION_CLONE = 'tb_action_clone';    
     const TB_ACTION_PRINT = 'tb_action_print';
     const TB_ACTION_BACK = 'tb_action_back';
+    const TB_ACTION_ATTACHMENTS = 'tb_action_attachments';
     
     /**
      * @var boolean
