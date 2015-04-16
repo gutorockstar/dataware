@@ -7,9 +7,7 @@ $toolbar->setDisableToolbarActions(array(
     System\Model\Toolbar::TB_ACTION_UNIFY
 ));
 
-$form = $this->form;
 $form->prepare();
-
 $editForm = $this->form()->openTag($form);              
 $editForm .= $this->formCollection($form);
 $editForm .= $this->form()->closeTag();

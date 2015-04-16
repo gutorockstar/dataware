@@ -11,12 +11,25 @@ $toolbar->setDisableToolbarActions(array(
     System\Model\Toolbar::TB_ACTION_SEARCH
 ));
 
+$form->prepare();
+$panelContent = $this->form()->openTag($form);
+$panelContent .= $this->formRow($form->get('id'));
+$companyFormPart = $this->formRow($form->get('company'));
+$companyFormPart .= $this->formRow($form->get('activecompany'));
+$missionFormPart = $this->formRow($form->get('mission'));
+$missionFormPart .= $this->formRow($form->get('activemission'));
+$viewFormPart = $this->formRow($form->get('view'));
+$viewFormPart .= $this->formRow($form->get('activeview'));
+
 $tabs = array(
-    new \System\Model\Tab("company", "Empresa", "<b>Teste conteúdo empresa.</b>", true),
-    new \System\Model\Tab("mission", "Missão", "<b>Teste conteúdo missão.</b>"),
-    new \System\Model\Tab("view", "Visão", "<b>Teste conteúdo visão.</b>")
+    new \System\Model\Tab("company", "Empresa", $companyFormPart, true),
+    new \System\Model\Tab("mission", "Missão", $missionFormPart),
+    new \System\Model\Tab("view", "Visão", $viewFormPart)
 );
-$panel = new System\Model\Panel($caption, $this->TabHelper($tabs), 'fa-folder-open');
+$panelContent .= $this->TabHelper($tabs);
+$panelContent .= $this->form()->closeTag();
+
+$panel = new System\Model\Panel($caption, $panelContent, 'fa-folder-open');
 
 $view = new System\Model\View();
 $view->setToolbar($toolbar);

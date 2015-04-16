@@ -10,9 +10,7 @@ $toolbar->setDisableToolbarActions(array(
     System\Model\Toolbar::TB_ACTION_VIEW
 ));
 
-$form = $this->form;
 $form->prepare();
-
 $addForm = $this->form()->openTag($form);              
 $addForm .= $this->formCollection($form);
 $addForm .= $this->form()->closeTag();
