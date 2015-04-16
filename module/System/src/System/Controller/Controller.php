@@ -433,36 +433,42 @@ class Controller extends AbstractActionController
         {
             if ( (strlen($fileArgs['type']) > 0) && $this->validateFile($fileArgs) )
             {    
-                // TALVEZ SEJA NECESSÁRIO UM CONTROLE PARA QUEBRAR EM MAIS DIRETÓRIOS, PARA NÃO PESAR O SERVIDOR
-                // TALVEZ public/files/ano/mes/dia
-                $filePath = dirname(__DIR__) . '/../../../../public/files';
+                $year = date('Y');
+                $month = date('m');
+                $day = date('d');
+                
+                $filePath = dirname(__DIR__) . "/../../../../public/files/" . $year . '/' . $month . '/' . $day;
 
                 if ( !is_dir($filePath) )
                 {
-                    mkdir($filePath);
+                    mkdir($filePath, 0777, true);
+                }
+                
+                $file = new \System\Entity\File();
+                    
+                if ( !is_null($fileId) )
+                {
+                    $file = $this->getObjectManager()->find('System\Entity\File', $fileId);
                 }
 
-                $adapter = new \Zend\File\Transfer\Adapter\Http(); 
-                $adapter->setDestination($filePath);
+                $file->setTitle($fileArgs['name']);
+                $file->setType($fileArgs['type']);
+                $file->setSize($fileArgs['size']);
+                $file->setFilepath($filePath);
 
-                if ( $adapter->receive($fileArgs['name']) ) 
-                {       
-                    $file = new \System\Entity\File();
-                    
-                    if ( !is_null($fileId) )
-                    {
-                        $file = $this->getObjectManager()->find('System\Entity\File', $fileId);
-                    }
-                    
-                    $file->setTitle($fileArgs['name']);
-                    $file->setType($fileArgs['type']);
-                    $file->setSize($fileArgs['size']);
-                    $file->setFilepath($filePath);
+                $this->getObjectManager()->persist($file);
+                $this->getObjectManager()->flush();
 
-                    $this->getObjectManager()->persist($file);
-                    $this->getObjectManager()->flush();
+                $fileId = $file->getId();
+                
+                if ( strlen($fileId) > 0 )
+                {
+                    $adapter = new \Zend\File\Transfer\Adapter\Http(); 
+                    $adapter->setDestination($filePath);
                     
-                    $fileId = $file->getId();
+                    $adapter->receive($fileArgs['name']);
+                    
+                    rename("{$filePath}/{$fileArgs['name']}", "{$filePath}/{$fileId}");
                 }
             } 
 
@@ -541,27 +547,6 @@ class Controller extends AbstractActionController
         
         $argsAction['action'] = $this->getCurrentAction();
         $this->redirect()->toRoute($this->getCurrentRoute(), $argsAction);
-    }
-}
-
-/**
- * Utilizado para debug.
- */
-function flog()
-{
-    if ( file_exists('/tmp/var_dump') )
-    {
-        $numArgs = func_num_args();
-        $dump = '';
-
-        for ( $i = 0; $i < $numArgs; $i++ )
-        {
-            $dump .= var_export(func_get_arg($i), true) . "\n";
-        }
-
-        $f = fopen('/tmp/var_dump', 'w');
-        fwrite($f, $dump);
-        fclose($f);
     }
 }
 
