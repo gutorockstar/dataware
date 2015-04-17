@@ -437,7 +437,7 @@ class Controller extends AbstractActionController
                 $month = date('m');
                 $day = date('d');
                 
-                $filePath = dirname(__DIR__) . "/../../../../public/files/" . $year . '/' . $month . '/' . $day;
+                $filePath = dirname(__DIR__) . "/../../../../public/uploads/" . $year . '/' . $month . '/' . $day;
 
                 if ( !is_dir($filePath) )
                 {

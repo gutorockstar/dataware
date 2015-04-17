@@ -19,7 +19,7 @@ class MultiUploadHelper extends ViewHelper
 {
     public function __invoke(MultiUpload $multiUpload) 
     {    
-        $folder = "files/entities/" . $multiUpload->getEntityName() . '/' . $multiUpload->getEntityId();
+        $folder = "uploads/entities/" . $multiUpload->getEntityName() . '/' . $multiUpload->getEntityId();
         $filePath = dirname(__DIR__) . "/../../../../../public/" . $folder;
 
         if ( !is_dir($filePath) )
