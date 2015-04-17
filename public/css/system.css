@@ -630,3 +630,21 @@ form .btn{
     padding-top: 15px !important;
     clear: both;
 }
+
+.multiupload{
+    display: block;
+}
+
+.btn-browser-multiupload{
+    float: left;
+    width: 30%;
+}
+
+.btn-save-multiupload{
+    float: left;
+    margin-left: 10px;
+}
+
+.uploadifyQueue, .uploadifyQueueItem{
+    width: 100%;
+}

@@ -21,11 +21,14 @@
                         ->prependStylesheet($this->basePath() . '/css/loading-bar.css')
                         ->prependStylesheet($this->basePath() . '/font-awesome/css/font-awesome.min.css')
                         ->prependStylesheet($this->basePath() . '/sweetalert-master/lib/sweet-alert.css')
+                        ->prependStylesheet($this->basePath() . '/uploadify/css/uploadify.css')
         ?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
             ->prependFile($this->basePath() . '/js/DT_bootstrap.js', 'text/javascript')
+            ->prependFile($this->basePath() . '/uploadify/swfobject.js', 'text/javascript')
+            ->prependFile($this->basePath() . '/uploadify/jquery.uploadify.v2.1.0.min.js', 'text/javascript')
             ->prependFile($this->basePath() . '/js/bootstrap.js')
             ->prependFile($this->basePath() . '/js/loading-bar.js', 'text/javascript')
             ->prependFile($this->basePath() . '/js/popup-div.js', 'text/javascript')

@@ -10,8 +10,11 @@
  *
  * @author augusto
  */
+namespace System\Model;
+
 class MultiUpload 
 {
+    private $id;
     
 }
 

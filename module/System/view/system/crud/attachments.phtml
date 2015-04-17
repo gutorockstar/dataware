@@ -1,5 +1,20 @@
 <?php
 
-echo "Aqui";
+$toolbar = new \System\Model\Toolbar();
+$toolbar->setDisableToolbarActions(array(
+    System\Model\Toolbar::TB_ACTION_PRINT,
+    System\Model\Toolbar::TB_ACTION_CLONE,
+    System\Model\Toolbar::TB_ACTION_UNIFY,
+    System\Model\Toolbar::TB_ACTION_SAVE,
+));
+
+$multiUpload = new \System\Model\MultiUpload();
+$panel = new \System\Model\Panel($caption, $this->MultiUploadHelper($multiUpload), 'fa-folder-open');
+
+$view = new \System\Model\View();
+$view->setToolbar($toolbar);
+$view->setPanel($panel);
+
+echo $this->ViewHelper($view);
 
 ?>

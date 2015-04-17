@@ -134,7 +134,7 @@ class Module
                 'MultiUploadHelper' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);   				
-                    return new View\Helper\MultiUploadHelperr($em);
+                    return new View\Helper\MultiUploadHelper($em);
                 }
             )
     	);

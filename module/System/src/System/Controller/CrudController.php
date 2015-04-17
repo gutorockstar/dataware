@@ -163,9 +163,22 @@ class CrudController extends Controller
         return $viewModel;
     }
     
-    public function multiuploadAction()
+    /**
+     * Manutenção de arquivos e anexos.
+     * 
+     * @return type
+     */
+    public function attachmentsAction()
     {
+        $id = (int) $this->params()->fromRoute('id', 0);
         
+        $argsAction = array(
+            'id' => $id,
+            'caption' => $this->getCurrentCaption()
+        );
+        
+        $viewModel = $this->defineViewModelTemplate(new ViewModel($argsAction), $this->getCurrentAction());
+        return $viewModel;
     }
     
     /**
