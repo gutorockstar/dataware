@@ -171,9 +171,11 @@ class CrudController extends Controller
     public function attachmentsAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
+        $entityExp = explode("\\", $this->getCurrentEntity());
         
         $argsAction = array(
             'id' => $id,
+            'entity' => $entityExp[count($entityExp) -1],
             'caption' => $this->getCurrentCaption()
         );
         

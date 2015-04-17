@@ -18,7 +18,15 @@ use System\Model\MultiUpload;
 class MultiUploadHelper extends ViewHelper
 {
     public function __invoke(MultiUpload $multiUpload) 
-    {        
+    {    
+        $folder = "files/entities/" . $multiUpload->getEntityName() . '/' . $multiUpload->getEntityId();
+        $filePath = dirname(__DIR__) . "/../../../../../public/" . $folder;
+
+        if ( !is_dir($filePath) )
+        {
+            mkdir($filePath, 0777, true);
+        }
+        
         $content = "
             <script>
                 $(document).ready(function() {
@@ -26,7 +34,7 @@ class MultiUploadHelper extends ViewHelper
                         'uploader'  : '{$this->view->basePath('uploadify/uploadify.swf')}',
                         'script'    : '{$this->view->basePath('uploadify/uploadify.php')}',
                         'cancelImg' : '{$this->view->basePath('uploadify/cancel.png')}',
-                        'folder'    : '{$this->view->basePath('files/teste')}',
+                        'folder'    : '{$this->view->basePath($folder)}',
                         'auto'      : false, // False para não começar automaticamente, e True para começar o upload automaticamente.
                         'multi'     : true, // False para fazer upload apenas de um arquivo e True para vários arquivos.
                         'onAllComplete' : function(event,data) 

@@ -8,7 +8,7 @@ $toolbar->setDisableToolbarActions(array(
     System\Model\Toolbar::TB_ACTION_SAVE,
 ));
 
-$multiUpload = new \System\Model\MultiUpload();
+$multiUpload = new \System\Model\MultiUpload($id, $entity);
 $tabs = array(
     new \System\Model\Tab("company", "Arquivos anexados", "", true),
     new \System\Model\Tab("mission", "Upload de arquivos", $this->MultiUploadHelper($multiUpload))
