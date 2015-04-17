@@ -9,7 +9,12 @@ $toolbar->setDisableToolbarActions(array(
 ));
 
 $multiUpload = new \System\Model\MultiUpload();
-$panel = new \System\Model\Panel($caption, $this->MultiUploadHelper($multiUpload), 'fa-folder-open');
+$tabs = array(
+    new \System\Model\Tab("company", "Arquivos anexados", "", true),
+    new \System\Model\Tab("mission", "Upload de arquivos", $this->MultiUploadHelper($multiUpload))
+);
+$panelContent .= $this->TabHelper($tabs);
+$panel = new \System\Model\Panel($caption, $panelContent, 'fa-folder-open');
 
 $view = new \System\Model\View();
 $view->setToolbar($toolbar);

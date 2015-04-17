@@ -37,18 +37,16 @@ class MultiUploadHelper extends ViewHelper
                 });
             </script>
             
-            <fieldset>
-                <div class='multiupload'>
-                    <div class='btn-browser-multiupload'>
-                        <input type='file' class='input-text btn' id='file_upload'/>
-                    </div>
-                    <div class='btn-save-multiupload'>
-                        <a href=\"javascript:$('#file_upload').uploadifyUpload();\" >
-                            <button class='btn btn-primary'>Salvar arquivos</button>
-                        </a>
-                    </div>
-                </div>
-            </fieldset>";
+            
+            <div class='multiupload'>
+                <a style='float:right; margin-left: 10px;' href=\"javascript:$('#file_upload').uploadifyUpload();\" >
+                    <button class='btn btn-primary'>Salvar arquivos</button>
+                </a>
+                <a style='float:right; margin-left: 10px;' href=\"javascript:$('#file_upload').uploadifyUpload();\" >
+                    <button class='btn btn-danger'>Cancelar arquivos</button>
+                </a>
+                <input type='file' class='input-text btn' id='file_upload'/>
+            </div>";
         
         return $content;
     }

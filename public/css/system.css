@@ -632,17 +632,8 @@ form .btn{
 }
 
 .multiupload{
-    display: block;
-}
-
-.btn-browser-multiupload{
-    float: left;
-    width: 30%;
-}
-
-.btn-save-multiupload{
-    float: left;
-    margin-left: 10px;
+    display: inline-block;
+    width: 35%;
 }
 
 .uploadifyQueue, .uploadifyQueueItem{
