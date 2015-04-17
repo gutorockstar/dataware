@@ -37,9 +37,9 @@ class MultiUploadHelper extends ViewHelper
                         'folder'    : '{$this->view->basePath($folder)}',
                         'auto'      : false, // False para não começar automaticamente, e True para começar o upload automaticamente.
                         'multi'     : true, // False para fazer upload apenas de um arquivo e True para vários arquivos.
-                        'onAllComplete' : function(event,data) 
+                        'onAllComplete' : function(event, data) 
                         {
-                            //refreshPage(); 
+                            window.location.reload();
                         } 
                     });
                 });
@@ -48,9 +48,9 @@ class MultiUploadHelper extends ViewHelper
             
             <div class='multiupload'>
                 <a style='float:right; margin-left: 10px;' href=\"javascript:$('#file_upload').uploadifyUpload();\" >
-                    <button class='btn btn-primary'>Salvar arquivos</button>
+                    <button class='btn btn-primary loading'>Salvar arquivos</button>
                 </a>
-                <a style='float:right; margin-left: 10px;' href=\"javascript:$('#file_upload').uploadifyUpload();\" >
+                <a style='float:right; margin-left: 10px;' href=\"javascript:$('#file_upload').uploadifyClearQueue();\" >
                     <button class='btn btn-danger'>Cancelar arquivos</button>
                 </a>
                 <input type='file' class='input-text btn' id='file_upload'/>
