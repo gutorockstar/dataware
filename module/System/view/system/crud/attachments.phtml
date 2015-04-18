@@ -8,10 +8,10 @@ $toolbar->setDisableToolbarActions(array(
     System\Model\Toolbar::TB_ACTION_SAVE,
 ));
 
-$multiUpload = new \System\Model\MultiUpload($id, $entity);
+$attachment = new \System\Model\Attachment($id, $entity);
 $tabs = array(
-    new \System\Model\Tab("company", "Arquivos anexados", "", true),
-    new \System\Model\Tab("mission", "Upload de arquivos", $this->MultiUploadHelper($multiUpload))
+    new \System\Model\Tab("company", "Arquivos anexados", $this->ListAttachmentFilesHelper($attachment), true),
+    new \System\Model\Tab("mission", "Upload de arquivos", $this->MultiUploaderHelper($attachment))
 );
 $panelContent .= $this->TabHelper($tabs);
 $panel = new \System\Model\Panel($caption, $panelContent, 'fa-folder-open');

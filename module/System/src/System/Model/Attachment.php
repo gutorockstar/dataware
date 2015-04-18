@@ -12,7 +12,7 @@
  */
 namespace System\Model;
 
-class MultiUpload 
+class Attachment
 {
     /**
      *

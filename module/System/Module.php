@@ -131,10 +131,16 @@ class Module
                     return new View\Helper\TabHelper($em);
                 },
                         
-                'MultiUploadHelper' => function ($sm) 
+                'MultiUploaderHelper' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);   				
-                    return new View\Helper\MultiUploadHelper($em);
+                    return new View\Helper\MultiUploaderHelper($em);
+                },
+                        
+                'ListAttachmentFilesHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);   				
+                    return new View\Helper\ListAttachmentFilesHelper($em);
                 }
             )
     	);

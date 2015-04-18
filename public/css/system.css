@@ -648,3 +648,8 @@ form .btn{
 .uploadifyProgressBar{
     height: 5px;
 }
+
+.attachment-file{
+    height: 50px;
+    width: 50px;
+}

@@ -20,27 +20,27 @@ class GridHelper extends ViewHelper
 {
     public function __invoke(Grid $grid)
     {
-        $displayGrid = "<fieldset>
-                            <div id='example_wrapper' class='dataTables_wrapper form-inline no-footer'>
-                                <table cellpadding='0' cellspacing='0' border='0' class='table table-striped table-bordered dataTable no-footer' id='example' role='grid' aria-describedby='example_info'>
-                                    <thead>
-                                        <tr role='row'>";
+        $displayGrid = $grid->getGenerateFieldset() ? "<fieldset>" : "";
+        $displayGrid .= "<div id='example_wrapper' class='dataTables_wrapper form-inline no-footer'>
+                             <table cellpadding='0' cellspacing='0' border='0' class='table table-striped table-bordered dataTable no-footer' id='example' role='grid' aria-describedby='example_info'>
+                                 <thead>
+                                     <tr role='row'>";
         
         // Cria as colunas da grid, baseadas nos atributos da entidade.
         $this->makeGridColumnsByEntity($grid);
         
         // Gera o cabeçalho da grid, caso esitam colunas atribuidas.
         $displayGrid .= $this->generateGridColumns($grid);
-        $displayGrid .= "               </tr>
-                                    </thead>
-                                    <tbody>";
+        $displayGrid .= "            </tr>
+                                 </thead>
+                                 <tbody>";
         
         // Gera o corpo da grid, contendo os registros obtidos para a listagem.
         $displayGrid .= $this->generateGridRows($grid);
-        $displayGrid .= "           </tbody>
-                                </table>
-                            </div>
-                        </fieldset>";
+        $displayGrid .= "        </tbody>
+                             </table>
+                            </div>";
+        $displayGrid .= $grid->getGenerateFieldset() ? "</fieldset>" : "";
         
         return $displayGrid;
     }
@@ -129,7 +129,7 @@ class GridHelper extends ViewHelper
         
         if ( count($grid->getData()) > 0 )
         {
-            foreach ( $grid->getData() as $entity )
+            foreach ( $grid->getData() as $gridData )
             {
                 $classColor = ($cont % 2 == 0) ? 'odd' : 'even'; $cont++;
                 $rows .= "<tr class='gradeA {$classColor}' role='row'>";                
@@ -137,29 +137,36 @@ class GridHelper extends ViewHelper
                 // Gera os dados do registro.
                 foreach ( $grid->getColumns() as $gridColumn )
                 {
-                    $lowerColumn = strtolower($gridColumn->getId());
-                    $getFunction = "get" . ucfirst($lowerColumn);
-                    $tdValue = "";
-
-                    if ( method_exists($entity, $getFunction) )
+                    if ( $grid->hasEntity() )
                     {
-                        $data = $entity->$getFunction();
-                        $value = $data;
-                        
-                        // Para registros relacionais.
-                        $value = $this->adjustToShowRelationalEntityValue($value);
-                        
-                        // Para registros booleanos.
-                        $value = $this->adjustToShowBooleanValue($value);
-                        
-                        $tdValue .= $value;
+                        $lowerColumn = strtolower($gridColumn->getId());
+                        $getFunction = "get" . ucfirst($lowerColumn);
+                        $tdValue = "";
+
+                        if ( method_exists($gridData, $getFunction) )
+                        {
+                            $data = $gridData->$getFunction();
+                            $value = $data;
+
+                            // Para registros relacionais.
+                            $value = $this->adjustToShowRelationalEntityValue($value);
+
+                            // Para registros booleanos.
+                            $value = $this->adjustToShowBooleanValue($value);
+
+                            $tdValue .= $value;
+                        }
                     }
+                    else
+                    {
+                        $tdValue = $gridData[$gridColumn->getId()];
+                    }   
                     
                     $rows .= "<td>{$tdValue}</td>";
                 }
                 
                 // Gera as ações padrões dos registros na grid (Editar e Excluir).
-                $rows .= $this->generateGridRowActions($entity);
+                $rows .= $this->generateGridRowActions($gridData);
                 $rows .= "</tr>";
             }
         }
@@ -211,7 +218,7 @@ class GridHelper extends ViewHelper
      */
     private function generateGridRowActions($entity)
     {
-        $actions = "";
+        $actions = "<td></td>";
         
         if ( is_object($entity) )
         {
@@ -222,7 +229,7 @@ class GridHelper extends ViewHelper
                 $entityClass = explode("\\", $entityNamespace);
                 $entityName = strtolower($entityClass[2]);
 
-                $actions .= "<td>
+                $actions = "<td>
                                 <!--
                                 <a class='action-grid' title='Visualizar' href='{$urlHelper($entityName, array('action' => 'view', 'id' => $entity->getId()))}'>
                                     <i class='fa fa-eye fa-lg'></i>
@@ -233,7 +240,7 @@ class GridHelper extends ViewHelper
                                 <a class='action-grid' title='Excluir' href='{$urlHelper($entityName, array('action' => 'delete', 'id' => $entity->getId()))}'>
                                     <i class='fa fa-trash-o fa-lg'></i>
                                 </a>
-                             </td>";
+                            </td>";
             }
         }
         

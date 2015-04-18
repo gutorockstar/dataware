@@ -13,13 +13,13 @@
 namespace System\View\Helper;
 
 use System\View\Helper\ViewHelper;
-use System\Model\MultiUpload;
+use System\Model\Attachment;
 
-class MultiUploadHelper extends ViewHelper
+class MultiUploaderHelper extends ViewHelper
 {
-    public function __invoke(MultiUpload $multiUpload) 
+    public function __invoke(Attachment $attachment) 
     {    
-        $folder = "uploads/entities/" . $multiUpload->getEntityName() . '/' . $multiUpload->getEntityId();
+        $folder = "uploads/entities/" . $attachment->getEntityName() . '/' . $attachment->getEntityId();
         $filePath = dirname(__DIR__) . "/../../../../../public/" . $folder;
 
         if ( !is_dir($filePath) )

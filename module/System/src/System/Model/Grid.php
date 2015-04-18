@@ -32,6 +32,18 @@ class Grid
      */
     private $data;
     
+    /**
+     * 
+     * @var type 
+     */
+    private $hasEntity = true;
+    
+    /**
+     *
+     * @var type 
+     */
+    private $generateFieldset = true;
+    
     public function __construct($data = null) 
     {
         if ( !is_null($data) )
@@ -74,6 +86,28 @@ class Grid
     {
         $this->data = $data;
     }
+    
+    public function hasEntity() 
+    {
+        return $this->hasEntity;
+    }
+
+    public function setHasEntity($hasEntity) 
+    {
+        $this->hasEntity = $hasEntity;
+    }
+    
+    public function getGenerateFieldset() 
+    {
+        return $this->generateFieldset;
+    }
+
+    public function setGenerateFieldset($generateFieldset) 
+    {
+        $this->generateFieldset = $generateFieldset;
+    }
+
+
 }
 
 ?>
