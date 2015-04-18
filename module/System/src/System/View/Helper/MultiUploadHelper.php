@@ -47,7 +47,7 @@ class MultiUploadHelper extends ViewHelper
             
             
             <div class='multiupload'>
-                <a style='float:right; margin-left: 10px;' href=\"javascript:$('#file_upload').uploadifyUpload();\" >
+                <a style='float:right; margin-left: 5px;' href=\"javascript:$('#file_upload').uploadifyUpload();\" >
                     <button class='btn btn-primary loading'>Salvar arquivos</button>
                 </a>
                 <a style='float:right; margin-left: 10px;' href=\"javascript:$('#file_upload').uploadifyClearQueue();\" >

@@ -633,9 +633,18 @@ form .btn{
 
 .multiupload{
     display: inline-block;
-    width: 35%;
+    width: 50%;
+}
+
+.multiupload .btn{
+    height: 30px;
+    padding: 0px 12px;
 }
 
 .uploadifyQueue, .uploadifyQueueItem{
     width: 100%;
+}
+
+.uploadifyProgressBar{
+    height: 5px;
 }
