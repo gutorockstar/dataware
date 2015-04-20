@@ -44,6 +44,30 @@ class Grid
      */
     private $generateFieldset = true;
     
+    /**
+     *
+     * @var String
+     */
+    private $editAction;
+    
+    /**
+     *
+     * @var String
+     */
+    private $deleteAction;
+    
+    /**
+     *
+     * @var String
+     */
+    private $attachmentAction;
+    
+    /**
+     *
+     * @var String
+     */
+    private $viewAction;
+    
     public function __construct($data = null) 
     {
         if ( !is_null($data) )
@@ -106,8 +130,46 @@ class Grid
     {
         $this->generateFieldset = $generateFieldset;
     }
+    
+    public function getEditAction() 
+    {
+        return $this->editAction;
+    }
 
+    public function setEditAction($editAction) 
+    {
+        $this->editAction = $editAction;
+    }
 
+    public function getDeleteAction() 
+    {
+        return $this->deleteAction;
+    }
+
+    public function setDeleteAction($deleteAction) 
+    {
+        $this->deleteAction = $deleteAction;
+    }
+
+    public function getAttachmentAction() 
+    {
+        return $this->attachmentAction;
+    }
+
+    public function setAttachmentAction($attachmentAction) 
+    {
+        $this->attachmentAction = $attachmentAction;
+    }
+
+    public function getViewAction() 
+    {
+        return $this->viewAction;
+    }
+
+    public function setViewAction($viewAction) 
+    {
+        $this->viewAction = $viewAction;
+    }
 }
 
 ?>

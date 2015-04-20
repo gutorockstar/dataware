@@ -90,22 +90,35 @@ class GridColumn
     private $style;
     
     /**
+     *
+     * @var double
+     */
+    private $width;
+    
+    /**
+     *
+     * @var double
+     */
+    private $height;
+    
+    /**
      * Método contrutor
      * 
      * @param String $title
      * @param String $ariaLabel (rótulo)
      */
-    public function __construct($id, $title) 
+    public function __construct($id, $title, $width = null, $height = null) 
     {
         $this->id = $id;
         $this->title = $title;
+        $this->width = $width;
+        $this->height = $height;
         $this->class = "sorting";
         $this->tabIndex = 0;
         $this->ariaControls = "example";
         $this->rowSpan = 1;
         $this->colSpan = 1;
         $this->ariaSort = "ascending";
-        $this->style = "width: auto;";
     }
     
     public function getId() 
@@ -196,6 +209,25 @@ class GridColumn
     public function setStyle($style) 
     {
         $this->style = $style;
+    }
+    
+    public function getWidth() {
+        return $this->width;
+    }
+
+    public function setWidth($width) 
+    {
+        $this->width = $width;
+    }
+
+    public function getHeight() 
+    {
+        return $this->height;
+    }
+
+    public function setHeight($height) 
+    {
+        $this->height = $height;
     }
 }
 

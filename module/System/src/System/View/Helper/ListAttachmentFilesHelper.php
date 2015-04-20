@@ -27,7 +27,7 @@ class ListAttachmentFilesHelper extends ViewHelper
         $grid = new Grid();
         $grid->setHasEntity(false);
         $grid->setGenerateFieldset(false);
-        $grid->addColumn(new GridColumn('file', "Arquivo"));
+        $grid->addColumn(new GridColumn('file', "Arquivo", 50));
         $grid->addColumn(new GridColumn('title', "Título"));
         $grid->addColumn(new GridColumn('type', "Tipo"));
         $grid->addColumn(new GridColumn('size', "Tamanho"));
@@ -42,11 +42,17 @@ class ListAttachmentFilesHelper extends ViewHelper
             {
                 if ( ( $read != '.' ) && ( $read != '..' ) ) 
                 {
+                    $fileName = $filePath . '/' . $read;
+                    $path = $this->view->basePath($folder . '/' . $read);
+                    $pathInfo = pathinfo($path);
+                    $mimeType = mime_content_type($fileName);
+                    $fileSize = filesize($fileName);
+                    
                     $gridData[] = array(
-                        'file' => "<img class='attachment-file' src='{$this->view->basePath($folder . '/' . $read)}' title='Clique para ampliar' />",
-                        'title' => "Teste",
-                        'type' => "img/png",
-                        'size' => "1234 bits"
+                        'file' => "<img class='attachment-file' src='{$path}' title='Clique para ampliar' />",
+                        'title' => $pathInfo['basename'],
+                        'type' => $mimeType,
+                        'size' => $fileSize
                     );
                 }       
             }

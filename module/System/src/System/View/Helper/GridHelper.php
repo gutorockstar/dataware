@@ -91,7 +91,7 @@ class GridHelper extends ViewHelper
         
         // Gera a coluna de ações dos registros na grid.
         $gridColumnActions = new GridColumn(GridColumn::GRID_COLUMN_ACTIONS_ID, GridColumn::GRID_COLUMN_ACTIONS_TITLE);
-        $gridColumnActions->setStyle("width: 8%");
+        $gridColumnActions->setStyle("width: 5% !important");
         $headerGrid .= $this->generateGridColumn($gridColumnActions);
         
         return $headerGrid;
@@ -111,7 +111,9 @@ class GridHelper extends ViewHelper
                     rowspan='{$gridColumn->getRowSpan()}' 
                     colspan='{$gridColumn->getColSpan()}' 
                     aria-sort='{$gridColumn->getAriaSort()}' 
-                    style='{$gridColumn->getStyle()}'>
+                    style='{$gridColumn->getStyle()}'
+                    width='{$gridColumn->getWidth()}'
+                    height='{$gridColumn->getHeight()}'>
                     {$gridColumn->getTitle()}
                 </th>";
     }
@@ -166,7 +168,7 @@ class GridHelper extends ViewHelper
                 }
                 
                 // Gera as ações padrões dos registros na grid (Editar e Excluir).
-                $rows .= $this->generateGridRowActions($gridData);
+                $rows .= $this->generateGridRowActions($grid, $gridData);
                 $rows .= "</tr>";
             }
         }
@@ -216,7 +218,7 @@ class GridHelper extends ViewHelper
      * @param obj $entity
      * @return string html
      */
-    private function generateGridRowActions($entity)
+    private function generateGridRowActions(Grid $grid, $entity)
     {
         $actions = "<td></td>";
         
@@ -224,10 +226,18 @@ class GridHelper extends ViewHelper
         {
             if ( strlen($entity->getId()) > 0 )
             {
+                
+                
                 $urlHelper = $this->view->plugin('url');
                 $entityNamespace = get_class($entity);
                 $entityClass = explode("\\", $entityNamespace);
                 $entityName = strtolower($entityClass[2]);
+                
+                
+                
+                
+                
+                
 
                 $actions = "<td>
                                 <!--
