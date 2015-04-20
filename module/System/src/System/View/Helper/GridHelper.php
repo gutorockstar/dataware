@@ -14,6 +14,7 @@ namespace System\View\Helper;
 
 use System\Model\Grid;
 use System\Model\GridColumn;
+use System\Model\GridAction;
 use Zend\Form\Annotation\AnnotationBuilder;
 
 class GridHelper extends ViewHelper
@@ -218,40 +219,45 @@ class GridHelper extends ViewHelper
      * @param obj $entity
      * @return string html
      */
-    private function generateGridRowActions(Grid $grid, $entity)
+    private function generateGridRowActions(Grid $grid, $gridData)
     {
         $actions = "<td></td>";
         
-        if ( is_object($entity) )
-        {
-            if ( strlen($entity->getId()) > 0 )
-            {
-                
-                
-                $urlHelper = $this->view->plugin('url');
-                $entityNamespace = get_class($entity);
-                $entityClass = explode("\\", $entityNamespace);
-                $entityName = strtolower($entityClass[2]);
-                
-                
-                
-                
-                
-                
+        if ( is_object($gridData) && strlen($gridData->getId()) > 0 )
+        {   
+            $urlHelper = $this->view->plugin('url');
+            $entityNamespace = get_class($gridData);
+            $entityClass = explode("\\", $entityNamespace);
+            $entityName = strtolower($entityClass[2]);
+            
+            $gridActions = array();
 
-                $actions = "<td>
-                                <!--
-                                <a class='action-grid' title='Visualizar' href='{$urlHelper($entityName, array('action' => 'view', 'id' => $entity->getId()))}'>
-                                    <i class='fa fa-eye fa-lg'></i>
-                                </a>-->
-                                <a class='action-grid' title='Editar' href='{$urlHelper($entityName, array('action' => 'edit', 'id' => $entity->getId()))}'>
-                                    <i class='fa fa-pencil-square-o fa-lg'></i>
-                                </a>
-                                <a class='action-grid' title='Excluir' href='{$urlHelper($entityName, array('action' => 'delete', 'id' => $entity->getId()))}'>
-                                    <i class='fa fa-trash-o fa-lg'></i>
-                                </a>
-                            </td>";
+            
+            // NÃO ESTÁ BOM ISSO!!!!!!!!!!!
+            
+            if ( is_null($grid->getGridActions()[GridAction::GRID_ACTION_VIEW_ID]) )
+            {
+                $href = $urlHelper($entityName, array('action' => 'view', 'id' => $gridData->getId()));
+                $gridActions[GridAction::GRID_ACTION_VIEW_ID] = new GridAction(GridAction::GRID_ACTION_VIEW_ID, "Visualizar", "fa fa-eye fa-lg", $href);
             }
+            
+
+
+
+
+
+            $actions = "<td>
+                            <!--
+                            <a class='action-grid' title='Visualizar' href='{$urlHelper($entityName, array('action' => 'view', 'id' => $gridData->getId()))}'>
+                                <i class='fa fa-eye fa-lg'></i>
+                            </a>-->
+                            <a class='action-grid' title='Editar' href='{$urlHelper($entityName, array('action' => 'edit', 'id' => $gridData->getId()))}'>
+                                <i class='fa fa-pencil-square-o fa-lg'></i>
+                            </a>
+                            <a class='action-grid' title='Excluir' href='{$urlHelper($entityName, array('action' => 'delete', 'id' => $gridData->getId()))}'>
+                                <i class='fa fa-trash-o fa-lg'></i>
+                            </a>
+                        </td>";
         }
         
         return $actions;
