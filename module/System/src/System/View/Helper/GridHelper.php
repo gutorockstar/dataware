@@ -92,7 +92,7 @@ class GridHelper extends ViewHelper
         
         // Gera a coluna de ações dos registros na grid.
         $gridColumnActions = new GridColumn(GridColumn::GRID_COLUMN_ACTIONS_ID, GridColumn::GRID_COLUMN_ACTIONS_TITLE);
-        $gridColumnActions->setStyle("width: 5% !important");
+        $gridColumnActions->setStyle("width: 100px !important");
         $headerGrid .= $this->generateGridColumn($gridColumnActions);
         
         return $headerGrid;
@@ -221,43 +221,63 @@ class GridHelper extends ViewHelper
      */
     private function generateGridRowActions(Grid $grid, $gridData)
     {
-        $actions = "<td></td>";
+        $actions = "<td>";
+        $route = $this->getCurrentRoute();
         
-        if ( is_object($gridData) && strlen($gridData->getId()) > 0 )
+        if ( $grid->hasEntity() && !$grid->defaultGridActionsAreHidden() )
         {   
-            $urlHelper = $this->view->plugin('url');
-            $entityNamespace = get_class($gridData);
-            $entityClass = explode("\\", $entityNamespace);
-            $entityName = strtolower($entityClass[2]);
-            
-            $gridActions = array();
-
-            
-            // NÃO ESTÁ BOM ISSO!!!!!!!!!!!
-            
-            if ( is_null($grid->getGridActions()[GridAction::GRID_ACTION_VIEW_ID]) )
+            //$grid->addGridAction(new GridAction(GridAction::GRID_ACTION_VIEW_ID, "Visualizar", $route, array('action' => 'view', 'id' => $gridData->getId()), "fa-eye"));
+            $grid->addGridAction(new GridAction(GridAction::GRID_ACTION_ATTACHMENT_ID, "Anexos", $route, array('action' => 'attachments', 'id' => $gridData->getId()), "fa-paperclip"));
+            $grid->addGridAction(new GridAction(GridAction::GRID_ACTION_EDIT_ID, "Editar", $route, array('action' => 'edit', 'id' => $gridData->getId()), "fa-pencil-square-o"));
+            $grid->addGridAction(new GridAction(GridAction::GRID_ACTION_DELETE_ID, "Excluir", $route, array('action' => 'delete', 'id' => $gridData->getId()), "fa-trash-o"));
+        }        
+        
+        $actions .= $this->generateDefaultGridActions($grid);
+        $actions .= $this->generateCustomGridActions($gridData);
+        
+        return $actions . "</td>";
+    }
+    
+    /**
+     * Gera as ações padrões da grid.
+     * 
+     * @param \System\Model\Grid $grid
+     * @return String html
+     */
+    public function generateDefaultGridActions(Grid $grid)
+    {
+        $actions = "";
+        $gridActions = $grid->getGridActions();
+        
+        if ( count($gridActions) > 0 )
+        {
+            foreach ( $gridActions as $gridAction )
             {
-                $href = $urlHelper($entityName, array('action' => 'view', 'id' => $gridData->getId()));
-                $gridActions[GridAction::GRID_ACTION_VIEW_ID] = new GridAction(GridAction::GRID_ACTION_VIEW_ID, "Visualizar", "fa fa-eye fa-lg", $href);
+                $actions .= $this->view->GridActionHelper($gridAction);
             }
             
-
-
-
-
-
-            $actions = "<td>
-                            <!--
-                            <a class='action-grid' title='Visualizar' href='{$urlHelper($entityName, array('action' => 'view', 'id' => $gridData->getId()))}'>
-                                <i class='fa fa-eye fa-lg'></i>
-                            </a>-->
-                            <a class='action-grid' title='Editar' href='{$urlHelper($entityName, array('action' => 'edit', 'id' => $gridData->getId()))}'>
-                                <i class='fa fa-pencil-square-o fa-lg'></i>
-                            </a>
-                            <a class='action-grid' title='Excluir' href='{$urlHelper($entityName, array('action' => 'delete', 'id' => $gridData->getId()))}'>
-                                <i class='fa fa-trash-o fa-lg'></i>
-                            </a>
-                        </td>";
+            $grid->clearActions();
+        }
+        
+        return $actions;
+    }
+    
+    /**
+     * Gera as ações customisadas da grid.
+     * 
+     * @param array $gridData
+     * @return String html
+     */
+    public function generateCustomGridActions($gridData)
+    {
+        $actions = "";
+        
+        if ( is_array($gridData) && is_array($gridData[GridColumn::GRID_COLUMN_ACTIONS_ID]) )
+        {
+            foreach ( $gridData[GridColumn::GRID_COLUMN_ACTIONS_ID] as $action )
+            {
+                $actions .= $this->view->GridActionHelper($action);
+            }
         }
         
         return $actions;

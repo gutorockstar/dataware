@@ -41,7 +41,13 @@ class GridAction
      *
      * @var String
      */
-    private $href;
+    private $route;
+    
+    /**
+     *
+     * @var array
+     */
+    private $args = array();
     
     /**
      *
@@ -61,12 +67,13 @@ class GridAction
      */
     private $visible;
     
-    public function __construct($id, $title, $cssClass, $href, $onClick = null, $enable = true, $visible = true) 
+    public function __construct($id, $title, $route, $args = array(), $cssClass = null, $onClick = null, $enable = true, $visible = true) 
     {
         $this->id = $id;
         $this->title = $title;
+        $this->route = $route;
+        $this->args = $args;
         $this->cssClass = $cssClass;
-        $this->href = $href;
         $this->onClick = $onClick;
         $this->enable = $enable;
         $this->visible = $visible;
@@ -101,15 +108,25 @@ class GridAction
     {
         $this->cssClass = $cssClass;
     }
-
-    public function getHref() 
+    
+    public function getRoute() 
     {
-        return $this->href;
+        return $this->route;
     }
 
-    public function setHref($href) 
+    public function setRoute($route) 
     {
-        $this->href = $href;
+        $this->route = $route;
+    }
+
+    public function getArgs() 
+    {
+        return $this->args;
+    }
+
+    public function setArgs($args) 
+    {
+        $this->args = $args;
     }
 
     public function getOnClick() 

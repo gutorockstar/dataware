@@ -13,6 +13,7 @@
 namespace System\Model;
 
 use System\Model\GridColumn;
+use System\Model\GridAction;
 
 class Grid 
 {
@@ -46,9 +47,27 @@ class Grid
     
     /**
      *
-     * @var String
+     * @var array
      */
     private $gridActions = array();
+    
+    /**
+     *
+     * @var type 
+     */
+    private $gridHideActions = array();
+    
+    /**
+     *
+     * @var boolean
+     */
+    private $hideAllDefaultGridActions = false;
+    
+    /**
+     *
+     * @var String
+     */
+    private $identityColumn;
     
     public function __construct($data = null) 
     {
@@ -121,6 +140,46 @@ class Grid
     public function setGridActions($gridActions) 
     {
         $this->gridActions = $gridActions;
+    }
+    
+    public function getGridHideActions() 
+    {
+        return $this->gridHideActions;
+    }
+
+    public function setGridHideActions($gridHideActions) 
+    {
+        $this->gridHideActions = $gridHideActions;
+    }
+    
+    public function defaultGridActionsAreHidden() 
+    {
+        return $this->hideAllDefaultGridActions;
+    }
+
+    public function hideAllGridActionsDefault($hideAllDefaultGridActions) 
+    {
+        $this->hideAllDefaultGridActions = $hideAllDefaultGridActions;
+    }
+    
+    public function addGridAction(GridAction $gridAction)
+    {
+        $this->gridActions[] = $gridAction;
+    }
+    
+    public function clearActions()
+    {
+        unset($this->gridActions);
+    }
+    
+    public function getIdentityColumn() 
+    {
+        return $this->identityColumn;
+    }
+
+    public function setIdentityColumn($identityColumn) 
+    {
+        $this->identityColumn = $identityColumn;
     }
 }
 

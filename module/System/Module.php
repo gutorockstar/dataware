@@ -113,6 +113,12 @@ class Module
                     return new View\Helper\GridHelper($em);
                 },
                         
+                'GridActionHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
+                    return new View\Helper\GridActionHelper($em);
+                },
+                        
                 'TreeHelper' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);   				

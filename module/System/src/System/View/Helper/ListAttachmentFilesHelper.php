@@ -16,6 +16,7 @@ use System\View\Helper\ViewHelper;
 use System\Model\Attachment;
 use System\Model\Grid;
 use System\Model\GridColumn;
+use System\Model\GridAction;
 
 class ListAttachmentFilesHelper extends ViewHelper
 {
@@ -23,10 +24,12 @@ class ListAttachmentFilesHelper extends ViewHelper
     {
         $folder = "uploads/entities/" . $attachment->getEntityName() . '/' . $attachment->getEntityId();
         $filePath = dirname(__DIR__) . "/../../../../../public/" . $folder;
+        $route = $this->getCurrentRoute();
         
         $grid = new Grid();
         $grid->setHasEntity(false);
         $grid->setGenerateFieldset(false);
+        
         $grid->addColumn(new GridColumn('file', "Arquivo", 50));
         $grid->addColumn(new GridColumn('title', "Título"));
         $grid->addColumn(new GridColumn('type', "Tipo"));
@@ -54,7 +57,10 @@ class ListAttachmentFilesHelper extends ViewHelper
                                    </a>",
                         'title' => $pathInfo['basename'],
                         'type' => $mimeType,
-                        'size' => $fileSize
+                        'size' => $fileSize,
+                        \System\Model\GridColumn::GRID_COLUMN_ACTIONS_ID => array(
+                            new GridAction(GridAction::GRID_ACTION_DELETE_ID, "Excluir anexo", $route, array('action' => 'removeattachment', 'path' => $path), "fa-trash-o")
+                        )
                     );
                 }       
             }

@@ -18,8 +18,13 @@ class GridActionHelper extends ViewHelper
 {
     public function __invoke(GridAction $gridAction) 
     {
-        $content = "<a class='action-grid' title='{$gridAction->getTitle()}' href='{$gridAction->getHref()}' onClick='{$gridAction->getOnClick()}'>
-                        <i class='{$gridAction->getCssClass()}'></i>
+        $urlHelper = $this->getUrlHelper();
+        
+        $content = "<a class='action-grid' 
+                       title='{$gridAction->getTitle()}' 
+                       href='{$urlHelper($gridAction->getRoute(), $gridAction->getArgs())}' 
+                       onClick='{$gridAction->getOnClick()}'>
+                        <i class='fa {$gridAction->getCssClass()} fa-lg'></i>
                     </a>";
         
         return $content;

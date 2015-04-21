@@ -147,7 +147,7 @@ label {
     float: left;
     clear: both;
     width: 35%;
-    min-height: 65px !important;
+    min-height: 65px;
     margin-right: 0.5em;
     text-align: right;
     font-weight: bold;
@@ -345,6 +345,7 @@ select {
     width: 100%;
     float: left !important;
     margin-left: 0px !important;
+    min-height: 40px !important;
 }
 
 .dataTables_length{
@@ -612,7 +613,7 @@ form .btn{
 
 .action-grid{
     float: right;
-    margin-right: 10px;
+    width: 25px;
     color: #333;
 }
 

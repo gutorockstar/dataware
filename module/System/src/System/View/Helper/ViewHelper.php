@@ -160,6 +160,15 @@ class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
     }
     
     /**
+     * Retorna a rota atual.
+     */
+    public function getCurrentRoute()
+    {
+        $routeMatch = $this->getCurrentRouteMatch();
+        return $routeMatch->getMatchedRouteName();
+    }
+    
+    /**
      * Retorna a url completa da rota atual.
      * 
      * @return string
@@ -218,6 +227,11 @@ class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
         $entityName = $entityExplode[count($entityExplode) - 1];
         
         return $entityName;
+    }
+    
+    public function getUrlHelper()
+    {
+        return $this->view->plugin('url');
     }
 }
 

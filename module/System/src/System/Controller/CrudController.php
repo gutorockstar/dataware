@@ -151,6 +151,10 @@ class CrudController extends Controller
 
         if ( $this->request->isPost() ) 
         {
+            
+            // ESTE EVENTO DEVERÁ VERIFICAR E EXCLUÍR OS ANEXOS, CASO EXISTIREM!!!
+            
+            
             $this->getObjectManager()->remove($entity);
             $this->getObjectManager()->flush();
 
@@ -164,7 +168,7 @@ class CrudController extends Controller
     }
     
     /**
-     * Manutenção de arquivos e anexos.
+     * Interface de manutenção de arquivos e anexos.
      * 
      * @return type
      */
@@ -181,6 +185,17 @@ class CrudController extends Controller
         
         $viewModel = $this->defineViewModelTemplate(new ViewModel($argsAction), $this->getCurrentAction());
         return $viewModel;
+    }
+    
+    /**
+     * Remove um anexo do servidor.
+     */
+    public function removeattachmentAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        $path = (int) $this->params()->fromRoute('path', null);
+        
+        exit($id);
     }
     
     /**
