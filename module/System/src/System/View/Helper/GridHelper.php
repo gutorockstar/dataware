@@ -36,6 +36,9 @@ class GridHelper extends ViewHelper
                                  </thead>
                                  <tbody>";
         
+        // Prepara as ações padrões que serão utilizadas na grid.
+        $this->makeDefaultGridActions($grid);
+        
         // Gera o corpo da grid, contendo os registros obtidos para a listagem.
         $displayGrid .= $this->generateGridRows($grid);
         $displayGrid .= "        </tbody>
@@ -120,6 +123,25 @@ class GridHelper extends ViewHelper
     }
     
     /**
+     * Cria as ações padrões, que serão renderizadas 
+     * para os registros na grid.
+     * 
+     * @param \System\Model\Grid $grid
+     */
+    private function makeDefaultGridActions(Grid $grid)
+    {
+        if ( !$grid->defaultGridActionsAreHidden() )
+        {
+            $route = $this->getCurrentRoute();
+
+            //$grid->addGridAction(new GridAction(GridAction::GRID_ACTION_VIEW_ID, "Visualizar", $route, 'view', "fa-eye"));
+            $grid->addGridAction(new GridAction(GridAction::GRID_ACTION_ATTACHMENT_ID, "Anexos", $route, 'attachments', "fa-paperclip"));
+            $grid->addGridAction(new GridAction(GridAction::GRID_ACTION_EDIT_ID, "Editar", $route, 'edit', "fa-pencil-square-o"));
+            $grid->addGridAction(new GridAction(GridAction::GRID_ACTION_DELETE_ID, "Excluir", $route, 'delete', "fa-trash-o"));
+        }
+    }
+    
+    /**
      * Gera os registros que serão listados na grid.
      * 
      * @param \System\Model\Grid $grid
@@ -169,7 +191,7 @@ class GridHelper extends ViewHelper
                 }
                 
                 // Gera as ações padrões dos registros na grid (Editar e Excluir).
-                $rows .= $this->generateGridRowActions($grid, $gridData);
+                $rows .= $this->makeGridRowActions($grid, $gridData);
                 $rows .= "</tr>";
             }
         }
@@ -219,32 +241,46 @@ class GridHelper extends ViewHelper
      * @param obj $entity
      * @return string html
      */
-    private function generateGridRowActions(Grid $grid, $gridData)
+    private function makeGridRowActions(Grid $grid, $gridData)
     {
         $actions = "<td>";
-        $route = $this->getCurrentRoute();
+        $args = array();
         
-        if ( $grid->hasEntity() && !$grid->defaultGridActionsAreHidden() )
+        // Para registros por entidades.
+        if ( $grid->hasEntity() && is_object($gridData) )
         {   
-            //$grid->addGridAction(new GridAction(GridAction::GRID_ACTION_VIEW_ID, "Visualizar", $route, array('action' => 'view', 'id' => $gridData->getId()), "fa-eye"));
-            $grid->addGridAction(new GridAction(GridAction::GRID_ACTION_ATTACHMENT_ID, "Anexos", $route, array('action' => 'attachments', 'id' => $gridData->getId()), "fa-paperclip"));
-            $grid->addGridAction(new GridAction(GridAction::GRID_ACTION_EDIT_ID, "Editar", $route, array('action' => 'edit', 'id' => $gridData->getId()), "fa-pencil-square-o"));
-            $grid->addGridAction(new GridAction(GridAction::GRID_ACTION_DELETE_ID, "Excluir", $route, array('action' => 'delete', 'id' => $gridData->getId()), "fa-trash-o"));
-        }        
+            foreach ( $grid->getIdentityColumns() as $identityColumn )
+            {
+                $getFunction = "get" . ucfirst($identityColumn);
+
+                if ( method_exists($gridData, $getFunction) )
+                {
+                    $args[$identityColumn] = $gridData->$getFunction();
+                }
+            }
+        }    
         
-        $actions .= $this->generateDefaultGridActions($grid);
-        $actions .= $this->generateCustomGridActions($gridData);
+        // Para registros em array
+        else if ( is_array($gridData) )
+        {
+            foreach ( $grid->getIdentityColumns() as $identityColumn )
+            {
+                $args[$identityColumn] = $gridData[$identityColumn];
+            }
+        }
+        
+        $actions .= $this->generateGridRowActions($grid, $args);
         
         return $actions . "</td>";
     }
     
     /**
-     * Gera as ações padrões da grid.
+     * Gera as ações do registro na grid.
      * 
      * @param \System\Model\Grid $grid
      * @return String html
      */
-    public function generateDefaultGridActions(Grid $grid)
+    public function generateGridRowActions(Grid $grid, $args = array())
     {
         $actions = "";
         $gridActions = $grid->getGridActions();
@@ -253,30 +289,8 @@ class GridHelper extends ViewHelper
         {
             foreach ( $gridActions as $gridAction )
             {
+                $gridAction->setArgs($args);
                 $actions .= $this->view->GridActionHelper($gridAction);
-            }
-            
-            $grid->clearActions();
-        }
-        
-        return $actions;
-    }
-    
-    /**
-     * Gera as ações customisadas da grid.
-     * 
-     * @param array $gridData
-     * @return String html
-     */
-    public function generateCustomGridActions($gridData)
-    {
-        $actions = "";
-        
-        if ( is_array($gridData) && is_array($gridData[GridColumn::GRID_COLUMN_ACTIONS_ID]) )
-        {
-            foreach ( $gridData[GridColumn::GRID_COLUMN_ACTIONS_ID] as $action )
-            {
-                $actions .= $this->view->GridActionHelper($action);
             }
         }
         

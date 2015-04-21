@@ -61,13 +61,13 @@ class Grid
      *
      * @var boolean
      */
-    private $hideAllDefaultGridActions = false;
+    private $hideDefaultGridActions = false;
     
     /**
      *
-     * @var String
+     * @var array
      */
-    private $identityColumn;
+    private $identityColumns;
     
     public function __construct($data = null) 
     {
@@ -75,6 +75,8 @@ class Grid
         {
             $this->data = $data;
         }
+        
+        $this->identityColumns[] = GridColumn::GRID_IDENTITY_COLUMN_DEFAULT;
     }
     
     public function addColumn(GridColumn $gridColumn)
@@ -154,12 +156,12 @@ class Grid
     
     public function defaultGridActionsAreHidden() 
     {
-        return $this->hideAllDefaultGridActions;
+        return $this->hideDefaultGridActions;
     }
 
-    public function hideAllGridActionsDefault($hideAllDefaultGridActions) 
+    public function hideDefaultGridActions($hideDefaultGridActions) 
     {
-        $this->hideAllDefaultGridActions = $hideAllDefaultGridActions;
+        $this->hideDefaultGridActions = $hideDefaultGridActions;
     }
     
     public function addGridAction(GridAction $gridAction)
@@ -172,14 +174,14 @@ class Grid
         unset($this->gridActions);
     }
     
-    public function getIdentityColumn() 
+    public function getIdentityColumns() 
     {
-        return $this->identityColumn;
+        return $this->identityColumns;
     }
 
-    public function setIdentityColumn($identityColumn) 
+    public function setIdentityColumns($identityColumns) 
     {
-        $this->identityColumn = $identityColumn;
+        $this->identityColumns = $identityColumns;
     }
 }
 

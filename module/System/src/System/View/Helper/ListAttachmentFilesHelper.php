@@ -24,7 +24,6 @@ class ListAttachmentFilesHelper extends ViewHelper
     {
         $folder = "uploads/entities/" . $attachment->getEntityName() . '/' . $attachment->getEntityId();
         $filePath = dirname(__DIR__) . "/../../../../../public/" . $folder;
-        $route = $this->getCurrentRoute();
         
         $grid = new Grid();
         $grid->setHasEntity(false);
@@ -58,15 +57,19 @@ class ListAttachmentFilesHelper extends ViewHelper
                         'title' => $pathInfo['basename'],
                         'type' => $mimeType,
                         'size' => $fileSize,
-                        \System\Model\GridColumn::GRID_COLUMN_ACTIONS_ID => array(
-                            new GridAction(GridAction::GRID_ACTION_DELETE_ID, "Excluir anexo", $route, array('action' => 'removeattachment', 'path' => $path), "fa-trash-o")
-                        )
+                        GridColumn::GRID_IDENTITY_COLUMN_DEFAULT => 1,
+                        'attachment' => $pathInfo['basename']
                     );
                 }       
             }
             
             $grid->setData($gridData);
         }
+        
+        $route = $this->getCurrentRoute();
+        $grid->hideDefaultGridActions(true);
+        $grid->addGridAction(new GridAction(GridAction::GRID_ACTION_DELETE_ID, "Excluir anexo", $route, 'removeattachment', "fa-trash-o"));
+        $grid->setIdentityColumns(array(GridColumn::GRID_IDENTITY_COLUMN_DEFAULT, 'attachment'));
         
         return $this->view->GridHelper($grid);;
     }

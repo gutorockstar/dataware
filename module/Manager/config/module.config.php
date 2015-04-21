@@ -110,10 +110,11 @@ return array(
             'product' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/manager/product[/:action][/:id]',
+                    'route' => '/manager/product[/:action][/:id][/:attachment]',
                     'constraints' => array(
                         'action' => '[a-zA-Z]*',
-                        'id' => '[0-9]+'
+                        'id' => '[0-9]+',
+                        'attachment' => '[a-zA-Z]*[0-9]+'
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Manager\Controller',
