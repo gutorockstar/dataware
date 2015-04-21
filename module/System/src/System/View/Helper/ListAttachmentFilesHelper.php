@@ -49,7 +49,7 @@ class ListAttachmentFilesHelper extends ViewHelper
                     $fileSize = filesize($fileName);
                     
                     $gridData[] = array(
-                        'file' => "<img class='attachment-file' src='{$path}' title='Clique para ampliar' />",
+                        'file' => "<img src='{$path}' title='Clique para ampliar' width='50' height='50' />",
                         'title' => $pathInfo['basename'],
                         'type' => $mimeType,
                         'size' => $fileSize
