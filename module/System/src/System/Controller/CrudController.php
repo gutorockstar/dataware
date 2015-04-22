@@ -68,6 +68,7 @@ class CrudController extends Controller
                 $this->getObjectManager()->flush();
                 $id = $entity->getId();
 
+                $this->flashMessenger()->addSuccessMessage("Registro inserido com sucesso!");
                 return $this->redirect()->toRoute($this->getCurrentRoute(), array('id' => $id));
             }
             else
@@ -119,6 +120,7 @@ class CrudController extends Controller
                 $this->getObjectManager()->persist($entity);
                 $this->getObjectManager()->flush();
 
+                $this->flashMessenger()->addSuccessMessage("Registro atualizado com sucesso!");
                 return $this->redirect()->toRoute($this->getCurrentRoute());
             }
             else
