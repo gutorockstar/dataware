@@ -160,7 +160,7 @@ class ToolbarHelper extends ViewHelper
      * 
      * @return string
      */
-    private function getCurrentAction()
+    private function getCurrentToolAction()
     {
         $currentUrl = $this->getCurrentUrl();
         $urlExplode = explode("/", $currentUrl);
@@ -185,7 +185,7 @@ class ToolbarHelper extends ViewHelper
      */
     private function wasSelected($action)
     {
-        return ($action == $this->getCurrentAction());
+        return ($action == $this->getCurrentToolAction());
     }
     
     /**

@@ -169,6 +169,19 @@ class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
     }
     
     /**
+     * Retorna a ação atual executada da rota.
+     * 
+     * @return string
+     */
+    public function getCurrentAction()
+    {
+        $routeMatch = $this->getCurrentRouteMatch();
+        $action = $routeMatch->getParam('action', 'index');
+        
+        return $action;
+    }
+    
+    /**
      * Retorna a url completa da rota atual.
      * 
      * @return string

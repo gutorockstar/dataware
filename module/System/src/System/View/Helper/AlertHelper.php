@@ -135,6 +135,10 @@ class AlertHelper extends ViewHelper
     {
         if ( $type == FlashMessenger::NAMESPACE_WARNING )
         {
+            //$urlHelper = $this->getUrlHelper();
+            //$hrefConfirm = $urlHelper($this->getCurrentRoute(), array('action' => $this->getCurrentAction()));
+            $hrefConfirm = $this->getCurrentUrl();            
+            
             return "<div id='obscure'>
                         <script>
                             swal(
@@ -152,10 +156,8 @@ class AlertHelper extends ViewHelper
                             function ( isConfirm )
                             {   
                                 if ( isConfirm ) 
-                                {     
-                                    swal('" . self::TITLE_SUCCESS . "', 
-                                         'Seu registro foi removido com sucesso!', 
-                                         '" . FlashMessenger::NAMESPACE_SUCCESS . "');   
+                                {   
+                                    window.location.href = '{$hrefConfirm}&removeConfirm=true';
                                 } 
                                 else 
                                 {     

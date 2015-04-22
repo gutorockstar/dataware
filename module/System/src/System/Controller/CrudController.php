@@ -177,6 +177,14 @@ class CrudController extends Controller
         $id = (int) $this->params()->fromRoute('id', 0);
         $entityExp = explode("\\", $this->getCurrentEntity());
         
+        $attachment = $this->params()->fromQuery('attachment');
+        $removeConfirm = $this->params()->fromQuery('removeConfirm');
+        
+        if ( (boolean)$removeConfirm && strlen($attachment) > 0 )
+        {
+            $this->removeattachmentAction();
+        }
+        
         $argsAction = array(
             'id' => $id,
             'entity' => $entityExp[count($entityExp) -1],
@@ -194,33 +202,26 @@ class CrudController extends Controller
     {
         $id = (int) $this->params()->fromRoute('id', 0); // id proprietário do anexo.
         $attachment = $this->params()->fromQuery('attachment');  // From GET
+        $removeConfirm = $this->params()->fromQuery('removeConfirm'); // Verificação de confirmação da remoção.
+        
+        if ( (boolean)$removeConfirm && strlen($attachment) > 0 )
+        {
+            // Fazer a remoção,
+            // Setar flashMessage de sucesso
+            $this->flashMessenger()->addSuccessMessage("Registro foi removido com sucesso!");
+        }
+        else
+        {
+            $this->flashMessenger()->addWarningMessage("Você têm certeza de que deseja remover o anexo \"{$attachment}\"?");
+        }
         
         $args = array(
             'action' => 'attachments',
             'id' => $id,
             'attachment' => $attachment
         );
-        
-        $this->flashMessenger()->addWarningMessage("Você têm certeza de que deseja remover o anexo \"{$attachment}\"?");
         $this->redirect()->toRoute($this->getCurrentRoute(), $args);
-        
-        
-        
-        
-        // Qaundo redirecionar para perguntar se deseja remover, tentar exibir somente o registro selecionado.
     }
-    
-    /**
-     * Ação de remossão de um anexo, após confirmação.
-     */
-    public function removeattachmentconfirmAction()
-    {
-        $id = (int) $this->params()->fromRoute('id', 0); // id proprietário do anexo.
-        $attachment = $this->params()->fromQuery('attachment');  // From GET
-    }
-    
-    
-    
     
     /**
      * Ação padrão de visualização de registros.
