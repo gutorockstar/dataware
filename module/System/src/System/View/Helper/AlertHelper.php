@@ -133,6 +133,41 @@ class AlertHelper extends ViewHelper
      */
     private function showAlert($title, $text, $type)
     {
+        if ( $type == FlashMessenger::NAMESPACE_WARNING )
+        {
+            return "<div id='obscure'>
+                        <script>
+                            swal(
+                            {
+                                title: '{$title}',   
+                                text: '{$text}',   
+                                type: '{$type}',   
+                                showCancelButton: true,   
+                                confirmButtonColor: '#DD6B55',   
+                                confirmButtonText: 'Sim, remover!',   
+                                cancelButtonText: 'Não, cancelar!',   
+                                closeOnConfirm: false,   
+                                closeOnCancel: false 
+                            }, 
+                            function ( isConfirm )
+                            {   
+                                if ( isConfirm ) 
+                                {     
+                                    swal('" . self::TITLE_SUCCESS . "', 
+                                         'Seu registro foi removido com sucesso!', 
+                                         '" . FlashMessenger::NAMESPACE_SUCCESS . "');   
+                                } 
+                                else 
+                                {     
+                                    swal('Cancelado', 
+                                         'Processo de remoção do registro foi cancelado!', 
+                                         '" . FlashMessenger::NAMESPACE_ERROR . "');   
+                                } 
+                            });
+                        </script>
+                    </div>";
+        }
+        
         return "<div id='obscure'>
                     <script>
                         sweetAlert('{$title}', '{$text}', '{$type}');

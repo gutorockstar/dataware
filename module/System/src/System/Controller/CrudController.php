@@ -193,11 +193,34 @@ class CrudController extends Controller
     public function removeattachmentAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0); // id proprietário do anexo.
-        $attachment = (int) $this->params()->fromRoute('attachment', null); // nome anexo.
+        $attachment = $this->params()->fromQuery('attachment');  // From GET
         
-        exit(var_dump($attachment));
-        exit(var_dump($id));
+        $args = array(
+            'action' => 'attachments',
+            'id' => $id,
+            'attachment' => $attachment
+        );
+        
+        $this->flashMessenger()->addWarningMessage("Você têm certeza de que deseja remover o anexo \"{$attachment}\"?");
+        $this->redirect()->toRoute($this->getCurrentRoute(), $args);
+        
+        
+        
+        
+        // Qaundo redirecionar para perguntar se deseja remover, tentar exibir somente o registro selecionado.
     }
+    
+    /**
+     * Ação de remossão de um anexo, após confirmação.
+     */
+    public function removeattachmentconfirmAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0); // id proprietário do anexo.
+        $attachment = $this->params()->fromQuery('attachment');  // From GET
+    }
+    
+    
+    
     
     /**
      * Ação padrão de visualização de registros.

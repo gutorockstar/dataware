@@ -110,7 +110,7 @@ return array(
             'product' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/manager/product[/:action][/:id][/:attachment]',
+                    'route' => '/manager/product[/:action][/:id][?attachment=:attachment]',
                     'constraints' => array(
                         'action' => '[a-zA-Z]*',
                         'id' => '[0-9]+',
