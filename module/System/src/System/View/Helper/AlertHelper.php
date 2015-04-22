@@ -21,10 +21,10 @@ class AlertHelper extends ViewHelper
     /**
      * Constantes dos headers.
      */
-    const TITLE_INFO    = 'Só para constar! :)';
-    const TITLE_SUCCESS = 'Tudo certo! :D';
+    const TITLE_INFO    = 'Informação!';
+    const TITLE_SUCCESS = 'Ok!';
     const TITLE_ERROR   = 'Ops! :(';
-    const TITLE_WARNING   = 'Ei, atenção! :o';
+    const TITLE_WARNING   = 'Atenção!';
     
     /**
      * Verifica o alert que deve ser exibido na tela, caso tenha sido chamado.
