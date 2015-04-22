@@ -80,9 +80,9 @@ return array(
                 'identity_class' => 'System\Entity\Login',
                 'identity_property' => 'username',
                 'credential_property' => 'password',
-                'credential_callable' => function(\System\Entity\Login $Login, $passwordGiven) 
+                'credential_callable' => function(\System\Entity\Login $login, $passwordGiven) 
                 {
-                    return ( $Login->getPassword() == md5($passwordGiven) );
+                    return ( ( $login->getPassword() == md5($passwordGiven) ) && ( $login->getActive() ) );
                 },
             ),
         ),

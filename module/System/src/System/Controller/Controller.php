@@ -18,6 +18,7 @@ use Zend\View\Helper\ServerUrl;
 use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\Form\Form;
 use Zend\Form\Element\Select;
+use Zend\Form\Element\Password;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Zend\View\Model\ViewModel;
 
@@ -235,6 +236,12 @@ class Controller extends AbstractActionController
                 {                          
                     $value = $this->getEntityByElementField($element, $value);
                     break;
+                }
+                
+                // Para campos de senha.
+                if ( ( $element instanceof Password ) && ( $element->getAttribute('name') == $attribute ) )
+                {
+                    $value = md5($value);
                 }
                 
                 /**

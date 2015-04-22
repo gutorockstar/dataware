@@ -5,7 +5,11 @@ $form->prepare();
 $form->setAttribute('action', $this->url('login'));
 
 $formLogin = $this->form()->openTag($form);              
-$formLogin .= $this->formCollection($form);
+$formLogin .= "<fieldset>";
+$formLogin .= $this->formRow($form->get('username'));
+$formLogin .= $this->formRow($form->get('password'));
+$formLogin .= $this->formRow($form->get('send'));
+$formLogin .= "</fieldset>";
 $formLogin .= $this->form()->closeTag();
 
 $panel = new \System\Model\Panel('Efetuar login', $formLogin, 'fa-user', 'width: 30%; margin-top: 5%; float: center !important');

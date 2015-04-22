@@ -64,7 +64,7 @@ class MenuHelper extends ViewHelper
                 "Empresa, Missão e Visão" => '/manager/companymissionview'
             ),
             "Configurações" => array(
-                "Usuários" => '/manager/useraccount'
+                "Usuários" => '/manager/user'
             )
         );
         

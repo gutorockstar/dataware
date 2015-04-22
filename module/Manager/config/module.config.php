@@ -16,7 +16,8 @@ return array(
             'Manager\Controller\CategoryController' => 'Manager\Controller\CategoryController',
             'Manager\Controller\BrandController' => 'Manager\Controller\BrandController',
             'Manager\Controller\ProductController' => 'Manager\Controller\ProductController',
-            'Manager\Controller\CompanymissionviewController' => 'Manager\Controller\CompanymissionviewController'
+            'Manager\Controller\CompanymissionviewController' => 'Manager\Controller\CompanymissionviewController',
+            'Manager\Controller\UserController' => 'Manager\Controller\UserController'
         ),
     ),
     
@@ -152,6 +153,34 @@ return array(
                         'module' => 'manager',
                         'action' => 'index',
                         'caption' => 'Empresa, Missão e Visão'
+                    ),
+                ),
+            ),
+            
+            // Rota para as interfaces de manutenção de Usuários.
+            'user' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/manager/user[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z]*',
+                        'id' => '[0-9]+'
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Manager\Controller',
+                        'entity' => 'System\Entity\Login',
+                        'controller' => 'Manager\Controller\UserController',
+                        'module' => 'manager',
+                        'action' => 'index',
+                        'caption' => 'Usuários',
+                        
+                        // Custom templates
+                        'template' => array(
+                            'index' => 'system/crud',
+                            'add' => 'system/crud',
+                            'edit' => 'system/crud',
+                            'delete' => 'system/crud'
+                        )
                     ),
                 ),
             ),
