@@ -180,6 +180,7 @@ class CrudController extends Controller
         $attachment = $this->params()->fromQuery('attachment');
         $removeConfirm = $this->params()->fromQuery('removeConfirm');
         
+        // Para remoção de anexos.
         if ( (boolean)$removeConfirm && strlen($attachment) > 0 )
         {
             $this->removeattachmentAction();
@@ -206,9 +207,17 @@ class CrudController extends Controller
         
         if ( (boolean)$removeConfirm && strlen($attachment) > 0 )
         {
-            // Fazer a remoção,
-            // Setar flashMessage de sucesso
-            $this->flashMessenger()->addSuccessMessage("Registro foi removido com sucesso!");
+            $filePath = dirname(__DIR__) . "/../../../../public/uploads/entities/" . strtolower($this->getCurrentRoute()) . "/" . $id . "/" . $attachment;
+            
+            if ( file_exists($filePath) )
+            {
+                unlink($filePath);
+                $this->flashMessenger()->addSuccessMessage("Anexo removido com sucesso!");
+            }
+            else
+            {
+                $this->flashMessenger()->addErrorMessage("Ocorreram alguns problemas ao tentar remover o anexo!");
+            }
         }
         else
         {
