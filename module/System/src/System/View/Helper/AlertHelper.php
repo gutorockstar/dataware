@@ -135,9 +135,8 @@ class AlertHelper extends ViewHelper
     {
         if ( $type == FlashMessenger::NAMESPACE_WARNING )
         {
-            //$urlHelper = $this->getUrlHelper();
-            //$hrefConfirm = $urlHelper($this->getCurrentRoute(), array('action' => $this->getCurrentAction()));
-            $hrefConfirm = $this->getCurrentUrl();            
+            $hrefConfirm = $this->getCurrentUrl();
+            $hrefConfirm .= strrpos($hrefConfirm, "?") ? "&" : "?";
             
             return "<div id='obscure'>
                         <script>
@@ -157,7 +156,7 @@ class AlertHelper extends ViewHelper
                             {   
                                 if ( isConfirm ) 
                                 {   
-                                    window.location.href = '{$hrefConfirm}&removeConfirm=true';
+                                    window.location.href = '{$hrefConfirm}warningConfirm=true';
                                 } 
                                 else 
                                 {     

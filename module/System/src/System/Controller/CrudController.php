@@ -25,6 +25,13 @@ class CrudController extends Controller
      */
     public function indexAction()
     {
+        $warningConfirm = $this->params()->fromQuery('warningConfirm');
+        
+        if ( (boolean)$warningConfirm )
+        {
+            $this->deleteAction();
+        }
+        
         $dataGrid = $this->getObjectManager()->getRepository($this->getCurrentEntity())->findAll();
         $argsAction = array(
             'entity' => $this->getCurrentEntity(),
@@ -147,26 +154,24 @@ class CrudController extends Controller
     public function deleteAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
+        $warningConfirm = $this->params()->fromQuery('warningConfirm');
         
         $entityClass = $this->getCurrentEntity();
         $entity = $this->getObjectManager()->find($entityClass, $id);
 
-        if ( $this->request->isPost() ) 
+        if ( (boolean)$warningConfirm ) 
         {
-            
-            // ESTE EVENTO DEVERÁ VERIFICAR E EXCLUÍR OS ANEXOS, CASO EXISTIREM!!!
-            
-            
             $this->getObjectManager()->remove($entity);
             $this->getObjectManager()->flush();
 
-            return $this->redirect()->toRoute($this->getCurrentRoute());
+            $this->flashMessenger()->addSuccessMessage("Registro removido com sucesso!");
+        }
+        else
+        {
+            $this->flashMessenger()->addWarningMessage("Você têm certeza de que deseja remover este registro?");
         }
         
-        $this->flashMessenger()->addWarningMessage("Você têm certeza de que deseja excluir este registro?");
-        
-        $viewModel = $this->defineViewModelTemplate(new ViewModel(), $this->getCurrentAction());        
-        return $viewModel;
+        $this->redirect()->toRoute($this->getCurrentRoute(), array('id' => $id));
     }
     
     /**
@@ -180,10 +185,10 @@ class CrudController extends Controller
         $entityExp = explode("\\", $this->getCurrentEntity());
         
         $attachment = $this->params()->fromQuery('attachment');
-        $removeConfirm = $this->params()->fromQuery('removeConfirm');
+        $warningConfirm = $this->params()->fromQuery('warningConfirm');
         
         // Para remoção de anexos.
-        if ( (boolean)$removeConfirm && strlen($attachment) > 0 )
+        if ( (boolean)$warningConfirm && strlen($attachment) > 0 )
         {
             $this->removeattachmentAction();
         }
@@ -205,9 +210,9 @@ class CrudController extends Controller
     {
         $id = (int) $this->params()->fromRoute('id', 0); // id proprietário do anexo.
         $attachment = $this->params()->fromQuery('attachment');  // From GET
-        $removeConfirm = $this->params()->fromQuery('removeConfirm'); // Verificação de confirmação da remoção.
+        $warningConfirm = $this->params()->fromQuery('warningConfirm'); // Verificação de confirmação da remoção.
         
-        if ( (boolean)$removeConfirm && strlen($attachment) > 0 )
+        if ( (boolean)$warningConfirm && strlen($attachment) > 0 )
         {
             $filePath = dirname(__DIR__) . "/../../../../public/uploads/entities/" . strtolower($this->getCurrentRoute()) . "/" . $id . "/" . $attachment;
             
