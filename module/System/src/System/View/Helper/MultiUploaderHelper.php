@@ -38,8 +38,24 @@ class MultiUploaderHelper extends ViewHelper
                         'auto'      : false, // False para não começar automaticamente, e True para começar o upload automaticamente.
                         'multi'     : true, // False para fazer upload apenas de um arquivo e True para vários arquivos.
                         'onAllComplete' : function(event, data) 
-                        {
-                            window.location.reload();
+                        {   
+                            swal(
+                            {
+                                title: 'Ok!',   
+                                text: 'Upload dos anexos efetuados com sucesso!',   
+                                type: 'success',   
+                                showCancelButton: false,   
+                                confirmButtonColor: 'rgb(174, 222, 244)',   
+                                confirmButtonText: 'OK',    
+                                closeOnConfirm: false
+                            }, 
+                            function ( isConfirm )
+                            {   
+                                if ( isConfirm ) 
+                                {   
+                                    window.location.reload();
+                                } 
+                            });
                         } 
                     });
                 });
