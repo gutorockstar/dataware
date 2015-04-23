@@ -13,13 +13,13 @@ $toolbar->setDisableToolbarActions(array(
 
 $form->prepare();
 $panelContent = $this->form()->openTag($form);
-$panelContent .= $this->formRow($form->get('id'));
-$companyFormPart = $this->formRow($form->get('company'));
-$companyFormPart .= $this->formRow($form->get('activecompany'));
-$missionFormPart = $this->formRow($form->get('mission'));
-$missionFormPart .= $this->formRow($form->get('activemission'));
-$viewFormPart = $this->formRow($form->get('view'));
-$viewFormPart .= $this->formRow($form->get('activeview'));
+$panelContent .= $this->fieldRow($form->get('id'));
+$companyFormPart = $this->fieldRow($form->get('company'));
+$companyFormPart .= $this->fieldRow($form->get('activecompany'));
+$missionFormPart = $this->fieldRow($form->get('mission'));
+$missionFormPart .= $this->fieldRow($form->get('activemission'));
+$viewFormPart = $this->fieldRow($form->get('view'));
+$viewFormPart .= $this->fieldRow($form->get('activeview'));
 
 $tabs = array(
     new \System\Model\Tab("company", "Empresa", $companyFormPart, true),

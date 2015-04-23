@@ -669,3 +669,13 @@ form .btn{
     width: 50px;
     cursor: pointer;
 }
+
+.input-group{
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.input-group-addon{
+    text-align: left;
+    width: 10% !important;
+}

@@ -118,6 +118,11 @@ class FieldRow extends FormRow
                 $markup = $elementString;
             }
         }
+        
+        $markup = "<div class='input-group'>
+                       <span class='input-group-addon' id='basic-addon1'>{$label}</span>
+                       {$elementString}
+                   </div>";
 
         return $markup;
     }
