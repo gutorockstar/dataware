@@ -88,11 +88,11 @@ class ToolbarHelper extends ViewHelper
         {
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_NEW, 'Novo', 'add', 'fa-file'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_EDIT, 'Editar', 'edit/' . $id, 'fa-edit'));
-            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_SAVE, 'Salvar', "void(0)", 'fa-floppy-o', true, "$('#{$entityName}').submit();"));
+            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_SAVE, 'Salvar', 'void(0)', 'fa-floppy-o', true, "$('#{$entityName}').submit();"));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_DELETE, 'Excluir', 'delete/' . $id, 'fa-trash'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_SEARCH, 'Listar', 'index', 'fa-list'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_ATTACHMENTS, 'Anexos', 'attachments/' . $id, 'fa-paperclip', false));
-            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_BACK, 'Voltar', 'back', 'fa-arrow-circle-left'));
+            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_BACK, 'Voltar', 'void(0)', 'fa-arrow-circle-left', true, "history.back();"));
             
             // Hidden optional actions.
             //$toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_PRINT, 'Imprimir', 'print', 'fa-print'));

@@ -252,13 +252,6 @@ class CrudController extends Controller
     public function printAction()
     {   
     }
-    
-    /**
-     * Ação padrão para voltar.
-     */
-    public function backAction()
-    {
-    }
 }
 
 ?>
