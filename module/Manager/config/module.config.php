@@ -17,7 +17,8 @@ return array(
             'Manager\Controller\BrandController' => 'Manager\Controller\BrandController',
             'Manager\Controller\ProductController' => 'Manager\Controller\ProductController',
             'Manager\Controller\CompanymissionviewController' => 'Manager\Controller\CompanymissionviewController',
-            'Manager\Controller\UserController' => 'Manager\Controller\UserController'
+            'Manager\Controller\UserController' => 'Manager\Controller\UserController',
+            'Manager\Controller\BannerController' => 'Manager\Controller\BannerController',
         ),
     ),
     
@@ -129,7 +130,6 @@ return array(
                         'template' => array(
                             'index' => 'system/crud',
                             'add' => 'system/crud',
-                            'edit' => 'system/crud',
                             'delete' => 'system/crud',
                             'attachments' => 'system/crud'
                         )
@@ -181,6 +181,26 @@ return array(
                             'edit' => 'system/crud',
                             'delete' => 'system/crud'
                         )
+                    ),
+                ),
+            ),
+            
+            // Rota para as interfaces de manutenção do banner.
+            'banner' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/manager/banner[/:action][/:id][?attachment=:attachment]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z]*',
+                        'id' => '[0-9]+',
+                        'attachment' => '[a-zA-Z]*[0-9]+'
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Manager\Controller',
+                        'controller' => 'Manager\Controller\BannerController',
+                        'module' => 'manager',
+                        'action' => 'attachments',
+                        'caption' => 'Banner principal'
                     ),
                 ),
             ),

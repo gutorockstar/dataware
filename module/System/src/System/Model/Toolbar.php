@@ -42,6 +42,12 @@ class Toolbar
     private $disableToolbarActions = array();
     
     /**
+     *
+     * @var array
+     */
+    private $enableToolbarActions = array();
+    
+    /**
      * @var array
      */
     private $removeToolbarActions = array();
@@ -85,6 +91,16 @@ class Toolbar
     {
         $this->disableToolbarActions = $disableToolbarActions;
     }
+    
+    public function getEnableToolbarActions() 
+    {
+        return $this->enableToolbarActions;
+    }
+
+    public function setEnableToolbarActions($enableToolbarActions) 
+    {
+        $this->enableToolbarActions = $enableToolbarActions;
+    }
 
     public function getRemoveToolbarActions() 
     {
@@ -116,6 +132,14 @@ class Toolbar
         if ( $this->toolbarActions[$toolbarActionId] instanceof ToolbarAction )
         {
             $this->toolbarActions[$toolbarActionId]->setEnabled(false);
+        }
+    }
+    
+    public function enableToolbarAction($toolbarActionId)
+    {        
+        if ( $this->toolbarActions[$toolbarActionId] instanceof ToolbarAction )
+        {
+            $this->toolbarActions[$toolbarActionId]->setEnabled(true);
         }
     }
     

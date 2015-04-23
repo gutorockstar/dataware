@@ -66,6 +66,9 @@ class ToolbarHelper extends ViewHelper
         // Verifica se deve desabilitar alguma ação da barra de ferramentas.
         $this->executeDisableToolbarActions($toolbar);
         
+        // Verifica se deve habilitar alguma ação da barra de ferramentas.
+        $this->executeEnableToolbarActions($toolbar);
+        
         // Verifica se deve removar alguma ação da barra de ferramentas.
         $this->executeRemoveToolbarActions($toolbar);
     }
@@ -88,7 +91,7 @@ class ToolbarHelper extends ViewHelper
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_SAVE, 'Salvar', "void(0)", 'fa-floppy-o', true, "$('#{$entityName}').submit();"));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_DELETE, 'Excluir', 'delete/' . $id, 'fa-trash'));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_SEARCH, 'Listar', 'index', 'fa-list'));
-            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_ATTACHMENTS, 'Anexos', 'attachments/' . $id, 'fa-paperclip'));
+            $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_ATTACHMENTS, 'Anexos', 'attachments/' . $id, 'fa-paperclip', false));
             $toolbar->addToolbarAction(new ToolbarAction(Toolbar::TB_ACTION_BACK, 'Voltar', 'back', 'fa-arrow-circle-left'));
             
             // Hidden optional actions.
@@ -133,6 +136,24 @@ class ToolbarHelper extends ViewHelper
             foreach ( $disableToolbarActions as $toolbarAction )
             {
                 $toolbar->disableToolbarAction($toolbarAction);
+            }
+        }
+    }
+    
+    /**
+     * Desabilita ações da toolbar, conforme confgurações.
+     * 
+     * @param Toolbar $toolbar
+     */
+    private function executeEnableToolbarActions(Toolbar $toolbar)
+    {
+        $enableToolbarActions = $toolbar->getEnableToolbarActions();
+        
+        if ( count($enableToolbarActions) > 0 )
+        {
+            foreach ( $enableToolbarActions as $toolbarAction )
+            {
+                $toolbar->enableToolbarAction($toolbarAction);
             }
         }
     }
@@ -196,6 +217,12 @@ class ToolbarHelper extends ViewHelper
      */
     private function createToolbarAction(ToolbarAction $toolbarAction)
     {  
+        if ( !$toolbarAction->getEnabled() )
+        {
+            $toolbarAction->addCssClass(ToolbarAction::TB_DISABLE_CLASS_CSS);
+            $toolbarAction->setAction(ToolbarAction::TB_DISABLE_ACTION);
+        }
+        
         $currentRouteUrl = $toolbarAction->getEnabled() ? $this->getCurrentRouteUrl() : null;
         $disableStyleClass = $toolbarAction->getEnabled() ? "" : "disabled-style";
         $loading = $toolbarAction->getEnabled() ? "loading" : "";

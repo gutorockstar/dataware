@@ -132,12 +132,6 @@ class ToolbarAction
     public function setEnabled($enabled) 
     {
         $this->enabled = $enabled;
-        
-        if ( !$this->enabled )
-        {
-            $this->addCssClass(self::TB_DISABLE_CLASS_CSS);
-            $this->setAction(self::TB_DISABLE_ACTION);
-        }
     }
     
     public function getOnClick() 

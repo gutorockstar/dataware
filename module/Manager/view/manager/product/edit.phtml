@@ -1,0 +1,23 @@
+<?php
+
+$toolbar = new \System\Model\Toolbar();
+$toolbar->setDisableToolbarActions(array(
+    System\Model\Toolbar::TB_ACTION_PRINT,
+    System\Model\Toolbar::TB_ACTION_CLONE,
+    System\Model\Toolbar::TB_ACTION_UNIFY
+));
+$toolbar->setEnableToolbarActions(array(System\Model\Toolbar::TB_ACTION_ATTACHMENTS));
+
+$form->prepare();
+$editForm = $this->form()->openTag($form);              
+$editForm .= $this->formCollection($form);
+$editForm .= $this->form()->closeTag();
+$panel = new \System\Model\Panel($caption, $editForm, 'fa-folder-open');
+
+$view = new \System\Model\View();
+$view->setToolbar($toolbar);
+$view->setPanel($panel);
+
+echo $this->ViewHelper($view);
+
+?>

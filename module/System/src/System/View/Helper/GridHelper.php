@@ -178,7 +178,10 @@ class GridHelper extends ViewHelper
 
                             // Para registros booleanos.
                             $value = $this->adjustToShowBooleanValue($value);
-
+                            
+                            // Para registros de senha
+                            $value = $this->adjustToShowPasswordValue($value);
+                            
                             $tdValue .= $value;
                         }
                     }
@@ -233,6 +236,24 @@ class GridHelper extends ViewHelper
         }
         
         return $value;
+    }
+    
+    /**
+     * Verifica se o valor é de campo senha,
+     * e ajusta para retornar somente 
+     * **********
+     * 
+     * @param type $value
+     * @return type
+     */
+    private function adjustToShowPasswordValue($value)
+    {
+        if ( preg_match('/^[a-f0-9]{32}$/', $value) )
+        {
+            $value = "************";
+        }
+        
+        return $value;        
     }
     
     /**

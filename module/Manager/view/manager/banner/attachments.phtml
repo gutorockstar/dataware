@@ -1,0 +1,27 @@
+<?php
+
+$toolbar = new \System\Model\Toolbar();
+$toolbar->setDisableToolbarActions(array(
+    System\Model\Toolbar::TB_ACTION_NEW,
+    System\Model\Toolbar::TB_ACTION_EDIT,
+    System\Model\Toolbar::TB_ACTION_SAVE,
+    System\Model\Toolbar::TB_ACTION_DELETE,
+    System\Model\Toolbar::TB_ACTION_SEARCH,
+    System\Model\Toolbar::TB_ACTION_ATTACHMENTS,
+));
+
+$attachment = new \System\Model\Attachment(1, 'banner');
+$tabs = array(
+    new \System\Model\Tab("company", "Arquivos anexados", $this->ListAttachmentFilesHelper($attachment), true),
+    new \System\Model\Tab("mission", "Upload de arquivos", $this->MultiUploaderHelper($attachment))
+);
+$panelContent .= $this->TabHelper($tabs);
+$panel = new \System\Model\Panel($caption, $panelContent, 'fa-folder-open');
+
+$view = new \System\Model\View();
+$view->setToolbar($toolbar);
+$view->setPanel($panel);
+
+echo $this->ViewHelper($view);
+
+?>
