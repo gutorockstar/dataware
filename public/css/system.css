@@ -155,8 +155,9 @@ footer{
 }
 
 label {
+    color: #999;
     display: inline !important;
-    font-weight: normal !important;
+    font-weight: bold !important;
     float: left;
     clear: both;
     width: 100%;
