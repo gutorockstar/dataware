@@ -73,15 +73,15 @@ class GridAction
      */
     private $args;
     
-    public function __construct($id, $title, $route, $action, $cssClass = null, $onClick = null, $enable = true, $visible = true) 
+    public function __construct($id, $title, $route, $action, $cssClass = null, $enable = true, $onClick = null, $visible = true) 
     {
         $this->id = $id;
         $this->title = $title;
         $this->route = $route;
         $this->action = $action;
         $this->cssClass = $cssClass;
-        $this->onClick = $onClick;
         $this->enable = $enable;
+        $this->onClick = $onClick;
         $this->visible = $visible;
         $this->args = array();
     }

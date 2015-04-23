@@ -14,7 +14,6 @@ $toolbar->setDisableToolbarActions(array(
 $grid = new System\Model\Grid();
 $grid->setEntity($entity);
 $grid->setData($dataGrid);
-$grid->setDisableActions(array(System\Model\GridAction::GRID_ACTION_ATTACHMENT_ID));
 $panel = new System\Model\Panel($caption, $this->GridHelper($grid), 'fa-folder-open');
 
 $view = new System\Model\View();

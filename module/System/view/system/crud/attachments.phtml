@@ -7,6 +7,7 @@ $toolbar->setDisableToolbarActions(array(
     System\Model\Toolbar::TB_ACTION_UNIFY,
     System\Model\Toolbar::TB_ACTION_SAVE,
 ));
+$toolbar->setEnableToolbarActions(array(System\Model\Toolbar::TB_ACTION_ATTACHMENTS));
 
 $attachment = new \System\Model\Attachment($id, $entity);
 $tabs = array(

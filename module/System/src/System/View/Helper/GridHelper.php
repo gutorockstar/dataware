@@ -305,13 +305,17 @@ class GridHelper extends ViewHelper
     {
         $actions = "";
         $gridActions = $grid->getGridActions();
+        $disableGridActions = $grid->getDisableActions();
         
         if ( count($gridActions) > 0 )
         {
             foreach ( $gridActions as $gridAction )
             {
-                $gridAction->setArgs($args);
-                $actions .= $this->view->GridActionHelper($gridAction);
+                if ( !in_array($gridAction->getId(), $disableGridActions) )
+                {
+                    $gridAction->setArgs($args);
+                    $actions .= $this->view->GridActionHelper($gridAction);
+                }
             }
         }
         

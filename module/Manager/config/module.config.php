@@ -128,7 +128,6 @@ return array(
                         
                         // Custom templates
                         'template' => array(
-                            'index' => 'system/crud',
                             'add' => 'system/crud',
                             'delete' => 'system/crud',
                             'attachments' => 'system/crud'

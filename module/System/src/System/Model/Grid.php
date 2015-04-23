@@ -69,6 +69,12 @@ class Grid
      */
     private $identityColumns;
     
+    /**
+     *
+     * @var type 
+     */
+    private $disableActions = array();
+    
     public function __construct($data = null) 
     {
         if ( !is_null($data) )
@@ -182,6 +188,16 @@ class Grid
     public function setIdentityColumns($identityColumns) 
     {
         $this->identityColumns = $identityColumns;
+    }
+    
+    public function getDisableActions() 
+    {
+        return $this->disableActions;
+    }
+
+    public function setDisableActions($disableActions) 
+    {
+        $this->disableActions = $disableActions;
     }
 }
 
