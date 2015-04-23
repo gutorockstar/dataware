@@ -40,7 +40,7 @@ class Login
      * 
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Login *"})
+     * @Annotation\Options({"label":"Login"})
      * @Annotation\Attributes({"class":"form-control"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":25}})
      * @Annotation\ErrorMessage("O preenchimento do campo 'Login', é requerido!");
@@ -52,7 +52,7 @@ class Login
      * 
      * @Annotation\Type("Zend\Form\Element\Password")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Senha *"})
+     * @Annotation\Options({"label":"Senha"})
      * @Annotation\Attributes({"class":"form-control"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":25}})
      * @Annotation\ErrorMessage("O preenchimento do campo 'Senha', é requerido!");
