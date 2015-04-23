@@ -8,7 +8,7 @@ $formLogin = $this->form()->openTag($form);
 $formLogin .= "<fieldset>";
 $formLogin .= $this->formRow($form->get('username'));
 $formLogin .= $this->formRow($form->get('password'));
-$formLogin .= $this->formRow($form->get('send'));
+$formLogin .= "<input type='submit' name='send' class='btn btn-primary loading' value='Logar'>";
 $formLogin .= "</fieldset>";
 $formLogin .= $this->form()->closeTag();
 

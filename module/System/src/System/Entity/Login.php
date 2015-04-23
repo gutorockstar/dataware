@@ -103,12 +103,6 @@ class Login
      */
     protected $isadmin;
     
-    /**
-     * @Annotation\Type("Zend\Form\Element\Submit")
-     * @Annotation\Attributes({"value":"Logar", "class":"btn btn-primary loading"})
-     */
-    protected $send;
-    
     public function getId() 
     {
         return $this->id;
