@@ -35,6 +35,10 @@ class MenuHelper extends ViewHelper
                                       </div>
                                   </a>
                                   {$this->getModules()}
+                                  
+                                  <div class='logout' title='Efetuar logout' onclick='javascript:logoutMessage();'>
+                                      <i class='img-logout fa fa-power-off fa-2x'></i>
+                                  </div>
                               </div>
                           </div>
                       </nav>";

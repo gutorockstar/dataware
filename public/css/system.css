@@ -43,6 +43,19 @@ footer{
     color: #ddd !important;
 }
 
+.img-logout{
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    margin-top: 10px;
+    float: right;
+    color: #ddd !important;
+}
+
+.logout{
+    cursor: pointer;
+}
+
 .menu{
     background: #0075b0;
     height: 53px;
@@ -146,7 +159,7 @@ label {
     font-weight: normal !important;
     float: left;
     clear: both;
-    width: 35%;
+    width: 100%;
     min-height: 65px;
     margin-right: 0.5em;
     text-align: right;

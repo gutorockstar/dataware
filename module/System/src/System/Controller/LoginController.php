@@ -129,8 +129,12 @@ class LoginController extends AbstractActionController
      */
     public function logoutAction()
     {
-        $this->getSessionStorage()->forgetMe();
-        //$this->getAuthService()->clearIdentity();
+        //$this->getSessionStorage()->forgetMe();
+        $this->getServiceLocator()->get('AuthenticationService')->clearIdentity();
+        
+        $userSession = new Container('Login');
+        unset($userSession->username);
+        
         $this->flashMessenger()->addInfoMessage("Você foi desconectado.");
         
         return $this->redirect()->toRoute('login');
