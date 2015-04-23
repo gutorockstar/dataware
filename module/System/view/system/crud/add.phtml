@@ -13,7 +13,7 @@ $toolbar->setDisableToolbarActions(array(
 
 $form->prepare();
 $addForm = $this->form()->openTag($form);              
-$addForm .= $this->formCollection($form);
+$addForm .= $this->fieldCollection($form);
 $addForm .= $this->form()->closeTag();
 $panel = new \System\Model\Panel($caption, $addForm, 'fa-folder-open');
 

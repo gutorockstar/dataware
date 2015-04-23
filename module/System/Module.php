@@ -148,6 +148,11 @@ class Module
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);   				
                     return new View\Helper\ListAttachmentFilesHelper($em);
                 }
+            ),
+            
+            'invokables' => array(
+                'fieldCollection' => 'System\View\Helper\FieldCollection',
+                'fieldRow' => 'System\View\Helper\FieldRow'
             )
     	);
     }

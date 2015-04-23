@@ -9,7 +9,7 @@ $toolbar->setDisableToolbarActions(array(
 
 $form->prepare();
 $editForm = $this->form()->openTag($form);              
-$editForm .= $this->formCollection($form);
+$editForm .= $this->fieldCollection($form);
 $editForm .= $this->form()->closeTag();
 $panel = new \System\Model\Panel($caption, $editForm, 'fa-folder-open');
 
