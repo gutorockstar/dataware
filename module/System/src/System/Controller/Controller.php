@@ -542,7 +542,7 @@ class Controller extends AbstractActionController
      * @param array $messages
      * @param String $action
      */
-    public function displayErrorMessages(array $messages, $argsAction = array())
+    public function displayErrorMessages(array $messages, $actionArgs = array(), $queryArgs = array())
     {
         foreach ( $messages as $errorTypes )
         {
@@ -552,8 +552,8 @@ class Controller extends AbstractActionController
             }
         }
         
-        $argsAction['action'] = $this->getCurrentAction();
-        $this->redirect()->toRoute($this->getCurrentRoute(), $argsAction);
+        $actionArgs['action'] = $this->getCurrentAction();
+        $this->redirect()->toRoute($this->getCurrentRoute(), $actionArgs, $queryArgs);
     }
 }
 

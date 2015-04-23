@@ -57,6 +57,13 @@ class CrudController extends Controller
         
         $builder  = new AnnotationBuilder();    
         $form = $builder->createForm($entity);
+        
+        $queryData = $this->params()->fromQuery();
+        
+        if ( !empty($queryData) )
+        {
+            $form->setData($queryData);
+        }
             
         if ( $request->isPost() ) 
         {
@@ -80,7 +87,7 @@ class CrudController extends Controller
             }
             else
             {
-                $this->displayErrorMessages($form->getMessages(), array('form' => $form, 'caption' => $caption));
+                $this->displayErrorMessages($form->getMessages(), array(), array('query' => $postData));
             }
         }
         
@@ -104,7 +111,14 @@ class CrudController extends Controller
         $builder  = new AnnotationBuilder();    
         $form = $builder->createForm($objEntity);
         
+        $queryData = $this->params()->fromQuery();
         $formBind = $this->getFormBindByEntity($entity);
+        
+        if ( !empty($queryData) )
+        {
+            $formBind->setData($queryData);
+        }
+        
         $argsAction = array(
             'id' => $id,
             'form' => $formBind,
@@ -132,10 +146,7 @@ class CrudController extends Controller
             }
             else
             {
-                $this->adjustOfSpecialElements($form);
-                $argsAction['form'] = $form;
-                
-                $this->displayErrorMessages($form->getMessages(), $argsAction);
+                $this->displayErrorMessages($form->getMessages(), $argsAction, array('query' => $postData));
             }
         }
         
