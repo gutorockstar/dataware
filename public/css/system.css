@@ -161,7 +161,6 @@ label {
     float: left;
     clear: both;
     width: 100%;
-    min-height: 65px;
     margin-right: 0.5em;
     text-align: right;
     font-weight: bold;
@@ -298,6 +297,11 @@ select {
 .panel{
     margin-left: auto;
     margin-right: auto;
+    border-radius: 0;
+}
+
+.panel-heading{
+    border-radius: 0;
 }
 
 .dropdown-menu{
@@ -470,6 +474,18 @@ thead tr{
 .disabled-style {
     color: #aaa !important;
     cursor: not-allowed;
+}
+
+.disabled-style:hover{
+    border-color: #ccc !important;
+}
+
+.disabled-style:active{
+    background-image: -webkit-gradient(linear, left 0%, left 100%, from(#ffffff), to(#e6e6e6)) !important;
+    background-image: -webkit-linear-gradient(top, #ffffff, 0%, #e6e6e6, 100%) !important;
+    background-image: -moz-linear-gradient(top, #ffffff 0%, #e6e6e6 100%) !important;
+    background-image: linear-gradient(to bottom, #ffffff 0%, #e6e6e6 100%) !important;
+    border-color: #ccc !important;
 }
 
 .ui-jqdialog{
@@ -677,5 +693,8 @@ form .btn{
 
 .input-group-addon{
     text-align: left;
-    width: 10% !important;
+    max-width: 15% !important;
+    width: 15% !important;
+    padding: 0;
+    padding-left: 5px;
 }

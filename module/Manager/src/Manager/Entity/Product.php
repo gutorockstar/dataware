@@ -61,9 +61,9 @@ class Product
     protected  $brand;
     
     /**
-     * @ORM\Column(type="integer", columnDefinition="INT")
+     * @ORM\Column(type="text", columnDefinition="VARCHAR(45)")
      * 
-     * @Annotation\Type("Zend\Form\Element\Number")
+     * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Código"})
      * @Annotation\Attributes({"class":"input-text form-control"})
@@ -95,9 +95,9 @@ class Product
     protected $description;
     
     /**
-     * @ORM\Column(type="decimal", columnDefinition="NUMERIC(14,2)")
+     * @ORM\Column(type="text", columnDefinition="VARCHAR(45)")
      * 
-     * @Annotation\Type("Zend\Form\Element\Number")
+     * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"Valor"})
      * @Annotation\Attributes({"class":"input-numeric form-control"})

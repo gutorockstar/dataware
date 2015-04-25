@@ -230,9 +230,9 @@ class ToolbarHelper extends ViewHelper
         $href = is_null($toolbarAction->getOnClick()) ? $currentRouteUrl . $toolbarAction->getAction() : "javascript:void(0)";
         
         return "<a class='{$loading} action-tool' id=\"tb_option_{$toolbarAction->getId()}\" title=\"{$toolbarAction->getTitle()}\" href=\"{$href}\" onClick=\"{$toolbarAction->getOnClick()}\">
-                    <button type='button' class=\"btn btn-default {$toolSelectedClass}\">
+                    <button type='button' class=\"btn btn-default {$toolSelectedClass} {$disableStyleClass}\">
                         <i class=\"fa {$toolbarAction->getCssClass()} fa-2x {$toolSelectedClass}\"></i>
-                        <p class=\"title-tool {$disableStyleClass} {$toolSelectedClass}\">{$toolbarAction->getTitle()}</p>
+                        <p class=\"title-tool {$toolSelectedClass}\">{$toolbarAction->getTitle()}</p>
                     </button>
                 </a>";
     }
