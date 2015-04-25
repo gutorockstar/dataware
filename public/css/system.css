@@ -1,4 +1,8 @@
 /** Admin */
+html, body{
+    height: 100%;
+}
+
 body {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
@@ -9,6 +13,7 @@ body {
     max-width: 100% !important;
     padding-right: 0px;
     padding-left: 0px;
+    height: 87%;
 }
 
 footer{
@@ -17,15 +22,10 @@ footer{
     position: fixed;
     bottom: 0;
     width: 100% !important;
-    border-top: 1px solid #ddd;
     background: #eee;
-    z-index: 100;
-}
-
-.footer{
-    max-width: 1170px !important;
-    margin-left: auto;
-    margin-right: auto;
+    z-index: 98;
+    height: 5%;
+    padding: 5px;
 }
 
 .footer-content{
@@ -58,7 +58,7 @@ footer{
 
 .menu{
     background: #0075b0;
-    height: 53px;
+    height: 8%;
 }
 
 .tree{
@@ -182,12 +182,26 @@ input[type="radio"]{
     transition: none;    
 }
 
+.panel-body .container{
+    height: 100%;
+}
+
+.panel-content{
+    height: 82%;
+}
+
+form{
+    height: 100%;
+}
+
 .panel-body fieldset{
     padding: 15px;
     border: 1px solid #cccccc;
     border-radius: 4px;
     background: #f5f5f5;
-    /**background-image: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);*/
+    min-height: 100%;
+    max-height: 100%;
+    overflow-y: scroll !important;
 }
 
 input, select, textarea{
@@ -222,7 +236,7 @@ fieldset > fieldset label {
 }
 
 .btn{
-    min-width: 100px !important;
+    min-width: 10% !important;
 }
 
 .form-control {
@@ -292,12 +306,14 @@ select {
 .row{
     margin-left: auto !important;
     margin-right: auto !important;
+    height: 100%;
 }
 
 .panel{
     margin-left: auto;
     margin-right: auto;
     border-radius: 0;
+    height: 100%;
 }
 
 .panel-heading{
@@ -314,6 +330,7 @@ select {
 
 .panel-body{
     padding: 5px !important;
+    height: 95%;
 }
 
 .form-username{
@@ -408,14 +425,27 @@ select {
 }
 
 .toolbar{
-    width: 100%;
-    height: 64px;
-    left: 0 !important;
-    right: 0 !important;
+    height: 15%;
 }
 
-.tools{
-    display: block;
+.btn-group{
+    width: 100%;
+    height: 100%;
+}
+
+.action-tool{
+    min-width: 10% !important;
+    height: 100% !important;
+}
+
+.action-tool:hover{
+    text-decoration: none !important;
+}
+
+.tool{
+    min-width: 8% !important;
+    min-height: 100% !important;
+    max-height: 100% !important;
 }
 
 .btn-group button .fa{
@@ -428,10 +458,6 @@ select {
 
 .btn-group button{
     /**color: #FF7F00 !important;*/
-}
-
-.action-tool:hover{
-    text-decoration: none !important;
 }
 
 thead tr{

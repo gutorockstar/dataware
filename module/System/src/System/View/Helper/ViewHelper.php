@@ -108,7 +108,11 @@ class ViewHelper extends AbstractHelper implements ServiceLocatorAwareInterface
         
         if ( $view->getPanel() instanceof Panel )
         {
-            $view->getPanel()->setBody($toolbar . $view->getPanel()->getBody());
+            $panelContent = "<div class='panel-content'>
+                                {$view->getPanel()->getBody()}
+                             </div>";
+            
+            $view->getPanel()->setBody($toolbar . $panelContent);
             $viewRender .= $this->view->PanelHelper($view->getPanel());
         }
         

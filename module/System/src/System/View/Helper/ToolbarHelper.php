@@ -35,7 +35,7 @@ class ToolbarHelper extends ViewHelper
         $this->prepareToolbar($toolbar);
         $toolbarActions = $toolbar->getToolbarActions();
         
-        $toolbarView = "<nav class='navbar navbar-default'>
+        $toolbarView = "<nav class='navbar navbar-default toolbar'>
                             <div class='btn-group' role='group'>";
         
         if ( strlen($username) > 0 && count($toolbarActions) > 0 )
@@ -230,7 +230,7 @@ class ToolbarHelper extends ViewHelper
         $href = is_null($toolbarAction->getOnClick()) ? $currentRouteUrl . $toolbarAction->getAction() : "javascript:void(0)";
         
         return "<a class='{$loading} action-tool' id=\"tb_option_{$toolbarAction->getId()}\" title=\"{$toolbarAction->getTitle()}\" href=\"{$href}\" onClick=\"{$toolbarAction->getOnClick()}\">
-                    <button type='button' class=\"btn btn-default {$toolSelectedClass} {$disableStyleClass}\">
+                    <button type='button' class=\"btn btn-default {$toolSelectedClass} {$disableStyleClass} tool\">
                         <i class=\"fa {$toolbarAction->getCssClass()} fa-2x {$toolSelectedClass}\"></i>
                         <p class=\"title-tool {$toolSelectedClass}\">{$toolbarAction->getTitle()}</p>
                     </button>
