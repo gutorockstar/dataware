@@ -39,12 +39,11 @@ return array(
             ),
             
             'products' => array(
-                'type'    => 'Literal',
+                'type'    => 'Segment',
                 'options' => array(
-                    'route'    => '/products',
+                    'route'    => '/products[/:id]',
                     'constraints' => array(
-                        'category' => '[0-9]+',
-                        'product' => '[0-9]+'
+                        'id' => '[0-9]+'
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Site\Controller',

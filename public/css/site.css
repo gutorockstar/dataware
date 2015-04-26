@@ -132,21 +132,30 @@ body {
 .produtos-destaque{
     margin-left: auto;
     margin-right: auto;
-    display: table;
+    text-align: center;
+    display: inline-table;
+}
+
+.link-produto{
+    text-decoration: none;
+    float: left;
+    width: 175px;
+    min-height: 400px;
+    margin-right: 50px;
+    margin-bottom: 30px;
+}
+
+.link-produto:hover{
+    text-decoration: underline;
+    color: #999;
 }
 
 .resumo-produto{
-    float: left;
-    width: 175px;
-    min-height: 320px;
-    margin-right: 50px;
-    margin-bottom: 20px;
+    width: 100%;
+    height: 100%;
 }
 
 .capa-produto{
-    width: 100%;
-    min-height: 150px;
-    max-height: 150px;
     background: #0088cc;
 }
 
@@ -154,6 +163,7 @@ body {
     width: 100%;
     height: 150px;
     float: right;
+    margin-bottom: 5px;
 }
 
 .titulo-produto{
@@ -165,7 +175,16 @@ body {
 }
 
 .descricao-produto{
+    margin-top: 10px;
     color: gray;
+}
+
+.status-produto{
+    margin-top: 5px;
+    color: #999;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 1;
 }
 
 .hint{

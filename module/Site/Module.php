@@ -101,6 +101,12 @@ class Module
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
                     return new View\Helper\SiteFeaturedProductsHelper($em);
                 },
+                        
+                'SiteProductBriefHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
+                    return new View\Helper\SiteProductBriefHelper($em);
+                },
             )
         );
     }

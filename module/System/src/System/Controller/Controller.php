@@ -444,7 +444,8 @@ class Controller extends AbstractActionController
                 $month = date('m');
                 $day = date('d');
                 
-                $filePath = dirname(__DIR__) . "/../../../../public/uploads/" . $year . '/' . $month . '/' . $day;
+                $folder = "uploads/" . $year . '/' . $month . '/' . $day;
+                $filePath = dirname(__DIR__) . "/../../../../public/" . $folder;
 
                 if ( !is_dir($filePath) )
                 {
@@ -461,7 +462,7 @@ class Controller extends AbstractActionController
                 $file->setTitle($fileArgs['name']);
                 $file->setType($fileArgs['type']);
                 $file->setSize($fileArgs['size']);
-                $file->setFilepath($filePath);
+                $file->setFolder($folder);
 
                 $this->getObjectManager()->persist($file);
                 $this->getObjectManager()->flush();
@@ -497,7 +498,7 @@ class Controller extends AbstractActionController
     {
         try
         {
-            $filePath = $file->getFilepath();
+            $filePath = dirname(__DIR__) . "/../../../../public/" . $file->getFolder();
             $fileName = $filePath . '/' . $file->getTitle();
 
             if ( file_exists($fileName) && unlink($fileName) )

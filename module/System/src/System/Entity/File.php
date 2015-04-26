@@ -45,7 +45,7 @@ class File
     /**
      * @ORM\Column(type="string", length=255, columnDefinition="VARCHAR(255) NOT NULL")
      */
-    private $filepath;
+    private $folder;
     
     public function getId() 
     {
@@ -86,15 +86,15 @@ class File
     {
         $this->size = $size;
     }
-
-    public function getFilepath() 
+    
+    public function getFolder() 
     {
-        return $this->filepath;
+        return $this->folder;
     }
 
-    public function setFilepath($filepath) 
+    public function setFolder($folder) 
     {
-        $this->filepath = $filepath;
+        $this->folder = $folder;
     }
 }
 

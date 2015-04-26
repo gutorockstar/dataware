@@ -64,10 +64,10 @@ class File extends \System\Entity\File implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'System\\Entity\\File' . "\0" . 'id', '' . "\0" . 'System\\Entity\\File' . "\0" . 'title', '' . "\0" . 'System\\Entity\\File' . "\0" . 'type', '' . "\0" . 'System\\Entity\\File' . "\0" . 'size', '' . "\0" . 'System\\Entity\\File' . "\0" . 'filepath');
+            return array('__isInitialized__', '' . "\0" . 'System\\Entity\\File' . "\0" . 'id', '' . "\0" . 'System\\Entity\\File' . "\0" . 'title', '' . "\0" . 'System\\Entity\\File' . "\0" . 'type', '' . "\0" . 'System\\Entity\\File' . "\0" . 'size', '' . "\0" . 'System\\Entity\\File' . "\0" . 'folder');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'System\\Entity\\File' . "\0" . 'id', '' . "\0" . 'System\\Entity\\File' . "\0" . 'title', '' . "\0" . 'System\\Entity\\File' . "\0" . 'type', '' . "\0" . 'System\\Entity\\File' . "\0" . 'size', '' . "\0" . 'System\\Entity\\File' . "\0" . 'filepath');
+        return array('__isInitialized__', '' . "\0" . 'System\\Entity\\File' . "\0" . 'id', '' . "\0" . 'System\\Entity\\File' . "\0" . 'title', '' . "\0" . 'System\\Entity\\File' . "\0" . 'type', '' . "\0" . 'System\\Entity\\File' . "\0" . 'size', '' . "\0" . 'System\\Entity\\File' . "\0" . 'folder');
     }
 
     /**
@@ -268,23 +268,23 @@ class File extends \System\Entity\File implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getFilepath()
+    public function getFolder()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFilepath', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFolder', array());
 
-        return parent::getFilepath();
+        return parent::getFolder();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setFilepath($filepath)
+    public function setFolder($folder)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFilepath', array($filepath));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFolder', array($folder));
 
-        return parent::setFilepath($filepath);
+        return parent::setFolder($folder);
     }
 
 }
