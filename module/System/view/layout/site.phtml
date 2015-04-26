@@ -15,50 +15,7 @@
 </head>
 
 <body>
-    <div class="header">
-        <div class="header-content">
-            <div class="logo">
-                <img src="<?php echo $this->basePath() . '/img/site/logo.png'?>">
-            </div>
-            
-            <div class="menu">
-                <nav id="menu">
-                    <ul>
-                        <li style="background: #333"><a href="#"><i class='fa fa-home'>&nbsp;&nbsp;</i>Principal</a></li>
-                        <li><a href="#"><i class='fa fa-shopping-cart'>&nbsp;&nbsp;</i>Produtos</a></li>
-                        <li><a href="#"><i class='fa fa-history'>&nbsp;&nbsp;</i>Sobre nós</a></li>
-                        <li><a href="#"><i class='fa fa-envelope'>&nbsp;&nbsp;</i>Entre em contato</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-    
-    <div class="content">
-        <div class="hint">
-            <div class="text-hint">
-                QUALIDADE . PRATICIDADE . DURABILIDADE
-            </div>
-        </div>
-        <div class="banner">
-            <div id="slider">
-                <a href="#"><img src="<?php echo $this->basePath() . '/img/site/banner/banner1.jpg'; ?>" alt="Imagem 1" title="Texto da imagem 1"/></a>
-                <a href="#"><img src="<?php echo $this->basePath() . '/img/site/banner/banner2.jpg'; ?>" alt="Imagem 2" title="Texto da imagem 2"/></a>
-                <a href="#"><img src="<?php echo $this->basePath() . '/img/site/banner/banner3.jpg'; ?>" alt="Imagem 3" title="Texto da imagem 3"/></a>
-                <!--<a href="#"><img src="<?php echo $this->basePath() . '/img/site/banner/banner4.jpg'; ?>" alt="Imagem 4" title="Texto da imagem 4"></a>
-                <a href="#"><img src="<?php echo $this->basePath() . '/img/site/banner/banner5.jpg'; ?>" alt="Imagem 5" title="Texto da imagem 5"/></a>-->
-            </div>
-            <script>$(function() { $('#slider').chocoslider(); });</script>
-        </div>
-        
-        <div class="container">
-            <?php echo $this->content; ?>
-        </div>
-    </div>
-    
-    <div class="footer">
-        <div class="footer-content">
-            
-        </div>
-    </div>
+    <?php echo $this->SiteHeaderHelper(); ?>
+    <?php echo $this->SiteContentHelper(); ?>
+    <?php echo $this->SiteFooterHelper(); ?>
 </body>

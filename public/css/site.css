@@ -24,8 +24,6 @@ body {
     margin-right: auto;
     min-height: 118px;
     background-color: #0075b0; /**#0088cc;*/
-    box-shadow: inset 0 5px 10px 0 RGBA(0,0,0,0.1), 0 0px 12px RGBA(0,0,0,0.2);
-    border-bottom: solid 1px #CCC;
 }
 
 .header-content{
@@ -33,6 +31,7 @@ body {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
+    height: 115px;
 }
 
 .logo{
@@ -73,7 +72,7 @@ body {
 }
 
 .content{
-    width: 100%;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
@@ -87,7 +86,7 @@ body {
 }
 
 #slider{
-    width: 70% !important;
+    width: 100% !important;
     margin-left: auto;
     margin-right: auto;
     height: 330px;
@@ -99,7 +98,7 @@ body {
 }
 
 .container{
-    width: 70%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     min-height: 350px;
@@ -169,6 +168,7 @@ body {
     background: #eee;
     font-weight: bold;
     color: #999;
+    padding: 5px;
 }
 
 .text-hint{

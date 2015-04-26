@@ -19,6 +19,8 @@ use Zend\Authentication\Adapter\DbTable as DbTableAuthAdapter;
 
 class Module
 {
+    const ENTITY_MANAGER = 'Doctrine\ORM\EntityManager';
+    
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager = $e->getApplication()->getEventManager();
@@ -49,6 +51,31 @@ class Module
                 'ServiceLocator' => function($sm) 
                 {
                     return $sm->get('doctrine.authenticationservice.orm_default');
+                }
+            )
+        );
+    }
+    
+    public function getViewHelperConfig()
+    {        
+    	return array(
+            'factories' => array(
+                'SiteHeaderHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
+                    return new View\Helper\SiteHeaderHelper($em);
+                },
+                     
+                'SiteContentHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
+                    return new View\Helper\SiteContentHelper($em);
+                },
+                        
+                'SiteFooterHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
+                    return new View\Helper\SiteFooterHelper($em);
                 }
             )
         );
