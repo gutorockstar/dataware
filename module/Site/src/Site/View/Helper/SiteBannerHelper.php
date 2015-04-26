@@ -19,11 +19,26 @@ class SiteBannerHelper extends ViewHelper
     public function __invoke() 
     {
         $banner = "<div class='banner'>
-                       <div id='slider'>
-                           <a href='#'><img src='{$this->view->basePath()}/img/site/banner/banner1.jpg' alt='Imagem 1' title='Texto da imagem 1'/></a>
-                           <a href='#'><img src='{$this->view->basePath()}/img/site/banner/banner2.jpg' alt='Imagem 2' title='Texto da imagem 2'/></a>
-                           <a href='#'><img src='{$this->view->basePath()}/img/site/banner/banner3.jpg' alt='Imagem 3' title='Texto da imagem 3'/></a>
-                       </div>
+                       <div id='slider'>";
+        
+        $folder = "uploads/entities/banner/1";
+        $filePath = dirname(__DIR__) . "/../../../../../public/" . $folder;
+        
+        if ( is_dir($filePath) )
+        {
+            $dir = opendir($filePath);
+            
+            while ( $read = readdir($dir) ) 
+            {
+                if ( ( $read != '.' ) && ( $read != '..' ) ) 
+                {
+                    $path = $this->view->basePath($folder . '/' . $read);
+                    $banner .= "<a href='#'><img src='{$path}' alt='Imagem 1' title='Texto da imagem'/></a>";
+                }
+            }
+        }
+        
+        $banner .= "   </div>
                        <script>$(function() { $('#slider').chocoslider(); });</script>
                    </div>";
         
