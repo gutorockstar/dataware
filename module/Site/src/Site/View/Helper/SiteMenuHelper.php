@@ -22,19 +22,23 @@ class SiteMenuHelper extends ViewHelper
         $menuRoutes = array(
             'home' => array(
                 'action' => '/',
-                'caption' => 'Principal'
+                'caption' => 'Principal',
+                'icon' => 'fa-home'
             ),
             'products' => array(
                 'action' => '/products',
-                'caption' => 'Produtos'
+                'caption' => 'Nossos produtos',
+                'icon' => 'fa-shopping-cart'
             ),
             'aboutus' => array(
                 'action' => '/aboutus',
-                'caption' => 'Sobre nós'
+                'caption' => 'Sobre nós',
+                'icon' => 'fa-history'
             ),
             'contact' => array(
                 'action' => '/contact',
-                'caption' => 'Entre em contato'
+                'caption' => 'Entre em contato',
+                'icon' => 'fa-envelope'
             )
         );
         
@@ -48,7 +52,7 @@ class SiteMenuHelper extends ViewHelper
             
             $menu .= "       <li class='{$menuSelected}'>
                                  <a href='{$menuData['action']}'>
-                                     <i class='fa fa-shopping-cart loading'>&nbsp;&nbsp;</i>
+                                     <i class='fa {$menuData['icon']} loading'>&nbsp;&nbsp;</i>
                                      {$menuData['caption']}
                                  </a>
                              </li>";

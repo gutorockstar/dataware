@@ -34,9 +34,9 @@ class SiteFeaturedProductsHelper extends ViewHelper
         $featuredProducts .= "   </div>
                              </div>
 
-                             <nav id='menu'>
+                             <nav id='menu' >
                                  <ul>
-                                     <li style='background: #0075b0'>
+                                     <li class='see-more'>
                                          <a href='/products'>
                                              Veja mais de nossos produtos&nbsp;&nbsp;
                                              <i class='fa fa-arrow-circle-o-right fa-lg'></i>
