@@ -147,6 +147,12 @@ class Module
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);   				
                     return new View\Helper\ListAttachmentFilesHelper($em);
+                },
+                        
+                'SeparatorHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);   				
+                    return new View\Helper\SeparatorHelper($em);
                 }
             ),
             

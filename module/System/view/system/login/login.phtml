@@ -4,15 +4,19 @@ $form = $this->form;
 $form->prepare();
 $form->setAttribute('action', $this->url('login'));
 
-$formLogin = $this->form()->openTag($form);              
-$formLogin .= "<fieldset>";
+$formLogin = $this->form()->openTag($form);
 $formLogin .= $this->fieldRow($form->get('username'));
 $formLogin .= $this->fieldRow($form->get('password'));
+
+$separator = new \System\Model\Separator();
+$separator->setStyle("margin-top: 15%");
+$formLogin .= $this->SeparatorHelper($separator);
+
 $formLogin .= "<input type='submit' name='send' class='btn btn-primary loading' value='Logar'>";
-$formLogin .= "</fieldset>";
 $formLogin .= $this->form()->closeTag();
 
-$panel = new \System\Model\Panel('Efetuar login', $formLogin, 'fa-user', 'width: 30%; margin-top: 5%; float: center !important');
+$panel = new \System\Model\Panel('Efetuar login', $formLogin, 'fa-user', 'width: 25%; height: 40%; margin-top: 10%; float: center !important');
+$panel->setHeadingStyle("height: 15%");
 echo $this->PanelHelper($panel);
 
 ?>

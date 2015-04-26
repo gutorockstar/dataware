@@ -248,8 +248,6 @@ fieldset > fieldset label {
 
 form .btn-primary {
     float: right;
-    margin-top: 5px;
-    margin-bottom: 10px;
     clear: both;
 }
 
@@ -318,6 +316,7 @@ select {
 
 .panel-heading{
     border-radius: 0;
+    height: 7%;
 }
 
 .dropdown-menu{
@@ -330,7 +329,7 @@ select {
 
 .panel-body{
     padding: 5px !important;
-    height: 95%;
+    height: 93%;
 }
 
 .form-username{
@@ -425,7 +424,7 @@ select {
 }
 
 .toolbar{
-    height: 15%;
+    height: 17%;
 }
 
 .btn-group{
@@ -641,7 +640,6 @@ select[multiple]{
 }
 
 form .btn{
-    margin-top: 20px;
     height: 40px;
     min-width: 80px !important;
 }
@@ -723,4 +721,9 @@ form .btn{
     width: 15% !important;
     padding: 0;
     padding-left: 5px;
+}
+
+hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

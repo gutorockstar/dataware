@@ -26,7 +26,7 @@ class PanelHelper extends ViewHelper
     public function __invoke(Panel $panel)
     {
         $panelRender = "<div class='panel panel-{$panel->getType()}' style='{$panel->getStyle()}'>
-                            <div class='panel-heading'>
+                            <div class='panel-heading' style='{$panel->getHeadingStyle()}'>
                                 <h3 class='panel-title'>
                                     <i class='fa {$panel->getCssClassIcon()}'></i>
                                     &nbsp;&nbsp;

@@ -42,6 +42,12 @@ class Panel
      */
     private $type;
     
+    /**
+     *
+     * @var String
+     */
+    private $headingStyle;
+    
     public function __construct($title, $body = null, $cssClassIcon = null, $style = null)
     {
         $this->title = $title;
@@ -101,7 +107,15 @@ class Panel
         $this->type = $type;
     }
 
+    public function getHeadingStyle() 
+    {
+        return $this->headingStyle;
+    }
 
+    public function setHeadingStyle($headingStyle) 
+    {
+        $this->headingStyle = $headingStyle;
+    }
 }
 
 ?>
