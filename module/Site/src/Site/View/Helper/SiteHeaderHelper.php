@@ -20,8 +20,8 @@ class SiteHeaderHelper extends ViewHelper
     {
         $header = "<div class='header'>
                        <div class='header-content'>
-                           {$this->view->SiteHeaderLogoHelper()}
-                           {$this->view->SiteHeaderMenuHelper()}
+                           {$this->view->SiteLogoHelper()}
+                           {$this->view->SiteMenuHelper()}
                        </div>
                        <div class='hint'>
                            <div class='text-hint'>

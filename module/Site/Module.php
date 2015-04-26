@@ -78,16 +78,16 @@ class Module
                     return new View\Helper\SiteFooterHelper($em);
                 },
                         
-                'SiteHeaderLogoHelper' => function ($sm) 
+                'SiteLogoHelper' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
-                    return new View\Helper\SiteHeaderLogoHelper($em);
+                    return new View\Helper\SiteLogoHelper($em);
                 },
                         
-                'SiteHeaderMenuHelper' => function ($sm) 
+                'SiteMenuHelper' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
-                    return new View\Helper\SiteHeaderMenuHelper($em);
+                    return new View\Helper\SiteMenuHelper($em);
                 },
                         
                 'SiteBannerHelper' => function ($sm) 

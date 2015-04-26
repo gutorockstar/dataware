@@ -13,11 +13,15 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Site\Controller\HomeController' => 'Site\Controller\HomeController',
+            'Site\Controller\ProductsController' => 'Site\Controller\ProductsController',
+            'Site\Controller\AboutusController' => 'Site\Controller\AboutusController',
+            'Site\Controller\ContactController' => 'Site\Controller\ContactController'
         ),
     ),
     
     'router' => array(
         'routes' => array(
+            
             'home' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -29,7 +33,50 @@ return array(
                         'module' => 'site'
                     ),
                 ),
-            ),            
+            ),
+            
+            'products' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/products[/:category][/:product]',
+                    'constraints' => array(
+                        'category' => '[0-9]+',
+                        'product' => '[0-9]+'
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Site\Controller',
+                        'controller'    => 'ProductsController',
+                        'action'        => 'products',
+                        'module' => 'site'
+                    ),
+                ),
+            ),
+            
+            'aboutus' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/aboutus',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Site\Controller',
+                        'controller'    => 'AboutusController',
+                        'action'        => 'aboutus',
+                        'module' => 'site'
+                    ),
+                ),
+            ),
+            
+            'contact' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/contact',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Site\Controller',
+                        'controller'    => 'ContactController',
+                        'action'        => 'contact',
+                        'module' => 'site'
+                    ),
+                ),
+            ),
         ),
     ), 
     

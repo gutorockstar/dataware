@@ -14,7 +14,7 @@ namespace Site\View\Helper;
 
 use System\View\Helper\ViewHelper;
 
-class SiteHeaderMenuHelper extends ViewHelper
+class SiteMenuHelper extends ViewHelper
 {
     public function __invoke() 
     {

@@ -14,7 +14,7 @@ namespace Site\View\Helper;
 
 use System\View\Helper\ViewHelper;
 
-class SiteHeaderLogoHelper extends ViewHelper
+class SiteLogoHelper extends ViewHelper
 {
     public function __invoke() 
     {

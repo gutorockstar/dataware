@@ -15,10 +15,10 @@ namespace Site\Controller;
 use System\Controller\Controller;
 use Zend\View\Model\ViewModel;
 
-class HomeController extends Controller
+class ProductsController extends Controller
 {
-    public function homeAction()
-    {        
+    public function productsAction()
+    {
         return new ViewModel();
     }
 }
