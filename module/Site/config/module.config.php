@@ -26,6 +26,9 @@ return array(
                 'type'    => 'Literal',
                 'options' => array(
                     'route'    => '/',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z]*',
+                    ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Site\Controller',
                         'controller'    => 'HomeController',
@@ -38,7 +41,7 @@ return array(
             'products' => array(
                 'type'    => 'Literal',
                 'options' => array(
-                    'route'    => '/products[/:category][/:product]',
+                    'route'    => '/products',
                     'constraints' => array(
                         'category' => '[0-9]+',
                         'product' => '[0-9]+'

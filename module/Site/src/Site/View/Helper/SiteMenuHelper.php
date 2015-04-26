@@ -18,14 +18,43 @@ class SiteMenuHelper extends ViewHelper
 {
     public function __invoke() 
     {
+        $currentRoute = $this->getCurrentRoute();
+        $menuRoutes = array(
+            'home' => array(
+                'action' => '/',
+                'caption' => 'Principal'
+            ),
+            'products' => array(
+                'action' => '/products',
+                'caption' => 'Produtos'
+            ),
+            'aboutus' => array(
+                'action' => '/aboutus',
+                'caption' => 'Sobre nós'
+            ),
+            'contact' => array(
+                'action' => '/contact',
+                'caption' => 'Entre em contato'
+            )
+        );
+        
         $menu = "<div class='menu'>
                      <nav id='menu'>
-                         <ul>
-                             <li style='background: #333'><a href='#'><i class='fa fa-home'>&nbsp;&nbsp;</i>Principal</a></li>
-                             <li><a href='#'><i class='fa fa-shopping-cart'>&nbsp;&nbsp;</i>Produtos</a></li>
-                             <li><a href='#'><i class='fa fa-history'>&nbsp;&nbsp;</i>Sobre nós</a></li>
-                             <li><a href='#'><i class='fa fa-envelope'>&nbsp;&nbsp;</i>Entre em contato</a></li>
-                         </ul>
+                         <ul>";
+        
+        foreach ( $menuRoutes as $route => $menuData )
+        {
+            $menuSelected = ($route == $currentRoute) ? "menu-selected" : "";
+            
+            $menu .= "       <li class='{$menuSelected}'>
+                                 <a href='{$menuData['action']}'>
+                                     <i class='fa fa-shopping-cart loading'>&nbsp;&nbsp;</i>
+                                     {$menuData['caption']}
+                                 </a>
+                             </li>";
+        }
+        
+        $menu .= "       </ul>
                      </nav>
                  </div>";
         
