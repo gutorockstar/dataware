@@ -76,7 +76,31 @@ class Module
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
                     return new View\Helper\SiteFooterHelper($em);
-                }
+                },
+                        
+                'SiteHeaderLogoHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
+                    return new View\Helper\SiteHeaderLogoHelper($em);
+                },
+                        
+                'SiteHeaderMenuHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
+                    return new View\Helper\SiteHeaderMenuHelper($em);
+                },
+                        
+                'SiteBannerHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
+                    return new View\Helper\SiteBannerHelper($em);
+                },
+                        
+                'SiteFeaturedProductsHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
+                    return new View\Helper\SiteFeaturedProductsHelper($em);
+                },
             )
         );
     }
