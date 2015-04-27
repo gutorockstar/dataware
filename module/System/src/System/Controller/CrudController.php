@@ -32,7 +32,7 @@ class CrudController extends Controller
             $this->deleteAction();
         }
         
-        $dataGrid = $this->getObjectManager()->getRepository($this->getCurrentEntity())->findAll();
+        $dataGrid = $this->getEntityManager()->getRepository($this->getCurrentEntity())->findAll();
         $argsAction = array(
             'entity' => $this->getCurrentEntity(),
             'caption' => $this->getCurrentCaption(),
@@ -78,8 +78,8 @@ class CrudController extends Controller
             {
                 $this->populateEntityToPersist($entity, $postData);
 
-                $this->getObjectManager()->persist($entity);
-                $this->getObjectManager()->flush();
+                $this->getEntityManager()->persist($entity);
+                $this->getEntityManager()->flush();
                 $id = $entity->getId();
 
                 $this->flashMessenger()->addSuccessMessage("Registro inserido com sucesso!");
@@ -108,7 +108,7 @@ class CrudController extends Controller
         $request = $this->getRequest();
         
         $entityClass = $this->getCurrentEntity();
-        $entity = $this->getObjectManager()->find($entityClass, $id);
+        $entity = $this->getEntityManager()->find($entityClass, $id);
         
         $objEntity = new $entityClass();
         $builder  = new AnnotationBuilder();    
@@ -141,8 +141,8 @@ class CrudController extends Controller
             {
                 $this->populateEntityToPersist($entity, $postData);
                 
-                $this->getObjectManager()->persist($entity);
-                $this->getObjectManager()->flush();
+                $this->getEntityManager()->persist($entity);
+                $this->getEntityManager()->flush();
 
                 $this->flashMessenger()->addSuccessMessage("Registro atualizado com sucesso!");
                 return $this->redirect()->toRoute($this->getCurrentRoute());
@@ -172,12 +172,12 @@ class CrudController extends Controller
         $warningConfirm = $this->params()->fromQuery('warningConfirm');
         
         $entityClass = $this->getCurrentEntity();
-        $entity = $this->getObjectManager()->find($entityClass, $id);
+        $entity = $this->getEntityManager()->find($entityClass, $id);
 
         if ( (boolean)$warningConfirm ) 
         {
-            $this->getObjectManager()->remove($entity);
-            $this->getObjectManager()->flush();
+            $this->getEntityManager()->remove($entity);
+            $this->getEntityManager()->flush();
 
             $this->flashMessenger()->addSuccessMessage("Registro removido com sucesso!");
         }

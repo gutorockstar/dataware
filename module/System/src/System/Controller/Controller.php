@@ -24,8 +24,6 @@ use Zend\View\Model\ViewModel;
 
 class Controller extends AbstractActionController
 {
-    const SERVICE_LOCATOR = 'ServiceLocator';
-    const SERVICE_JQGRID_LOCATOR = 'jqgrid';
     const ROUTE_DEFAULT = 'login';
     const ENTITY_PARAM = 'entity';
     const CONTROLLER_PARAM = 'controller';
@@ -40,7 +38,6 @@ class Controller extends AbstractActionController
     protected $route;
     protected $entityName;
     protected $em;
-    protected $_objectManager;
 
     public function getRoute() 
     {
@@ -74,33 +71,18 @@ class Controller extends AbstractActionController
     }
 
     /**
-     * Retorna administrador de entidades para autenticação.
+     * Retorna administrador de entidades para consultas diversas.
      * 
      * @return array|\Doctrine\ORM\EntityManager|object
      */
     public function getEntityManager()
     {
-        if ( is_null($this->em) ) 
+        if ( !$this->em ) 
         {
-            $this->em = $this->getServiceLocator()->get(self::SERVICE_LOCATOR);
+            $this->em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         }
 
         return $this->em;
-    }
-    
-    /**
-     * Retorna administrador de entidades para consultas diversas.
-     * 
-     * @return array|\Doctrine\ORM\EntityManager|object
-     */
-    protected function getObjectManager()
-    {
-        if ( !$this->_objectManager ) 
-        {
-            $this->_objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        }
-
-        return $this->_objectManager;
     }
     
     /**
@@ -111,7 +93,7 @@ class Controller extends AbstractActionController
     {
         if ( $this->getCurrentModule() != self::MODULE_SITE )
         {
-            if ( !$this->getEntityManager()->hasIdentity() )
+            if ( !$this->getServiceLocator()->get('ServiceLocator')->hasIdentity() )
             {
                 $this->redirect()->toRoute(self::ROUTE_DEFAULT);
             }
@@ -324,7 +306,7 @@ class Controller extends AbstractActionController
             }
         }
         
-        $form->setHydrator(new DoctrineHydrator($this->getObjectManager(), $this->getCurrentEntity()));
+        $form->setHydrator(new DoctrineHydrator($this->getEntityManager(), $this->getCurrentEntity()));
         $form->bind($entity);
         
         return $form;
@@ -370,7 +352,7 @@ class Controller extends AbstractActionController
     {
         $entity = $element->getOption('entity');
         
-        $repository = $this->getObjectManager()->getRepository($entity);
+        $repository = $this->getEntityManager()->getRepository($entity);
         $query = $repository->createQueryBuilder('list')
                             ->select("list.id, list.title")
                             ->orderBy("list.title")
@@ -390,7 +372,7 @@ class Controller extends AbstractActionController
     private function getEntityByElementField($element, $id)
     {
         $entityName = $element->getOption('entity'); // Obter o namespace da entidade relacional do atributo.
-        $entityRep = $this->getObjectManager()->getRepository($entityName);
+        $entityRep = $this->getEntityManager()->getRepository($entityName);
         $value = $entityRep->findOneBy(array('id' => $id));
         
         return $value;
@@ -456,7 +438,7 @@ class Controller extends AbstractActionController
                     
                 if ( !is_null($fileId) )
                 {
-                    $file = $this->getObjectManager()->find('System\Entity\File', $fileId);
+                    $file = $this->getEntityManager()->find('System\Entity\File', $fileId);
                 }
 
                 $file->setTitle($fileArgs['name']);
@@ -464,8 +446,8 @@ class Controller extends AbstractActionController
                 $file->setSize($fileArgs['size']);
                 $file->setFolder($folder);
 
-                $this->getObjectManager()->persist($file);
-                $this->getObjectManager()->flush();
+                $this->getEntityManager()->persist($file);
+                $this->getEntityManager()->flush();
 
                 $fileId = $file->getId();
                 
@@ -505,8 +487,8 @@ class Controller extends AbstractActionController
             {
                 if ( $removeFromBase )
                 {                    
-                    $this->getObjectManager()->remove($file);
-                    $this->getObjectManager()->flush();
+                    $this->getEntityManager()->remove($file);
+                    $this->getEntityManager()->flush();
                 }
             }
         }

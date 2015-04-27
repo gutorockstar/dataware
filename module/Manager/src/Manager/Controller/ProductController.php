@@ -68,7 +68,7 @@ class ProductController extends CrudController
      */
     private function getFeaturedProductsCount()
     {
-        $repository = $this->getObjectManager()->getRepository('Manager\Entity\Product');
+        $repository = $this->getEntityManager()->getRepository('Manager\Entity\Product');
         $query = $repository->createQueryBuilder('p')
                             ->select("COUNT(p.id)")
                             ->andWhere("p.featured = TRUE")
