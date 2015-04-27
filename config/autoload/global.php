@@ -12,5 +12,6 @@
  */
 
 return array(
-    // ...
+    'max_featured_products' => 8, // Máximo de produtos em destaques.
+    'max_banner_images' => 4 // Máximo de imagens para o banner.
 );

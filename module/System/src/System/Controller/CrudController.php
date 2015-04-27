@@ -93,6 +93,9 @@ class CrudController extends Controller
         
         $this->adjustOfSpecialElements($form);
         $viewModel = $this->defineViewModelTemplate(new ViewModel(array('form' => $form, 'caption' => $caption)), $this->getCurrentAction());
+        
+        //exit(var_export($viewModel->getTemplate()));
+        
         return $viewModel;
     }
     
@@ -150,7 +153,8 @@ class CrudController extends Controller
             }
         }
         
-        $viewModel = $this->defineViewModelTemplate(new ViewModel($argsAction), $this->getCurrentAction());        
+        $viewModel = $this->defineViewModelTemplate(new ViewModel($argsAction), $this->getCurrentAction());  
+        
         return $viewModel;
     }
     
@@ -211,6 +215,7 @@ class CrudController extends Controller
         );
         
         $viewModel = $this->defineViewModelTemplate(new ViewModel($argsAction), $this->getCurrentAction());
+        
         return $viewModel;
     }
     

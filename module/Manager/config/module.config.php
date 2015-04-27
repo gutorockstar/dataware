@@ -71,10 +71,10 @@ return array(
                         
                         // Custom templates
                         'template' => array(
-                            'index' => 'system/crud',
-                            'add' => 'system/crud',
-                            'edit' => 'system/crud',
-                            'delete' => 'system/crud'
+                            'index' => 'system/crud/index.phtml',
+                            'add' => 'system/crud/add.phtml',
+                            'edit' => 'system/crud/edit.phtml',
+                            'delete' => 'system/crud/delete.phtml'
                         )
                     ),
                 ),
@@ -99,10 +99,10 @@ return array(
                         
                         // Custom templates
                         'template' => array(
-                            'index' => 'system/crud',
-                            'add' => 'system/crud',
-                            'edit' => 'system/crud',
-                            'delete' => 'system/crud'
+                            'index' => 'system/crud/index.phtml',
+                            'add' => 'system/crud/add.phtml',
+                            'edit' => 'system/crud/edit.phtml',
+                            'delete' => 'system/crud/delete.phtml'
                         )
                     ),
                 ),
@@ -128,9 +128,9 @@ return array(
                         
                         // Custom templates
                         'template' => array(
-                            'add' => 'system/crud',
-                            'delete' => 'system/crud',
-                            'attachments' => 'system/crud'
+                            'add' => 'system/crud/add.phtml',
+                            'delete' => 'system/crud/delete.phtml',
+                            'attachments' => 'system/crud/attachments.phtml'
                         )
                     ),
                 ),
@@ -175,10 +175,10 @@ return array(
                         
                         // Custom templates
                         'template' => array(
-                            'index' => 'system/crud',
-                            'add' => 'system/crud',
-                            'edit' => 'system/crud',
-                            'delete' => 'system/crud'
+                            'index' => 'system/crud/index.phtml',
+                            'add' => 'system/crud/add.phtml',
+                            'edit' => 'system/crud/edit.phtml',
+                            'delete' => 'system/crud/delete.phtml'
                         )
                     ),
                 ),

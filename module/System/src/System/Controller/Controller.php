@@ -530,7 +530,7 @@ class Controller extends AbstractActionController
         
         if ( !empty($customTemplate) )
         {
-            $viewModel->setTemplate($customTemplate . "/{$action}.phtml");
+            $viewModel->setTemplate($customTemplate);
         }
         
         return $viewModel;
