@@ -13,14 +13,15 @@
 namespace System\View\Helper;
 
 use System\View\Helper\ViewHelper;
-use System\Model\Tree;
+use System\Model\BreadCrumb;
 
-class TreeHelper extends ViewHelper
+class BreadCrumbHelper extends ViewHelper
 {
-    public function __invoke(Tree $tree = null) 
+    public function __invoke(BreadCrumb $tree = null) 
     {
+        // Migalha de pão.
         return "<div class='tree'>
-                    <font>Teste árvore</font>
+                    <font>Teste migalha de pão</font>
                 </div>";
     }
 }

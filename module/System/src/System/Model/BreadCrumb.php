@@ -12,7 +12,7 @@
  */
 namespace System\Model;
 
-class Tree 
+class BreadCrumb 
 {
     private $module;
     

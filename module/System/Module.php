@@ -119,10 +119,10 @@ class Module
                     return new View\Helper\GridActionHelper($em);
                 },
                         
-                'TreeHelper' => function ($sm) 
+                'BreadCrumbHelper' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);   				
-                    return new View\Helper\TreeHelper($em);
+                    return new View\Helper\BreadCrumbHelper($em);
                 },
                         
                 'ToolbarHelper' => function ($sm) 
@@ -153,7 +153,13 @@ class Module
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);   				
                     return new View\Helper\SeparatorHelper($em);
-                }
+                },
+                        
+                'TreeMenuHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);   				
+                    return new View\Helper\TreeMenuHelper($em);
+                },
             ),
             
             'invokables' => array(
