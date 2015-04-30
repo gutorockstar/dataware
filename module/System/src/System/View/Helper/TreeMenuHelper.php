@@ -18,47 +18,44 @@ class TreeMenuHelper extends ViewHelper
 {
     public function __invoke(TreeMenu $treeMenu) 
     {
-        $content = "<div class='tree-menu'>
-                    </div>
+        $content = "<ul class='treeview'>
+                        <li> item 1
+                          <ul>
+                            <li>subitem 1</li>
+                            <li>subitem 2</li>
+                          </ul>
+                        </li>
+                        <li>Foo Item</li>
+                        <li> Countries
+                          <ul>
+                            <li>United States
+                              <ul>
+                                <li>New York</li>
+                                <li>San Francisco</li>
+                                <li>Chicago</li>
+                                <li>Los Angeles</li>
+                              </ul>
+                            </li>
+                            <li>United Kingdom</li>
+                            <li>China</li>
+                            <li>India
+                              <ul>
+                                <li>New Delhi</li>
+                                <li>Mumbai</li>
+                                <li>Chennai</li>
+                                <li>Kolkata</li>
+                              </ul>
+                            </li>
+                            <li>Russia</li>
+                            <li>France</li>
+                            <li>Germany</li>
+                          </ul>
+                        </li>
+                    </ul>
                     
                     <script>
-                    var data = [
-                        {
-                            label: 'node1',
-                            children: [
-                                { label: 'child1' },
-                                { label: 'child2' }
-                            ]
-                        },
-                        {
-                            label: 'node2',
-                            children: [
-                                { label: 'child3' }
-                            ]
-                        }
-                    ];
-                
-                    $(function() {
-                        $('.tree-menu').tree({
-                            data: data
-                        });
-                    });
-                    
-
+                        $('.treeview').treeView();
                     </script>";
-        
-        /**
-         * Alternatively, get the data from the server.
-         * 
-         * $.getJSON(
-                '/some_url/',
-                function(data) {
-                    $('#tree1').tree({
-                        data: data
-                    });
-                }
-            );
-         */
         
         return $content;
     }

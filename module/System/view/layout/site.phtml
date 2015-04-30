@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/simple_logo_mini.png'))
                     ->prependStylesheet($this->basePath() . '/css/site.css')
-                    ->prependStylesheet($this->basePath() . '/jqTree/jqtree.css')
+                    ->prependStylesheet($this->basePath() . '/jqTreeView/jquery.treeView.css')
                     ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.css')
                     ->prependStylesheet($this->basePath() . '/css/bootstrap.css')
                     ->prependStylesheet($this->basePath() . '/Choco-Slider-master/estilo.css')
@@ -12,7 +12,7 @@
     <?php
     echo $this->headScript()
               ->prependFile($this->basePath() . '/Choco-Slider-master/js/jquery.chocoslider.js')
-              ->prependFile($this->basePath() . '/jqTree/tree.jquery.js')
+              ->prependFile($this->basePath() . '/jqTreeView/jquery.treeView.js')
               ->prependFile($this->basePath() . '/js/bootstrap.js')
               ->prependFile($this->basePath() . '/js/jquery.min.js');
     ?>
