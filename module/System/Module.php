@@ -89,6 +89,12 @@ class Module
                     return new View\Helper\AlertHelper($em);
                 },
                         
+                'SimpleAlertHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
+                    return new View\Helper\SimpleAlertHelper($em);
+                },
+                        
                 'MenuHelper' => function ($sm) 
                 {
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);

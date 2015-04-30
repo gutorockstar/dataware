@@ -30,6 +30,10 @@ class SiteFeaturedProductsHelper extends ViewHelper
                 $featuredProducts .= $this->view->SiteProductBriefHelper($featuredProduct);
             }
         }
+        else
+        {
+            $featuredProducts .= $this->view->SimpleAlertHelper(new \System\Model\Alert("Desculpe, no momento não temos produtos em destaque! :("));
+        }
         
         $featuredProducts .= "   </div>
                              </div>
