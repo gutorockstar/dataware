@@ -272,13 +272,24 @@ body {
 
 .our-products{
     margin-top: 20px;
-    background: blue;
     width: 100%;
     display: inline-table;
 }
 
 .categorystree{
+    border: 1px solid #ddd;
+    background: #fbfbfb;
     float: left;
-    width: 30%;
-    background: red;
+    width: 25%;
+}
+
+.active-products{
+    float: right;
+    width: 73.9%;
+}
+
+.categories-header{
+    padding: 5px 10px;
+    background: #333;
+    color: #fff;
 }

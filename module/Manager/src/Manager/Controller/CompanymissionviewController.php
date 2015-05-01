@@ -22,7 +22,7 @@ class CompanymissionviewController extends CrudController
     public function indexAction() 
     {
         $request = $this->getRequest();
-        $companyMissionView = $this->getObjectManager()->find('Manager\Entity\Companymissionview', 1);
+        $companyMissionView = $this->getEntityManager()->find('Manager\Entity\Companymissionview', 1);
         
         if ( is_null($companyMissionView) )
         {
@@ -42,9 +42,10 @@ class CompanymissionviewController extends CrudController
             $form->setData($postData);
             
             $this->populateEntityToPersist($companyMissionView, $postData);
-            $this->getObjectManager()->persist($companyMissionView);
-            $this->getObjectManager()->flush();
-
+            $this->getEntityManager()->persist($companyMissionView);
+            $this->getEntityManager()->flush();
+            
+            $this->flashMessenger()->addSuccessMessage("Registro efetuado com sucesso!");
             return $this->redirect()->toRoute($this->getCurrentRoute());
         }
         

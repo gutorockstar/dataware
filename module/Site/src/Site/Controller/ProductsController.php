@@ -19,7 +19,10 @@ class ProductsController extends Controller
 {
     public function productsAction()
     {
-        return new ViewModel();
+        $id = (int) $this->params()->fromRoute('id', 0);
+        $categoryId = (int) $this->params()->fromRoute('category_id', 0);
+        
+        return new ViewModel(array('id' => $id, 'category_id' => $categoryId));
     }
 }
 

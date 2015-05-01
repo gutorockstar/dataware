@@ -113,6 +113,12 @@ class Module
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
                     return new View\Helper\SiteCategorysTreeHelper($em);
                 },
+                        
+                'SiteActiveProductsHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
+                    return new View\Helper\SiteActiveProductsHelper($em);
+                },
             )
         );
     }

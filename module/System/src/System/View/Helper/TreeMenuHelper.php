@@ -22,7 +22,14 @@ class TreeMenuHelper extends ViewHelper
         
         foreach ( $treeMenu->getContent() as $content )
         {
-            $treeMenuContent .= "<li>" . $content['title'];
+            $title = $content['title'];
+            
+            if ( !is_null($content['href']) )
+            {
+                $title = "<a href='{$content['href']}'>$title</a>";
+            }
+            
+            $treeMenuContent .= "<li>{$title}";
             
             if ( count($content['subitens']) > 0 )
             {
@@ -30,7 +37,14 @@ class TreeMenuHelper extends ViewHelper
                 
                 foreach ( $content['subitens'] as $subitem )
                 {
-                    $treeMenuContent .= "<li>" . $subitem['title'] . "</li>";
+                    $subtitle = $subitem['title'];
+                    
+                    if ( !is_null($subitem['href']) )
+                    {
+                        $subtitle = "<a href='{$subitem['href']}'>$subtitle</a>";
+                    }
+                    
+                    $treeMenuContent .= "<li>{$subtitle}</li>";
                 }
                 
                 $treeMenuContent .= "</ul>";

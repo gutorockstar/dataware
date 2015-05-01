@@ -19,14 +19,25 @@ class SiteCategorysTreeHelper extends ViewHelper
 {
     public function __invoke() 
     {
-        $categorysTree = "<div class='categorystree'>";
+        $categorysTree = "<div class='categorystree'>
+                              <div class='categories-header'>
+                                  <i class='fa fa-folder-open'></i>&nbsp;&nbsp;Categorias
+                              </div>";
         $categoriesList = $this->getActiveFatherCategoriesList();
         
         if ( count($categoriesList) > 0 )
         {
             foreach ( $categoriesList as $pos => $category )
             {
-                $categoriesList[$pos]['subitens'] = $this->getActiveSubCategoriesList($category['id']);
+                $subitens = array();
+                
+                foreach ( $this->getActiveSubCategoriesList($category['id']) as $subcategory )
+                {
+                    $subcategory['href'] = "/products/{$subcategory['id']}";
+                    $subitens[] = $subcategory;
+                }
+                
+                $categoriesList[$pos]['subitens'] = $subitens;
             }
             
             $treeMenu = new TreeMenu($categoriesList);
@@ -65,8 +76,11 @@ class SiteCategorysTreeHelper extends ViewHelper
     private function getActiveSubCategoriesList($categoryFatherId)
     {
         $repository = $this->getEntityManager()->getRepository('Manager\Entity\Category');
+        
         $query = $repository->createQueryBuilder('c')
                             ->select("c.id, c.title")
+                
+                
                             ->andWhere("c.active = TRUE")
                             ->andWhere("c.categoryfather = {$categoryFatherId}")
                             ->orderBy('c.title')

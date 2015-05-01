@@ -24,11 +24,10 @@ class SiteProductBriefHelper extends ViewHelper
         
         $id = $product->getId();
         $categoryId = $product->getCategory()->getId();
-        $value = ($product->getValue()) ? $product->getValue() : "Valor não informado";
+        $value = ($product->getValue()) ? "R$ " . $product->getValue() : "Valor não informado";
         $title = $product->getTitle();
         $code = $product->getCode();
         $available = $product->getAvailable();
-        $description = $product->getDescription();
         
         $productBrief = "<div class='productbrief'>
                             <a class='linkProductbrief' title='Clique para visualizar' href='/products/{$categoryId}/{$id}'>
@@ -45,27 +44,6 @@ class SiteProductBriefHelper extends ViewHelper
     				</div>
                             </a>
   			 </div>";
-        
-        /**
-        $productBrief = "<a class='link-produto' title='Clique para visualizar' href='/products/{$id}'>
-                             <div class='resumo-produto'>
-                                 <div class='capa-produto'>
-                                     <img src='{$this->view->basePath($folder . '/' . $fileId)}' width='175' height='150'>
-                                 </div>
-                                 <div class='titulo-produto'>
-                                     {$title}
-                                 </div>
-                                 <div class='status-produto'>
-                                     Código: {$code}<br>
-                                     Disponível: " . (((boolean)$available) ? 'SIM' : 'NÃO') . "
-                                 </div>
-                                 <div class='descricao-produto'>
-                                     {$description}
-                                 </div>
-                             </div>
-                         </a>";
-         * 
-         */
         
         return $productBrief;
     }
