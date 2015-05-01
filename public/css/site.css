@@ -269,3 +269,16 @@ body {
     width: 112px;
     height: 33px;
 }
+
+.our-products{
+    margin-top: 20px;
+    background: blue;
+    width: 100%;
+    display: inline-table;
+}
+
+.categorystree{
+    float: left;
+    width: 30%;
+    background: red;
+}

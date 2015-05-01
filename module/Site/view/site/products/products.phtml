@@ -1,9 +1,8 @@
 <?php
 
-$treeMenu = new System\Model\TreeMenu();
-echo $this->TreeMenuHelper($treeMenu);
+$content = "<div class='our-products'>";
+$content .= $this->SiteCategorysTreeHelper();
 
+echo $content .= "</div>";
 
-
-echo "Conteúdo de 'Produtos':";
 ?>

@@ -23,6 +23,7 @@ class SiteProductBriefHelper extends ViewHelper
         $fileId = $product->getCover()->getId();
         
         $id = $product->getId();
+        $categoryId = $product->getCategory()->getId();
         $value = ($product->getValue()) ? $product->getValue() : "Valor não informado";
         $title = $product->getTitle();
         $code = $product->getCode();
@@ -30,7 +31,7 @@ class SiteProductBriefHelper extends ViewHelper
         $description = $product->getDescription();
         
         $productBrief = "<div class='productbrief'>
-                            <a class='linkProductbrief' title='Clique para visualizar' href='/products/{$id}'>
+                            <a class='linkProductbrief' title='Clique para visualizar' href='/products/{$categoryId}/{$id}'>
     				<div class='productbrief-img'>
                                     <img src='{$this->view->basePath($folder . '/' . $fileId)}' >
                                 </div>

@@ -21,7 +21,7 @@ class CategoryController extends CrudController
     {
         $entity = $element->getOption('entity');
         
-        $repository = $this->getObjectManager()->getRepository($entity);
+        $repository = $this->getEntityManager()->getRepository($entity);
         $query = $repository->createQueryBuilder('list')
                             ->select("list.id, list.title")
                             ->andWhere("list.categoryfather IS NULL")

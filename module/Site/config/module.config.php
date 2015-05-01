@@ -41,8 +41,9 @@ return array(
             'products' => array(
                 'type'    => 'Segment',
                 'options' => array(
-                    'route'    => '/products[/:id]',
+                    'route'    => '/products[/:category_id][/:id]',
                     'constraints' => array(
+                        'category_id' => '[0-9]+',
                         'id' => '[0-9]+'
                     ),
                     'defaults' => array(

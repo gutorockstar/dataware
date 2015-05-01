@@ -14,7 +14,22 @@ namespace System\Model;
 
 class TreeMenu 
 {
+    private $content;
     
+    public function __construct(Array $content)
+    {
+        $this->content = $content;
+    }
+    
+    public function getContent() 
+    {
+        return $this->content;
+    }
+
+    public function setContent($content) 
+    {
+        $this->content = $content;
+    }
 }
 
 ?>

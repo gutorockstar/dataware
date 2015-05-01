@@ -78,4 +78,29 @@ class ProductController extends CrudController
         
         return $result[0][1];
     }
+    
+    /**
+     * Sobrescrita da listagem de categorias
+     * 
+     * @param type $element
+     * @return type
+     */
+    public function getListValuesToSelectElement($element)
+    {
+        $entity = $element->getOption('entity');
+        
+        if ( $entity == 'Manager\Entity\Category' )
+        {
+            $repository = $this->getEntityManager()->getRepository($entity);
+            $query = $repository->createQueryBuilder('list')
+                                ->select("list.id, list.title")
+                                ->andWhere("list.categoryfather IS NOT NULL")
+                                ->orderBy("list.title")
+                                ->getQuery();        
+
+            return $query->getResult();
+        }
+        
+        return parent::getListValuesToSelectElement($element);
+    }
 }
