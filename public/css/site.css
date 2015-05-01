@@ -16,7 +16,7 @@ body {
     font-size: 14px;
     color: #333;
     background-color: #ffffff;
-    background-image: url("public/img/site/background.jpg");
+    background-image: url("../img/site/background.jpg");
     background-position: center top !important;
     background-repeat: repeat;
 }
@@ -254,7 +254,6 @@ body {
     background: #0075b0;
     font: bold 14px Arial;
     padding: 10px;
-    text-transform: capitalize;
 }
 
 .productbrief-desc-p{
@@ -286,7 +285,7 @@ body {
 .mini-panel{
     border: 1px solid #ddd;
     background: #fbfbfb;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .mini-panel-header{
@@ -306,17 +305,55 @@ body {
 
 #search-product{
     width: 100%;
+    font-size: 13px;
+    height: 30px;
 }
 
 #submit-search-product{
     background: #0075b0;
     border: none;
     color: #fff;
-    padding: 5px;
+    padding: 5px 10px;
 }
 
 .tree_item_selected{
     background: #eee;
 }
 
+.product{
+    display: table;
+    background: #fbfbfb;
+    border: 1px solid #ddd;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 100%;
+}
 
+.product-cover{
+    width: 173px;
+    float: left;
+}
+
+.product h4{
+    color: #fff !important;
+    text-decoration: none !important;
+    text-align: center;
+    background: #0075b0;
+    font: bold 14px Arial;
+    padding: 10px;
+    width: 173px;
+    margin-bottom: 0px;
+}
+
+.product-desc-p{
+    background: #fff;
+    border: 0;
+    line-height: 18px;
+    padding: 7px;
+    overflow: hidden;
+    color: #428bca;
+    width: 70%;
+    float: right;
+        
+}

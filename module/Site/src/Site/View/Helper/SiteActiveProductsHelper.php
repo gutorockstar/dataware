@@ -19,19 +19,27 @@ class SiteActiveProductsHelper extends ViewHelper
     public function __invoke($id = null, $categoryId = null) 
     {
         $activeProducts = "<div class='active-products'>";
-     
-        $activeProductsList = $this->getActiveProductsListByCategory($categoryId);
         
-        if ( count($activeProductsList) > 0 )
+        if ( is_null($id) || $id == 0 )
         {
-            foreach ( $activeProductsList as $product )
+            $activeProductsList = $this->getActiveProductsListByCategory($categoryId);
+
+            if ( count($activeProductsList) > 0 )
             {
-                $activeProducts .= $this->view->SiteProductBriefHelper($product);
+                foreach ( $activeProductsList as $product )
+                {
+                    $activeProducts .= $this->view->SiteProductBriefHelper($product);
+                }
+            }
+            else
+            {
+                $activeProducts .= $this->view->SimpleAlertHelper(new \System\Model\Alert("Desculpe, no momento não temos produtos ativos! :("));
             }
         }
         else
         {
-            $activeProducts .= $this->view->SimpleAlertHelper(new \System\Model\Alert("Desculpe, no momento não temos produtos ativos! :("));
+            $product = $this->getProduct($id);
+            $activeProducts .= $this->view->SiteProductHelper($product);
         }
         
         return $activeProducts . "</div>";
@@ -61,6 +69,17 @@ class SiteActiveProductsHelper extends ViewHelper
         $result = $repository->findBy($filters, array('title' => 'ASC')); 
         
         return $result;
+    }
+    
+    /**
+     * Retorna um produto, obtido pelo id.
+     * 
+     * @param type $productId
+     * @return type
+     */
+    public function getProduct($productId)
+    {
+        return $this->getEntityManager()->find('Manager\Entity\Product', $productId);
     }
 }
 

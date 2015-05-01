@@ -125,6 +125,18 @@ class Module
                     $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
                     return new View\Helper\SiteMiniPanelHelper($em);
                 },
+                        
+                'SiteProductHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
+                    return new View\Helper\SiteProductHelper($em);
+                },
+                       
+                'SiteProductSliderImagesHelper' => function ($sm) 
+                {
+                    $em = $sm->getServiceLocator()->get(Module::ENTITY_MANAGER);
+                    return new View\Helper\SiteProductSliderImagesHelper($em);
+                },
             )
         );
     }
