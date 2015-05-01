@@ -60,7 +60,7 @@ class SiteFeaturedProductsHelper extends ViewHelper
     private function getFeaturedProductsList()
     {
         $repository = $this->getEntityManager()->getRepository('Manager\Entity\Product');
-        $result = $repository->findBy(array('active' => 'TRUE', 'featured' => 'TRUE'), array('title' => 'DESC')); 
+        $result = $repository->findBy(array('active' => 'TRUE', 'featured' => 'TRUE'), array('title' => 'ASC')); 
         
         return $result;
     }

@@ -15,7 +15,10 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     color: #333;
-    background-image: none;
+    background-color: #ffffff;
+    background-image: url("public/img/site/background.jpg");
+    background-position: center top !important;
+    background-repeat: repeat;
 }
 
 .header{
@@ -213,5 +216,56 @@ body {
 }
 
 
+.productbrief{
+    background: #fbfbfb;
+    border: 1px solid #ddd;
+    display: block;
+    float: left;
+    height: 292px;
+    margin: 9px 10px;
+    padding: 10px;
+    width: 195px;
+}
 
+.linkProductbrief{
+    text-decoration: none !important;
+}
 
+.productbrief-img{
+    background: #f7f7f7;
+    border: 1px solid #f0f0f0;
+    height: 130px;
+    padding: 3px;
+    text-align: center;
+    width: 172px !important;
+}
+
+.productbrief-img img{
+    height: 122px;
+    max-width: 190px !important;
+}
+
+.productbrief h4{
+    color: #fff !important;
+    text-decoration: none !important;
+    text-align: center;
+    background: #0075b0;
+    font: bold 14px Arial;
+    padding: 10px;
+    text-transform: capitalize;
+}
+
+.productbrief-desc-p{
+    background: #fff;
+    border: 0;
+    height: 90px;
+    line-height: 18px;
+    margin: 8px 0;
+    padding: 7px;
+    overflow: hidden;
+}
+
+.box-item1{
+    width: 112px;
+    height: 33px;
+}
