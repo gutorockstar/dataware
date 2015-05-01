@@ -18,7 +18,7 @@ use System\Model\Panel;
 
 class SiteCategorysTreeHelper extends ViewHelper
 {
-    public function __invoke() 
+    public function __invoke($selectedCategoryId = null) 
     {        
         $categorysTree .= "<div class='actions-products'>";
 
@@ -47,7 +47,7 @@ class SiteCategorysTreeHelper extends ViewHelper
                 $categoriesList[$pos]['subitens'] = $subitens;
             }
             
-            $treeMenu = new TreeMenu($categoriesList);
+            $treeMenu = new TreeMenu($categoriesList, $selectedCategoryId);
             $treeMenuContent .= $this->view->TreeMenuHelper($treeMenu);
         }
         

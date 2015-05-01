@@ -18,6 +18,9 @@ class TreeMenuHelper extends ViewHelper
 {
     public function __invoke(TreeMenu $treeMenu) 
     {
+        $selectedItemId = $treeMenu->getSelectedItemId();
+        $openParentId = "";
+        
         $treeMenuContent = "<ul class='treeview'>";
         
         foreach ( $treeMenu->getContent() as $content )
@@ -29,7 +32,7 @@ class TreeMenuHelper extends ViewHelper
                 $title = "<a href='{$content['href']}'>$title</a>";
             }
             
-            $treeMenuContent .= "<li>{$title}";
+            $treeMenuContent .= "<li id='tree_item_{$content['id']}'>{$title}";
             
             if ( count($content['subitens']) > 0 )
             {
@@ -38,13 +41,20 @@ class TreeMenuHelper extends ViewHelper
                 foreach ( $content['subitens'] as $subitem )
                 {
                     $subtitle = $subitem['title'];
+                    $itemSelectedCss = "";
                     
                     if ( !is_null($subitem['href']) )
                     {
                         $subtitle = "<a href='{$subitem['href']}'>$subtitle</a>";
                     }
                     
-                    $treeMenuContent .= "<li>{$subtitle}</li>";
+                    if ( $selectedItemId == $subitem['id'] )
+                    {
+                        $openParentId = $content['id'];
+                        $itemSelectedCss = "tree_item_selected";
+                    }
+                    
+                    $treeMenuContent .= "<li id='tree_item_{$subitem['id']}' class='{$itemSelectedCss}'>{$subtitle}</li>";
                 }
                 
                 $treeMenuContent .= "</ul>";
@@ -56,6 +66,7 @@ class TreeMenuHelper extends ViewHelper
         $treeMenuContent .= "</ul>
                              <script>
                                  $('.treeview').treeView();
+                                 document.getElementById('tree_item_{$openParentId}').click();
                              </script>";
         
         return $treeMenuContent;

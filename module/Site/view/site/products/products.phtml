@@ -2,7 +2,7 @@
 
 $content = "<div class='our-products'>";
 
-$content .= $this->SiteCategorysTreeHelper();
+$content .= $this->SiteCategorysTreeHelper($this->category_id);
 $content .= $this->SiteActiveProductsHelper($this->id, $this->category_id);
 
 echo $content .= "</div>";

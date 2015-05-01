@@ -315,4 +315,8 @@ body {
     padding: 5px;
 }
 
+.tree_item_selected{
+    background: #eee;
+}
+
 
