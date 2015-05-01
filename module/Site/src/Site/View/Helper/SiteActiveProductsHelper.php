@@ -20,7 +20,7 @@ class SiteActiveProductsHelper extends ViewHelper
     {
         $activeProducts = "<div class='active-products'>";
      
-        $activeProductsList = $this->getActiveProductsListByCategory();
+        $activeProductsList = $this->getActiveProductsListByCategory($categoryId);
         
         if ( count($activeProductsList) > 0 )
         {
@@ -42,10 +42,23 @@ class SiteActiveProductsHelper extends ViewHelper
      * 
      * @return array
      */
-    private function getActiveProductsListByCategory()
+    private function getActiveProductsListByCategory($categoryId = null)
     {
+        $filters = array(
+            'active' => 'TRUE',
+        );
+        
+        if ( is_null($categoryId) || $categoryId == 0 )
+        {
+            $filters['featured'] = 'TRUE';
+        }
+        else
+        {
+            $filters['category'] = $categoryId;
+        }
+        
         $repository = $this->getEntityManager()->getRepository('Manager\Entity\Product');
-        $result = $repository->findBy(array('active' => 'TRUE', 'featured' => 'TRUE'), array('title' => 'ASC')); 
+        $result = $repository->findBy($filters, array('title' => 'ASC')); 
         
         return $result;
     }

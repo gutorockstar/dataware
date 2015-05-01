@@ -87,6 +87,7 @@ body {
 }
 
 .banner{
+    margin-top: 20px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -222,7 +223,8 @@ body {
     display: block;
     float: left;
     height: 292px;
-    margin: 9px 10px;
+    margin-left: 15px;
+    margin-bottom: 15px;
     padding: 10px;
     width: 195px;
 }
@@ -276,11 +278,25 @@ body {
     display: inline-table;
 }
 
-.categorystree{
-    border: 1px solid #ddd;
-    background: #fbfbfb;
+.actions-products{
     float: left;
     width: 25%;
+}
+
+.mini-panel{
+    border: 1px solid #ddd;
+    background: #fbfbfb;
+    margin-bottom: 10px;
+}
+
+.mini-panel-header{
+    padding: 5px 10px;
+    background: #333;
+    color: #fff;
+}
+
+.mini-panel-body{
+    padding: 5px;
 }
 
 .active-products{
@@ -288,8 +304,15 @@ body {
     width: 73.9%;
 }
 
-.categories-header{
-    padding: 5px 10px;
-    background: #333;
-    color: #fff;
+#search-product{
+    width: 100%;
 }
+
+#submit-search-product{
+    background: #0075b0;
+    border: none;
+    color: #fff;
+    padding: 5px;
+}
+
+

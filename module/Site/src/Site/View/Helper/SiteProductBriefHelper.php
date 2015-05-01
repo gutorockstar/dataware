@@ -24,7 +24,7 @@ class SiteProductBriefHelper extends ViewHelper
         
         $id = $product->getId();
         $categoryId = $product->getCategory()->getId();
-        $value = ($product->getValue()) ? "R$ " . $product->getValue() : "Valor não informado";
+        $value = ($product->getValue()) ? "R$ " . $product->getValue() : "(Valor não informado)";
         $title = $product->getTitle();
         $code = $product->getCode();
         $available = $product->getAvailable();
