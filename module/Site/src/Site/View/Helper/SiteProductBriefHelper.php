@@ -13,25 +13,36 @@
 namespace Site\View\Helper;
 
 use System\View\Helper\ViewHelper;
+use Manager\Entity\Product;
 
 class SiteProductBriefHelper extends ViewHelper
 {
-    public function __invoke(Array $productBriefData)
+    public function __invoke(Product $product)
     {
-        $productBrief = "<a class='link-produto' title='Clique para visualizar' href='/products/{$productBriefData['id']}'>
+        $folder = $product->getCover()->getFolder();
+        $fileId = $product->getCover()->getId();
+        
+        $id = $product->getId();
+        $value = $product->getValue();
+        $title = $product->getTitle();
+        $code = $product->getCode();
+        $available = $product->getAvailable();
+        $description = $product->getDescription();
+        
+        $productBrief = "<a class='link-produto' title='Clique para visualizar' href='/products/{$id}'>
                              <div class='resumo-produto'>
                                  <div class='capa-produto'>
-                                     <img src='{$this->view->basePath($productBriefData['folder'] . '/' . $productBriefData['fileid'])}' width='175' height='150'>
+                                     <img src='{$this->view->basePath($folder . '/' . $fileId)}' width='175' height='150'>
                                  </div>
                                  <div class='titulo-produto'>
-                                     {$productBriefData['producttitle']}
+                                     {$title}
                                  </div>
                                  <div class='status-produto'>
-                                     Código: {$productBriefData['code']}<br>
-                                     Disponível: " . (((boolean)$productBriefData['available']) ? 'SIM' : 'NÃO') . "
+                                     Código: {$code}<br>
+                                     Disponível: " . (((boolean)$available) ? 'SIM' : 'NÃO') . "
                                  </div>
                                  <div class='descricao-produto'>
-                                     {$productBriefData['description']}
+                                     {$description}
                                  </div>
                              </div>
                          </a>";

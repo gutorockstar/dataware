@@ -25,9 +25,9 @@ class SiteFeaturedProductsHelper extends ViewHelper
         
         if ( count($featuredProductsList) > 0 )
         {
-            foreach ( $featuredProductsList as $featuredProduct )
+            foreach ( $featuredProductsList as $product )
             {
-                $featuredProducts .= $this->view->SiteProductBriefHelper($featuredProduct);
+                $featuredProducts .= $this->view->SiteProductBriefHelper($product);
             }
         }
         else
@@ -60,15 +60,9 @@ class SiteFeaturedProductsHelper extends ViewHelper
     private function getFeaturedProductsList()
     {
         $repository = $this->getEntityManager()->getRepository('Manager\Entity\Product');
-        $query = $repository->createQueryBuilder('p')
-                            ->select("p.id, p.title AS producttitle, p.code, p.description, p.available, f.folder, f.id AS fileid")
-                            ->join("p.cover", "f")
-                            ->andWhere("p.active = TRUE")
-                            ->andWhere("p.featured = TRUE")
-                            ->orderBy("p.title")
-                            ->getQuery();  
+        $result = $repository->findBy(array('active' => 'TRUE', 'featured' => 'TRUE'), array('title' => 'DESC')); 
         
-        return $query->getResult();
+        return $result;
     }
 }
 
