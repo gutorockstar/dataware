@@ -13,5 +13,6 @@
 
 return array(
     'max_featured_products' => 8, // Máximo de produtos em destaques.
-    'max_banner_images' => 4 // Máximo de imagens para o banner.
+    'max_banner_images' => 4, // Máximo de imagens para o banner.
+    'no_image_path' => '/img/site/sem-imagem.png' // Caminho da imagem de identificação de "sem imagem".
 );
