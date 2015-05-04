@@ -14,13 +14,22 @@ namespace Site\View\Helper;
 
 use System\View\Helper\ViewHelper;
 use Manager\Entity\Product;
+use System\Model\Attachment;
 
 class SiteProductHelper extends ViewHelper
 {
     public function __invoke(Product $product) 
     {
-        $folder = $product->getCover()->getFolder();
-        $fileId = $product->getCover()->getId();
+        $applicationConfig = $this->getView()->getHelperPluginManager()->getServiceLocator()->get('config');
+        $path = $this->view->basePath($applicationConfig['no_image_path']);
+            
+        if ( $product->getCover() instanceof File )
+        {
+            $folder = $product->getCover()->getFolder();
+            $fileId = $product->getCover()->getId();
+            
+            $path = $this->view->basePath($folder . '/' . $fileId);
+        }
         
         $id = $product->getId();
         $categoryId = $product->getCategory()->getId();
@@ -33,7 +42,7 @@ class SiteProductHelper extends ViewHelper
         $productContent = "<div class='product'>
                                 <div class='product-cover'>
                                     <div class='productbrief-img'>
-                                        <img src='{$this->view->basePath($folder . '/' . $fileId)}' >
+                                        <img src='{$path}' >
                                     </div>
                                     <h4>{$value}</h4>
                                 </div>
@@ -45,8 +54,9 @@ class SiteProductHelper extends ViewHelper
                                     Descrição: {$description}
     				</div>
                            </div>";
-                                    
-        $productContent .= $this->view->SiteProductSliderImagesHelper($product);
+                                  
+        $attachment = new Attachment($product->getId(), 'product');
+        $productContent .= $this->view->SiteProductSliderImagesHelper($attachment);
         
         return $productContent;
     }

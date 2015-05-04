@@ -17,7 +17,6 @@ use Doctrine\ORM\EntityManager;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\View\Helper\ServerUrl;
 use System\Model\View;
-use System\Model\Tree;
 use System\Model\Toolbar;
 use System\Model\Panel;
 
