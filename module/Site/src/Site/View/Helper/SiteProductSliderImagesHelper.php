@@ -19,14 +19,15 @@ class SiteProductSliderImagesHelper extends ViewHelper
 {
     public function __invoke(Attachment $attachment) 
     {                
+        $productSliderImages = $this->view->headScript()->prependFile($this->view->basePath() . '/jqueryFancyBox/fancybox/image-gallery.js');
+        
         $folder = "uploads/entities/" . $attachment->getEntityName() . '/' . $attachment->getEntityId();
         $filePath = dirname(__DIR__) . "/../../../../../public/" . $folder;
         
-        $productSliderImages = "";
-        
         if ( is_dir($filePath) )
         {
-            $productSliderImages .= "<div id='slider1_container' style='position: relative; top: 0px; left: 0px; width: 100%; height: 350px; margin-left: 15px; background: #191919; overflow: hidden;'>";
+            $productSliderImages .= "<div id='content' class='product-images'>
+                                         <p>";
             
             $dir = opendir($filePath);
             
@@ -36,12 +37,13 @@ class SiteProductSliderImagesHelper extends ViewHelper
                 {
                     $path = $this->view->basePath($folder . '/' . $read);
                     $productSliderImages .= "<div>
-                                                 <img u='image' src='{$path}' width='405' height='350' />
+                                                <a rel='example_group' href='{$path}' title='Clique para ampliar!'><img class='product-image' alt='' src='{$path}' /></a>
                                              </div>";
                 }       
             }
             
-            $productSliderImages .= "</div>";
+            $productSliderImages .= "    </p>
+                                     </div>";
         }
         
         return $productSliderImages;

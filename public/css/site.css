@@ -357,3 +357,15 @@ body {
     float: right;
         
 }
+
+.product-images{
+    background: #191919;
+}
+
+.product-image{
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
