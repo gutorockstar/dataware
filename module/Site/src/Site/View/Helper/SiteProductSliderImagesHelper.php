@@ -35,7 +35,9 @@ class SiteProductSliderImagesHelper extends ViewHelper
                 {
                     $path = $this->view->basePath($folder . '/' . $read);
                     $productSliderImages .= "<div>
-                                                <a rel='example_group' href='{$path}' title='Clique para ampliar!'><img class='product-image' alt='' src='{$path}' /></a>
+                                                <a href='{$path}' class='highslide' onclick='return hs.expand(this)' title='Clique para visualizar'>
+                                                    <img src='{$path}' alt='Highslide JS' class='product-image'/>
+                                                </a>
                                              </div>";
                 }       
             }
