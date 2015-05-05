@@ -359,6 +359,8 @@ body {
 }
 
 .product-images{
+    width: 100%;
+    margin-left: 15px;
     background: #191919;
 }
 

@@ -51,14 +51,14 @@ class SiteProductHelper extends ViewHelper
                                     <p><b>{$title}</b></p>
                                     Código: {$code}<br>
                                     Disponível: " . (((boolean)$available) ? 'SIM' : 'NÃO') . "<br><br>
-                                    Descrição: {$description}<br><br>
-                                    <p><b>Galeria de imagens:<p><b>
-    				";
+                                    Descrição:<br> {$description}
+                                </div>
+                           </div>";
                                   
         $attachment = new Attachment($product->getId(), 'product');
         $productContent .= $this->view->SiteProductSliderImagesHelper($attachment);
         
-        return $productContent . "</div></div>";
+        return $productContent;
     }
 }
 
