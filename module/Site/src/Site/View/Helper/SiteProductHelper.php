@@ -15,6 +15,7 @@ namespace Site\View\Helper;
 use System\View\Helper\ViewHelper;
 use Manager\Entity\Product;
 use System\Model\Attachment;
+use System\Entity\File;
 
 class SiteProductHelper extends ViewHelper
 {

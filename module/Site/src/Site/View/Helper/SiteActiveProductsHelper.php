@@ -33,7 +33,7 @@ class SiteActiveProductsHelper extends ViewHelper
             }
             else
             {
-                $activeProducts .= $this->view->SimpleAlertHelper(new \System\Model\Alert("Desculpe, no momento não temos produtos ativos! :("));
+                $activeProducts .= $this->view->SimpleAlertHelper(new \System\Model\Alert("Desculpe, nenhum produto foi encontrado! :("));
             }
         }
         else
@@ -52,11 +52,25 @@ class SiteActiveProductsHelper extends ViewHelper
      */
     private function getActiveProductsListByCategory($categoryId = null)
     {
+        $repository = $this->getEntityManager()->getRepository('Manager\Entity\Product');
+        $searchProduct = $_GET['search-product'];
+        
         $filters = array(
             'active' => 'TRUE',
         );
         
-        if ( is_null($categoryId) || $categoryId == 0 )
+        if ( strlen($searchProduct) > 0 )
+        {
+            $result = $repository->createQueryBuilder("p")
+                                 ->where("LOWER(p.title) = LOWER(:search)")
+                                 ->orWhere("LOWER(p.code) = LOWER(:search)")
+                                 ->setParameter('search', $searchProduct)
+                                 ->getQuery()
+                                 ->getResult();
+            
+            return $result;
+        }
+        else if ( is_null($categoryId) || $categoryId == 0 )
         {
             $filters['featured'] = 'TRUE';
         }
@@ -65,7 +79,6 @@ class SiteActiveProductsHelper extends ViewHelper
             $filters['category'] = $categoryId;
         }
         
-        $repository = $this->getEntityManager()->getRepository('Manager\Entity\Product');
         $result = $repository->findBy($filters, array('title' => 'ASC')); 
         
         return $result;

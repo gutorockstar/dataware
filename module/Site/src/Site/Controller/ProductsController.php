@@ -19,6 +19,14 @@ class ProductsController extends Controller
 {
     public function productsAction()
     {
+        $request = $this->getRequest();
+        
+        if ( $request->isPost() ) 
+        {
+            $postData = $request->getPost()->toArray();
+            return $this->redirect()->toRoute('products', array(), array('query' => $postData));
+        }
+        
         $id = (int) $this->params()->fromRoute('id', 0);
         $categoryId = (int) $this->params()->fromRoute('category_id', 0);
         

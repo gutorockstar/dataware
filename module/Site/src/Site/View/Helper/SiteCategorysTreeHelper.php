@@ -23,7 +23,7 @@ class SiteCategorysTreeHelper extends ViewHelper
         $categorysTree .= "<div class='actions-products'>";
 
         $formSearch = "<form id='form-search-product' method='post'>
-                          <p><input id='search-product' type='text' placeholder='Informe código ou título!'/><br></p>
+                          <p><input id='search-product' name='search-product' type='text' placeholder='Informe código ou título!'/><br></p>
                           <input id='submit-search-product' type='submit' value='Buscar'/>
                        </form>";
         $panelSearch = new Panel('Buscar produto', $formSearch, 'fa-search');
