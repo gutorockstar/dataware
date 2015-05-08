@@ -161,9 +161,6 @@ class CrudController extends Controller
     /**
      * Ação padrão de exclusão de registros.
      * 
-     * 
-     *   PENSAR EM FAZER AS VIEWS PADRÕES .phtml !!!!!!!!
-     * 
      * @return \Zend\View\Model\ViewModel
      */
     public function deleteAction()
@@ -178,6 +175,14 @@ class CrudController extends Controller
         {
             $this->getEntityManager()->remove($entity);
             $this->getEntityManager()->flush();
+            
+            $attachmentsDir = dirname(__DIR__) . "/../../../../public/uploads/entities/" . strtolower($this->getCurrentRoute()) . "/" . $id;
+            
+            if ( is_dir($attachmentsDir) )
+            {                
+                // Remove os anexos da entidade, caso existirem.
+                $this->rmdir_rf($attachmentsDir);
+            }
 
             $this->flashMessenger()->addSuccessMessage("Registro removido com sucesso!");
         }

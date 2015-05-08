@@ -538,6 +538,43 @@ class Controller extends AbstractActionController
         $actionArgs['action'] = $this->getCurrentAction();
         $this->redirect()->toRoute($this->getCurrentRoute(), $actionArgs, $queryArgs);
     }
+    
+    /**
+     * Remove um diretório, junto com seus sub arquivos
+     * e pastas.
+     * 
+     * @param String $dir
+     */
+    public function rmdir_rf($dir) 
+    {
+        if ( is_dir($dir) ) 
+        {
+            $objects = scandir($dir);
+
+            if ( count($objects) > 0 )
+            {
+                foreach ( $objects as $object ) 
+                {
+                    if ( $object != "." && $object != ".." ) 
+                    {
+                        if ( filetype($dir . "/" . $object ) == "dir" ) 
+                        {
+                            rmdir_rf($dir . "/" . $object); 
+                        }
+                        else 
+                        {
+                            unlink($dir . "/" . $object);
+                        }
+                            
+                    }
+                }
+
+                reset($objects);
+            }
+            
+            rmdir($dir);
+        }
+    }
 }
 
 ?>

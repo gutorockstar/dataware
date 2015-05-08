@@ -14,6 +14,7 @@ namespace Site\View\Helper;
 
 use System\View\Helper\ViewHelper;
 use Manager\Entity\Product;
+use Manager\Entity\Brand;
 use System\Model\Attachment;
 use System\Entity\File;
 
@@ -40,6 +41,14 @@ class SiteProductHelper extends ViewHelper
         $available = $product->getAvailable();
         $description = $product->getDescription();
         
+        $brand = "";
+        
+        if ( $product->getBrand() instanceof Brand )
+        {
+            $brand = $product->getBrand()->getTitle();
+        }
+        
+        
         $productContent = "<div class='product'>
                                 <div class='product-cover'>
                                     <div class='productbrief-img'>
@@ -51,7 +60,8 @@ class SiteProductHelper extends ViewHelper
     				<div class='product-desc-p'>
                                     <p><b>{$title}</b></p>
                                     Código: {$code}<br>
-                                    Disponível: " . (((boolean)$available) ? 'SIM' : 'NÃO') . "<br><br>
+                                    Disponível: " . (((boolean)$available) ? 'SIM' : 'NÃO') . "<br>
+                                    Marca: {$brand}<br><br>
                                     Descrição:<br> {$description}
                                 </div>
                            </div>";
