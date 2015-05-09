@@ -120,9 +120,48 @@ body {
 }
 
 .footer-content{
+    display: block;
     width: 70%;
     margin-left: auto;
     margin-right: auto;    
+    min-height: 250px;
+    color: #ddd;
+}
+
+.footer-data-company{
+    padding: 10px;
+    padding-top: 20px;
+    width: 35%;
+    float: left;
+    min-height: 250px;
+}
+
+.footer-site-map{
+    padding: 10px;
+    padding-top: 20px;
+    width: 35%;
+    float: left;
+    min-height: 250px;
+}
+
+.map ul li{
+    list-style-type: none;
+    padding: 5px;
+}
+
+.map ul li a{
+    color: #ddd !important;
+}
+
+.map .menu-selected{
+    background: #0075b0;
+}
+
+.footer-data-employees{
+    padding: 10px;
+    padding-top: 20px;
+    width: 30%;
+    float: left;
     min-height: 250px;
 }
 

@@ -57,27 +57,33 @@ class ContactController extends Controller
         $toEmails = $this->getEmailsFromActiveLogins();
         $applicationConfig = $this->getServiceLocator()->get('config');
         
+        // Envia para os emails dos logins ativos do sistema.
         if ( count($toEmails) > 0 )
         {
             foreach ( $toEmails as $toEmail )
             {
-                /**
-                
-                
                 $mail = new Mail\Message();
-                $mail->setBody('This is the text of the email.');
-                $mail->setFrom('Freeaqingme@example.org', 'Sender\'s name');
-                $mail->addTo('Matthew@example.com', 'Name of recipient');
-                $mail->setSubject('TestSubject');
+                $mail->setBody($this->generateBodyMessage($postData));
+                $mail->setFrom($applicationConfig['site_company_contact_email'], $applicationConfig['site_company_contact_email_recipient']);
+                $mail->addTo($toEmail['email'], $toEmail['name']);
+                $mail->setSubject('Contato do site');
 
                 $transport = new Mail\Transport\Sendmail();
-                $transport->send($mail);                
-                 * 
-                 */
+                $transport->send($mail);
             }
         }
+        
+        // Sempre deve enviar para o e-mail de contato da empresa.
+        $mail = new Mail\Message();
+        $mail->setBody($this->generateBodyMessage($postData));
+        $mail->setFrom($applicationConfig['site_company_contact_email'], $applicationConfig['site_company_contact_email_recipient']);
+        $mail->addTo($applicationConfig['site_company_contact_email'], $applicationConfig['site_company_contact_email_recipient']);
+        $mail->setSubject('Contato do site');
 
-        $this->flashMessenger()->addSuccessMessage("Contato enviado com sucesso! Em breve estaremos retornando, obrigado.");
+        $transport = new Mail\Transport\Sendmail();
+        $transport->send($mail);
+
+        $this->flashMessenger()->addSuccessMessage("Enviado com sucesso! Em breve estaremos retornando o contato, obrigado.");
         
         return $this->redirect()->toRoute('contact');
     }

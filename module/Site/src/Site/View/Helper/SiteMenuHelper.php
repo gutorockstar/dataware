@@ -42,25 +42,21 @@ class SiteMenuHelper extends ViewHelper
             )
         );
         
-        $menu = "<div class='menu'>
-                     <nav id='menu'>
-                         <ul>";
+        $menu = "<ul>";
         
         foreach ( $menuRoutes as $route => $menuData )
         {
             $menuSelected = ($route == $currentRoute) ? "menu-selected" : "";
             
-            $menu .= "       <li class='{$menuSelected}'>
-                                 <a href='{$menuData['action']}'>
-                                     <i class='fa {$menuData['icon']} loading'>&nbsp;&nbsp;</i>
-                                     {$menuData['caption']}
-                                 </a>
-                             </li>";
+            $menu .= "<li class='{$menuSelected}'>
+                          <a href='{$menuData['action']}'>
+                              <i class='fa {$menuData['icon']} loading'>&nbsp;&nbsp;</i>
+                              {$menuData['caption']}
+                          </a>
+                      </li>";
         }
         
-        $menu .= "       </ul>
-                     </nav>
-                 </div>";
+        $menu .= "</ul>";
         
         return $menu;
     }
