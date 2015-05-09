@@ -47,10 +47,11 @@ class SiteFooterHelper extends ViewHelper
                            </div>
                            
                            <div class='footer-data-employees'>
-                               <b>DESENVOLVIDO POR</b><br><br>
+                               <b>DESENVOLVIDO POR</b><br>
                                <img src='{$this->view->basePath()}/img/tecnon_icon.png'><br><br>
-                               (51) 9856-1814<br>
-                               contato@tecnonsistemas.com.br
+                               <b>CONTATO</b><br>
+                               {$applicationConfig['site_employee_phone']}<br>
+                               {$applicationConfig['site_employee_email']}
                            </div>
                        </div>
                    </div>";

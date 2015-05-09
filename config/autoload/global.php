@@ -28,4 +28,8 @@ return array(
     'site_company_address' => 'Rua Olinda Mallmann',
     'site_company_number' => '484',
     'site_company_complement' => '',
+    
+    // Dados da empresa contratada
+    'site_employee_phone' => '(51) 9856-1814',
+    'site_employee_email' => 'contato@tecnonsistemas.com.br'
 );
