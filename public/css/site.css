@@ -195,7 +195,7 @@ body {
     background: #0075b0
 }
 
-.see-more:hover{
+.see-more:hover, .submit-button:hover{
     background: #333;
 }
 
@@ -413,4 +413,8 @@ fieldset > fieldset label {
 form ul li{
     color: red;
     list-style-type: none;
+}
+
+.form-control{
+    border-radius: 0px;
 }
