@@ -308,7 +308,7 @@ body {
     height: 30px;
 }
 
-#submit-search-product{
+.submit-button{
     background: #0075b0;
     border: none;
     color: #fff;
@@ -373,4 +373,44 @@ body {
 
 .choco-title{
     display: none !important;
+}
+
+.contact{
+    margin-top: 20px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+label{
+    width: 100%;
+}
+
+fieldset{
+    font-weight: bold;
+}
+
+fieldset > fieldset label {
+    width: 20%; 
+    float: left; 
+    clear: none;
+    color: gray;
+    text-align: left;
+}
+
+.input-checkbox{
+    width: 10% !important;
+    float: left;
+    height: 25px !important;
+    width: 25px !important;
+    clear: both;
+}
+
+.input-textarea{
+    height: 10em !important;
+}
+
+form ul li{
+    color: red;
+    list-style-type: none;
 }

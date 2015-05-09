@@ -1,3 +1,14 @@
 <?php
-echo "Conteúdo de 'Entre em contato':";
+
+$form->prepare();
+$contactForm = $this->form()->openTag($form);              
+$contactForm .= $this->formCollection($form);
+$contactForm .= $this->form()->closeTag();
+
+$contact = "<div class='contact'>
+                {$contactForm}
+            </div>";
+
+echo $contact;
+
 ?>
