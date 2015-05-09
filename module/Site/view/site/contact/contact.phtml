@@ -1,12 +1,21 @@
 <?php
 
+$contact = "<div class='contact'>";
+
+if ( count($flashSuccessMessages) > 0 )
+{
+    foreach ( $flashSuccessMessages as $message )
+    {
+        $contact .= $this->SimpleAlertHelper(new \System\Model\Alert($message, 'success'));
+    }
+}
+
 $form->prepare();
 $contactForm = $this->form()->openTag($form);              
 $contactForm .= $this->formCollection($form);
 $contactForm .= $this->form()->closeTag();
 
-$contact = "<div class='contact'>
-                {$contactForm}
+$contact .= "   {$contactForm}
             </div>";
 
 echo $contact;

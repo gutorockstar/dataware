@@ -70,12 +70,9 @@ return array(
             ),
             
             'contact' => array(
-                'type'    => 'Segment',
+                'type'    => 'Literal',
                 'options' => array(
-                    'route'    => '/contact[/:action]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z]*',
-                    ),
+                    'route'    => '/contact',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Site\Controller',
                         'controller'    => 'ContactController',

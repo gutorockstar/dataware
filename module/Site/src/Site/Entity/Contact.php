@@ -68,8 +68,7 @@ class Contact
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"CPF *"})
      * @Annotation\Attributes({"class":"input-text form-control", "id":"cpf", "maxlength":"14", "onKeyPress":"MascaraCPF(this)", "onBlur":"ValidarCPF(this)"})
-     * @Annotation\Validator({"name":"StringLength", "options":{"min":0, "max":14}})
-     * @Annotation\ErrorMessage("O preenchimento do campo 'CPF', é requerido!")
+     * @Annotation\AllowEmpty(true)
      */
     private $cpf;
     
@@ -78,8 +77,7 @@ class Contact
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Options({"label":"CNPJ *"})
      * @Annotation\Attributes({"class":"input-text form-control", "id":"cnpj", "disabled":"true", "maxlength":"18", "onKeyPress":"MascaraCNPJ(this)", "onBlur":"ValidarCNPJ(this)"})
-     * @Annotation\Validator({"name":"StringLength", "options":{"min":0, "max":18}})
-     * @Annotation\ErrorMessage("O preenchimento do campo 'CNPJ', é requerido!")
+     * @Annotation\AllowEmpty(true)
      */
     private $cnpj;
     
