@@ -42,7 +42,7 @@ class Product
      * 
      * @Annotation\Type("Zend\Form\Element\Select")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Categoria", "disable_inarray_validator":true, "empty_option":null, "entity":"Manager\Entity\Category"})
+     * @Annotation\Options({"label":"Categoria", "labelAttributes":{"required":true}, "disable_inarray_validator":true, "empty_option":null, "entity":"Manager\Entity\Category"})
      * @Annotation\Attributes({"class":"input-text form-control"})
      * @Annotation\ErrorMessage("O preenchimento do campo 'Categoria', é requerido!")
      */
@@ -76,7 +76,7 @@ class Product
      * 
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Título"})
+     * @Annotation\Options({"label":"Título", "labelAttributes":{"required":true}})
      * @Annotation\Attributes({"class":"input-text form-control"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":45}})
      * @Annotation\ErrorMessage("O preenchimento do campo 'Título', é requerido!")

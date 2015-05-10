@@ -119,8 +119,18 @@ class FieldRow extends FormRow
             }
         }
         
+        $labelAttributes = $element->getOption("labelAttributes");
+        $labelRequired = "";
+        
+        if ( $labelAttributes['required'] )
+        {
+            $labelRequired = "<b class='required'>*</b>";
+        }
+        
         $markup = "<div class='input-group'>
-                       <span class='input-group-addon' id='basic-addon1'>{$label}</span>
+                       <span class='input-group-addon' id='basic-addon1'>
+                           {$label} {$labelRequired}
+                       </span>
                        {$elementString}
                    </div>";
 

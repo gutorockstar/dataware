@@ -40,7 +40,7 @@ class Category
      * 
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Título"})
+     * @Annotation\Options({"label":"Título", "labelAttributes":{"required":true}})
      * @Annotation\Attributes({"class":"input-text form-control"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":45}})
      * @Annotation\ErrorMessage("O preenchimento do campo 'Título', é requerido!")
