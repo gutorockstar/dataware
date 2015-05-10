@@ -118,15 +118,15 @@ footer{
 .menu .open{
     color: #0075b0 !important;
     background: #2187e7 !important;
-    height: 50px !important;
 }
 
 .menu li a{
-    height: 53px !important;
+    height: 100% !important;
     color: #fff !important;
 }
     
 .menu li a:hover{
+    height: 100% !important;
     background: #2187e7 !important;
     color: #fff !important;
 }
