@@ -44,12 +44,7 @@ footer{
 }
 
 .img-logout{
-    width: 40px;
-    height: 40px;
-    margin-right: 5px;
-    margin-top: 10px;
-    float: right;
-    color: #ddd !important;
+    color: #999 !important;
 }
 
 .logout{

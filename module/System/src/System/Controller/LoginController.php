@@ -44,6 +44,10 @@ class LoginController extends AbstractActionController
     {
         $data = $this->getRequest()->getPost();
         $form = $this->getFormLogin();
+        
+        $dataLogin = $this->findLoginByUsername($data['username']);
+        $data['name'] = $dataLogin['name'];
+        
         $form->setData($data);
         $sucessRoute = \System\Controller\Controller::MODULE_MANAGER;
         
@@ -59,6 +63,8 @@ class LoginController extends AbstractActionController
                 {
                     $userSession = new Container('Login');
                     $userSession->username = $data['username'];
+                    $userSession->nameuser = $data['name'];
+                    
                     $this->redirect()->toRoute($sucessRoute);
                 }
                 else
@@ -134,9 +140,30 @@ class LoginController extends AbstractActionController
         
         $userSession = new Container('Login');
         unset($userSession->username);
+        unset($userSession->nameuser);
         
         $this->flashMessenger()->addInfoMessage("Você foi desconectado.");
         
         return $this->redirect()->toRoute('login');
+    }
+    
+    /**
+     * Obtém dados do login, pelo username.
+     * 
+     * @param String $username
+     * @return array
+     */
+    private function findLoginByUsername($username)
+    {
+        $repository = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager')->getRepository('System\Entity\Login');
+        $query = $repository->createQueryBuilder('l')
+                            ->select("l.id, l.username, l.name, l.email")
+                            ->andWhere("l.username = :username")
+                            ->setParameter('username', $username)
+                            ->getQuery();
+        
+        $result = $query->getResult();
+        
+        return $result[0];
     }
 }

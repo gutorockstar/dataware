@@ -22,7 +22,8 @@ class MenuHelper extends ViewHelper
     public function __invoke()
     {        
         $userSession = new Container('Login');
-        $username    = $userSession->username;
+        $username = $userSession->username;
+        $nameUser = $userSession->nameuser;
         
         if ( strlen($username) > 0 )
         {            
@@ -34,11 +35,25 @@ class MenuHelper extends ViewHelper
                                           <i class='img-home fa fa-home fa-3x'></i>
                                       </div>
                                   </a>
+                                  
                                   {$this->getModules()}
                                   
-                                  <div class='logout' title='Efetuar logout' onclick='javascript:logoutMessage();'>
-                                      <i class='img-logout fa fa-power-off fa-2x'></i>
-                                  </div>
+                                  <ul class='nav navbar-nav' style='float: right'>
+                                      <li class='dropdown'>
+                                          <a href='' class='dropdown-toggle' data-toggle='dropdown'>
+                                              {$nameUser}&nbsp;&nbsp;<i class='fa fa-user'></i>
+                                              <b class='caret'></b>
+                                          </a>
+                                          <ul class='dropdown-menu'>
+                                              <li>
+                                                  <a href='javascript:void(0)' onclick='javascript:logoutMessage()'>
+                                                      <i class='img-logout fa fa-power-off'></i>&nbsp;&nbsp;Efetuar logout
+                                                  </a>
+                                              </li>
+                                          </ul>
+                                      </li>
+                                  </ul>
+                                  
                               </div>
                           </div>
                       </nav>";

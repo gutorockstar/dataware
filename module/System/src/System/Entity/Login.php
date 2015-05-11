@@ -60,13 +60,14 @@ class Login
     protected $password;
     
     /**
-     * @ORM\Column(type="string", length=45, columnDefinition="VARCHAR(45)")
+     * @ORM\Column(type="string", length=45, columnDefinition="VARCHAR(45) NOT NULL")
      * 
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annotation\Options({"label":"Nome"})
+     * @Annotation\Options({"label":"Nome", "labelAttributes":{"required":true}})
      * @Annotation\Attributes({"class":"form-control"})
-     * @Annotation\AllowEmpty(true)
+     * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":45}})
+     * @Annotation\ErrorMessage("O preenchimento do campo 'Nome', é requerido!");
      */
     protected $name;
     
