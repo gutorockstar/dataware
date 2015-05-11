@@ -24,6 +24,7 @@ class MenuHelper extends ViewHelper
         $userSession = new Container('Login');
         $username = $userSession->username;
         $nameUser = $userSession->nameuser;
+        $idUser = $userSession->iduser;
         
         if ( strlen($username) > 0 )
         {            
@@ -46,8 +47,11 @@ class MenuHelper extends ViewHelper
                                           </a>
                                           <ul class='dropdown-menu'>
                                               <li>
+                                                  <a class='loading' href='/manager/user/edit/{$idUser}'>Editar perfil</a>
+                                              </li>
+                                              <li>
                                                   <a href='javascript:void(0)' onclick='javascript:logoutMessage()'>
-                                                      <i class='img-logout fa fa-power-off'></i>&nbsp;&nbsp;Efetuar logout
+                                                      Efetuar logout&nbsp;&nbsp;<i class='img-logout fa fa-power-off'></i>
                                                   </a>
                                               </li>
                                           </ul>

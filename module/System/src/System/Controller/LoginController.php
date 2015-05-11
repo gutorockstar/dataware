@@ -64,6 +64,7 @@ class LoginController extends AbstractActionController
                     $userSession = new Container('Login');
                     $userSession->username = $data['username'];
                     $userSession->nameuser = $data['name'];
+                    $userSession->iduser = $dataLogin['id'];
                     
                     $this->redirect()->toRoute($sucessRoute);
                 }
@@ -141,6 +142,7 @@ class LoginController extends AbstractActionController
         $userSession = new Container('Login');
         unset($userSession->username);
         unset($userSession->nameuser);
+        unset($userSession->iduser);
         
         $this->flashMessenger()->addInfoMessage("Você foi desconectado.");
         
