@@ -150,7 +150,7 @@ footer{
 }
 
 label {
-    color: #999;
+    color: gray;
     display: inline !important;
     font-weight: bold !important;
     float: left;

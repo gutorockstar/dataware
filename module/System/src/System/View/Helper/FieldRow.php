@@ -61,6 +61,14 @@ class FieldRow extends FormRow
         }
 
         $elementString = $elementHelper->render($element);
+        
+        $labelAttributes = $element->getOption("labelAttributes");
+        $labelRequired = "";
+        
+        if ( $labelAttributes['required'] )
+        {
+            $labelRequired = "<b class='required'>*</b>";
+        }
 
         if (isset($label) && '' !== $label) {
             $label = $escapeHtmlHelper($label);
@@ -89,7 +97,7 @@ class FieldRow extends FormRow
                 }
 
                 if ($label !== '' && !$element->hasAttribute('id')) {
-                    $label = '<span>' . $label . '</span>';
+                    $label = '<span>' . $label . '&nbsp;' . $labelRequired . '</span>';
                 }
 
                 // Button element is a special case, because label is always rendered inside it
@@ -119,6 +127,7 @@ class FieldRow extends FormRow
             }
         }
         
+        /**
         $labelAttributes = $element->getOption("labelAttributes");
         $labelRequired = "";
         
@@ -133,6 +142,8 @@ class FieldRow extends FormRow
                        </span>
                        {$elementString}
                    </div>";
+         * 
+         */
 
         return $markup;
     }

@@ -7,11 +7,6 @@ $form->setAttribute('action', $this->url('login'));
 $formLogin = $this->form()->openTag($form);
 $formLogin .= $this->fieldRow($form->get('username'));
 $formLogin .= $this->fieldRow($form->get('password'));
-
-$separator = new \System\Model\Separator();
-$separator->setStyle("margin-top: 15%");
-$formLogin .= $this->SeparatorHelper($separator);
-
 $formLogin .= "<input type='submit' name='send' class='btn btn-primary loading' value='Logar'>";
 $formLogin .= $this->form()->closeTag();
 
