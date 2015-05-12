@@ -46,7 +46,7 @@ class LoginController extends AbstractActionController
         $form = $this->getFormLogin();
         
         $dataLogin = $this->findLoginByUsername($data['username']);
-        $data['name'] = $dataLogin['name'];
+        $data['name'] = $dataLogin['name'] ? $dataLogin['name'] : "Não nomeado";
         
         $form->setData($data);
         $sucessRoute = \System\Controller\Controller::MODULE_MANAGER;

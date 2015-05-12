@@ -4,8 +4,8 @@ $form = $this->form;
 $form->prepare();
 $form->setAttribute('action', $this->url('login'));
 
-$formLogin = "<div style='width:20%; margin-top:10%; margin-left:auto; margin-right:auto; text-align:center;'>";
-$formLogin .= "<img src='{$this->basePath()}/img/site/logo_manager.png'>";
+$formLogin = "<div style='width:325px; margin-top:10%; margin-left:auto; margin-right:auto; text-align:center;'>";
+$formLogin .= "<img src='{$this->basePath()}/img/logo_manager.png' style='margin-bottom:20px'>";
 $formLogin .= $this->form()->openTag($form);
 $formLogin .= $this->fieldRow($form->get('username'));
 $formLogin .= $this->fieldRow($form->get('password'));
