@@ -39,9 +39,9 @@ class MenuHelper extends ViewHelper
                                   
                                   {$this->getModules()}
                                   
-                                  <ul class='nav navbar-nav' style='float: right'>
-                                      <li class='dropdown'>
-                                          <a href='' class='dropdown-toggle' data-toggle='dropdown'>
+                                  <ul class='nav navbar-nav' style='float:right; min-width:160px;'>
+                                      <li class='dropdown' style='width:100%'>
+                                          <a href='' class='dropdown-toggle' data-toggle='dropdown' style='text-align: right'>
                                               {$nameUser}&nbsp;&nbsp;<i class='fa fa-user'></i>
                                               <b class='caret'></b>
                                           </a>
@@ -51,7 +51,7 @@ class MenuHelper extends ViewHelper
                                               </li>
                                               <li>
                                                   <a href='javascript:void(0)' onclick='javascript:logoutMessage()'>
-                                                      Efetuar logout&nbsp;&nbsp;<i class='img-logout fa fa-power-off'></i>
+                                                      Efetuar logout&nbsp;<i class='img-logout fa fa-power-off'></i>
                                                   </a>
                                               </li>
                                           </ul>

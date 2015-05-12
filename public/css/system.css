@@ -53,7 +53,7 @@ footer{
 
 .menu{
     background: #0075b0;
-    height: 8%;
+    height: 53px;
 }
 
 .tree{
@@ -96,23 +96,23 @@ footer{
 }
 
 .menu .dropdown-menu a:hover{
-    background: #2187e7 !important;
-    color: #fff !important;
+    background: #ddd !important;
+    color: #0075b0 !important;
 }
 
 .menu .active{
-    background: #2187e7 !important;
+    background: #004B8B !important;
     color: #fff !important;
 }
 
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
-    background: #2187e7 !important;
+    background: #004B8B !important;
     color: #fff !important;
 }
 
 .menu .open{
     color: #0075b0 !important;
-    background: #2187e7 !important;
+    background: #004B8B !important;
 }
 
 .menu li a{
@@ -122,7 +122,7 @@ footer{
     
 .menu li a:hover{
     height: 100% !important;
-    background: #2187e7 !important;
+    background: #004B8B !important;
     color: #fff !important;
 }
 
