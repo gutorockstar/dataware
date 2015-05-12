@@ -4,14 +4,23 @@ $form = $this->form;
 $form->prepare();
 $form->setAttribute('action', $this->url('login'));
 
-$formLogin = $this->form()->openTag($form);
+$formLogin = "<div style='width:20%; margin-top:10%; margin-left:auto; margin-right:auto; text-align:center;'>";
+$formLogin .= "<img src='{$this->basePath()}/img/site/logo_manager.png'>";
+$formLogin .= $this->form()->openTag($form);
 $formLogin .= $this->fieldRow($form->get('username'));
 $formLogin .= $this->fieldRow($form->get('password'));
 $formLogin .= "<input type='submit' name='send' class='btn btn-primary loading' value='Logar'>";
 $formLogin .= $this->form()->closeTag();
+$formLogin .= "</div>";
 
+echo $formLogin;
+
+
+/**
 $panel = new \System\Model\Panel('Efetuar login', $formLogin, 'fa-user', 'width: 25%; height: 40%; margin-top: 10%; float: center !important');
 $panel->setHeadingStyle("height: 15%");
 echo $this->PanelHelper($panel);
+ * 
+ */
 
 ?>

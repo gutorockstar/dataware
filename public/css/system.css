@@ -242,7 +242,6 @@ fieldset > fieldset label {
 }
 
 form .btn-primary {
-    float: right;
     clear: both;
 }
 
@@ -740,4 +739,9 @@ hr{
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+
+#Login label span{
+    width: 100%;
+    text-align: center;
 }
